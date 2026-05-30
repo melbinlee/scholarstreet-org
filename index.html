@@ -595,7 +595,7 @@ footer{background:#111111;padding:5rem 0 2.5rem}
 
 <script>
 /* SCROLL TO TOP ON LOAD */
-window.onbeforeunload=function(){window.scrollTo(0,0)};
+if(history.scrollRestoration){history.scrollRestoration='manual';}
 window.scrollTo(0,0);
 
 /* HUD FISCAL YEAR LABEL */
