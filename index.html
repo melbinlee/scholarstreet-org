@@ -233,6 +233,17 @@ footer{background:#111111;padding:5rem 0 2.5rem}
 </head>
 <body>
 
+<!-- Netlify form detection (hidden) -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="first-name">
+  <input type="text" name="last-name">
+  <input type="email" name="email">
+  <input type="tel" name="phone">
+  <select name="interest"></select>
+  <input type="text" name="state">
+  <textarea name="message"></textarea>
+</form>
+
 <nav id="mainNav">
   <a class="nav-logo" href="#hero">
     <div class="nav-crest">S</div>
@@ -560,7 +571,7 @@ footer{background:#111111;padding:5rem 0 2.5rem}
           </div>
           <div class="fg"><label for="f-msg">Your Message</label><textarea id="f-msg" name="message" placeholder="How can we help?" required></textarea></div>
           <button type="submit" class="fsub" id="formBtn">Send Message</button>
-          <p class="fok" id="formOk">Your message has been received. We will be in touch within two business days.</p>
+          <p class="fok" id="formOk" style="display:none">Your message has been received. We will be in touch within two business days.</p>
         </form>
       </div>
     </div>
@@ -619,8 +630,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
 /* SCROLL TO FORM */
 function scrollToForm(e){
   if(e) e.preventDefault();
-  document.getElementById('contactForm').scrollIntoView({behavior:'smooth'});
-  setTimeout(function(){document.getElementById('f-first').focus()},600);
+  document.getElementById('contactForm').scrollIntoView({behavior:'instant'});
+  document.getElementById('f-first').focus();
 }
 
 /* REVEAL ON SCROLL */
@@ -693,23 +704,30 @@ document.getElementById('scholarForm').addEventListener('submit',function(e){
   if(!stateHidden.value&&stateInput.value) stateHidden.value=stateInput.value;
   btn.disabled=true;
   btn.textContent='Sending…';
+
   var formData=new FormData(this);
+  var encoded=new URLSearchParams(formData).toString();
+
   fetch('/',{
     method:'POST',
     headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body:new URLSearchParams(formData).toString()
+    body:encoded
   })
-  .then(function(){
-    btn.style.display='none';
-    document.getElementById('formOk').style.display='block';
-    document.getElementById('scholarForm').reset();
-    document.getElementById('f-state-input').value='';
+  .then(function(response){
+    if(response.ok||response.status===200||response.redirected){
+      btn.style.display='none';
+      document.getElementById('formOk').style.display='block';
+      document.getElementById('scholarForm').reset();
+      document.getElementById('f-state-input').value='';
+    } else {
+      throw new Error('Response status: '+response.status);
+    }
   })
   .catch(function(err){
-    console.error(err);
+    console.error('Form error:',err);
     btn.disabled=false;
     btn.textContent='Send Message';
-    alert('Something went wrong. Please try again or email us directly at info@scholarstreet.org');
+    alert('Something went wrong submitting the form. Please email us directly at info@scholarstreet.org');
   });
 });
 </script>
