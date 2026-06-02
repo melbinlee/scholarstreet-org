@@ -206,7 +206,6 @@ footer{background:#111111;padding:5rem 0 2.5rem}
 /* 501(c)(3) PENDING BANNER — remove when approval received */
 #pending-banner{background:#fffbea;border-bottom:2px solid var(--brass);padding:10px 6vw;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:13px;font-family:var(--sans);color:var(--charcoal-mid);line-height:1.5;position:relative;z-index:101}
 #pending-banner strong{font-weight:600;color:var(--charcoal)}
-#pending-banner a{color:var(--brass);text-decoration:underline;text-underline-offset:2px}
 #pending-banner-close{background:none;border:none;cursor:pointer;font-size:18px;color:var(--charcoal-light);line-height:1;padding:0 0 0 1rem;flex-shrink:0;transition:color .2s}
 #pending-banner-close:hover{color:var(--charcoal)}
 
@@ -253,7 +252,7 @@ footer{background:#111111;padding:5rem 0 2.5rem}
 
 <!-- 501(c)(3) PENDING BANNER — controlled by PENDING_501C3 flag in script -->
 <div id="pending-banner" style="display:none" role="status" aria-live="polite">
-  <span><strong>501(c)(3) application pending.</strong> Contributions are not currently deductible as federal charitable donations, but may qualify for the Education Freedom Tax Credit under IRC §25F. <a href="#compliance">Learn more.</a></span>
+  <span><strong>ScholarStreet is a pending 501(c)(3) nonprofit.</strong> Donor operations open upon federal approval.</span>
   <button id="pending-banner-close" aria-label="Dismiss notice">×</button>
 </div>
 
@@ -620,11 +619,9 @@ var PENDING_501C3 = true;
   var nav=document.getElementById('mainNav');
   if(!banner) return;
   banner.style.display='flex';
-  // Push the fixed nav down so it sits below the banner
   function adjustNav(){
     var h=banner.offsetHeight;
     nav.style.top=h+'px';
-    // Hero padding accounts for both banner and nav
     var hero=document.getElementById('hero');
     if(hero) hero.style.paddingTop=(66+h)+'px';
   }
