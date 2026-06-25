@@ -203,12 +203,10 @@ footer{background:#111111;padding:5rem 0 2.5rem}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
 .reveal.visible{opacity:1;transform:none}
 
-/* 501(c)(3) PENDING BANNER — remove when approval received */
-/* 501(c)(3) PENDING BANNER — set PENDING_501C3=false in script to remove */
-#pending-banner{background:#fffbea;border-bottom:2px solid var(--brass);padding:10px 6vw;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:13px;font-family:var(--sans);color:var(--charcoal-mid);line-height:1.5;position:relative;z-index:101}
-#pending-banner strong{font-weight:600;color:var(--charcoal)}
-#pending-banner-close{background:none;border:none;cursor:pointer;font-size:18px;color:var(--charcoal-light);line-height:1;padding:0 0 0 1rem;flex-shrink:0;transition:color .2s}
-#pending-banner-close:hover{color:var(--charcoal)}
+/* 501(c)(3) APPROVED BANNER */
+#approved-banner{background:#1c2e1e;border-bottom:1px solid rgba(184,134,11,0.25);padding:9px 6vw;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;font-size:12px;font-family:var(--sans);color:rgba(255,255,255,0.65);line-height:1.5;position:relative;z-index:101}
+#approved-banner .ab-dot{width:7px;height:7px;border-radius:50%;background:var(--brass-light);flex-shrink:0}
+#approved-banner strong{font-weight:600;color:rgba(255,255,255,0.88)}
 
 /* RESPONSIVE */
 @media(min-width:981px){
@@ -251,10 +249,10 @@ footer{background:#111111;padding:5rem 0 2.5rem}
 <textarea name="message"></textarea>
 </form>
 
-<!-- 501(c)(3) PENDING BANNER — controlled by PENDING_501C3 flag in script -->
-<div id="pending-banner" style="display:none" role="status" aria-live="polite">
-<span><strong>ScholarStreet is a pending 501(c)(3) nonprofit.</strong> Donor operations open upon federal approval.</span>
-<button id="pending-banner-close" aria-label="Dismiss notice">×</button>
+<!-- 501(c)(3) APPROVED BANNER -->
+<div id="approved-banner" role="status">
+<span class="ab-dot"></span>
+<span><strong>ScholarStreet is an IRS-approved 501(c)(3) public charity</strong> — effective May 19, 2026. Contributions are tax-deductible under IRC §170.</span>
 </div>
 
 <nav id="mainNav">
@@ -598,14 +596,13 @@ footer{background:#111111;padding:5rem 0 2.5rem}
 <div>
 <div class="fbrand-name">ScholarStreet</div>
 <p class="fbrand-desc">A federally authorized Scholarship Granting Organization operating under IRC §25F, dedicated to expanding K–12 educational access for income-eligible families across the United States.</p>
-<p class="ftax-note">ScholarStreet is a §25F Scholarship Granting Organization. Contributions may be eligible for the Education Freedom Tax Credit. Consult a qualified tax professional regarding your specific circumstances. ScholarStreet does not provide legal or tax advice.</p>
+<p class="ftax-note">ScholarStreet is an IRS-approved 501(c)(3) public charity (EIN 42-2704061), effective May 19, 2026. Contributions are tax-deductible under IRC §170 and may qualify for the Education Freedom Tax Credit under IRC §25F. Consult a qualified tax professional regarding your specific circumstances. ScholarStreet does not provide legal or tax advice.</p>
 </div>
 <div class="fcol"><h6>Organization</h6><ul><li><a href="#mission">Our Mission</a></li><li><a href="#process">How It Works</a></li><li><a href="#compliance">Compliance</a></li><li><a href="#contact">Contact</a></li></ul></div>
 <div class="fcol"><h6>Families</h6><ul><li><a href="#eligibility">Eligibility Criteria</a></li><li><a href="#programs">Scholarship Programs</a></li><li><a href="#contact">Apply Now</a></li><li><a href="#contact">FAQ</a></li></ul></div>
 <div class="fcol"><h6>Donors</h6><ul><li><a href="#process">Tax Credit Overview</a></li><li><a href="#contact">Contribute</a></li><li><a href="#contact">Corporate Giving</a></li><li><a href="#compliance">Our Standards</a></li></ul></div>
 </div>
 <div class="fbot">
-      <p>© 2025 ScholarStreet. All rights reserved.</p>
       <p>© 2026 ScholarStreet. All rights reserved.</p>
 <p>Scholarship Granting Organization · IRC §25F · Education Freedom Tax Credit</p>
 </div>
@@ -613,19 +610,11 @@ footer{background:#111111;padding:5rem 0 2.5rem}
 </footer>
 
 <script>
-/* ── FEATURE FLAGS ──────────────────────────────────────────────────────────
-  Set PENDING_501C3 to false once IRS 501(c)(3) approval is received.
-  The banner will disappear everywhere automatically on next deploy.
-  ────────────────────────────────────────────────────────────────────────── */
-var PENDING_501C3 = true;
-
-/* 501(c)(3) PENDING BANNER */
+/* 501(c)(3) APPROVED BANNER — offset nav */
 (function(){
-if(!PENDING_501C3) return;
-var banner=document.getElementById('pending-banner');
+var banner=document.getElementById('approved-banner');
 var nav=document.getElementById('mainNav');
-if(!banner) return;
-banner.style.display='flex';
+if(!banner||!nav) return;
 function adjustNav(){
 var h=banner.offsetHeight;
 nav.style.top=h+'px';
@@ -634,12 +623,6 @@ if(hero) hero.style.paddingTop=(66+h)+'px';
 }
 adjustNav();
 window.addEventListener('resize',adjustNav);
-document.getElementById('pending-banner-close').addEventListener('click',function(){
-banner.style.display='none';
-nav.style.top='0';
-var hero=document.getElementById('hero');
-if(hero) hero.style.paddingTop='66px';
-});
 })();
 
 /* SCROLL TO TOP ON LOAD */
