@@ -1,3 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScholarStreet — Scholarship Granting Organization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--parchment:#faf8f4;
+--parchment-dark:#f2ede4;
+--charcoal:#1c1c1c;
+--navy:#2e2e2e;
+--charcoal-mid:#3a3a3a;
+--charcoal-light:#6a6a6a;
+--brass:#b8860b;
+--brass-light:#d4a017;
+--brass-pale:#fef8e1;
+--rule:#d4cdc0;
+--white:#ffffff;
+--serif:'Cormorant Garamond',Georgia,serif;
+--sans:'Source Sans 3',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--parchment);color:var(--charcoal);font-size:16px;line-height:1.65;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,244,0.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;transition:box-shadow .3s;box-sizing:border-box}
+nav.scrolled{box-shadow:0 2px 20px rgba(28,28,28,.08)}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-crest{width:38px;height:38px;border:1.5px solid var(--brass);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;font-weight:600;color:var(--brass);flex-shrink:0}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--charcoal);letter-spacing:.02em;line-height:1}
+.nav-type{font-size:10px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:var(--charcoal-light)}
+.nav-links{display:flex;flex-direction:row;gap:2rem;list-style:none;align-items:center;margin:0;padding:0}
+.nav-links a{font-size:13px;font-weight:400;color:var(--charcoal-light);text-decoration:none;letter-spacing:.04em;transition:color .2s}
+.nav-links a:hover{color:var(--charcoal)}
+.nav-apply{font-size:12px!important;font-weight:600!important;letter-spacing:.1em!important;text-transform:uppercase!important;color:var(--brass)!important;border:1px solid var(--brass);padding:8px 18px;border-radius:2px;transition:background .2s,color .2s!important}
+.nav-apply:hover{background:var(--brass)!important;color:var(--white)!important}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.ham span{display:block;width:22px;height:1.5px;background:var(--charcoal);border-radius:1px}
+
+/* HERO */
+#hero{padding-top:66px;min-height:100vh;background:var(--navy);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-texture{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.hero-left{padding:10vh 5vw 8vh 6vw;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;border-right:1px solid rgba(255,255,255,.07)}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-light);margin-bottom:2.5rem}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--brass)}
+.hero-h1{font-family:var(--serif);font-size:clamp(3rem,5vw,4.6rem);font-weight:300;color:var(--white);line-height:1.1;letter-spacing:-.01em;margin-bottom:2rem}
+.hero-h1 em{font-style:italic;font-weight:300;color:var(--brass-light)}
+.hero-rule{width:48px;height:1px;background:var(--brass);margin-bottom:2rem}
+.hero-p{font-size:16px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.8;max-width:400px;margin-bottom:3rem}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-brass{background:var(--brass);color:var(--white);padding:14px 32px;border-radius:2px;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .2s;display:inline-block}
+.btn-brass:hover{background:var(--brass-light)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,.6);padding:14px 32px;border-radius:2px;border:1px solid rgba(255,255,255,.2);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;transition:border-color .2s,color .2s;display:inline-block}
+.btn-ghost:hover{border-color:rgba(255,255,255,.45);color:rgba(255,255,255,.85)}
+.hero-right{display:flex;flex-direction:column;justify-content:center;padding:8vh 6vw 8vh 5vw;position:relative;z-index:2}
+.hero-stat{padding:2.5rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.hero-stat:last-child{border-bottom:none}
+.hstat-num{font-family:var(--serif);font-size:3.2rem;font-weight:300;color:var(--white);line-height:1;margin-bottom:.35rem}
+.hstat-label{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);letter-spacing:.03em;line-height:1.5}
+.hstat-tag{display:inline-block;margin-top:.6rem;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-light)}
+
+/* DECLARATION BAND */
+.decl{background:var(--white);padding:0;border-bottom:3px solid var(--brass)}
+.decl-inner{max-width:1100px;margin:0 auto;padding:4rem 2.5rem;display:flex;gap:4rem;align-items:center;border-left:4px solid var(--brass);margin-left:6vw;margin-right:6vw}
+.decl blockquote{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:300;font-style:italic;color:var(--charcoal);line-height:1.5;flex:1}
+.decl-aside{flex-shrink:0;text-align:right;border-left:1px solid var(--rule);padding-left:3rem}
+.decl-aside strong{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--brass);margin-bottom:4px}
+.decl-aside span{font-size:11px;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal-light);display:block;line-height:1.6}
+
+/* SECTION UTIL */
+section{scroll-margin-top:66px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 6vw}
+.s-label{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.s-title{font-family:var(--serif);font-size:clamp(2rem,3.2vw,3rem);font-weight:300;color:var(--charcoal);line-height:1.2;letter-spacing:-.01em}
+.s-title em{font-style:italic;color:var(--brass)}
+.s-rule{width:40px;height:1px;background:var(--brass);margin:1.25rem 0}
+.s-body{font-size:15px;font-weight:300;color:var(--charcoal-light);line-height:1.8;max-width:520px}
+
+/* MISSION */
+#mission{padding:7rem 0;background:var(--parchment)}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:7rem;margin-top:5rem;align-items:start}
+.flow-card{background:var(--white);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.flow-head{background:var(--navy);padding:1.25rem 1.75rem;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.flow-row{display:flex;gap:16px;align-items:flex-start;padding:1.5rem 1.75rem;border-bottom:1px solid var(--parchment-dark);transition:background .15s}
+.flow-row:last-child{border-bottom:none}
+.flow-row:hover{background:var(--brass-pale)}
+.flow-icon{width:42px;height:42px;flex-shrink:0;border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;margin-top:2px;background:var(--parchment)}
+.flow-text strong{font-size:14px;font-weight:600;color:var(--charcoal);display:block;margin-bottom:4px}
+.flow-text p{font-size:13px;font-weight:300;color:var(--charcoal-light);line-height:1.6}
+.flow-arrow{text-align:center;padding:6px 0 4px;color:var(--brass);font-size:14px;letter-spacing:.1em}
+.mission-pillars{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)}
+.mpillar{padding:2rem 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:28px 1fr;gap:1.25rem;align-items:start}
+.mpillar-num{font-family:var(--serif);font-size:13px;font-weight:300;font-style:italic;color:var(--brass);padding-top:3px}
+.mpillar h4{font-size:15px;font-weight:600;color:var(--charcoal);margin-bottom:.5rem}
+.mpillar p{font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.7}
+
+/* PROCESS */
+#process{padding:7rem 0;background:var(--navy)}
+#process .s-title{color:var(--white)}
+#process .s-body{color:rgba(255,255,255,.45)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:5rem;border:1px solid rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.pstep{padding:2.5rem 2rem;border-right:1px solid rgba(255,255,255,.07);transition:background .2s}
+.pstep:last-child{border-right:none}
+.pstep:hover{background:rgba(255,255,255,.03)}
+.pstep-n{font-family:var(--serif);font-size:3.5rem;font-weight:300;font-style:italic;color:rgba(184,134,11,.25);line-height:1;margin-bottom:1.25rem}
+.pstep-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:.75rem;line-height:1.3}
+.pstep-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.7}
+.pstep-tag{display:inline-block;margin-top:1.25rem;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-light);padding-bottom:2px;border-bottom:1px solid rgba(184,149,42,.35)}
+.donor-strip{margin-top:4rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--brass);padding:2.5rem 3rem;display:flex;gap:3rem;align-items:center;flex-wrap:wrap}
+.donor-strip-text h4{font-family:var(--serif);font-size:1.4rem;font-weight:300;font-style:italic;color:var(--white);margin-bottom:.5rem}
+.donor-strip-text p{font-size:14px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.65;max-width:540px}
+
+/* ELIGIBILITY */
+#eligibility{padding:7rem 0;background:var(--parchment-dark)}
+.elig-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:5rem;margin-top:5rem;align-items:start}
+.elig-req{background:var(--white);border:1px solid var(--rule);padding:2rem;border-radius:2px}
+.elig-req h4{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--charcoal);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--rule)}
+.elig-req ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.elig-req ul li{font-size:13px;font-weight:300;color:var(--charcoal-light);padding-left:18px;position:relative;line-height:1.55}
+.elig-req ul li::before{content:'—';position:absolute;left:0;color:var(--brass);font-size:11px;font-weight:600}
+.elig-privacy{background:var(--brass-pale);border-left:3px solid var(--brass);padding:1.25rem 1.5rem;font-size:13px;font-weight:300;color:var(--charcoal-mid);line-height:1.65;margin-top:1.5rem}
+.elig-note{font-size:12px;font-weight:300;color:var(--charcoal-light);margin-top:12px;line-height:1.65;padding-left:1rem;border-left:2px solid var(--brass)}
+.elig-aside{display:flex;flex-direction:column;gap:1.5rem}
+.elig-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:.5rem}
+.btn-charcoal{background:var(--charcoal);color:var(--white);padding:12px 24px;border-radius:2px;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s;display:inline-block}
+.btn-charcoal:hover{background:var(--charcoal-mid)}
+.btn-outline-brass{background:transparent;color:var(--brass);padding:12px 24px;border-radius:2px;border:1px solid var(--brass);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,color .2s;display:inline-block}
+.btn-outline-brass:hover{background:var(--brass);color:var(--white)}
+
+/* PROGRAMS */
+#programs{padding:7rem 0;background:var(--parchment)}
+.prog-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:4rem}
+.prog-cards{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule);border-radius:2px;overflow:hidden;background:var(--white)}
+.prog-card{display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:start;padding:2.25rem 2.5rem;border-bottom:1px solid var(--parchment-dark);transition:background .2s}
+.prog-card:last-child{border-bottom:none}
+.prog-card:hover{background:var(--brass-pale)}
+.prog-index{font-family:var(--serif);font-size:2.5rem;font-weight:300;font-style:italic;color:rgba(184,134,11,.25);line-height:1;padding-top:2px;width:36px}
+.prog-body h4{font-size:16px;font-weight:600;color:var(--charcoal);margin-bottom:.5rem}
+.prog-body p{font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.7}
+.prog-tag{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);white-space:nowrap;padding-top:4px}
+.award-note{margin-top:2.5rem;border:1px solid var(--rule);border-top:3px solid var(--brass);background:var(--white);padding:1.75rem 2rem;display:flex;gap:1.5rem;align-items:flex-start}
+.award-note-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--brass);flex-shrink:0;padding-top:3px}
+.award-note p{font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.7}
+
+/* COMPLIANCE */
+#compliance{padding:7rem 0;background:var(--navy)}
+#compliance .s-title{color:var(--white)}
+#compliance .s-body{color:rgba(255,255,255,.45)}
+.comp-grid{display:grid;grid-template-columns:1fr 2fr;gap:6rem;margin-top:5rem;align-items:start}
+.comp-items{display:flex;flex-direction:column;gap:0}
+.ci{padding:1.75rem 0;border-bottom:1px solid rgba(255,255,255,.07);display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;transition:padding-left .2s}
+.ci:last-child{border-bottom:none}
+.ci:hover{padding-left:6px}
+.ci-glyph{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--brass);width:28px;text-align:center;padding-top:2px;flex-shrink:0}
+.ci h5{font-size:15px;font-weight:600;color:var(--white);margin-bottom:.35rem}
+.ci p{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.65}
+
+/* CONTACT */
+#contact{padding:3rem 0 5rem;background:var(--parchment-dark)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;margin-top:2rem;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:0}
+.ci2{display:flex;gap:1.25rem;align-items:flex-start;padding:1.5rem 0;border-bottom:1px solid var(--rule)}
+.ci2:last-child{border-bottom:none}
+.ci2-icon{width:36px;height:36px;flex-shrink:0;border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;background:var(--white);margin-top:2px}
+.ci2 strong{display:block;font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:3px}
+.ci2 span{font-size:13px;font-weight:300;color:var(--charcoal-light)}
+.contact-note{margin-top:2rem;font-size:13px;font-weight:300;color:var(--charcoal-light);line-height:1.7;padding-left:1rem;border-left:2px solid var(--brass)}
+.cform{background:var(--white);border:1px solid var(--rule);padding:2.5rem;border-radius:2px;display:flex;flex-direction:column;gap:16px}
+.cform-title{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:var(--charcoal);padding-bottom:1.25rem;border-bottom:1px solid var(--rule);margin-bottom:.25rem}
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--charcoal-light)}
+.fg input,.fg select,.fg textarea{background:var(--parchment);border:1px solid var(--rule);border-radius:1px;padding:11px 14px;color:var(--charcoal);font-family:var(--sans);font-size:14px;font-weight:300;outline:none;transition:border-color .2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--brass)}
+.fg textarea{resize:vertical;min-height:96px}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--rule)}
+.fsub{background:var(--charcoal);color:var(--white);padding:13px 28px;border-radius:2px;border:none;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;align-self:flex-start}
+.fsub:hover{background:var(--charcoal-mid)}
+.fok{font-size:13px;color:var(--brass);margin-top:4px;display:none;font-style:italic;font-family:var(--serif)}
+
+/* FOOTER */
+footer{background:#111111;padding:5rem 0 2.5rem}
+.fwrap{max-width:1100px;margin:0 auto;padding:0 6vw}
+.ftop{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.fbrand-name{font-family:var(--serif);font-size:1.3rem;font-weight:300;color:rgba(255,255,255,.7);margin-bottom:.75rem;display:flex;align-items:center;gap:10px}
+.fbrand-name::before{content:'';display:block;width:24px;height:1px;background:var(--brass)}
+.fbrand-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.28);line-height:1.7;margin-bottom:1.5rem}
+.ftax-note{font-size:11px;font-weight:300;color:rgba(255,255,255,.18);line-height:1.65}
+.fcol h6{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:1.1rem}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fcol ul li a{font-size:13px;font-weight:300;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s;letter-spacing:.02em}
+.fcol ul li a:hover{color:rgba(255,255,255,.75)}
+.fbot{padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.fbot p{font-size:11px;font-weight:300;color:rgba(255,255,255,.2);letter-spacing:.04em}
+
+/* REVEAL */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
 .reveal.visible{opacity:1;transform:none}
 
@@ -6,7 +208,78 @@
 #pending-banner{background:#fffbea;border-bottom:2px solid var(--brass);padding:10px 6vw;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:13px;font-family:var(--sans);color:var(--charcoal-mid);line-height:1.5;position:relative;z-index:101}
 #pending-banner strong{font-weight:600;color:var(--charcoal)}
 #pending-banner-close{background:none;border:none;cursor:pointer;font-size:18px;color:var(--charcoal-light);line-height:1;padding:0 0 0 1rem;flex-shrink:0;transition:color .2s}
-@@ -282,7 +282,7 @@
+#pending-banner-close:hover{color:var(--charcoal)}
+
+/* RESPONSIVE */
+@media(min-width:981px){
+.nav-links{display:flex !important;flex-direction:row !important}
+.ham{display:none !important}
+}
+@media(max-width:980px){
+#hero{grid-template-columns:1fr;min-height:auto;padding-bottom:5rem}
+.hero-right{display:none}
+.decl-inner{flex-direction:column;gap:2rem;border-left:none;padding-left:0;border-top:3px solid var(--brass)}
+.decl-aside{text-align:left;border-left:none;padding-left:0;border-top:1px solid var(--rule);padding-top:1.5rem}
+.mission-grid,.elig-grid,.comp-grid,.contact-grid{grid-template-columns:1fr;gap:3.5rem}
+.prog-intro{grid-template-columns:1fr}
+.process-steps{grid-template-columns:1fr 1fr}
+.pstep:nth-child(2){border-right:none}
+.ftop{grid-template-columns:1fr 1fr;gap:2.5rem}
+.crow{grid-template-columns:1fr}
+.nav-links{display:none !important}
+.ham{display:flex}
+.nav-links.open{display:flex !important;flex-direction:column;position:absolute;top:66px;left:0;right:0;background:var(--parchment);border-bottom:1px solid var(--rule);padding:1.5rem 6vw;gap:1.25rem;box-shadow:0 8px 24px rgba(28,28,28,.08)}
+}
+@media(max-width:600px){
+.process-steps{grid-template-columns:1fr}
+.pstep{border-right:none!important;border-bottom:1px solid rgba(255,255,255,.1)}
+.pstep:last-child{border-bottom:none}
+.ftop{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Netlify form detection (hidden) -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+<input type="text" name="first-name">
+<input type="text" name="last-name">
+<input type="email" name="email">
+<input type="tel" name="phone">
+<select name="interest"></select>
+<input type="text" name="state">
+<textarea name="message"></textarea>
+</form>
+
+<!-- 501(c)(3) PENDING BANNER — controlled by PENDING_501C3 flag in script -->
+<div id="pending-banner" style="display:none" role="status" aria-live="polite">
+<span><strong>ScholarStreet is a pending 501(c)(3) nonprofit.</strong> Donor operations open upon federal approval.</span>
+<button id="pending-banner-close" aria-label="Dismiss notice">×</button>
+</div>
+
+<nav id="mainNav">
+<a class="nav-logo" href="#hero">
+<div class="nav-crest">S</div>
+<div class="nav-brand">
+<span class="nav-name">ScholarStreet</span>
+<span class="nav-type">Scholarship Granting Organization</span>
+</div>
+</a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#mission">Mission</a></li>
+<li><a href="#process">How It Works</a></li>
+<li><a href="#eligibility">Eligibility</a></li>
+<li><a href="#programs">Programs</a></li>
+<li><a href="#compliance">Compliance</a></li>
+<li><a href="#contact" class="nav-apply" onclick="scrollToForm(event)">Apply / Donate</a></li>
+</ul>
+<button class="ham" id="ham" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+<div class="hero-texture"></div>
+<div class="hero-left">
 <div class="hero-eyebrow">Scholarship Granting Organization — IRC §25F</div>
 <h1 class="hero-h1">Opening doors<br>families didn't<br>know <em>existed.</em></h1>
 <div class="hero-rule"></div>
@@ -15,7 +288,55 @@
 <div class="hero-btns">
 <a href="#eligibility" class="btn-brass">Learn About Eligibility</a>
 <a href="#mission" class="btn-ghost">Our Mission</a>
-@@ -338,7 +338,7 @@ <h2 class="s-title">Built for families.<br>Accountable to <em>every dollar.</em>
+</div>
+</div>
+<div class="hero-right">
+<div class="hero-stat reveal">
+<div class="hstat-num">IRC §25F</div>
+<div class="hstat-label">Governing federal authority — Education Freedom Tax Credit</div>
+<div class="hstat-tag">Federally authorized</div>
+</div>
+<div class="hero-stat reveal">
+<div class="hstat-num">300%</div>
+<div class="hstat-label">Area Median Income threshold for household eligibility</div>
+<div class="hstat-tag">Based on county AMI · <span id="hud-fy-label"></span></div>
+</div>
+<div class="hero-stat reveal">
+<div class="hstat-num">K – 12</div>
+<div class="hstat-label">All grade levels, all qualifying school models, no fee to apply</div>
+<div class="hstat-tag">Serving families &amp; donors nationwide</div>
+</div>
+<div class="hero-stat reveal">
+<div class="hstat-num">$0</div>
+<div class="hstat-label">Cost to families to apply for a ScholarStreet scholarship</div>
+<div class="hstat-tag">Always free</div>
+</div>
+</div>
+</section>
+
+<!-- DECLARATION -->
+<div class="decl">
+<div class="decl-inner">
+<blockquote>"Every child deserves a school that sees them. ScholarStreet exists to help families get there."</blockquote>
+<div class="decl-aside">
+<strong>§25F</strong>
+<span>Education Freedom<br>Tax Credit</span>
+<span style="margin-top:.75rem">Federal authorization<br>for SGO scholarship<br>granting activity</span>
+</div>
+</div>
+</div>
+
+<!-- MISSION -->
+<section id="mission">
+<div class="wrap">
+<div class="s-label">Our Mission</div>
+<h2 class="s-title">Built for families.<br>Accountable to <em>every dollar.</em></h2>
+<div class="s-rule"></div>
+<p class="s-body">ScholarStreet was founded on the belief that access to the right school shouldn't depend on a family's income. We operate as a federally authorized Scholarship Granting Organization, channeling donor contributions into scholarships for students who need them most.</p>
+<div class="mission-grid">
+<div class="flow-card reveal">
+<div class="flow-head">How scholarship funding reaches your family</div>
+<div class="flow-row">
 <div class="flow-icon">🏦</div>
 <div class="flow-text">
 <strong>Donors &amp; businesses contribute</strong>
@@ -24,7 +345,69 @@
 </div>
 </div>
 <div class="flow-arrow">↓ &nbsp; &nbsp; ↓</div>
-@@ -408,7 +408,7 @@ <h2 class="s-title">Four steps.<br><em>Straightforward</em> by design.</h2>
+<div class="flow-row">
+<div class="flow-icon">🏛️</div>
+<div class="flow-text">
+<strong>ScholarStreet reviews and awards</strong>
+<p>We verify income eligibility against county AMI data, manage full federal compliance, and award scholarships to qualifying families in priority order.</p>
+</div>
+</div>
+<div class="flow-arrow">↓ &nbsp; &nbsp; ↓</div>
+<div class="flow-row">
+<div class="flow-icon">👨‍👩‍👧</div>
+<div class="flow-text">
+<strong>Your family receives an award</strong>
+<p>Scholarship funds are disbursed directly to qualifying schools or approved educational expenses. Awards are federal income tax-free under §139K.</p>
+</div>
+</div>
+</div>
+<div class="mission-pillars reveal">
+<div class="mpillar">
+<div class="mpillar-num">i.</div>
+<div>
+<h4>Income-eligible families, first and always</h4>
+<p>Every award is reserved for households at or below 300% of the Area Median Income for their county. No exceptions and no favoritism — the statute sets the floor and our commitment goes beyond it.</p>
+</div>
+</div>
+<div class="mpillar">
+<div class="mpillar-num">ii.</div>
+<div>
+<h4>School choice belongs to families</h4>
+<p>Private school, homeschool co-op, microschool, or specialized learning program — if it qualifies under §25F, we'll help fund it. Parents know their children best.</p>
+</div>
+</div>
+<div class="mpillar">
+<div class="mpillar-num">iii.</div>
+<div>
+<h4>Rigorous, transparent stewardship</h4>
+<p>We document every application, every decision, and every disbursement. Federal compliance isn't a checkbox for us — it's the foundation of the trust families and donors place in ScholarStreet.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+<div class="wrap">
+<div class="s-label" style="color:var(--brass-light)">Process</div>
+<h2 class="s-title">Four steps.<br><em>Straightforward</em> by design.</h2>
+<div class="s-rule"></div>
+<p class="s-body">Families navigating educational decisions carry enough complexity. We've built a process that stays out of the way.</p>
+<div class="process-steps">
+<div class="pstep reveal">
+<div class="pstep-n">01</div>
+<div class="pstep-title">Submit your household application</div>
+<p class="pstep-body">Complete our online application with household income details, student information, and your intended school or educational program. There is no fee to apply.</p>
+<span class="pstep-tag">Families</span>
+</div>
+<div class="pstep reveal">
+<div class="pstep-n">02</div>
+<div class="pstep-title">Eligibility review</div>
+<p class="pstep-body">We verify income against your county's HUD AMI threshold and review documentation. Our team reaches out if anything is needed. Expect a response within a few business days.</p>
+<span class="pstep-tag">Our commitment</span>
+</div>
 <div class="pstep reveal">
 <div class="pstep-n">03</div>
 <div class="pstep-title">Receive your award letter</div>
@@ -33,7 +416,12 @@
 <span class="pstep-tag">For families</span>
 </div>
 <div class="pstep reveal">
-@@ -421,7 +421,7 @@ <h2 class="s-title">Four steps.<br><em>Straightforward</em> by design.</h2>
+<div class="pstep-n">04</div>
+<div class="pstep-title">Funds disbursed to your school</div>
+<p class="pstep-body">Scholarship funds are sent directly to qualifying educational institutions or approved expense categories. No money passes through family hands — it goes straight to the school.</p>
+<span class="pstep-tag">For students</span>
+</div>
+</div>
 <div class="donor-strip reveal">
 <div class="donor-strip-text" style="flex:1;min-width:260px">
 <h4>For donors: redirect your tax liability into student scholarships.</h4>
@@ -42,7 +430,58 @@
 </div>
 <a href="#contact" class="btn-brass" style="flex-shrink:0" onclick="scrollToForm(event)">Contribute Now</a>
 </div>
-@@ -480,7 +480,7 @@ <h2 class="s-title">Awards shaped around<br><em>how students learn.</em></h2>
+</div>
+</section>
+
+<!-- ELIGIBILITY -->
+<section id="eligibility">
+<div class="wrap">
+<div class="s-label">Eligibility</div>
+<h2 class="s-title">Understanding<br><em>eligibility criteria.</em></h2>
+<div class="s-rule"></div>
+<p class="s-body">ScholarStreet uses published scholarship criteria to help applicants understand whether an opportunity may be a good fit. Criteria may include factors such as state of residence, academic status, field of study, financial need, community involvement, or other scholarship-specific requirements.</p>
+<div class="elig-grid">
+<div class="reveal">
+<div class="elig-req" style="margin-bottom:1.5rem">
+<h4>About the income threshold</h4>
+<p style="font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.75;margin-bottom:1rem">Financial eligibility under the §25F program is based on the <strong style="color:var(--charcoal);font-weight:600">Median Family Income (MFI)</strong> for the applicant's local area — not a fixed national dollar amount. The U.S. Department of Housing and Urban Development (HUD) publishes these figures annually for every metropolitan area and county in the country.</p>
+<p style="font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.75;margin-bottom:1rem">To qualify, a household's prior-year gross income must fall at or below <strong style="color:var(--charcoal);font-weight:600">300% of the MFI</strong> for their area. Because median incomes vary by location, so does the threshold — a family in a high-cost metro may qualify at a much higher income level than one in a rural county.</p>
+<p style="font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.75">For example: if the Median Family Income for a given metro area is $100,000, a household earning up to $300,000 in that area meets the income threshold. In a county where the median is $60,000, the threshold would be $180,000. <em style="color:var(--brass)">Your number depends entirely on where you live.</em></p>
+</div>
+<div class="elig-privacy">HUD MFI figures are updated each fiscal year. ScholarStreet references the most current published data when reviewing applications. You can look up your area's figures directly at <a href="https://www.huduser.gov/portal/datasets/il.html" target="_blank" style="color:var(--brass);text-decoration:underline;text-underline-offset:2px">huduser.gov</a>.</div>
+</div>
+<div class="elig-aside reveal">
+<div class="elig-req" style="margin-bottom:1.5rem">
+<h4>Other criteria we consider</h4>
+<ul>
+<li>State of residence within §25F participating program states</li>
+<li>Student grade level and current enrollment status</li>
+<li>Field of study or intended educational program</li>
+<li>Community involvement or service, where applicable</li>
+<li>Additional requirements specific to individual scholarship offerings</li>
+</ul>
+</div>
+<div class="elig-btns">
+<a href="#contact" class="btn-outline-brass" onclick="scrollToForm(event)">Ask a Question</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+<div class="wrap">
+<div class="prog-intro">
+<div>
+<div class="s-label">Scholarship Programs</div>
+<h2 class="s-title">Awards shaped around<br><em>how students learn.</em></h2>
+<div class="s-rule"></div>
+</div>
+<p class="s-body">No two students are alike. Our scholarship categories reflect the genuine range of educational paths families pursue — from traditional private school to homeschool and beyond.</p>
+</div>
+<div class="prog-cards reveal">
+<div class="prog-card">
 <div class="prog-index">I</div>
 <div class="prog-body">
 <h4>Tuition &amp; Enrollment Scholarships</h4>
@@ -51,7 +490,118 @@
 </div>
 <div class="prog-tag">Most common</div>
 </div>
-@@ -599,7 +599,7 @@ <h2 class="s-title">Every conversation<br>starts <em>simply.</em></h2>
+<div class="prog-card">
+<div class="prog-index">II</div>
+<div class="prog-body">
+<h4>Special Needs &amp; Specialized Learning</h4>
+<p>Students with documented learning differences or diagnosed educational needs receive priority review. Awards may cover specialized programs, therapeutic educational services, and supplemental curricula beyond what traditional schools provide.</p>
+</div>
+<div class="prog-tag">Priority review</div>
+</div>
+<div class="prog-card">
+<div class="prog-index">III</div>
+<div class="prog-body">
+<h4>Homeschool &amp; Microschool Support</h4>
+<p>Families pursuing homeschool or microschool education models may access scholarship funds for approved instructional materials, co-operative enrollment fees, and qualifying educational expenses consistent with §25F guidelines.</p>
+</div>
+<div class="prog-tag">Growing program</div>
+</div>
+</div>
+<div class="award-note reveal">
+<div class="award-note-label">Note</div>
+<p>Scholarship award amounts are established by ScholarStreet based on available funding, student circumstances, and program parameters. Families are encouraged to contact us before finalizing enrollment arrangements so expectations can be properly set.</p>
+</div>
+</div>
+</section>
+
+<!-- COMPLIANCE -->
+<section id="compliance">
+<div class="wrap">
+<div class="s-label" style="color:var(--brass-light)">Compliance &amp; Governance</div>
+<h2 class="s-title">Accountability is<br>not <em>optional here.</em></h2>
+<div class="s-rule"></div>
+<p class="s-body" style="max-width:100%">As a federally authorized SGO, ScholarStreet operates under a rigorous compliance framework. Families trust us with sensitive information. Donors trust us with their contributions. We honor both responsibilities unconditionally.</p>
+<div class="comp-grid">
+<div class="reveal">
+<p class="s-body" style="max-width:100%;color:rgba(255,255,255,.45)">Our compliance documentation is available upon request. We welcome scrutiny — it reflects our commitment to operating exactly as the law requires and as our donors and families deserve.</p>
+<a href="#contact" class="btn-outline-brass" style="margin-top:2rem;display:inline-block" onclick="scrollToForm(event)">Request Compliance Summary</a>
+</div>
+<div class="comp-items reveal">
+<div class="ci"><div class="ci-glyph">§</div><div><h5>IRC §25F Federal Authorization</h5><p>ScholarStreet operates as a Scholarship Granting Organization under the Education Freedom Tax Credit provisions of the Internal Revenue Code. Every aspect of our activity flows from this authorization.</p></div></div>
+<div class="ci"><div class="ci-glyph">↗</div><div><h5>Income Verification &amp; AMI Methodology</h5><p>We apply income determination procedures consistent with current HUD Median Family Income data and IRS Notice 2025-70. Our verification workflows are reviewed as regulatory guidance continues to develop.</p></div></div>
+<div class="ci"><div class="ci-glyph">≡</div><div><h5>Application &amp; Award Recordkeeping</h5><p>Every application, eligibility determination, award decision, and disbursement is documented and retained in accordance with federal recordkeeping requirements. Nothing is improvised.</p></div></div>
+<div class="ci"><div class="ci-glyph">✦</div><div><h5>Donor Acknowledgment Letters</h5><p>Each donor receives a formal written §25F acknowledgment containing the information required to claim the Education Freedom Tax Credit on their federal return.</p></div></div>
+<div class="ci"><div class="ci-glyph">◇</div><div><h5>Non-Discrimination Policy</h5><p>Scholarships are awarded without regard to race, religion, gender, national origin, or disability. Student financial need and income eligibility are the sole determining criteria.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="scroll-margin-top:66px">
+<div class="wrap">
+<div class="s-label">Get In Touch</div>
+<h2 class="s-title">Every conversation<br>starts <em>simply.</em></h2>
+<div class="s-rule"></div>
+<p class="s-body">Whether you are a family exploring your options, a donor considering a contribution, or a school seeking to partner — we will respond thoughtfully and promptly.</p>
+<div class="contact-grid">
+<div>
+<div class="contact-info reveal">
+<div class="ci2"><div class="ci2-icon">✉</div><div><strong>General Inquiries</strong><span>info@scholarstreet.org</span></div></div>
+<div class="ci2"><div class="ci2-icon">📋</div><div><strong>Scholarship Applications</strong><span>apply@scholarstreet.org</span></div></div>
+<div class="ci2"><div class="ci2-icon">🤝</div><div><strong>Donor Relations</strong><span>donate@scholarstreet.org</span></div></div>
+<div class="ci2"><div class="ci2-icon">📍</div><div><strong>Organization</strong><span>ScholarStreet · Virginia — National Operations</span></div></div>
+</div>
+<p class="contact-note reveal">We respond to all inquiries within two business days. For time-sensitive compliance or application matters, please note that in your message and we will prioritize accordingly.</p>
+</div>
+<div class="cform reveal" id="contactForm">
+<div class="cform-title">Send us a message</div>
+<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="scholarForm">
+<input type="hidden" name="form-name" value="contact">
+<div style="display:none"><label>Do not fill this out: <input name="bot-field"></label></div>
+<div class="crow">
+<div class="fg"><label for="f-first">First Name</label><input id="f-first" name="first-name" type="text" placeholder="Jane" required></div>
+<div class="fg"><label for="f-last">Last Name</label><input id="f-last" name="last-name" type="text" placeholder="Smith" required></div>
+</div>
+<div class="fg"><label for="f-email">Email Address</label><input id="f-email" name="email" type="email" placeholder="jane@example.com" required></div>
+<div class="fg"><label for="f-phone">Phone (optional)</label><input id="f-phone" name="phone" type="tel" placeholder="(555) 000-0000"></div>
+<div class="fg">
+<label for="f-interest">I am a</label>
+<select id="f-interest" name="interest">
+<option value="">Select one</option>
+<option>Family seeking a scholarship</option>
+<option>Donor or contributing business</option>
+<option>School or educational institution</option>
+<option>Attorney, CPA, or advisor</option>
+<option>Other</option>
+</select>
+</div>
+<div class="fg" style="position:relative">
+<label for="f-state-input">State</label>
+<input id="f-state-input" type="text" placeholder="Type or select a state..." autocomplete="off" oninput="filterStates()" onfocus="openDropdown()" onblur="closeDropdown()" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-state-list" role="combobox">
+<input type="hidden" id="f-state" name="state">
+<ul id="f-state-list" role="listbox" aria-label="States" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--parchment);border:1px solid var(--brass);border-top:none;max-height:200px;overflow-y:auto;z-index:200;margin:0;padding:0;list-style:none;border-radius:0 0 2px 2px;box-shadow:0 4px 12px rgba(0,0,0,.12)"></ul>
+</div>
+<div class="fg"><label for="f-msg">Your Message</label><textarea id="f-msg" name="message" placeholder="How can we help?" required></textarea></div>
+<button type="submit" class="fsub" id="formBtn">Send Message</button>
+<p class="fok" id="formOk" style="display:none">Your message has been received. We will be in touch within two business days.</p>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="fwrap">
+<div class="ftop">
+<div>
+<div class="fbrand-name">ScholarStreet</div>
+<p class="fbrand-desc">A federally authorized Scholarship Granting Organization operating under IRC §25F, dedicated to expanding K–12 educational access for income-eligible families across the United States.</p>
+<p class="ftax-note">ScholarStreet is a §25F Scholarship Granting Organization. Contributions may be eligible for the Education Freedom Tax Credit. Consult a qualified tax professional regarding your specific circumstances. ScholarStreet does not provide legal or tax advice.</p>
+</div>
+<div class="fcol"><h6>Organization</h6><ul><li><a href="#mission">Our Mission</a></li><li><a href="#process">How It Works</a></li><li><a href="#compliance">Compliance</a></li><li><a href="#contact">Contact</a></li></ul></div>
+<div class="fcol"><h6>Families</h6><ul><li><a href="#eligibility">Eligibility Criteria</a></li><li><a href="#programs">Scholarship Programs</a></li><li><a href="#contact">Apply Now</a></li><li><a href="#contact">FAQ</a></li></ul></div>
 <div class="fcol"><h6>Donors</h6><ul><li><a href="#process">Tax Credit Overview</a></li><li><a href="#contact">Contribute</a></li><li><a href="#contact">Corporate Giving</a></li><li><a href="#compliance">Our Standards</a></li></ul></div>
 </div>
 <div class="fbot">
@@ -60,3 +610,173 @@
 <p>Scholarship Granting Organization · IRC §25F · Education Freedom Tax Credit</p>
 </div>
 </div>
+</footer>
+
+<script>
+/* ── FEATURE FLAGS ──────────────────────────────────────────────────────────
+  Set PENDING_501C3 to false once IRS 501(c)(3) approval is received.
+  The banner will disappear everywhere automatically on next deploy.
+  ────────────────────────────────────────────────────────────────────────── */
+var PENDING_501C3 = true;
+
+/* 501(c)(3) PENDING BANNER */
+(function(){
+if(!PENDING_501C3) return;
+var banner=document.getElementById('pending-banner');
+var nav=document.getElementById('mainNav');
+if(!banner) return;
+banner.style.display='flex';
+function adjustNav(){
+var h=banner.offsetHeight;
+nav.style.top=h+'px';
+var hero=document.getElementById('hero');
+if(hero) hero.style.paddingTop=(66+h)+'px';
+}
+adjustNav();
+window.addEventListener('resize',adjustNav);
+document.getElementById('pending-banner-close').addEventListener('click',function(){
+banner.style.display='none';
+nav.style.top='0';
+var hero=document.getElementById('hero');
+if(hero) hero.style.paddingTop='66px';
+});
+})();
+
+/* SCROLL TO TOP ON LOAD */
+if(history.scrollRestoration){history.scrollRestoration='manual';}
+window.scrollTo(0,0);
+
+/* HUD FISCAL YEAR LABEL */
+(function(){
+var now=new Date();
+var month=now.getMonth()+1;
+var year=now.getFullYear();
+var fy=(month>=4)?year:year-1;
+var el=document.getElementById('hud-fy-label');
+if(el) el.textContent='HUD FY'+fy;
+})();
+
+/* NAV */
+var nav=document.getElementById('mainNav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>20)});
+document.getElementById('ham').addEventListener('click',function(){
+document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('#navLinks a').forEach(function(a){
+a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open')});
+});
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+a.addEventListener('click',function(e){
+var t=document.querySelector(a.getAttribute('href'));
+if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+});
+});
+
+/* SCROLL TO FORM */
+function scrollToForm(e){
+if(e) e.preventDefault();
+document.getElementById('contactForm').scrollIntoView({behavior:'instant'});
+document.getElementById('f-first').focus();
+}
+
+/* REVEAL ON SCROLL */
+var obs=new IntersectionObserver(function(entries){
+entries.forEach(function(e,i){
+if(e.isIntersecting){
+setTimeout(function(){e.target.classList.add('visible')},i*80);
+obs.unobserve(e.target);
+}
+});
+},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+
+/* STATE COMBOBOX */
+var STATES=['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut',
+'Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas',
+'Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota',
+'Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey',
+'New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon',
+'Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas',
+'Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+
+var stateInput=document.getElementById('f-state-input');
+var stateHidden=document.getElementById('f-state');
+var stateList=document.getElementById('f-state-list');
+var activeIdx=-1;
+
+function renderList(items){
+stateList.innerHTML='';
+activeIdx=-1;
+items.forEach(function(s,i){
+var li=document.createElement('li');
+li.textContent=s;
+li.setAttribute('role','option');
+li.style.cssText='padding:10px 14px;cursor:pointer;font-size:14px;font-weight:300;color:var(--charcoal);border-bottom:1px solid var(--rule)';
+li.addEventListener('mousedown',function(){selectState(s)});
+li.addEventListener('mouseover',function(){setActive(i)});
+stateList.appendChild(li);
+});
+}
+function openDropdown(){renderList(STATES);stateList.style.display='block';stateInput.setAttribute('aria-expanded','true')}
+function closeDropdown(){setTimeout(function(){stateList.style.display='none';stateInput.setAttribute('aria-expanded','false')},180)}
+function filterStates(){
+var q=stateInput.value.toLowerCase();
+var filtered=STATES.filter(function(s){return s.toLowerCase().indexOf(q)!==-1});
+renderList(filtered);
+stateList.style.display=filtered.length?'block':'none';
+stateHidden.value='';
+}
+function selectState(s){stateInput.value=s;stateHidden.value=s;stateList.style.display='none'}
+function setActive(i){
+var items=stateList.querySelectorAll('li');
+items.forEach(function(el){el.style.background=''});
+activeIdx=i;
+if(items[i]) items[i].style.background='var(--brass-pale)';
+}
+stateInput.addEventListener('keydown',function(e){
+var items=stateList.querySelectorAll('li');
+if(!items.length) return;
+if(e.key==='ArrowDown'){e.preventDefault();setActive(Math.min(activeIdx+1,items.length-1));if(items[activeIdx])items[activeIdx].scrollIntoView({block:'nearest'})}
+else if(e.key==='ArrowUp'){e.preventDefault();setActive(Math.max(activeIdx-1,0));if(items[activeIdx])items[activeIdx].scrollIntoView({block:'nearest'})}
+else if(e.key==='Enter'&&activeIdx>=0){e.preventDefault();selectState(items[activeIdx].textContent)}
+else if(e.key==='Escape'){stateList.style.display='none'}
+});
+
+/* NETLIFY FORM SUBMIT */
+document.getElementById('scholarForm').addEventListener('submit',function(e){
+e.preventDefault();
+var btn=document.getElementById('formBtn');
+if(!stateHidden.value&&stateInput.value) stateHidden.value=stateInput.value;
+btn.disabled=true;
+btn.textContent='Sending…';
+
+var formData=new FormData(this);
+var encoded=new URLSearchParams(formData).toString();
+
+fetch('/',{
+method:'POST',
+headers:{'Content-Type':'application/x-www-form-urlencoded'},
+body:encoded
+})
+.then(function(response){
+if(response.ok||response.status===200||response.redirected){
+btn.style.display='none';
+document.getElementById('formOk').style.display='block';
+document.getElementById('scholarForm').reset();
+document.getElementById('f-state-input').value='';
+} else {
+throw new Error('Response status: '+response.status);
+}
+})
+.catch(function(err){
+console.error('Form error:',err);
+btn.disabled=false;
+btn.textContent='Send Message';
+alert('Something went wrong submitting the form. Please email us directly at info@scholarstreet.org');
+});
+});
+</script>
+</body>
+</html>
