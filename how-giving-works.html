@@ -5,10 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How Giving Works &mdash; Scholar Street SGO</title>
 <meta name="description" content="A simple path from gift to scholarship: donors contribute, claim the federal credit, and an independent committee awards scholarships paid directly to verified schools.">
+
+<!-- Warm up the donation portal before the visitor clicks Donate -->
+<link rel="preconnect" href="https://scholarship-insights.com" crossorigin>
+<link rel="preconnect" href="https://js.stripe.com" crossorigin>
+<link rel="dns-prefetch" href="https://jyrpfbjhojnfnefmbdpf.supabase.co">
+<script type="speculationrules">
+{
+  "prerender": [
+    { "where": { "href_matches": "/donate.html" }, "eagerness": "moderate" }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --navy:#1B2E4B; --navy-dk:#132238; --gold:#C8A84B; --gold-dk:#b8953e;
