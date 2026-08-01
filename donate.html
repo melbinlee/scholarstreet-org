@@ -1,1490 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Make a Donation — ScholarStreet</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap');
-    *{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --navy:#1B2E4B;--navy-light:#2C4468;
-      --gold:#C8A84B;--gold-light:#F3E9CE;
-      --sage:#6B8F71;--sage-light:#E7EEE7;
-      --warm:#F5EDD4;--cream:#F9F7F2;
-      --ink:#211D18;--ink2:#5B564C;--ink3:#948E80;--border:#E4DCC9;
-      --red:#B3462C;
-      --primary:#1B2E4B;
-      --blue:#2C5282;--blue-light:#e8f0fa;
-      /* Text colour that sits on top of --navy / --primary. Recomputed per org. */
-      --on-primary:#ffffff;
-      --on-primary-dim:rgba(255,255,255,0.65);
-      --on-primary-faint:rgba(255,255,255,0.4);
-    }
-    body{font-family:'Source Sans 3',Arial,sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;display:flex;flex-direction:column}
-    .serif{font-family:Georgia,'Times New Roman',serif}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate &mdash; Scholar Street SGO</title>
+<meta name="description" content="Donate to Scholar Street SGO and fund need- and merit-based K-12 scholarships for income-eligible Virginia students. Secure giving by card or bank transfer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    /* ── EMBEDDED MODE (iframe on scholarstreet.org / family portal) ── */
-    body.embedded { background:var(--cream); min-height:auto; }
-    body.embedded #portal-header { display:none !important; }
-    body.embedded .portal-footer { display:none !important; }
-    body.embedded #portal { padding-top:0; min-height:0 !important; }
-    body.embedded .wrap { padding-top:20px; padding-bottom:32px; }
-    /* Height is driven by content, not the viewport, or resizing the frame
-       feeds back into 100vh and the frame grows without bound. */
-    body.embedded, body.embedded #portal, body.embedded .not-found { min-height:0 !important; }
-    body.embedded .m-summary { display:none !important; }
+<style>
+:root{
+  --navy:#1B2E4B; --navy-dk:#132238; --gold:#C8A84B; --gold-dk:#b8953e;
+  --sage:#6B8F71; --cream:#F9F7F2; --cream2:#efe9dc;
+  --text:#1B2E4B; --text-mid:#4d5b71; --text-lt:#7d8798;
+  --serif:Georgia,'Times New Roman',serif;
+  --radius:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--text);background:var(--cream);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+section{padding:92px 0}
 
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 18px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;font-family:'Source Sans 3',Arial,sans-serif;transition:all .15s}
-    .btn-primary{background:var(--primary);color:var(--on-primary)}
-    .btn-primary:hover{filter:brightness(1.15)}
-    .btn-primary:disabled{opacity:.5;cursor:not-allowed;filter:none}
-    .input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:16px;font-family:'Source Sans 3',Arial,sans-serif;background:#fff;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s}
-    .input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(27,46,75,.09)}
-    .input.invalid{border-color:var(--red);background:#fdf6f4}
-    .select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:16px;font-family:'Source Sans 3',Arial,sans-serif;background:#fff;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s}
-    .select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(27,46,75,.09)}
-    .select.invalid{border-color:var(--red);background:#fdf6f4}
-    .label{display:block;font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:6px}
-    .field-err{font-size:11.5px;color:var(--red);margin-top:4px;min-height:0;display:none}
-    .field-err.show{display:block}
-    .card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:28px}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media(max-width:520px){.form-grid{grid-template-columns:1fr}.card{padding:20px}}
+/* ---------- STICKY BANNER ---------- */
+#topbar{background:var(--navy);color:#fff;font-size:12.5px;letter-spacing:.01em;
+  padding:9px 0;text-align:center;position:relative;z-index:60}
+#topbar .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);
+  display:inline-block;margin-right:8px;vertical-align:middle}
+#topbar strong{font-weight:700;color:#fff}
+#topbar span{color:rgba(255,255,255,.72)}
 
-    :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+/* ---------- NAV ---------- */
+nav#mainNav{position:sticky;top:0;z-index:50;background:rgba(249,247,242,.96);
+  backdrop-filter:blur(10px);border-bottom:1px solid rgba(27,46,75,.09);
+  display:flex;align-items:center;justify-content:space-between;gap:22px;
+  padding:11px 40px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.nav-crest{width:46px;height:46px;background:var(--navy);border-radius:11px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  border:1px solid rgba(200,168,75,.28)}
+.nav-crest svg{width:42px;height:42px}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-name{font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.01em;
+  color:var(--navy);line-height:1;display:flex;align-items:baseline}
+.nav-name span{font-family:var(--serif);font-weight:700;font-size:19px}
+.nav-type{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sage);font-weight:600}
+.nav-links{display:flex;align-items:center;gap:19px;list-style:none;flex-wrap:nowrap}
+.nav-links a{font-size:13px;font-weight:600;text-decoration:none;color:var(--text-mid);
+  white-space:nowrap;padding:6px 0;border-bottom:2px solid transparent;transition:.18s}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a.active{color:var(--navy);border-bottom-color:var(--gold)}
+.nav-apply{background:var(--gold);color:var(--navy)!important;border-radius:999px;
+  padding:9px 20px!important;border-bottom:none!important;font-weight:700}
+.nav-apply:hover{background:var(--gold-dk)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);margin:4px 0;border-radius:2px}
 
-    .section{padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--border)}
-    .section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-    .section-label{font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-    .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+/* ---------- TYPE ---------- */
+.s-eyebrow{font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;
+  font-weight:700;color:var(--sage);display:flex;align-items:center;gap:11px}
+.s-eyebrow::before{content:'';width:26px;height:2px;background:var(--gold)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:700;letter-spacing:-.01em;line-height:1.18}
+.s-title{font-size:clamp(1.8rem,3vw,2.6rem);margin-top:1rem;color:var(--navy)}
+.s-title em{font-style:italic;color:var(--gold)}
+.s-lead{max-width:720px;margin-top:1.05rem;font-size:16.5px;color:var(--text-mid);line-height:1.8}
 
-    .amt-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:8px}
-    @media(max-width:900px){.amt-grid{grid-template-columns:repeat(3,1fr)}}
-    @media(max-width:430px){.amt-grid{grid-template-columns:repeat(2,1fr)}}
-    .amt-btn{width:100%;text-align:center;padding:13px 6px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;font-family:Georgia,serif;font-size:17px;font-weight:700;background:#fff;color:var(--ink);transition:all .15s;line-height:1.25;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62px}
-    .amt-btn:hover{border-color:var(--primary)}
-    .amt-btn span,.amt-btn small{display:block;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;color:var(--ink3);margin-top:2px;text-transform:uppercase;letter-spacing:.03em}
-    .amt-btn.active{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
-    .amt-btn.active span,.amt-btn.active small{color:var(--on-primary-dim)}
+/* ---------- BUTTONS ---------- */
+.btn-gold,.btn-outline{display:inline-block;text-decoration:none;font-weight:700;
+  font-size:14.5px;padding:13px 28px;border-radius:999px;transition:.18s;cursor:pointer}
+.btn-gold{background:var(--gold);color:var(--navy);border:2px solid var(--gold)}
+.btn-gold:hover{background:var(--gold-dk);border-color:var(--gold-dk)}
+.btn-outline{background:transparent;color:var(--navy);border:2px solid rgba(27,46,75,.25)}
+.btn-outline:hover{border-color:var(--navy)}
 
-    .pay-btn{flex:1;text-align:center;padding:12px 14px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;font-weight:600;background:#fff;color:var(--ink2);transition:all .15s;line-height:1.4}
-    .pay-btn:hover{border-color:var(--primary)}
-    .pay-btn.active{background:var(--warm);color:var(--primary);border-color:var(--primary)}
-    .pay-btn small{display:block;font-weight:400;font-size:10.5px;color:var(--ink3);margin-top:2px}
+/* ---------- PAGE HERO ---------- */
+.page-hero{background:var(--navy);color:#fff;padding:82px 0 78px;position:relative;overflow:hidden}
+.page-hero .s-eyebrow{color:rgba(255,255,255,.62)}
+.ph-title{font-size:clamp(2rem,3.6vw,3rem);color:#fff;margin-top:1rem}
+.ph-title em{font-style:italic;color:var(--gold)}
+.ph-sub{max-width:730px;margin-top:1.15rem;font-size:16.5px;color:rgba(255,255,255,.66);line-height:1.8}
+.ph-bg-circle{position:absolute;border-radius:50%;pointer-events:none}
+.ph-bg-circle.a{width:420px;height:420px;background:rgba(200,168,75,.05);top:-160px;right:-90px}
+.ph-bg-circle.b{width:300px;height:300px;background:rgba(107,143,113,.06);bottom:-150px;left:-80px}
 
-    .error-box{background:#fbe9e4;border:1px solid var(--red);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--red);margin-bottom:12px;display:none}
-    .not-found{display:none;text-align:center;padding:60px 20px;flex:1}
-    #stripe-card-element{padding:11px 12px;border:1px solid var(--border);border-radius:8px;background:#fff;min-height:42px;transition:border-color .15s}
-    #stripe-card-element.StripeElement--focus{border-color:var(--primary)}
-    #stripe-card-element.StripeElement--invalid{border-color:var(--red)}
-    .card-error{color:var(--red);font-size:12px;margin-top:6px;min-height:18px}
-    .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
-    @keyframes spin{to{transform:rotate(360deg)}}
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
 
-    .impact-line{background:var(--sage-light);border:1px solid #d3e2d5;border-radius:8px;padding:11px 14px;font-size:13px;color:#3f5c43;display:flex;align-items:center;gap:8px;margin-top:10px;line-height:1.5}
-    .impact-line b{color:var(--sage);font-family:Georgia,serif}
+/* ---------- FOOTER ---------- */
+footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
+.fgrid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:40px}
+.fbrand-name{font-size:1.15rem;font-weight:800;color:rgba(255,255,255,.85);
+  margin-bottom:.6rem;display:flex;align-items:center;gap:8px;font-family:var(--serif)}
+.fbrand-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.fbrand-desc{font-size:13px;color:rgba(255,255,255,.35);line-height:1.75;margin-bottom:1.25rem}
+.ftax-note{font-size:11.5px;color:rgba(255,255,255,.2);line-height:1.7}
+.fcol h5{font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.32);margin-bottom:1rem;font-family:inherit;font-weight:700}
+.fcol a{display:block;font-size:13.5px;color:rgba(255,255,255,.55);
+  text-decoration:none;margin-bottom:.62rem;transition:.16s}
+.fcol a:hover{color:var(--gold)}
+.fsignup{margin:0 0 1.35rem}
+.fsignup-lbl{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);font-weight:700;margin-bottom:.45rem}
+.fsignup-sub{font-size:12px;color:rgba(255,255,255,.32);line-height:1.6;margin-bottom:.7rem}
+.fsignup-row{display:flex;gap:8px;max-width:340px}
+.fsignup-input{flex:1;min-width:0;padding:9px 12px;border-radius:8px;font-size:13.5px;
+  font-family:inherit;color:#fff;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);outline:none;transition:.15s}
+.fsignup-input::placeholder{color:rgba(255,255,255,.32)}
+.fsignup-input:focus{border-color:var(--gold);background:rgba(255,255,255,.11)}
+.fsignup-btn{padding:9px 16px;border-radius:8px;border:none;background:var(--gold);
+  color:var(--navy);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
+  white-space:nowrap;transition:.15s}
+.fsignup-btn:hover{background:var(--gold-dk)}
+.form-status{font-size:12.5px;line-height:1.6;margin-top:.7rem;display:none}
+.form-status.show{display:block}
+.form-status.ok{color:var(--gold)}
+.form-status.err{color:#e08a72}
+.fbot{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:12px;color:rgba(255,255,255,.28)}
 
-    /* ── 2027 NOTICE ── */
-    .notice{background:var(--gold-light);border:1px solid #e8d8a8;border-radius:10px;padding:13px 16px;margin-bottom:22px;display:flex;gap:11px;align-items:flex-start}
-    .notice-ico{font-size:16px;line-height:1.3;flex-shrink:0}
-    .notice-title{font-size:13px;font-weight:700;color:#7a5f1c;margin-bottom:3px}
-    .notice-body{font-size:12.5px;color:#8a6d24;line-height:1.6}
+@media(max-width:1400px){
+  .nav-type{display:none}
+  .nav-links{gap:15px}
+  .nav-links a{font-size:12.5px}
+  .nav-apply{padding:8px 17px!important}
+}
+@media(max-width:1240px){
+  .nav-links{gap:12px}
+  .nav-links a{font-size:12px}
+  .nav-apply{padding:7px 14px!important}
+  .nav-crest{width:42px;height:42px}
+  .nav-crest svg{width:38px;height:38px}
+}
+@media(max-width:1180px){
+  .nav-toggle{display:block}
+  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--cream);
+    flex-direction:column;align-items:flex-start;gap:0;padding:10px 40px 20px;
+    border-bottom:1px solid rgba(27,46,75,.09);display:none}
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{display:block;padding:11px 0;width:100%}
+  .fgrid{grid-template-columns:1fr 1fr;gap:32px}
+  .wrap{padding:0 24px}
+  nav#mainNav{padding:11px 24px}
+  section{padding:66px 0}
+}
+@media(max-width:620px){.fgrid{grid-template-columns:1fr}}
+@media(max-width:520px){
+  nav#mainNav{padding:10px 18px;gap:10px}
+  .nav-links{padding:10px 18px 18px}
+  .nav-type{display:none}
+  .nav-crest{width:40px;height:40px}
+  .nav-crest svg{width:36px;height:36px}
+  .nav-name,.nav-name span{font-size:17px}
+  .wrap{padding:0 18px}
+}
 
-    /* ── ALLOC CHIPS ── */
-    .alloc-chip{padding:7px 14px;border-radius:99px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--ink2);display:inline-flex;align-items:center;gap:5px;font-family:'Source Sans 3',Arial,sans-serif}
-    .alloc-chip:hover{border-color:var(--primary)}
-    .alloc-chip.active{border-color:var(--primary);background:var(--primary);color:var(--on-primary)}
 
-    /* ── TAX OPTIONS ── */
-    .tax-opt-card{border:1.5px solid var(--border);border-radius:10px;padding:13px 15px;cursor:pointer;margin-bottom:8px;transition:all .15s;background:#fff}
-    .tax-opt-card:hover{border-color:var(--primary)}
-    .tax-opt-card.active{border-color:var(--primary);background:var(--warm)}
-    .tax-opt-card.locked{cursor:default;opacity:.72;background:var(--cream);border-style:dashed}
-    .tax-opt-card.locked:hover{border-color:var(--border)}
-    .tax-opt-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px}
-    .tax-opt-name{font-size:13.5px;font-weight:700;color:var(--ink)}
-    .tax-opt-value{font-family:Georgia,serif;font-size:13px;font-weight:700;color:var(--primary);white-space:nowrap}
-    .tax-opt-desc{font-size:12px;color:var(--ink2);line-height:1.55}
-    .tax-opt-badge{font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:99px;letter-spacing:.03em;margin-left:6px;vertical-align:middle;white-space:nowrap}
-    .tax-opt-badge-sage{background:var(--sage-light);color:#3f5c43}
-    .tax-opt-badge-gold{background:var(--gold-light);color:#8a6d24}
-    .tax-opt-badge-lock{background:#eee9dd;color:#7a6f57}
+.d-frame-wrap{padding:56px 0 76px}
+.d-frame-inner{max-width:1000px;margin:0 auto;padding:0 24px}
+#donateFrame{width:100%;border:none;display:block;min-height:1450px;
+  background:transparent;overflow:hidden}
+.d-fallback{max-width:620px;margin:0 auto;text-align:center;background:#fff;
+  border-radius:var(--radius);padding:2.4rem 2.2rem;box-shadow:0 2px 16px rgba(27,46,75,.06)}
+.d-fallback h3{font-size:19px;color:var(--navy);margin-bottom:.7rem}
+.d-fallback p{font-size:14.5px;color:var(--text-mid);line-height:1.75;margin-bottom:1.5rem}
 
-    /* Contact card (offline flows) */
-    .tax-contact-card{border:1.5px dashed var(--border);border-radius:10px;padding:13px 15px;margin-bottom:8px;background:var(--cream)}
-    .tax-contact-card .tax-opt-name{font-size:13.5px;font-weight:700;color:var(--ink)}
-    .tax-contact-card .tax-opt-desc{font-size:12px;color:var(--ink2);line-height:1.55;margin-top:4px}
-    .tax-contact-card a{color:var(--primary);font-weight:600;text-decoration:underline}
+.d-other{background:var(--navy);color:#fff}
+.d-other .s-eyebrow{color:rgba(255,255,255,.62)}
+.d-other h2{color:#fff}
+.d-other h2 em{font-style:italic;color:var(--gold)}
+.d-other-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:2.8rem}
+.d-other-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--radius);padding:1.9rem 1.7rem}
+.d-other-card h4{font-size:16.5px;color:#fff;margin-bottom:.5rem}
+.d-other-card p{font-size:13.5px;color:rgba(255,255,255,.56);line-height:1.7}
+.d-other-card a{color:var(--gold);text-decoration:none;font-weight:600;font-size:13.5px;
+  display:inline-block;margin-top:.75rem}
+.d-other-card a:hover{text-decoration:underline}
+@media(max-width:940px){.d-other-grid{grid-template-columns:1fr}}
 
-    /* ── TAX BREAKDOWN ── */
-    .tax-breakdown-box{background:var(--cream);border-radius:8px;padding:12px 14px;margin-top:12px;font-size:13px;display:none;border:1px solid var(--border)}
-    .tax-breakdown-box.show{display:block}
-    .tax-breakdown-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dotted var(--border)}
-    .tax-breakdown-row:last-of-type{border-bottom:none}
+</style>
 
-    .alloc-custom-wrap{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:8px}
-    .alloc-toggle-btn{padding:7px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:#fff;cursor:pointer;text-align:center;font-family:'Source Sans 3',Arial,sans-serif;transition:all .15s}
-    .alloc-toggle-btn.active{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
-    .alloc-warn{font-size:11.5px;color:var(--red);margin-top:8px;display:none;line-height:1.5}
-    .alloc-warn.show{display:block}
-
-    .modal-backdrop{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(27,46,75,0.45);z-index:1000;align-items:center;justify-content:center}
-    .modal-backdrop.open{display:flex}
-    .modal-box{background:#fff;border-radius:12px;padding:24px;max-width:420px;width:90%;margin:20px;max-height:90vh;overflow-y:auto}
-    .modal-title{font-size:16px;font-weight:bold;font-family:Georgia,serif;margin-bottom:10px;color:var(--primary)}
-    .modal-body{font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:14px}
-    .modal-table{width:100%;font-size:13px;margin-bottom:12px;border-collapse:collapse}
-    .modal-table td{padding:5px 0;color:var(--ink)}
-    .modal-table td:last-child{text-align:right;font-weight:700;font-family:Georgia,serif}
-    .modal-table tr.modal-divider td{border-top:1px solid var(--border);padding-top:8px;font-weight:bold}
-    .modal-disclaimer{font-size:11px;color:var(--ink2);background:var(--cream);border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.6}
-    .modal-actions{display:flex;gap:10px}
-    .modal-btn-confirm{flex:1;padding:11px;background:var(--primary);color:var(--on-primary);border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Source Sans 3',Arial,sans-serif}
-    .modal-btn-back{flex:1;padding:11px;background:#fff;color:var(--ink);border:1px solid var(--border);border-radius:8px;font-size:14px;cursor:pointer;font-family:'Source Sans 3',Arial,sans-serif}
-
-    /* ── HEADER ── */
-    #portal-header{background:var(--primary);padding:22px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .header-left{display:flex;align-items:center;gap:14px}
-    .header-left img{height:40px;width:40px;object-fit:contain;border-radius:8px;background:#fff;padding:3px}
-    .header-org{font-size:20px;font-weight:bold;font-family:Georgia,serif;color:var(--on-primary)}
-    .header-sub{font-size:12px;color:var(--on-primary-dim)}
-    .header-pw{font-size:11px;color:var(--on-primary-faint)}
-    @media(max-width:520px){#portal-header{padding:16px 20px}.header-org{font-size:17px}}
-
-    /* ── LAYOUT ── */
-    .wrap{max-width:1000px;margin:0 auto;padding:44px 24px 80px;display:grid;grid-template-columns:1fr 300px;gap:30px;align-items:start;width:100%}
-    .joint-note{font-size:11.5px;color:#8a6d24;background:var(--gold-light);border:1px solid #e8d8a8;border-radius:7px;padding:9px 12px;margin-top:9px;line-height:1.55;display:none}
-    .joint-note.show{display:block}
-    @media(max-width:800px){ .wrap{grid-template-columns:1fr;padding:28px 18px 120px} }
-    .intro{grid-column:1/-1;margin-bottom:8px}
-    .intro h1{font-family:Georgia,serif;font-size:28px;color:var(--primary);margin-bottom:10px;font-weight:700}
-    .intro p{font-size:15px;color:var(--ink2);line-height:1.65;max-width:640px}
-
-    /* ── LEDGER RECEIPT ── */
-    .ledger{position:sticky;top:24px;background:#fff;border:1px solid var(--border);border-radius:4px 4px 12px 12px;box-shadow:0 1px 3px rgba(27,46,75,0.06), 0 8px 24px rgba(27,46,75,0.05);overflow:hidden}
-    .ledger-notch{height:8px;background:repeating-linear-gradient(90deg, var(--cream) 0 8px, transparent 8px 16px);background-color:var(--primary)}
-    .ledger-head{background:var(--primary);padding:16px 20px 14px}
-    .ledger-head-label{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--on-primary-dim);font-weight:700;margin-bottom:3px}
-    .ledger-head-title{font-family:Georgia,serif;color:var(--on-primary);font-size:15px;font-weight:700}
-    .ledger-body{padding:18px 20px 20px}
-    .ledger-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px dotted var(--border);font-size:13px;gap:10px}
-    .ledger-row .lbl{color:var(--ink2)}
-    .ledger-row .val{font-family:Georgia,serif;font-weight:700;color:var(--ink)}
-    .ledger-row .val.sage{color:var(--sage)}
-    .ledger-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:4px;margin-top:0;gap:10px}
-    .ledger-total .lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink2)}
-    .ledger-total .val{font-family:Georgia,serif;font-size:26px;font-weight:700;color:var(--primary)}
-    .ledger-credit-box{margin-top:16px;background:var(--gold-light);border:1px solid #e8d8a8;border-radius:8px;padding:12px 14px}
-    .ledger-credit-box .cap{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8a6d24;margin-bottom:3px}
-    .ledger-credit-box .amt{font-family:Georgia,serif;font-size:19px;font-weight:700;color:#8a6d24}
-    .ledger-credit-box .note{font-size:11px;color:#8a6d24;opacity:.85;margin-top:3px;line-height:1.5}
-    .ledger-footer{padding:14px 20px;background:var(--cream);border-top:1px solid var(--border);font-size:10.5px;color:var(--ink3);text-align:center;line-height:1.6}
-
-    /* ── MOBILE STICKY SUMMARY ── */
-    .m-summary{display:none;position:fixed;left:0;right:0;bottom:0;z-index:900;background:#fff;border-top:1px solid var(--border);box-shadow:0 -3px 16px rgba(27,46,75,.09);padding:10px 18px;align-items:center;justify-content:space-between;gap:14px}
-    .m-summary .ms-l{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);font-weight:700}
-    .m-summary .ms-v{font-family:Georgia,serif;font-size:20px;font-weight:700;color:var(--primary);line-height:1.2}
-    .m-summary .ms-b{font-size:11px;color:var(--sage);font-weight:600}
-    .m-summary button{padding:11px 18px;border-radius:8px;background:var(--primary);color:var(--on-primary);border:none;font-size:14px;font-weight:600;font-family:'Source Sans 3',Arial,sans-serif;cursor:pointer;white-space:nowrap}
-    @media(max-width:800px){ .ledger{position:static} .m-summary.on{display:flex} }
-
-    .badge-row{grid-column:1/-1;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:36px;padding-top:24px;border-top:1px solid var(--border);font-size:11.5px;color:var(--ink3)}
-    .badge-row span{display:flex;align-items:center;gap:5px}
-
-    .trust-note{grid-column:1/-1;text-align:center;font-size:11.5px;color:var(--ink3);line-height:1.7;margin-top:14px;max-width:640px;margin-left:auto;margin-right:auto}
-
-    .portal-footer{padding:18px 24px;border-top:1px solid var(--border);text-align:center;font-size:11px;color:var(--ink3)}
-    .portal-footer a{color:var(--ink3)}
-
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
 </head>
 <body>
+<div id="topbar">
+  <span class="dot"></span>
+  <span><strong>Scholar Street is an IRS-approved 501(c)(3) public charity</strong> &mdash; EIN 42-2704061 &middot; Arlington, Virginia &middot; Contributions are tax-deductible under IRC &#167;170.</span>
+</div>
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-crest"><svg viewBox="7 6 30 30" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 30 L9 18 Q22 14 22 14 Q22 14 35 18 L35 30 Q22 26 22 26 Q22 26 9 30 Z" fill="#F9F7F2"/>
+        <line x1="22" y1="14" x2="22" y2="30" stroke="#C8A84B" stroke-width="1.2"/>
+        <line x1="11" y1="31" x2="33" y2="31" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="13" y1="33" x2="31" y2="33" stroke="#C8A84B" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+        <polygon points="22,9 32,14.5 22,20 12,14.5" fill="#C8A84B"/>
+        <polygon points="22,9 32,14.5 22,14.5 12,14.5" fill="#b8953e" opacity="0.4"/>
+        <line x1="32" y1="14.5" x2="32" y2="21" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="32" cy="22" r="2" fill="#C8A84B"/>
+      </svg></div>
+    <div class="nav-brand">
+      <span class="nav-name"><span style="color:#1B2E4B">Scholar</span><span style="color:#C8A84B;margin-left:7px">Street</span></span>
+      <span class="nav-type">Scholarship Granting Organization</span>
+    </div>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="why-25f.html">Why &#167;25F</a></li>
+    <li><a href="how-giving-works.html">How It Works</a></li>
+    <li><a href="impact.html">Impact</a></li>
+    <li><a href="platform.html">Our Difference</a></li>
+    <li><a href="leadership.html">Leadership</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="donate.html" class="nav-apply active">Donate</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
+  <div class="wrap">
+    <div class="s-eyebrow">Donate</div>
+    <h1 class="ph-title">Every donation<br>makes a <em>difference.</em></h1>
+    <p class="ph-sub">Contributions support the singular mission to help kids get the education
+    that&rsquo;s best for them.</p>
+  </div>
+</section>
+
+<section class="d-frame-wrap">
+  <div class="d-frame-inner">
+    <noscript>
+      <div class="d-fallback">
+        <h3>JavaScript required</h3>
+        <p>Our secure donation form needs JavaScript enabled. Please turn it on and reload,
+        or email us and we&rsquo;ll take your gift directly.</p>
+        <a href="mailto:mel@scholarstreet.org" class="btn-gold">Email Us</a>
+      </div>
+    </noscript>
+    <!-- The payment portal lives on scholarship-insights.com and is named
+         donate.html there. This page is the wrapper; they are different files
+         with the same name on different domains. Do not point this at itself. -->
+    <iframe id="donateFrame"
+            src="https://scholarship-insights.com/donate.html?org=scholarstreet&embedded=true"
+            title="Scholar Street secure donation form"
+            allow="payment"
+            loading="lazy"
+            scrolling="no"></iframe>
+    <div class="d-fallback" id="frameFallback" style="display:none">
+      <h3>Having trouble loading the form?</h3>
+      <p>You can open our secure donation page directly in a new tab, or get in touch and
+      we&rsquo;ll help you give another way.</p>
+      <a href="https://scholarship-insights.com/donate.html?org=scholarstreet" class="btn-gold" target="_blank" rel="noopener">Open Donation Page</a>
+    </div>
+  </div>
+</section>
+
+<section class="d-other">
+  <div class="wrap">
+    <div class="s-eyebrow">Other Ways to Give</div>
+    <h2 class="s-title">Gifts that need<br>a <em>conversation.</em></h2>
+    <p class="s-lead" style="color:rgba(255,255,255,.62)">Some contributions are handled directly
+    rather than through the form. We&rsquo;ll walk you through any of these.</p>
+
+    <div class="d-other-grid">
+      <div class="d-other-card reveal">
+        <h4>Virginia state tax credits</h4>
+        <p>Virginia&rsquo;s Education Improvement Scholarships Tax Credit requires state
+        preauthorization before a gift can be processed, so we handle it directly.</p>
+        <a href="mailto:mel@scholarstreet.org?subject=Virginia%20EISTC%20Inquiry">Ask about EISTC</a>
+      </div>
+      <div class="d-other-card reveal">
+        <h4>Stock, wire, or DAF</h4>
+        <p>Appreciated securities, wire transfers, and donor-advised fund grants are arranged
+        directly with us. Note the federal credit applies to cash contributions.</p>
+        <a href="mailto:ryan@scholarstreet.org?subject=Stock%20or%20Wire%20Gift">Arrange a Gift</a>
+      </div>
+      <div class="d-other-card reveal">
+        <h4>Corporate &amp; founding donors</h4>
+        <p>Businesses supporting educational access, and donors who want to help shape the
+        first award cycle, should start with a conversation.</p>
+        <a href="contact.html">Start a Conversation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
-  if(new URLSearchParams(window.location.search).get('embedded') === 'true') {
-    document.addEventListener('DOMContentLoaded', function() {
-      document.body.classList.add('embedded');
-    });
-  }
+(function(){
+  var frame = document.getElementById('donateFrame');
+  if(!frame) return;
+
+  // Grow the iframe to match the form so there's no scrollbar inside a scrollbar.
+  window.addEventListener('message', function(e){
+    var d = e && e.data;
+    if(!d || typeof d !== 'object') return;
+    var h = d.scholarstreetEmbedHeight;
+    if(typeof h === 'number' && h > 300 && h < 20000){
+      frame.style.height = (h + 24) + 'px';
+      frame.style.minHeight = '0';
+    }
+  }, false);
+
+  // If the portal never loads, offer a direct link instead of a blank box.
+  var loaded = false;
+  frame.addEventListener('load', function(){ loaded = true; });
+  setTimeout(function(){
+    if(!loaded){
+      frame.style.display = 'none';
+      document.getElementById('frameFallback').style.display = 'block';
+    }
+  }, 12000);
+})();
 </script>
 
-  <div class="not-found" id="not-found">
-    <div style="font-size:48px;margin-bottom:16px" id="nf-icon">🔍</div>
-    <div style="font-size:22px;font-weight:bold;font-family:Georgia,serif;margin-bottom:8px;color:var(--primary)" id="nf-title">Organization not found</div>
-    <div style="font-size:14px;color:var(--ink2);margin-bottom:24px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7" id="nf-body">The donation link you followed doesn't match any registered SGO. Please check the link or contact the organization directly.</div>
-    <a href="https://www.scholarship-insights.com" style="color:var(--primary);font-size:13px">← Back to ScholarStreet</a>
-  </div>
-
-  <div id="loading" style="flex:1;display:flex;align-items:center;justify-content:center;padding:60px">
-    <div style="text-align:center;color:var(--ink3);font-size:14px">Loading…</div>
-  </div>
-
-  <div id="portal" style="display:none;flex-direction:column;min-height:100vh">
-
-    <div id="portal-header">
-      <div class="header-left">
-        <img id="dp-logo" src="" alt="" style="display:none" onerror="this.style.display='none'">
-        <div>
-          <div class="header-org" id="dp-org-name"></div>
-          <div class="header-sub">Scholarship Donation Portal</div>
-        </div>
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="fbrand-name"><span class="fbrand-dot"></span>Scholar Street</div>
+        <p class="fbrand-desc">Organized to operate as a Scholarship Granting Organization under the federal Education Freedom Tax Credit (IRC &#167;25F). We award K&ndash;12 scholarships to income-eligible Virginia students on the basis of need and merit.</p>
+        <form class="fsignup" data-formspree="mdaqvkvo" method="POST">
+          <label class="fsignup-lbl" for="fsignup-email">Stay informed</label>
+          <p class="fsignup-sub">Updates on Scholar Street and the federal tax credit. We&rsquo;ll also let you know when scholarship applications open.</p>
+          <div class="fsignup-row">
+            <input class="fsignup-input" id="fsignup-email" type="email" name="email" placeholder="Your email" required aria-label="Email address">
+            <button class="fsignup-btn" type="submit">Sign Up</button>
+          </div>
+          <input type="hidden" name="_subject" value="Scholar Street mailing list signup">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+          <p class="form-status" role="status"></p>
+        </form>
+        <p class="ftax-note">Contributions may qualify for the Education Freedom Tax Credit under IRC &#167;25F beginning January 1, 2027. Provided for general informational purposes only &mdash; not tax, legal, or financial advice. Consult a qualified tax professional regarding individual eligibility.</p>
       </div>
-      <div class="header-pw">Powered by ScholarStreet</div>
-    </div>
-
-    <div class="wrap">
-
-      <div class="intro">
-        <h1>Make a donation</h1>
-        <p id="dp-intro"></p>
+      <div class="fcol">
+        <h5>Program</h5>
+        <a href="why-25f.html">Why &#167;25F</a>
+        <a href="how-giving-works.html">How It Works</a>
+        <a href="impact.html">Targeted Impact</a>
+        <a href="platform.html">Our Difference</a>
       </div>
-
-      <div class="card" id="dp-form">
-
-        <!-- 2027 credit availability notice -->
-        <div class="notice" id="credit-notice" style="display:none">
-          <span class="notice-ico" aria-hidden="true">🗓️</span>
-          <div>
-            <div class="notice-title" id="credit-notice-title">The federal §25F tax credit opens January 1, 2027</div>
-            <div class="notice-body" id="credit-notice-body">
-              Contributions made before then cannot claim the Education Freedom Tax Credit. You can still
-              give today as a regular charitable contribution, which may be deductible if you itemize.
-            </div>
-          </div>
-        </div>
-
-        <!-- ── SECTION 1: ABOUT YOU ── -->
-        <div class="section">
-          <div class="section-label">About you</div>
-          <div class="form-grid" style="margin-bottom:12px">
-            <div>
-              <label class="label" for="dp-first">First name *</label>
-              <input class="input" id="dp-first" name="given-name" autocomplete="given-name" placeholder="First name">
-              <div class="field-err" id="err-first">Required</div>
-            </div>
-            <div>
-              <label class="label" for="dp-last">Last name *</label>
-              <input class="input" id="dp-last" name="family-name" autocomplete="family-name" placeholder="Last name">
-              <div class="field-err" id="err-last">Required</div>
-            </div>
-          </div>
-          <div class="form-grid" style="margin-bottom:12px">
-            <div>
-              <label class="label" for="dp-email">Email *</label>
-              <input class="input" id="dp-email" type="email" inputmode="email" autocomplete="email" placeholder="Email address">
-              <div class="field-err" id="err-email">Enter a valid email address</div>
-            </div>
-            <div>
-              <label class="label" for="dp-phone">Phone</label>
-              <input class="input" id="dp-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="000-000-0000" oninput="fmtPhone(this)">
-            </div>
-          </div>
-          <div class="form-grid" style="margin-bottom:0">
-            <div>
-              <label class="label" for="dp-state">State *</label>
-              <select class="select" id="dp-state" autocomplete="address-level1">
-                <option value="">Select state</option>
-                <option value="AL">AL — Alabama</option><option value="AK">AK — Alaska</option>
-                <option value="AZ">AZ — Arizona</option><option value="AR">AR — Arkansas</option>
-                <option value="CA">CA — California</option><option value="CO">CO — Colorado</option>
-                <option value="CT">CT — Connecticut</option><option value="DE">DE — Delaware</option>
-                <option value="FL">FL — Florida</option><option value="GA">GA — Georgia</option>
-                <option value="HI">HI — Hawaii</option><option value="ID">ID — Idaho</option>
-                <option value="IL">IL — Illinois</option><option value="IN">IN — Indiana</option>
-                <option value="IA">IA — Iowa</option><option value="KS">KS — Kansas</option>
-                <option value="KY">KY — Kentucky</option><option value="LA">LA — Louisiana</option>
-                <option value="ME">ME — Maine</option><option value="MD">MD — Maryland</option>
-                <option value="MA">MA — Massachusetts</option><option value="MI">MI — Michigan</option>
-                <option value="MN">MN — Minnesota</option><option value="MS">MS — Mississippi</option>
-                <option value="MO">MO — Missouri</option><option value="MT">MT — Montana</option>
-                <option value="NE">NE — Nebraska</option><option value="NV">NV — Nevada</option>
-                <option value="NH">NH — New Hampshire</option><option value="NJ">NJ — New Jersey</option>
-                <option value="NM">NM — New Mexico</option><option value="NY">NY — New York</option>
-                <option value="NC">NC — North Carolina</option><option value="ND">ND — North Dakota</option>
-                <option value="OH">OH — Ohio</option><option value="OK">OK — Oklahoma</option>
-                <option value="OR">OR — Oregon</option><option value="PA">PA — Pennsylvania</option>
-                <option value="RI">RI — Rhode Island</option><option value="SC">SC — South Carolina</option>
-                <option value="SD">SD — South Dakota</option><option value="TN">TN — Tennessee</option>
-                <option value="TX">TX — Texas</option><option value="UT">UT — Utah</option>
-                <option value="VT">VT — Vermont</option><option value="VA">VA — Virginia</option>
-                <option value="WA">WA — Washington</option><option value="WV">WV — West Virginia</option>
-                <option value="WI">WI — Wisconsin</option><option value="WY">WY — Wyoming</option>
-                <option value="DC">DC — District of Columbia</option>
-              </select>
-              <div class="field-err" id="err-state">Required</div>
-            </div>
-            <div>
-              <label class="label" for="dp-filing">Filing status *</label>
-              <select class="select" id="dp-filing" onchange="onFilingChange()">
-                <option value="">Select filing status</option>
-                <option value="single">Single</option>
-                <option value="married">Married filing jointly</option>
-                <option value="married_sep">Married filing separately</option>
-              </select>
-              <div class="field-err" id="err-filing">Required</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── SECTION 2: YOUR DONATION ── -->
-        <div class="section">
-          <div class="section-label">Your donation</div>
-
-          <div style="margin-bottom:16px">
-            <div class="amt-grid" id="amt-grid" role="group" aria-label="Donation amount"></div>
-            <div id="custom-wrap" style="display:none;margin-bottom:8px">
-              <label class="sr-only" for="dp-custom">Custom donation amount</label>
-              <input class="input" id="dp-custom" type="number" min="1" step="1" inputmode="numeric" placeholder="Enter amount" oninput="updateCreditHint()">
-            </div>
-            <div id="credit-hint" style="font-size:12px;color:var(--ink3)"></div>
-            <div class="joint-note" id="joint-note"></div>
-            <div class="impact-line" id="impact-line"><span aria-hidden="true">🎓</span> <span id="impact-copy"></span></div>
-          </div>
-
-          <div style="margin-bottom:4px">
-            <label class="label" for="dp-designation">Direct your gift (optional)</label>
-            <select class="select" id="dp-designation">
-              <option value="general">General Fund</option>
-              <option value="faith_based">Faith-Based Education</option>
-              <option value="special_needs">Special Needs</option>
-              <option value="military">Military Families</option>
-            </select>
-            <div style="font-size:11.5px;color:var(--ink3);margin-top:5px;line-height:1.5">
-              You may express a preference for a community of students. This is advisory only and does not
-              reserve funds for any individual. All award decisions rest with the independent selection
-              committee.
-            </div>
-          </div>
-
-          <!-- Allocation -->
-          <div id="alloc-section" style="margin-bottom:16px;display:none">
-            <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap" role="group" aria-label="Contribution allocation">
-              <button type="button" class="alloc-chip" id="alloc-9505" onclick="setAlloc('9505')">95% scholarship <span style="opacity:.7;font-weight:400">· 5% ops</span></button>
-              <button type="button" class="alloc-chip active" id="alloc-100" onclick="setAlloc('100')">100% scholarship</button>
-              <button type="button" class="alloc-chip" id="alloc-custom-btn" onclick="setAlloc('custom')">Custom split</button>
-            </div>
-            <div class="alloc-custom-wrap" id="alloc-custom-wrap" style="display:none;margin-bottom:8px">
-              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                <label class="label" for="alloc-custom-val" style="margin:0;min-width:118px">Operational support</label>
-                <input class="input" id="alloc-custom-val" type="number" min="0" inputmode="numeric" style="max-width:100px" oninput="updateAllocSummary()" placeholder="0">
-                <span style="font-size:12px;color:var(--ink2)" id="alloc-custom-unit">%</span>
-                <button type="button" class="alloc-toggle-btn active" id="alloc-by-pct" onclick="setAllocMode('pct')" style="font-size:11px;padding:5px 10px">%</button>
-                <button type="button" class="alloc-toggle-btn" id="alloc-by-amt" onclick="setAllocMode('amt')" style="font-size:11px;padding:5px 10px">$</button>
-              </div>
-              <div class="alloc-warn" id="alloc-warn"></div>
-            </div>
-          </div>
-
-          <!-- Tax benefit -->
-          <div id="tax-benefit-section" style="margin-bottom:0">
-            <div class="section-label" style="margin-bottom:10px">Choose your tax benefit</div>
-
-            <div class="tax-opt-card" id="tax-opt-credit" onclick="setTaxBenefit('credit')">
-              <div class="tax-opt-top">
-                <span class="tax-opt-name">§25F Federal Tax Credit <span class="tax-opt-badge tax-opt-badge-sage" id="tax-credit-badge">Recommended</span></span>
-                <span class="tax-opt-value" id="tax-credit-cap-display">Up to $1,700</span>
-              </div>
-              <div class="tax-opt-desc" id="tax-credit-desc">Dollar-for-dollar off your federal taxes owed, not just a deduction. Capped at $1,700 per taxpayer per year under IRC §25F.</div>
-            </div>
-
-            <div class="tax-opt-card" id="tax-opt-deduction" onclick="setTaxBenefit('deduction')">
-              <div class="tax-opt-top">
-                <span class="tax-opt-name">Charitable Deduction <span class="tax-opt-badge tax-opt-badge-sage" id="tax-deduction-badge" style="display:none">Available now</span></span>
-                <span class="tax-opt-value">If itemizing</span>
-              </div>
-              <div class="tax-opt-desc">Claim your contribution as a standard charitable deduction. Most useful if you itemize and are in a higher bracket, since a deduction is worth less than a dollar-for-dollar credit.</div>
-            </div>
-
-            <div class="tax-contact-card">
-              <div class="tax-opt-name">Virginia state tax credits (EISTC)</div>
-              <div class="tax-opt-desc">Interested in Virginia's Education Improvement Scholarships Tax Credit? This requires state preauthorization before your gift can be processed, so we handle it directly. Email us at <a href="#" id="eistc-contact-link">contact us</a> and we'll walk you through it.</div>
-            </div>
-
-            <div class="tax-breakdown-box" id="tax-breakdown-box">
-              <div class="tax-breakdown-row"><span>Donation amount</span><span id="tbd-amount">—</span></div>
-              <div class="tax-breakdown-row" id="tbd-credit-row"><span>§25F tax credit eligible</span><span id="tbd-credit" style="color:var(--sage);font-weight:bold">—</span></div>
-              <div class="tax-breakdown-row" id="tbd-excess-row" style="display:none"><span>Excess — potential deduction</span><span id="tbd-excess">—</span></div>
-              <div class="tax-breakdown-row" id="tbd-deduction-row" style="display:none"><span>Charitable deduction</span><span id="tbd-deduction" style="color:var(--blue);font-weight:bold">—</span></div>
-              <div style="font-size:11px;color:var(--ink3);margin-top:6px;line-height:1.55">Consult your tax advisor. You cannot claim more than one of these benefits on the same contribution dollars.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── SECTION 3: PAYMENT ── -->
-        <div class="section" style="border-bottom:none;margin-bottom:0;padding-bottom:0">
-          <div class="section-label">Payment</div>
-          <div style="display:flex;gap:8px;margin-bottom:10px" role="group" aria-label="Payment method" id="pay-method-row">
-            <button type="button" class="pay-btn active" onclick="setPay('card')" id="pay-card">Credit / debit card</button>
-            <button type="button" class="pay-btn" onclick="setPay('ach')" id="pay-ach">Bank transfer (ACH)<small>Lower processing cost</small></button>
-          </div>
-          <div id="fee-hint" style="font-size:12px;color:var(--ink3);margin-bottom:14px;text-align:center"></div>
-
-          <div id="card-section">
-            <label class="label" for="stripe-card-element">Card details *</label>
-            <div id="stripe-card-element"></div>
-            <div class="card-error" id="card-errors" role="alert"></div>
-          </div>
-
-          <div id="ach-section" style="display:none">
-            <div class="form-grid" style="margin-bottom:10px">
-              <div>
-                <label class="label" for="ach-routing">Routing number *</label>
-                <input class="input" id="ach-routing" inputmode="numeric" autocomplete="off" placeholder="9-digit routing number" maxlength="9" oninput="digitsOnly(this,9)">
-                <div class="field-err" id="err-routing">Enter a valid 9-digit routing number</div>
-              </div>
-              <div>
-                <label class="label" for="ach-account">Account number *</label>
-                <input class="input" id="ach-account" inputmode="numeric" autocomplete="off" placeholder="Account number" oninput="digitsOnly(this,17)">
-                <div class="field-err" id="err-account">Required</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px">
-              <span class="label">Account type</span>
-              <div style="display:flex;gap:8px;margin-top:4px">
-                <button type="button" class="pay-btn active" id="ach-checking" onclick="setAccountType('checking')">Checking</button>
-                <button type="button" class="pay-btn" id="ach-savings" onclick="setAccountType('savings')">Savings</button>
-              </div>
-            </div>
-            <div class="card-error" id="bank-errors" role="alert"></div>
-            <!-- NACHA/Stripe require an explicit debit mandate before an ACH pull. -->
-            <div id="ach-mandate" style="font-size:11px;color:var(--ink3);margin-top:8px;line-height:1.6;background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:10px 12px"></div>
-          </div>
-
-          <div class="error-box" id="dp-error" role="alert" style="margin-top:12px"></div>
-
-          <button class="btn btn-primary" style="width:100%;font-size:16px;padding:15px;margin-top:16px" onclick="submitDonation()" id="dp-submit">
-            Donate now →
-          </button>
-          <div style="font-size:11px;color:var(--ink3);text-align:center;margin-top:8px;line-height:1.6">
-            🔒 Secure payment via Stripe · No goods or services provided in exchange · Acknowledgment letter sent to your email
-          </div>
-        </div>
-
+      <div class="fcol">
+        <h5>Organization</h5>
+        <a href="platform.html#governance">Governance</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="index.html">Home</a>
       </div>
-
-      <!-- LEDGER RECEIPT -->
-      <div class="ledger" id="dp-ledger">
-        <div class="ledger-notch"></div>
-        <div class="ledger-head">
-          <div class="ledger-head-label">Contribution summary</div>
-          <div class="ledger-head-title" id="ledger-org-name">&nbsp;</div>
-        </div>
-        <div class="ledger-body">
-          <div class="ledger-row" id="ledger-sto-row"><span class="lbl" id="ledger-sto-label">Scholarship fund</span><span class="val sage" id="ledger-sto">$0</span></div>
-          <div class="ledger-row" id="ledger-op-row"><span class="lbl">Operational support</span><span class="val" id="ledger-op">$0</span></div>
-          <div class="ledger-total"><span class="lbl">Total charged</span><span class="val" id="ledger-total">$1,700</span></div>
-
-          <div class="ledger-credit-box">
-            <div class="cap" id="ledger-benefit-label">Federal tax credit</div>
-            <div class="amt" id="ledger-credit">$1,615</div>
-            <div class="note" id="ledger-benefit-note">Applied dollar-for-dollar against your federal tax liability under §25F.</div>
-          </div>
-        </div>
-        <div class="ledger-footer">This preview reflects your acknowledgment letter. Consult your tax advisor.</div>
-      </div>
-
-      <div class="card" id="dp-success" style="display:none;text-align:center;padding:40px;grid-column:1/-1">
-        <div style="font-size:56px;margin-bottom:16px">✓</div>
-        <div style="font-size:24px;font-weight:bold;font-family:Georgia,serif;margin-bottom:8px;color:var(--sage)" id="dp-success-headline">Thank you!</div>
-        <div id="dp-success-msg" style="font-size:14px;color:var(--ink2);margin-bottom:20px;line-height:1.6"></div>
-        <div id="dp-success-details" style="background:var(--cream);border-radius:8px;padding:16px;text-align:left;font-size:13px;margin-bottom:16px"></div>
-        <div id="dp-success-next" style="font-size:12.5px;color:var(--ink2);line-height:1.7;text-align:left;background:var(--sage-light);border:1px solid #d3e2d5;border-radius:8px;padding:14px 16px"></div>
-      </div>
-
-      <div class="badge-row">
-        <span>🔒 Stripe-secured payments</span>
-        <span>🏛️ 501(c)(3) scholarship granting organization</span>
-        <span>📄 Written acknowledgment provided</span>
-      </div>
-
-      <div class="trust-note" id="trust-note"></div>
-
-    </div>
-
-    <div class="portal-footer" id="portal-footer">
-      Donations processed securely via Stripe · Platform by <a href="https://www.scholarship-insights.com">Scholarship Insights</a>
-    </div>
-
-  </div>
-
-  <!-- MOBILE STICKY SUMMARY -->
-  <div class="m-summary" id="m-summary">
-    <div>
-      <div class="ms-l">Total</div>
-      <div class="ms-v" id="ms-total">$1,700</div>
-      <div class="ms-b" id="ms-benefit"></div>
-    </div>
-    <button type="button" onclick="submitDonation()">Donate now →</button>
-  </div>
-
-  <div class="modal-backdrop" id="alloc-modal">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="alloc-modal-title">
-      <div class="modal-title" id="alloc-modal-title">Contribution allocation &amp; tax information</div>
-      <div class="modal-body">Your contribution includes an allocation toward operational support. Please review before continuing.</div>
-      <table class="modal-table">
-        <tr><td>Scholarship contribution</td><td id="modal-sto-amt" style="color:var(--sage)"></td></tr>
-        <tr><td>Operational support</td><td id="modal-op-amt"></td></tr>
-        <tr class="modal-divider"><td>Total charged</td><td id="modal-total-amt"></td></tr>
-      </table>
-      <div class="modal-disclaimer" id="modal-disclaimer"></div>
-      <div class="modal-actions">
-        <button class="modal-btn-back" onclick="closeAllocModal()">Go back</button>
-        <button class="modal-btn-confirm" onclick="confirmAndPay()">Confirm &amp; continue</button>
+      <div class="fcol">
+        <h5>Get Involved</h5>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Partner With Us</a>
+        <a href="contact.html">Apply for a Scholarship</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
+    <div class="fbot">
+      <p>&copy; 2026 Scholar Street SGO. All rights reserved.</p>
+      <p>Scholarship Granting Organization &middot; IRC &#167;25F &middot; Education Freedom Tax Credit</p>
+    </div>
   </div>
-
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    var SUPABASE_URL = 'https://jyrpfbjhojnfnefmbdpf.supabase.co';
-    var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5cnBmYmpob2puZm5lZm1iZHBmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MjcwMzEsImV4cCI6MjA5MDMwMzAzMX0.LK5-W4SdUUwrGhfBNoLxf378jlM7BRGyQWmkgsy9PJ4';
-
-    /* Live publishable key. Safe to ship in the client by design; it can only
-       create payments, never read or refund them. The matching sk_live_ secret
-       lives in Supabase Edge Function secrets and never appears in this file. */
-    var STRIPE_PK    = 'pk_live_51TPCSd826dXlp713Lp9xtzRzKHkkNYlJESf7rkpCDsSBp5WYA0xUD7dLRUjIUtOyVFxxbxHCvwe3D5iSDKhPcJ9U00sWcqJwxk';
-
-    var EDGE_URL     = 'https://jyrpfbjhojnfnefmbdpf.supabase.co/functions/v1';
-    var DEFAULT_CONTACT_EMAIL = 'mel@scholarstreet.org';
-
-    /* ── ACH ─────────────────────────────────────────────────────────────
-       Off for launch. Raw routing/account collection requires a displayed
-       debit mandate plus either Financial Connections instant verification
-       or microdeposit verification, and settles in 3-5 business days rather
-       than immediately. The plumbing below is complete; flip this to true
-       only after the verification path has been tested end to end. */
-    var ACH_ENABLED = false;
-
-    /* ── §25F AVAILABILITY GATE ──────────────────────────────────────────
-       The federal Education Freedom Tax Credit is not claimable for
-       contributions made before Jan 1, 2027. Everything credit-related keys
-       off CREDIT_LIVE so there is one switch to flip, and it flips itself. */
-    var CREDIT_START_ISO = '2027-01-01T00:00:00';
-    var CREDIT_START = new Date(CREDIT_START_ISO);
-    var CREDIT_LIVE  = new Date() >= CREDIT_START;
-    /* Federal cap is per taxpayer. Joint treatment is awaiting IRS guidance,
-       so the portal states only what is settled and flags the rest. */
-    var CAP_PER_TAXPAYER = 1700;
-    var JOINT_RULES_PENDING = true;
-
-    /* Donation ladder. Anchored to the scholarship award, not the tax code, so
-       it survives any §25F outcome. Overridden per org by
-       organizations.suggested_amounts (JSON array of {amount,label,creditLabel}). */
-    var TARGET_AWARD = 5000;
-    var DEFAULT_AMOUNTS = [
-      { amount:  500, label: '10% of award' },
-      { amount: 1700, label: '\u2153 of award', creditLabel: 'Full credit' },
-      { amount: 2500, label: '\u00BD of award' },
-      { amount: 5000, label: 'Full award' }
-    ];
-    var amountOptions = DEFAULT_AMOUNTS.slice();
-
-    var sb = null, stripe = null, cardElement = null, orgData = null;
-    var selectedAmt = 1700, payMethod = 'card';
-
-    var allocMode = '100';   // 100% to scholarship fund; split UI hidden
-    var allocCustomMode = 'pct';
-    var allocStoAmt = 0, allocOpAmt = 0;
-    var taxBenefit = CREDIT_LIVE ? 'credit' : 'deduction';
-    var creditEligibleAmount = 0;
-    var excessCharitableAmount = 0;
-
-    /* One idempotency key per page load. Stripe collapses duplicate
-       PaymentIntent creates under the same key, so a double-click or a
-       retried submit cannot produce two charges. Rotated after success. */
-    var idempotencyKey = newIdempotencyKey();
-    function newIdempotencyKey(){
-      try {
-        if(window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
-      } catch(e){}
-      return 'ik_' + Date.now() + '_' + Math.random().toString(36).slice(2,11);
-    }
-
-    /* ── ORG THEMING ─────────────────────────────────────────────────── */
-    function srgb(v){ v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055,2.4); }
-    function luminance(hex){
-      var c=String(hex||'').replace('#','').trim();
-      if(c.length===3) c=c[0]+c[0]+c[1]+c[1]+c[2]+c[2];
-      if(!/^[0-9a-fA-F]{6}$/.test(c)) return null;
-      var r=parseInt(c.slice(0,2),16), g=parseInt(c.slice(2,4),16), b=parseInt(c.slice(4,6),16);
-      return 0.2126*srgb(r) + 0.7152*srgb(g) + 0.0722*srgb(b);
-    }
-    function normHex(hex){
-      var c=String(hex||'').replace('#','').trim();
-      if(c.length===3) c=c[0]+c[0]+c[1]+c[1]+c[2]+c[2];
-      return /^[0-9a-fA-F]{6}$/.test(c) ? '#'+c : null;
-    }
-    function applyOrgTheme(org){
-      var root = document.documentElement;
-      var primary = normHex(org.primary_color);
-      if(primary){
-        var L = luminance(primary);
-        // Reject primaries too light to carry white header text.
-        if(L !== null && L > 0.55) {
-          console.warn('Org primary_color too light for header contrast; using platform default.');
-        } else {
-          root.style.setProperty('--navy', primary);
-          root.style.setProperty('--primary', primary);
-        }
-      }
-      var accent = normHex(org.accent_color);
-      if(accent) root.style.setProperty('--gold', accent);
-      var surface = normHex(org.surface_color);
-      if(surface) root.style.setProperty('--cream', surface);
-
-      // Text that sits on the primary colour.
-      var eff = normHex(getComputedStyle(root).getPropertyValue('--primary')) || '#1B2E4B';
-      var eL = luminance(eff);
-      if(eL !== null && eL > 0.45){
-        root.style.setProperty('--on-primary', '#211D18');
-        root.style.setProperty('--on-primary-dim', 'rgba(33,29,24,0.68)');
-        root.style.setProperty('--on-primary-faint', 'rgba(33,29,24,0.45)');
-      }
-    }
-
-    /* ── HELPERS ─────────────────────────────────────────────────────── */
-    function money(n){ return '$' + (Number(n)||0).toLocaleString(); }
-    function currentAmount(){
-      var el = document.getElementById('dp-custom');
-      return selectedAmt || Number((el && el.value) || 0);
-    }
-    function currentCap(){
-      // Per-taxpayer cap only. No joint multiplier until Treasury guidance lands.
-      return CAP_PER_TAXPAYER;
-    }
-    function isJointFiler(){
-      return document.getElementById('dp-filing').value === 'married';
-    }
-    function digitsOnly(el, max){
-      el.value = el.value.replace(/\D/g,'').slice(0, max);
-    }
-    function setFieldError(inputId, errId, show){
-      var i = document.getElementById(inputId), e = document.getElementById(errId);
-      if(i) i.classList.toggle('invalid', !!show);
-      if(e) e.classList.toggle('show', !!show);
-    }
-    function clearAllFieldErrors(){
-      [['dp-first','err-first'],['dp-last','err-last'],['dp-email','err-email'],
-       ['dp-state','err-state'],['dp-filing','err-filing'],
-       ['ach-routing','err-routing'],['ach-account','err-account']]
-        .forEach(function(p){ setFieldError(p[0], p[1], false); });
-    }
-
-    /* ── LEDGER + SUMMARY ────────────────────────────────────────────── */
-    function updateLedger(){
-      var total = currentAmount();
-      document.getElementById('ledger-sto').textContent = money(allocStoAmt);
-      document.getElementById('ledger-op').textContent  = money(allocOpAmt);
-      document.getElementById('ledger-total').textContent = money(total);
-
-      // No donor-directed split: the donor gives one amount and claims it in full.
-      // How the org apportions against the 90% floor is internal accounting, not
-      // something the donor allocates, so the breakdown lines stay hidden.
-      var opRow  = document.getElementById('ledger-op-row');
-      var stoRow = document.getElementById('ledger-sto-row');
-      var showSplit = allocOpAmt > 0;
-      if(opRow)  opRow.style.display  = showSplit ? 'flex' : 'none';
-      if(stoRow) stoRow.style.display = showSplit ? 'flex' : 'none';
-
-      var label = document.getElementById('ledger-benefit-label');
-      var amtEl = document.getElementById('ledger-credit');
-      var noteEl = document.getElementById('ledger-benefit-note');
-
-      if(!CREDIT_LIVE || taxBenefit === 'deduction'){
-        label.textContent = 'Charitable deduction';
-        amtEl.textContent = money(allocStoAmt);
-        noteEl.textContent = CREDIT_LIVE
-          ? 'Deductible if you itemize. Consult your tax advisor.'
-          : 'The §25F credit is not available for gifts made before January 1, 2027. This gift may be deductible if you itemize.';
-      } else {
-        label.textContent = 'Federal tax credit';
-        amtEl.textContent = money(creditEligibleAmount);
-        noteEl.textContent = 'Applied dollar-for-dollar against your federal tax liability under §25F.';
-      }
-
-      var ms = document.getElementById('m-summary');
-      document.getElementById('ms-total').textContent = money(total);
-      document.getElementById('ms-benefit').textContent =
-        (!CREDIT_LIVE || taxBenefit === 'deduction')
-          ? money(allocStoAmt) + ' deduction'
-          : money(creditEligibleAmount) + ' credit';
-      if(total > 0 && document.getElementById('dp-success').style.display === 'none') ms.classList.add('on');
-      else ms.classList.remove('on');
-    }
-
-    function updateImpactLine(){
-      var amt = currentAmount();
-      var el = document.getElementById('impact-copy');
-      var box = document.getElementById('impact-line');
-      if(!amt){ box.style.display = 'none'; return; }
-      box.style.display = 'flex';
-      // Scale the claim to the gift instead of asserting a fixed outcome.
-      if(amt >= 5000)      el.innerHTML = '<b>' + money(amt) + '</b> can fully fund a scholarship for one student.';
-      else if(amt >= 1700) el.innerHTML = '<b>' + money(amt) + '</b> covers roughly a third of a full scholarship.';
-      else                 el.innerHTML = '<b>' + money(amt) + '</b> goes directly toward tuition support for a student.';
-    }
-
-    /* ── TAX BENEFIT ─────────────────────────────────────────────────── */
-    function renderCreditAvailability(){
-      var card    = document.getElementById('tax-opt-credit');
-      var badge   = document.getElementById('tax-credit-badge');
-      var capDisp = document.getElementById('tax-credit-cap-display');
-      var desc    = document.getElementById('tax-credit-desc');
-      var notice  = document.getElementById('credit-notice');
-      var dedBadge= document.getElementById('tax-deduction-badge');
-
-      if(CREDIT_LIVE){
-        notice.style.display = 'none';
-        card.classList.remove('locked');
-        badge.textContent = 'Recommended';
-        badge.className = 'tax-opt-badge tax-opt-badge-sage';
-        dedBadge.style.display = 'none';
-        capDisp.textContent = 'Up to ' + money(CAP_PER_TAXPAYER) + '/taxpayer';
-        desc.textContent = 'Dollar-for-dollar off your federal taxes owed — not just a deduction. Capped at '
-          + money(CAP_PER_TAXPAYER) + ' per taxpayer per year under IRC §25F.';
-      } else {
-        notice.style.display = 'flex';
-        card.classList.add('locked');
-        badge.textContent = 'Opens Jan 1, 2027';
-        badge.className = 'tax-opt-badge tax-opt-badge-lock';
-        dedBadge.style.display = 'inline-block';
-        capDisp.textContent = 'Not yet available';
-        desc.textContent = 'The federal Education Freedom Tax Credit takes effect January 1, 2027. '
-          + 'Contributions made before that date are not eligible to claim it. From 2027 the credit is capped at '
-          + money(CAP_PER_TAXPAYER) + ' per taxpayer per year.';
-      }
-    }
-
-    function setTaxBenefit(type){
-      // Credit cannot be selected before the statute takes effect.
-      if(type === 'credit' && !CREDIT_LIVE) return;
-      taxBenefit = type;
-      document.getElementById('tax-opt-credit').className =
-        'tax-opt-card' + (CREDIT_LIVE ? '' : ' locked') + (type==='credit' && CREDIT_LIVE ? ' active' : '');
-      document.getElementById('tax-opt-deduction').className =
-        'tax-opt-card' + (type==='deduction' ? ' active' : '');
-      if(CREDIT_LIVE) document.getElementById('tax-credit-cap-display').textContent = 'Up to ' + money(CAP_PER_TAXPAYER) + '/taxpayer';
-      updateTaxBreakdown();
-    }
-
-    function onFilingChange(){
-      setFieldError('dp-filing','err-filing', false);
-      renderCreditAvailability();
-      updateCreditHint();
-    }
-
-    function updateTaxBreakdown(){
-      var amount = currentAmount();
-      var box = document.getElementById('tax-breakdown-box');
-      if(!amount){ box.classList.remove('show'); updateLedger(); return; }
-
-      var cap = currentCap();
-      var currentStoAmt = allocStoAmt || amount;
-
-      box.classList.add('show');
-      document.getElementById('tbd-amount').textContent = money(amount);
-      document.getElementById('tbd-credit-row').style.display = 'none';
-      document.getElementById('tbd-excess-row').style.display = 'none';
-      document.getElementById('tbd-deduction-row').style.display = 'none';
-
-      if(CREDIT_LIVE && taxBenefit === 'credit'){
-        creditEligibleAmount = Math.min(currentStoAmt, cap);
-        excessCharitableAmount = Math.max(0, currentStoAmt - creditEligibleAmount);
-        document.getElementById('tbd-credit-row').style.display = 'flex';
-        document.getElementById('tbd-credit').textContent = money(creditEligibleAmount);
-        if(excessCharitableAmount > 0){
-          document.getElementById('tbd-excess-row').style.display = 'flex';
-          document.getElementById('tbd-excess').textContent = money(excessCharitableAmount);
-        }
-      } else {
-        creditEligibleAmount = 0;
-        excessCharitableAmount = currentStoAmt;
-        document.getElementById('tbd-deduction-row').style.display = 'flex';
-        document.getElementById('tbd-deduction').textContent = money(currentStoAmt);
-      }
-      updateLedger();
-    }
-
-    /* ── ALLOCATION ──────────────────────────────────────────────────── */
-    function setAlloc(mode){
-      allocMode = mode;
-      var chipMap = {'9505':'alloc-9505','100':'alloc-100','custom':'alloc-custom-btn'};
-      ['9505','100','custom'].forEach(function(m){
-        var el = document.getElementById(chipMap[m]);
-        if(el) el.className = 'alloc-chip' + (m===mode ? ' active' : '');
-      });
-      document.getElementById('alloc-custom-wrap').style.display = mode==='custom' ? 'block' : 'none';
-      if(mode==='custom') setTimeout(function(){ var ci=document.getElementById('alloc-custom-val'); if(ci) ci.focus(); }, 50);
-      updateAllocSummary();
-    }
-
-    function setAllocMode(mode){
-      allocCustomMode = mode;
-      document.getElementById('alloc-by-pct').className = 'alloc-toggle-btn' + (mode==='pct' ? ' active' : '');
-      document.getElementById('alloc-by-amt').className = 'alloc-toggle-btn' + (mode==='amt' ? ' active' : '');
-      document.getElementById('alloc-custom-unit').textContent = mode==='pct' ? '%' : '$';
-      document.getElementById('alloc-custom-val').value = '';
-      updateAllocSummary();
-    }
-
-    function updateAllocSummary(){
-      var total = currentAmount() || 0;
-      var opAmt = 0, stoAmt = 0;
-      if(allocMode === '100'){
-        stoAmt = total; opAmt = 0;
-      } else if(allocMode === '9505'){
-        opAmt = Math.round(total * 0.05);
-        stoAmt = total - opAmt;
-      } else {
-        var val = parseFloat(document.getElementById('alloc-custom-val').value || 0) || 0;
-        if(allocCustomMode === 'pct'){
-          val = Math.min(Math.max(val,0),100);
-          opAmt = Math.round(total * val / 100);
-        } else {
-          opAmt = Math.min(Math.max(Math.round(val),0), total);
-        }
-        stoAmt = total - opAmt;
-      }
-      allocStoAmt = stoAmt;
-      allocOpAmt  = opAmt;
-
-      var warn = document.getElementById('alloc-warn');
-      if(allocMode === 'custom' && total > 0 && stoAmt === 0){
-        warn.textContent = 'A gift with no scholarship allocation is an operational contribution only and will not qualify for the §25F credit in any year.';
-        warn.classList.add('show');
-      } else {
-        warn.classList.remove('show');
-      }
-      updateTaxBreakdown();
-    }
-
-    /* ── ALLOC MODAL ─────────────────────────────────────────────────── */
-    function showAllocModal(){
-      document.getElementById('modal-sto-amt').textContent   = money(allocStoAmt);
-      document.getElementById('modal-op-amt').textContent    = money(allocOpAmt);
-      document.getElementById('modal-total-amt').textContent = money(currentAmount());
-      document.getElementById('modal-disclaimer').textContent = CREDIT_LIVE
-        ? 'Your full contribution may qualify for the §25F tax credit, up to $1,700 per taxpayer per year. Consult your tax advisor regarding your eligibility.'
-        : 'The §25F tax credit is not available for contributions made before January 1, 2027. This gift may be deductible if you itemize. Consult your tax advisor regarding deductibility.';
-      document.getElementById('alloc-modal').className = 'modal-backdrop open';
-    }
-    function closeAllocModal(){ document.getElementById('alloc-modal').className = 'modal-backdrop'; }
-    function confirmAndPay(){ closeAllocModal(); proceedWithPayment(); }
-
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') closeAllocModal();
-    });
-
-    var orgSlug = new URLSearchParams(window.location.search).get('org') || '';
-
-    window.addEventListener('DOMContentLoaded', function(){
-      function initSupabase(){
-        try {
-          if(window.supabase && window.supabase.createClient){
-            sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-            return true;
-          }
-        } catch(e){ console.error('Supabase init error:', e); }
-        return false;
-      }
-
-      // Hard stop so a hung CDN never leaves a permanent spinner.
-      setTimeout(function(){
-        if(document.getElementById('loading').style.display !== 'none'
-           && document.getElementById('portal').style.display === 'none'){
-          showNotFound();
-        }
-      }, 12000);
-
-      if(!initSupabase()){
-        setTimeout(function(){
-          initSupabase();
-          try { stripe = Stripe(STRIPE_PK); } catch(e){ console.error(e); }
-          loadOrg();
-        }, 500);
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  // ---- Formspree forms: submit via fetch so the visitor stays on the page ----
+  document.querySelectorAll('form[data-formspree]').forEach(function(form){
+    var id = form.getAttribute('data-formspree');
+    var status = form.querySelector('.form-status');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!id || id.indexOf('REPLACE_') === 0){
+        if(status){ status.textContent = 'This form is not connected yet.'; status.className = 'form-status show err'; }
         return;
       }
-
-      try { stripe = Stripe(STRIPE_PK); } catch(e){ console.error(e); }
-      loadOrg();
+      var btn = form.querySelector('button[type=submit], .f-submit, .fsignup-btn');
+      var label = btn ? btn.textContent : '';
+      if(btn){ btn.disabled = true; btn.textContent = 'Sending...'; }
+      if(status){ status.className = 'form-status'; status.textContent = ''; }
+      fetch('https://formspree.io/f/' + id, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(r){
+        if(r.ok){
+          form.reset();
+          if(status){
+            status.textContent = form.classList.contains('fsignup')
+              ? 'Thanks. You are on the list.'
+              : 'Thank you. We have received your message and will be in touch.';
+            status.className = 'form-status show ok';
+          }
+        } else {
+          return r.json().then(function(d){
+            throw new Error((d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Submission failed');
+          });
+        }
+      }).catch(function(err){
+        if(status){
+          status.textContent = 'Sorry, something went wrong. Please email info@scholarstreet.org.';
+          status.className = 'form-status show err';
+        }
+        console.error('Form error:', err);
+      }).then(function(){
+        if(btn){ btn.disabled = false; btn.textContent = label; }
+      });
     });
+  });
 
-    async function loadOrg(){
-      if(!orgSlug){ console.warn('No org slug in URL'); showNoSlug(); return; }
-      if(!sb){ console.error('Supabase not initialized'); showNotFound(); return; }
-      try {
-        var r = await sb.from('organizations')
-          .select('id, name, legal_name, logo_url, primary_color, accent_color, surface_color, suggested_amounts, website, stripe_account_id, contact_email')
-          .eq('slug', orgSlug)
-          .eq('status', 'active')
-          .maybeSingle();
-        if(r.error){
-          // accent_color / surface_color may not exist yet — retry with the base set.
-          console.warn('Org query failed, retrying without theme columns:', r.error.message);
-          r = await sb.from('organizations')
-            .select('id, name, legal_name, logo_url, primary_color, website, stripe_account_id, contact_email')
-            .eq('slug', orgSlug).eq('status','active').maybeSingle();
-        }
-        if(r.error){ console.error('Supabase error:', r.error); showNotFound(); return; }
-        if(!r.data){ console.error('No org found for slug:', orgSlug); showNotFound(); return; }
-        orgData = r.data;
-        renderPortal();
-      } catch(e){ console.error('loadOrg exception:', e); showNotFound(); }
-    }
-
-    function showNotFound(){
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('not-found').style.display = 'block';
-    }
-
-    // Opened without ?org=<slug> — e.g. someone previewing the file directly.
-    // Explains itself rather than reading as a broken page.
-    function showNoSlug(){
-      document.getElementById('loading').style.display = 'none';
-      var el = document.getElementById('not-found');
-      document.getElementById('nf-icon').textContent = '🔗';
-      document.getElementById('nf-title').textContent = 'This portal needs an organization link';
-      document.getElementById('nf-body').innerHTML =
-        'Each SGO has its own donation link in the form '
-        + '<code style="background:#efe9dc;padding:2px 6px;border-radius:4px;font-size:13px">donate.html?org=your-slug</code>. '
-        + 'Open the link your organization gave you, or find it under '
-        + '<strong>Org Settings &rarr; Donor portal slug</strong> in the admin portal.';
-      el.style.display = 'block';
-    }
-
-    function renderPortal(){
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('portal').style.display = 'flex';
-
-      applyOrgTheme(orgData);
-
-      // Demo-only override: personalize the demo link per prospect without
-      // touching the database. Restricted to slug === 'demo' so it can never
-      // be used to spoof a real org's name.
-      var displayName = orgData.name;
-      var displayLogo = orgData.logo_url;
-      if(orgSlug === 'demo'){
-        var demoParams = new URLSearchParams(window.location.search);
-        var dName = demoParams.get('dname');
-        var dLogo = demoParams.get('dlogo');
-        if(dName) displayName = dName;
-        if(dLogo) displayLogo = dLogo;
-      }
-
-      document.getElementById('dp-org-name').textContent = displayName;
-      document.getElementById('ledger-org-name').textContent = displayName;
-      document.title = 'Donate to ' + displayName;
-
-      if(displayLogo){
-        var logo = document.getElementById('dp-logo');
-        logo.src = displayLogo;
-        logo.alt = displayName + ' logo';
-        logo.style.display = 'block';
-      }
-
-      document.getElementById('dp-intro').innerHTML = CREDIT_LIVE
-        ? 'Your contribution to <strong>' + escapeHtml(displayName) + '</strong> funds K-12 scholarships for eligible students under IRC §25F. '
-          + 'Donors may claim a federal tax credit of up to <strong>' + money(CAP_PER_TAXPAYER) + ' per taxpayer</strong> per year.'
-        : 'Your contribution to <strong>' + escapeHtml(displayName) + '</strong> funds K-12 scholarships for eligible students. '
-          + 'The federal Education Freedom Tax Credit opens <strong>January 1, 2027</strong>; gifts made today are regular charitable contributions.';
-
-      var legalName = orgData.legal_name || displayName;
-
-      document.getElementById('trust-note').innerHTML =
-        escapeHtml(legalName)
-        + ' is a 501(c)(3) scholarship granting organization. You will receive a written acknowledgment for your records. '
-        + 'No goods or services were provided in exchange for this contribution.';
-
-      // Name the entity actually taking the money, in the footer, on every page.
-      var footer = document.getElementById('portal-footer');
-      if(footer){
-        footer.innerHTML = 'Contributions are received by ' + escapeHtml(legalName)
-          + ' · Processed securely via Stripe · Platform by '
-          + '<a href="https://www.scholarship-insights.com">Scholarship Insights</a>';
-      }
-
-      // ACH debit mandate. Required wording before pulling funds from an account.
-      var mandate = document.getElementById('ach-mandate');
-      if(mandate){
-        mandate.textContent = 'By providing your account number and confirming this payment, you authorise '
-          + legalName + ' and Stripe, our payment service provider, to send instructions to your bank to debit '
-          + 'your account, and your bank to debit your account in accordance with those instructions. You are '
-          + 'entitled to a refund from your bank under the terms and conditions of your agreement with your bank. '
-          + 'A refund must be claimed within 8 weeks starting from the date on which your account was debited. '
-          + 'Bank transfers typically settle in 3-5 business days.';
-      }
-
-      // Card-only for launch: hide the method row entirely rather than showing
-      // a single dead option.
-      if(!ACH_ENABLED){
-        var row = document.getElementById('pay-method-row');
-        if(row) row.style.display = 'none';
-        var achSec = document.getElementById('ach-section');
-        if(achSec) achSec.style.display = 'none';
-        payMethod = 'card';
-      }
-
-      var contactEmail = (orgData.contact_email && orgData.contact_email.trim()) || DEFAULT_CONTACT_EMAIL;
-      var contactLink = document.getElementById('eistc-contact-link');
-      if(contactLink){
-        contactLink.href = 'mailto:' + contactEmail + '?subject=Virginia%20EISTC%20Tax%20Credit%20Inquiry';
-        contactLink.textContent = contactEmail;
-      }
-
-      var urlParams = new URLSearchParams(window.location.search);
-      var prefillEmail = urlParams.get('email');
-      var prefillName  = urlParams.get('name');
-      if(prefillEmail){ var em = document.getElementById('dp-email'); if(em) em.value = prefillEmail; }
-      if(prefillName){
-        var parts = prefillName.trim().split(' ');
-        var fn = document.getElementById('dp-first'), ln = document.getElementById('dp-last');
-        if(fn) fn.value = parts[0] || '';
-        if(ln) ln.value = parts.slice(1).join(' ') || '';
-      }
-
-      if(stripe){
-        var elements = stripe.elements();
-        cardElement = elements.create('card', {
-          style: {
-            base: { fontSize:'16px', color:'#211D18', fontFamily:'Source Sans 3,Arial,sans-serif', '::placeholder':{color:'#948E80'} },
-            invalid: { color:'#B3462C' }
-          }
-        });
-        cardElement.mount('#stripe-card-element');
-        cardElement.on('change', function(e){
-          document.getElementById('card-errors').textContent = e.error ? e.error.message : '';
-        });
-      } else {
-        var errEl = document.getElementById('dp-error');
-        errEl.textContent = 'Payments are temporarily unavailable. Please contact ' + contactEmail + '.';
-        errEl.style.display = 'block';
-        document.getElementById('dp-submit').disabled = true;
-      }
-
-      // Clear field errors as the donor fixes them.
-      [['dp-first','err-first'],['dp-last','err-last'],['dp-email','err-email'],
-       ['dp-state','err-state'],['ach-routing','err-routing'],['ach-account','err-account']]
-        .forEach(function(p){
-          var el = document.getElementById(p[0]);
-          if(el) el.addEventListener('input', function(){ setFieldError(p[0], p[1], false); });
-          if(el && el.tagName === 'SELECT') el.addEventListener('change', function(){ setFieldError(p[0], p[1], false); });
-        });
-
-      loadAmountOptions(orgData);
-      renderAmountButtons();
-      renderCreditAvailability();
-      setTaxBenefit(CREDIT_LIVE ? 'credit' : 'deduction');
-      setAmt(defaultAmount());
-    }
-
-    /* ── EMBED HEIGHT SYNC ───────────────────────────────────────────
-       When rendered inside an iframe (?embedded=true), report our height
-       to the parent so it can size the frame. Prevents a scrollbar inside
-       a scrollbar when the form grows (Custom amount, Custom split, etc.). */
-    (function(){
-      if(new URLSearchParams(window.location.search).get('embedded') !== 'true') return;
-      var last = 0;
-      function contentHeight(){
-        // Measure the visible top-level container, never documentElement:
-        // documentElement.scrollHeight is floored at the iframe's own height,
-        // so using it makes every resize feed the next one without bound.
-        var candidates = ['#portal', '#not-found', '#loading'];
-        var tallest = 0;
-        for(var i=0; i<candidates.length; i++){
-          var el = document.querySelector(candidates[i]);
-          if(el && el.offsetParent !== null || (el && getComputedStyle(el).display !== 'none')){
-            var r = el.getBoundingClientRect();
-            if(r.height > tallest) tallest = r.height;
-          }
-        }
-        return Math.ceil(tallest) || document.body.scrollHeight;
-      }
-      function report(){
-        var hgt = contentHeight();
-        if(!hgt || Math.abs(hgt - last) < 8) return;
-        last = hgt;
-        try { window.parent.postMessage({ scholarstreetEmbedHeight: hgt }, '*'); } catch(e){}
-      }
-      window.addEventListener('load', report);
-      window.addEventListener('resize', report);
-      document.addEventListener('DOMContentLoaded', function(){
-        report();
-        if(window.ResizeObserver){
-          try { new ResizeObserver(report).observe(document.body); } catch(e){}
-        }
-        if(window.MutationObserver){
-          try {
-            new MutationObserver(report).observe(document.body,
-              { childList:true, subtree:true, attributes:true, characterData:true });
-          } catch(e){}
-        }
-        setInterval(report, 900); // belt and braces for late-loading content
-      });
-    })();
-
-    function escapeHtml(s){
-      return String(s == null ? '' : s)
-        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-        .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-    }
-
-    function fmtPhone(el){
-      var v = el.value.replace(/\D/g,'').slice(0,10);
-      if(v.length>=7) el.value = v.slice(0,3)+'-'+v.slice(3,6)+'-'+v.slice(6);
-      else if(v.length>=4) el.value = v.slice(0,3)+'-'+v.slice(3);
-      else el.value = v;
-    }
-
-    /* Renders the amount ladder from amountOptions (org-configurable).
-       Sub-labels describe scholarship impact; credit framing only appears
-       once the credit is actually claimable. */
-    /* Accepts organizations.suggested_amounts as a JSON array (or JSON string).
-       Each entry may be a bare number or {amount,label,creditLabel}. Anything
-       malformed falls back to the default ladder rather than breaking the form. */
-    function loadAmountOptions(org){
-      var raw = org && org.suggested_amounts;
-      if(!raw){ amountOptions = DEFAULT_AMOUNTS.slice(); return; }
-      try {
-        if(typeof raw === 'string') raw = JSON.parse(raw);
-        if(!Array.isArray(raw) || !raw.length) throw new Error('not a non-empty array');
-        var out = [];
-        raw.forEach(function(item){
-          var amt = (typeof item === 'number') ? item : Number(item && item.amount);
-          if(!isFinite(amt) || amt <= 0) return;
-          out.push({
-            amount: Math.round(amt),
-            label: (item && typeof item.label === 'string') ? item.label : '',
-            creditLabel: (item && typeof item.creditLabel === 'string') ? item.creditLabel : ''
-          });
-        });
-        if(!out.length) throw new Error('no valid amounts');
-        // Keep the row from overflowing the grid.
-        amountOptions = out.slice(0, 5);
-      } catch(e){
-        console.warn('Invalid suggested_amounts, using default ladder:', e.message);
-        amountOptions = DEFAULT_AMOUNTS.slice();
-      }
-    }
-
-    function defaultAmount(){
-      // Prefer the credit-max rung if present, else the middle of the ladder.
-      for(var i=0; i<amountOptions.length; i++){
-        if(amountOptions[i].amount === CAP_PER_TAXPAYER) return amountOptions[i].amount;
-      }
-      return amountOptions[Math.min(1, amountOptions.length-1)].amount;
-    }
-
-    function renderAmountButtons(){
-      var grid = document.getElementById('amt-grid');
-      if(!grid) return;
-      grid.innerHTML = '';
-      amountOptions.forEach(function(opt){
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'amt-btn';
-        b.id = 'amt-' + opt.amount;
-        b.setAttribute('data-amt', String(opt.amount));
-        var sub = (CREDIT_LIVE && opt.creditLabel) ? opt.creditLabel : (opt.label || '');
-        b.innerHTML = '$' + Number(opt.amount).toLocaleString()
-          + (sub ? '<span>' + escapeHtml(sub) + '</span>' : '');
-        b.addEventListener('click', function(){ setAmt(opt.amount); });
-        grid.appendChild(b);
-      });
-      var c = document.createElement('button');
-      c.type = 'button';
-      c.className = 'amt-btn';
-      c.id = 'amt-custom';
-      c.setAttribute('data-amt', '0');
-      c.textContent = 'Custom';
-      c.addEventListener('click', function(){ setAmt(0); });
-      grid.appendChild(c);
-    }
-
-    function setAmt(val){
-      selectedAmt = val === 0 ? 0 : Number(val);
-      var btns = document.querySelectorAll('#amt-grid .amt-btn');
-      for(var i=0; i<btns.length; i++){
-        var v = Number(btns[i].getAttribute('data-amt'));
-        btns[i].className = 'amt-btn' + (v === Number(val) ? ' active' : '');
-      }
-      document.getElementById('custom-wrap').style.display = val === 0 ? 'block' : 'none';
-      if(val === 0) setTimeout(function(){ var c=document.getElementById('dp-custom'); if(c) c.focus(); }, 50);
-      updateCreditHint();
-    }
-
-    function updateCreditHint(){
-      var amt = currentAmount();
-      var cap = currentCap();
-      var hint = document.getElementById('credit-hint');
-      var joint = document.getElementById('joint-note');
-
-      if(!CREDIT_LIVE){
-        hint.textContent = 'The §25F credit applies to gifts made on or after January 1, 2027. '
-          + 'Today\u2019s gift may be deductible if you itemize.';
-      } else if(amt > 0){
-        var eligible = Math.min(amt, cap);
-        hint.textContent = 'Eligible for a federal tax credit of up to ' + money(eligible)
-          + (amt > cap ? ' (the ' + money(cap) + ' per-taxpayer cap; the remainder may be deductible)' : '');
-      } else {
-        hint.textContent = 'Eligible for a federal tax credit of up to ' + money(cap) + ' per taxpayer';
-      }
-
-      // Joint filers: state the open question rather than a number we can't support yet.
-      if(joint){
-        if(JOINT_RULES_PENDING && isJointFiler()){
-          joint.textContent = 'Married filing jointly: the federal credit is set per taxpayer. '
-            + 'Treasury has not yet issued guidance on how the cap applies to joint returns, '
-            + 'so we show the per-taxpayer figure only. Please consult your tax advisor.';
-          joint.classList.add('show');
-        } else {
-          joint.classList.remove('show');
-        }
-      }
-
-      updateAllocSummary();
-      updateImpactLine();
-    }
-
-    var achAccountType = 'checking';
-    function setAccountType(type){
-      achAccountType = type;
-      document.getElementById('ach-checking').className = 'pay-btn' + (type==='checking' ? ' active' : '');
-      document.getElementById('ach-savings').className  = 'pay-btn' + (type==='savings'  ? ' active' : '');
-    }
-
-    function setPay(method){
-      if(method === 'ach' && !ACH_ENABLED) return;
-      payMethod = method;
-      document.getElementById('pay-card').className = 'pay-btn' + (method==='card' ? ' active' : '');
-      document.getElementById('pay-ach').className  = 'pay-btn' + (method==='ach'  ? ' active' : '');
-      document.getElementById('card-section').style.display = method==='card' ? 'block' : 'none';
-      document.getElementById('ach-section').style.display  = method==='ach'  ? 'block' : 'none';
-      document.getElementById('fee-hint').textContent = method==='ach'
-        ? 'Bank transfers settle in 3-5 business days.'
-        : '';
-    }
-
-    /* ── VALIDATION ──────────────────────────────────────────────────── */
-    function validateForm(){
-      clearAllFieldErrors();
-      var first  = (document.getElementById('dp-first').value||'').trim();
-      var last   = (document.getElementById('dp-last').value||'').trim();
-      var email  = (document.getElementById('dp-email').value||'').trim();
-      var state  = document.getElementById('dp-state').value;
-      var filing = document.getElementById('dp-filing').value;
-      var amount = currentAmount();
-
-      var bad = [];
-      if(!first){ setFieldError('dp-first','err-first',true); bad.push('dp-first'); }
-      if(!last){ setFieldError('dp-last','err-last',true); bad.push('dp-last'); }
-      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ setFieldError('dp-email','err-email',true); bad.push('dp-email'); }
-      if(!state){ setFieldError('dp-state','err-state',true); bad.push('dp-state'); }
-      if(!filing){ setFieldError('dp-filing','err-filing',true); bad.push('dp-filing'); }
-
-      if(payMethod === 'ach'){
-        var routing = (document.getElementById('ach-routing').value||'').trim();
-        var account = (document.getElementById('ach-account').value||'').trim();
-        if(routing.length !== 9){ setFieldError('ach-routing','err-routing',true); bad.push('ach-routing'); }
-        if(!account){ setFieldError('ach-account','err-account',true); bad.push('ach-account'); }
-      }
-
-      var errEl = document.getElementById('dp-error');
-      if(!amount || amount <= 0){
-        errEl.textContent = 'Please select or enter a donation amount.';
-        errEl.style.display = 'block';
-        // Scroll to the ladder itself. The old code targeted #amt-1700, which
-        // does not exist when an org overrides suggested_amounts.
-        var grid = document.getElementById('amt-grid');
-        if(grid) grid.scrollIntoView({behavior:'smooth', block:'center'});
-        return false;
-      }
-      if(amount < 5){
-        errEl.textContent = 'The minimum online donation is $5.';
-        errEl.style.display = 'block';
-        return false;
-      }
-
-      if(bad.length){
-        errEl.textContent = 'Please complete the highlighted field' + (bad.length>1?'s':'') + ' above.';
-        errEl.style.display = 'block';
-        var f = document.getElementById(bad[0]);
-        if(f){ f.scrollIntoView({behavior:'smooth', block:'center'}); setTimeout(function(){ f.focus(); }, 400); }
-        return false;
-      }
-
-      errEl.style.display = 'none';
-      return true;
-    }
-
-    async function submitDonation(){
-      updateAllocSummary();
-      if(!validateForm()) return;
-      if(allocOpAmt > 0){ showAllocModal(); return; }
-      proceedWithPayment();
-    }
-
-    async function proceedWithPayment(){
-      if(!orgData) return;
-      var first  = (document.getElementById('dp-first').value||'').trim();
-      var last   = (document.getElementById('dp-last').value||'').trim();
-      var email  = (document.getElementById('dp-email').value||'').trim();
-      var phone  = (document.getElementById('dp-phone').value||'').trim();
-      var state  = document.getElementById('dp-state').value;
-      var filing = document.getElementById('dp-filing').value;
-      var errEl  = document.getElementById('dp-error');
-      var amount = currentAmount();
-
-      if(!validateForm()) return;
-
-      /* Direct mode (no stripe_account_id on the org): this SGO is the merchant
-         of record and funds settle to its own Stripe account. That is Scholar
-         Street today. Connect mode (stripe_account_id present): funds route to
-         the org's own connected account instead. The Edge Function branches on
-         which one is passed, so both models share one deploy. No hard block
-         here — an org without a connected account is the normal case now. */
-
-      var btn = document.getElementById('dp-submit');
-      btn.disabled = true;
-      btn.innerHTML = '<span class="spinner"></span>Processing…';
-
-      // Single source of truth for what gets written everywhere.
-      var stoAmount = allocStoAmt || amount;
-      var opAmount  = allocOpAmt || 0;
-      var contribType = opAmount === 0 ? 'STO_ONLY' : (stoAmount === 0 ? 'OPERATIONAL_ONLY' : 'SPLIT');
-      var effBenefit = CREDIT_LIVE ? taxBenefit : 'deduction';
-      var effCredit  = (CREDIT_LIVE && taxBenefit === 'credit') ? creditEligibleAmount : 0;
-      var designation = (document.getElementById('dp-designation') || {}).value || 'general';
-
-      try {
-        var piResp = await fetch(EDGE_URL+'/create-payment-intent', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+SUPABASE_KEY,
-            'apikey': SUPABASE_KEY
-          },
-          body: JSON.stringify({
-            amount: amount,
-            idempotency_key: idempotencyKey,
-            stripe_account_id: orgData.stripe_account_id || null,
-            donor_email: email,
-            donor_first: first,
-            donor_last: last,
-            donor_phone: phone || null,
-            donor_state: state,
-            filing_status: filing,
-            org_id: orgData.id,
-            org_name: orgData.name,
-            org_slug: orgSlug,
-            payment_method_type: payMethod === 'ach' ? 'us_bank_account' : 'card',
-            sto_amount: stoAmount,
-            operational_amount: opAmount,
-            contribution_type: contribType,
-            tax_benefit_type: effBenefit,
-            credit_eligible_amount: effCredit,
-            excess_charitable_amount: excessCharitableAmount,
-            credit_program_live: CREDIT_LIVE,
-            designation: designation
-          })
-        });
-        var piData = await piResp.json();
-        if(piData.error) throw new Error(piData.error);
-        if(!piData.client_secret) throw new Error('No client secret returned — check Edge Function logs');
-
-        var result;
-        if(payMethod === 'ach'){
-          var routing = (document.getElementById('ach-routing').value||'').trim();
-          var account = (document.getElementById('ach-account').value||'').trim();
-          result = await stripe.confirmUsBankAccountPayment(piData.client_secret, {
-            payment_method: {
-              us_bank_account: {
-                routing_number: routing,
-                account_number: account,
-                account_holder_type: 'individual',
-                account_type: achAccountType
-              },
-              billing_details: { name: first+' '+last, email: email }
-            }
-          });
-        } else {
-          result = await stripe.confirmCardPayment(piData.client_secret, {
-            payment_method: {
-              card: cardElement,
-              billing_details: { name: first+' '+last, email: email, phone: phone||undefined }
-            }
-          });
-        }
-        if(result.error) throw new Error(result.error.message);
-
-        var paymentRef = result.paymentIntent ? result.paymentIntent.id : piData.payment_intent_id;
-        var paymentStatus = result.paymentIntent ? result.paymentIntent.status : 'succeeded';
-
-        /* Recording the donation is the webhook's job, not the browser's.
-           payment_intent.succeeded fires server-to-server and Stripe retries
-           it, so a closed tab or a dropped connection can no longer produce a
-           charge with no matching record. Everything the webhook needs was
-           written into PaymentIntent metadata above. */
-
-        // Fresh key so a second gift in the same session is not collapsed
-        // into the first by Stripe's idempotency layer.
-        idempotencyKey = newIdempotencyKey();
-
-        showSuccess(first, last, amount, stoAmount, opAmount, effBenefit, effCredit, paymentStatus);
-
-      } catch(e){
-        console.error('Payment error:', e.message);
-        errEl.textContent = e.message;
-        errEl.style.display = 'block';
-        btn.disabled = false;
-        btn.innerHTML = 'Donate now →';
-      }
-    }
-
-    function showSuccess(first, last, amount, stoAmount, opAmount, benefit, creditAmt, paymentStatus){
-      document.getElementById('dp-form').style.display = 'none';
-      document.getElementById('dp-ledger').style.display = 'none';
-      document.getElementById('m-summary').classList.remove('on');
-      document.getElementById('dp-success').style.display = 'block';
-
-      document.getElementById('dp-success-headline').textContent = 'Thank you, ' + first + '!';
-      document.getElementById('dp-success-msg').textContent =
-        'Your ' + money(amount) + ' donation to ' + orgData.name + ' has been received'
-        + (paymentStatus === 'succeeded' ? ' and processed.' : ' and is being processed.');
-
-      var benefitLabel = benefit === 'credit' ? '§25F tax credit eligible' : 'Charitable deduction';
-      var benefitValue = benefit === 'credit'
-        ? money(creditAmt)
-        : money(stoAmount) + ' (if itemizing)';
-
-      var allocBreakdown = opAmount > 0
-        ? '<div style="border-top:1px solid var(--border);margin-top:10px;padding-top:10px">'
-          + '<div style="font-size:11px;color:var(--ink3);margin-bottom:6px">Contribution breakdown</div>'
-          + '<div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 0"><span style="color:var(--ink2)">Scholarship fund</span><span style="color:var(--sage);font-weight:bold">'+money(stoAmount)+'</span></div>'
-          + '<div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 0"><span style="color:var(--ink2)">Operational support</span><span>'+money(opAmount)+'</span></div>'
-          + '</div>'
-        : '';
-
-      document.getElementById('dp-success-details').innerHTML =
-        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">'
-        + '<div><div style="font-size:11px;color:var(--ink3);margin-bottom:2px">Donor</div><div style="font-weight:bold">'+escapeHtml(first+' '+last)+'</div></div>'
-        + '<div><div style="font-size:11px;color:var(--ink3);margin-bottom:2px">Amount charged</div><div style="font-weight:bold;color:var(--sage)">'+money(amount)+'</div></div>'
-        + '<div><div style="font-size:11px;color:var(--ink3);margin-bottom:2px">'+benefitLabel+'</div><div style="font-weight:bold">'+benefitValue+'</div></div>'
-        + '<div><div style="font-size:11px;color:var(--ink3);margin-bottom:2px">Date</div><div>'+new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+'</div></div>'
-        + '</div>' + allocBreakdown;
-
-      document.getElementById('dp-success-next').innerHTML = CREDIT_LIVE
-        ? '<strong>What happens next</strong><br>'
-          + 'An acknowledgment letter with the information you need to claim the §25F credit will be emailed to you. '
-          + 'Keep it with your tax records.'
-        : '<strong>What happens next</strong><br>'
-          + 'An acknowledgment letter will be emailed to you for your records. '
-          + 'This gift was made before January 1, 2027, so it is not eligible for the federal §25F credit, '
-          + 'but it may be deductible if you itemize. Consult your tax advisor.';
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
+  var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
+  if(t&&l){t.addEventListener('click',function(){l.classList.toggle('open');});}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+});
+</script>
 </body>
 </html>
