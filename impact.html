@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Targeted Impact &mdash; Scholar Street SGO</title>
+<meta name="description" content="Give to Scholar Street's general scholarship fund or direct support to a designated fund serving faith-based education, special needs students, or military families.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#1B2E4B; --navy-dk:#132238; --gold:#C8A84B; --gold-dk:#b8953e;
+  --sage:#6B8F71; --cream:#F9F7F2; --cream2:#efe9dc;
+  --text:#1B2E4B; --text-mid:#4d5b71; --text-lt:#7d8798;
+  --serif:Georgia,'Times New Roman',serif;
+  --radius:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--text);background:var(--cream);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+section{padding:92px 0}
+
+/* ---------- STICKY BANNER ---------- */
+#topbar{background:var(--navy);color:#fff;font-size:12.5px;letter-spacing:.01em;
+  padding:9px 0;text-align:center;position:relative;z-index:60}
+#topbar .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);
+  display:inline-block;margin-right:8px;vertical-align:middle}
+#topbar strong{font-weight:700;color:#fff}
+#topbar span{color:rgba(255,255,255,.72)}
+
+/* ---------- NAV ---------- */
+nav#mainNav{position:sticky;top:0;z-index:50;background:rgba(249,247,242,.96);
+  backdrop-filter:blur(10px);border-bottom:1px solid rgba(27,46,75,.09);
+  display:flex;align-items:center;justify-content:space-between;gap:22px;
+  padding:11px 40px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.nav-crest{width:46px;height:46px;background:var(--navy);border-radius:11px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  border:1px solid rgba(200,168,75,.28)}
+.nav-crest svg{width:42px;height:42px}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-name{font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.01em;
+  color:var(--navy);line-height:1;display:flex;align-items:baseline}
+.nav-name span{font-family:var(--serif);font-weight:700;font-size:19px}
+.nav-type{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sage);font-weight:600}
+.nav-links{display:flex;align-items:center;gap:19px;list-style:none;flex-wrap:nowrap}
+.nav-links a{font-size:13px;font-weight:600;text-decoration:none;color:var(--text-mid);
+  white-space:nowrap;padding:6px 0;border-bottom:2px solid transparent;transition:.18s}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a.active{color:var(--navy);border-bottom-color:var(--gold)}
+.nav-apply{background:var(--gold);color:var(--navy)!important;border-radius:999px;
+  padding:9px 20px!important;border-bottom:none!important;font-weight:700}
+.nav-apply:hover{background:var(--gold-dk)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);margin:4px 0;border-radius:2px}
+
+/* ---------- TYPE ---------- */
+.s-eyebrow{font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;
+  font-weight:700;color:var(--sage);display:flex;align-items:center;gap:11px}
+.s-eyebrow::before{content:'';width:26px;height:2px;background:var(--gold)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:700;letter-spacing:-.01em;line-height:1.18}
+.s-title{font-size:clamp(1.8rem,3vw,2.6rem);margin-top:1rem;color:var(--navy)}
+.s-title em{font-style:italic;color:var(--gold)}
+.s-lead{max-width:720px;margin-top:1.05rem;font-size:16.5px;color:var(--text-mid);line-height:1.8}
+
+/* ---------- BUTTONS ---------- */
+.btn-gold,.btn-outline{display:inline-block;text-decoration:none;font-weight:700;
+  font-size:14.5px;padding:13px 28px;border-radius:999px;transition:.18s;cursor:pointer}
+.btn-gold{background:var(--gold);color:var(--navy);border:2px solid var(--gold)}
+.btn-gold:hover{background:var(--gold-dk);border-color:var(--gold-dk)}
+.btn-outline{background:transparent;color:var(--navy);border:2px solid rgba(27,46,75,.25)}
+.btn-outline:hover{border-color:var(--navy)}
+
+/* ---------- PAGE HERO ---------- */
+.page-hero{background:var(--navy);color:#fff;padding:82px 0 78px;position:relative;overflow:hidden}
+.page-hero .s-eyebrow{color:rgba(255,255,255,.62)}
+.ph-title{font-size:clamp(2rem,3.6vw,3rem);color:#fff;margin-top:1rem}
+.ph-title em{font-style:italic;color:var(--gold)}
+.ph-sub{max-width:730px;margin-top:1.15rem;font-size:16.5px;color:rgba(255,255,255,.66);line-height:1.8}
+.ph-bg-circle{position:absolute;border-radius:50%;pointer-events:none}
+.ph-bg-circle.a{width:420px;height:420px;background:rgba(200,168,75,.05);top:-160px;right:-90px}
+.ph-bg-circle.b{width:300px;height:300px;background:rgba(107,143,113,.06);bottom:-150px;left:-80px}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
+.fgrid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:40px}
+.fbrand-name{font-size:1.15rem;font-weight:800;color:rgba(255,255,255,.85);
+  margin-bottom:.6rem;display:flex;align-items:center;gap:8px;font-family:var(--serif)}
+.fbrand-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.fbrand-desc{font-size:13px;color:rgba(255,255,255,.35);line-height:1.75;margin-bottom:1.25rem}
+.ftax-note{font-size:11.5px;color:rgba(255,255,255,.2);line-height:1.7}
+.fcol h5{font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.32);margin-bottom:1rem;font-family:inherit;font-weight:700}
+.fcol a{display:block;font-size:13.5px;color:rgba(255,255,255,.55);
+  text-decoration:none;margin-bottom:.62rem;transition:.16s}
+.fcol a:hover{color:var(--gold)}
+.fsignup{margin:0 0 1.35rem}
+.fsignup-lbl{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);font-weight:700;margin-bottom:.45rem}
+.fsignup-sub{font-size:12px;color:rgba(255,255,255,.32);line-height:1.6;margin-bottom:.7rem}
+.fsignup-row{display:flex;gap:8px;max-width:340px}
+.fsignup-input{flex:1;min-width:0;padding:9px 12px;border-radius:8px;font-size:13.5px;
+  font-family:inherit;color:#fff;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);outline:none;transition:.15s}
+.fsignup-input::placeholder{color:rgba(255,255,255,.32)}
+.fsignup-input:focus{border-color:var(--gold);background:rgba(255,255,255,.11)}
+.fsignup-btn{padding:9px 16px;border-radius:8px;border:none;background:var(--gold);
+  color:var(--navy);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
+  white-space:nowrap;transition:.15s}
+.fsignup-btn:hover{background:var(--gold-dk)}
+.form-status{font-size:12.5px;line-height:1.6;margin-top:.7rem;display:none}
+.form-status.show{display:block}
+.form-status.ok{color:var(--gold)}
+.form-status.err{color:#e08a72}
+.fbot{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:12px;color:rgba(255,255,255,.28)}
+
+@media(max-width:1400px){
+  .nav-type{display:none}
+  .nav-links{gap:15px}
+  .nav-links a{font-size:12.5px}
+  .nav-apply{padding:8px 17px!important}
+}
+@media(max-width:1240px){
+  .nav-links{gap:12px}
+  .nav-links a{font-size:12px}
+  .nav-apply{padding:7px 14px!important}
+  .nav-crest{width:42px;height:42px}
+  .nav-crest svg{width:38px;height:38px}
+}
+@media(max-width:1180px){
+  .nav-toggle{display:block}
+  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--cream);
+    flex-direction:column;align-items:flex-start;gap:0;padding:10px 40px 20px;
+    border-bottom:1px solid rgba(27,46,75,.09);display:none}
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{display:block;padding:11px 0;width:100%}
+  .fgrid{grid-template-columns:1fr 1fr;gap:32px}
+  .wrap{padding:0 24px}
+  nav#mainNav{padding:11px 24px}
+  section{padding:66px 0}
+}
+@media(max-width:620px){.fgrid{grid-template-columns:1fr}}
+@media(max-width:520px){
+  nav#mainNav{padding:10px 18px;gap:10px}
+  .nav-links{padding:10px 18px 18px}
+  .nav-type{display:none}
+  .nav-crest{width:40px;height:40px}
+  .nav-crest svg{width:36px;height:36px}
+  .nav-name,.nav-name span{font-size:17px}
+  .wrap{padding:0 18px}
+}
+
+.gen-fund{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius);padding:2.3rem 2.2rem;margin-top:3rem;
+  display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:start}
+.gen-ico{width:54px;height:54px;border-radius:13px;background:rgba(200,168,75,.16);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gen-ico svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.gen-fund h3{font-size:20px;color:#fff;margin-bottom:.6rem}
+.gen-fund p{font-size:15px;color:rgba(255,255,255,.66);line-height:1.78}
+.gen-tag{display:inline-block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;color:var(--gold);margin-bottom:.7rem}
+
+.funds{background:var(--cream)}
+.gen-fund{background:#fff;border-radius:var(--radius);padding:2.3rem 2.2rem;margin-top:0;
+  box-shadow:0 3px 20px rgba(27,46,75,.08);border-top:3px solid var(--gold);
+  display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:start}
+.gen-ico{width:54px;height:54px;border-radius:13px;background:var(--navy);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gen-ico svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.gen-fund h3{font-size:20px;color:var(--navy);margin-bottom:.6rem}
+.gen-fund p{font-size:15px;color:var(--text-mid);line-height:1.78}
+.gen-tag{display:inline-block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;color:var(--sage);margin-bottom:.7rem}
+.fund-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px}
+.fund-card{background:#fff;border:1px solid rgba(27,46,75,.1);
+  border-radius:var(--radius);padding:2rem 1.8rem;transition:.2s;
+  box-shadow:0 2px 14px rgba(27,46,75,.05)}
+.fund-card:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(27,46,75,.09)}
+.fund-tag{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  color:var(--sage);margin-bottom:1rem}
+.fund-ico{width:40px;height:40px;border-radius:10px;background:rgba(200,168,75,.16);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.15rem}
+.fund-ico svg{width:20px;height:20px;stroke:var(--gold-dk);fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.fund-card h4{font-size:18px;color:var(--navy);margin-bottom:.6rem}
+.fund-card p{font-size:14px;color:var(--text-mid);line-height:1.74}
+.fund-note{margin-top:2.4rem;padding:1.5rem 1.75rem;border-left:3px solid var(--gold);
+  background:#fff;border-radius:0 10px 10px 0;max-width:900px;
+  box-shadow:0 2px 12px rgba(27,46,75,.04)}
+.fund-note p{font-size:14.5px;color:var(--text-mid);line-height:1.78}
+.guard{background:var(--cream2)}
+.guard-box{background:#fff;border-radius:var(--radius);padding:2rem 2.1rem;margin-top:2.4rem;
+  box-shadow:0 2px 16px rgba(27,46,75,.06);max-width:860px}
+.guard-box p{font-size:15px;color:var(--text-mid);line-height:1.8}
+.guard-box strong{color:var(--navy)}
+@media(max-width:940px){
+  .fund-grid{grid-template-columns:1fr}
+  .gen-fund{grid-template-columns:1fr}
+}
+
+</style>
+
+</head>
+<body>
+<div id="topbar">
+  <span class="dot"></span>
+  <span><strong>Scholar Street is an IRS-approved 501(c)(3) public charity</strong> &mdash; EIN 42-2704061 &middot; Arlington, Virginia &middot; Contributions are tax-deductible under IRC &#167;170.</span>
+</div>
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-crest"><svg viewBox="7 6 30 30" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 30 L9 18 Q22 14 22 14 Q22 14 35 18 L35 30 Q22 26 22 26 Q22 26 9 30 Z" fill="#F9F7F2"/>
+        <line x1="22" y1="14" x2="22" y2="30" stroke="#C8A84B" stroke-width="1.2"/>
+        <line x1="11" y1="31" x2="33" y2="31" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="13" y1="33" x2="31" y2="33" stroke="#C8A84B" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+        <polygon points="22,9 32,14.5 22,20 12,14.5" fill="#C8A84B"/>
+        <polygon points="22,9 32,14.5 22,14.5 12,14.5" fill="#b8953e" opacity="0.4"/>
+        <line x1="32" y1="14.5" x2="32" y2="21" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="32" cy="22" r="2" fill="#C8A84B"/>
+      </svg></div>
+    <div class="nav-brand">
+      <span class="nav-name"><span style="color:#1B2E4B">Scholar</span><span style="color:#C8A84B;margin-left:7px">Street</span></span>
+      <span class="nav-type">Scholarship Granting Organization</span>
+    </div>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="why-25f.html">Why &#167;25F</a></li>
+    <li><a href="how-giving-works.html">How It Works</a></li>
+    <li><a href="impact.html" class="active">Impact</a></li>
+    <li><a href="platform.html">Our Difference</a></li>
+    <li><a href="leadership.html">Leadership</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="donate.html" class="nav-apply">Donate</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
+  <div class="wrap">
+    <div class="s-eyebrow">Targeted Impact</div>
+    <h1 class="ph-title">A tailored approach to<br><em>underserved communities.</em></h1>
+    <p class="ph-sub">Donors can give to Scholar Street&rsquo;s general scholarship fund, or direct their
+    support to a designated fund serving a specific community.</p>
+  </div>
+</section>
+
+<section class="funds">
+  <div class="wrap">
+    <div class="gen-fund reveal">
+      <div class="gen-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg></div>
+      <div>
+        <div class="gen-tag">General SGO Account</div>
+        <h3>Where the need is greatest</h3>
+        <p>Undesignated gifts support need- and merit-based scholarships across all eligible students,
+        giving the Independent Selection Committee the flexibility to direct funds where the need is
+        greatest in any given award cycle. For most donors, this is the simplest and most responsive
+        way to give.</p>
+      </div>
+    </div>
+
+    <div class="fund-grid">
+      <div class="fund-card reveal">
+        <div class="fund-tag">Designated Fund</div>
+        <div class="fund-ico"><svg viewBox="0 0 24 24"><path d="M12 3v18M7 8h10"/><path d="M5 21h14"/><path d="M12 3l5 5H7l5-5z"/></svg></div>
+        <h4>Faith-Based Education</h4>
+        <p>For families seeking a values-centered education, supporting students attending
+        religious K&ndash;12 schools.</p>
+      </div>
+      <div class="fund-card reveal">
+        <div class="fund-tag">Designated Fund</div>
+        <div class="fund-ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><path d="M9.4 11.2l1.9 1.9 3.3-3.5"/></svg></div>
+        <h4>Special Needs</h4>
+        <p>For students with autism, learning differences, and speech or developmental needs requiring
+        specialized instruction, therapies, and support services.</p>
+      </div>
+      <div class="fund-card reveal">
+        <div class="fund-tag">Designated Fund</div>
+        <div class="fund-ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 4.5-3.2 8.3-8 9.5C7.2 20.3 4 16.5 4 12V7l8-4z"/><path d="M12 8v6M9 11h6"/></svg></div>
+        <h4>Military Families</h4>
+        <p>For children of active-duty, reserve, and veteran service members, whose schooling is often
+        disrupted by relocation and deployment.</p>
+      </div>
+    </div>
+
+    <div class="fund-note reveal">
+      <p>The designated fund structure can be expanded to reach additional underserved communities as
+      they are identified &mdash; giving donors a direct way to support the populations they care about most.</p>
+    </div>
+  </div>
+</section>
+
+<section class="guard">
+  <div class="wrap">
+    <div class="s-eyebrow">An Important Boundary</div>
+    <h2 class="s-title">Donors designate a community,<br><em>not a recipient.</em></h2>
+
+    <div class="guard-box reveal">
+      <p>Whether a gift is undesignated or directed to a specific fund, <strong>all award decisions
+      remain with the Independent Scholarship Selection Committee</strong>, which operates outside
+      Scholar Street&rsquo;s Board. A donor may choose the community their gift serves. A donor may not
+      choose which student receives it. That separation is what keeps the program credible.</p>
+    </div>
+
+    <div style="margin-top:2.6rem;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="contact.html" class="btn-gold">Direct a Gift</a>
+      <a href="platform.html#governance" class="btn-outline">How We Stay Accountable</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="fbrand-name"><span class="fbrand-dot"></span>Scholar Street</div>
+        <p class="fbrand-desc">Organized to operate as a Scholarship Granting Organization under the federal Education Freedom Tax Credit (IRC &#167;25F). We award K&ndash;12 scholarships to income-eligible Virginia students on the basis of need and merit.</p>
+        <form class="fsignup" data-formspree="mdaqvkvo" method="POST">
+          <label class="fsignup-lbl" for="fsignup-email">Stay informed</label>
+          <p class="fsignup-sub">Updates on Scholar Street and the federal tax credit. We&rsquo;ll also let you know when scholarship applications open.</p>
+          <div class="fsignup-row">
+            <input class="fsignup-input" id="fsignup-email" type="email" name="email" placeholder="Your email" required aria-label="Email address">
+            <button class="fsignup-btn" type="submit">Sign Up</button>
+          </div>
+          <input type="hidden" name="_subject" value="Scholar Street mailing list signup">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+          <p class="form-status" role="status"></p>
+        </form>
+        <p class="ftax-note">Contributions may qualify for the Education Freedom Tax Credit under IRC &#167;25F beginning January 1, 2027. Provided for general informational purposes only &mdash; not tax, legal, or financial advice. Consult a qualified tax professional regarding individual eligibility.</p>
+      </div>
+      <div class="fcol">
+        <h5>Program</h5>
+        <a href="why-25f.html">Why &#167;25F</a>
+        <a href="how-giving-works.html">How It Works</a>
+        <a href="impact.html">Targeted Impact</a>
+        <a href="platform.html">Our Difference</a>
+      </div>
+      <div class="fcol">
+        <h5>Organization</h5>
+        <a href="platform.html#governance">Governance</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="index.html">Home</a>
+      </div>
+      <div class="fcol">
+        <h5>Get Involved</h5>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Partner With Us</a>
+        <a href="contact.html">Apply for a Scholarship</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>&copy; 2026 Scholar Street SGO. All rights reserved.</p>
+      <p>Scholarship Granting Organization &middot; IRC &#167;25F &middot; Education Freedom Tax Credit</p>
+    </div>
+  </div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  // ---- Formspree forms: submit via fetch so the visitor stays on the page ----
+  document.querySelectorAll('form[data-formspree]').forEach(function(form){
+    var id = form.getAttribute('data-formspree');
+    var status = form.querySelector('.form-status');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!id || id.indexOf('REPLACE_') === 0){
+        if(status){ status.textContent = 'This form is not connected yet.'; status.className = 'form-status show err'; }
+        return;
+      }
+      var btn = form.querySelector('button[type=submit], .f-submit, .fsignup-btn');
+      var label = btn ? btn.textContent : '';
+      if(btn){ btn.disabled = true; btn.textContent = 'Sending...'; }
+      if(status){ status.className = 'form-status'; status.textContent = ''; }
+      fetch('https://formspree.io/f/' + id, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(r){
+        if(r.ok){
+          form.reset();
+          if(status){
+            status.textContent = form.classList.contains('fsignup')
+              ? 'Thanks. You are on the list.'
+              : 'Thank you. We have received your message and will be in touch.';
+            status.className = 'form-status show ok';
+          }
+        } else {
+          return r.json().then(function(d){
+            throw new Error((d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Submission failed');
+          });
+        }
+      }).catch(function(err){
+        if(status){
+          status.textContent = 'Sorry, something went wrong. Please email info@scholarstreet.org.';
+          status.className = 'form-status show err';
+        }
+        console.error('Form error:', err);
+      }).then(function(){
+        if(btn){ btn.disabled = false; btn.textContent = label; }
+      });
+    });
+  });
+
+  var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
+  if(t&&l){t.addEventListener('click',function(){l.classList.toggle('open');});}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+});
+</script>
+</body>
+</html>
