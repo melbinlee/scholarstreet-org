@@ -3,762 +3,453 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ScholarStreet — Scholarship Granting Organization</title>
+<title>Scholar Street SGO &mdash; K&ndash;12 Scholarships for Virginia Families</title>
+<meta name="description" content="Scholar Street is a Virginia Scholarship Granting Organization awarding need- and merit-based K-12 scholarships under the federal Education Freedom Tax Credit (IRC 25F).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
---parchment:#faf8f4;
---parchment-dark:#f2ede4;
---charcoal:#1c1c1c;
---navy:#2e2e2e;
---charcoal-mid:#3a3a3a;
---charcoal-light:#6a6a6a;
---brass:#b8860b;
---brass-light:#d4a017;
---brass-pale:#fef8e1;
---rule:#d4cdc0;
---white:#ffffff;
---serif:'Cormorant Garamond',Georgia,serif;
---sans:'Source Sans 3',system-ui,sans-serif;
+  --navy:#1B2E4B; --navy-dk:#132238; --gold:#C8A84B; --gold-dk:#b8953e;
+  --sage:#6B8F71; --cream:#F9F7F2; --cream2:#efe9dc;
+  --text:#1B2E4B; --text-mid:#4d5b71; --text-lt:#7d8798;
+  --serif:Georgia,'Times New Roman',serif;
+  --radius:14px;
 }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--parchment);color:var(--charcoal);font-size:16px;line-height:1.65;overflow-x:hidden}
+body{font-family:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--text);background:var(--cream);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+section{padding:92px 0}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,244,0.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;transition:box-shadow .3s;box-sizing:border-box}
-nav.scrolled{box-shadow:0 2px 20px rgba(28,28,28,.08)}
-.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
-.nav-crest{width:38px;height:38px;border:1.5px solid var(--brass);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;font-weight:600;color:var(--brass);flex-shrink:0}
+/* ---------- STICKY BANNER ---------- */
+#topbar{background:var(--navy);color:#fff;font-size:12.5px;letter-spacing:.01em;
+  padding:9px 0;text-align:center;position:relative;z-index:60}
+#topbar .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);
+  display:inline-block;margin-right:8px;vertical-align:middle}
+#topbar strong{font-weight:700;color:#fff}
+#topbar span{color:rgba(255,255,255,.72)}
+
+/* ---------- NAV ---------- */
+nav#mainNav{position:sticky;top:0;z-index:50;background:rgba(249,247,242,.96);
+  backdrop-filter:blur(10px);border-bottom:1px solid rgba(27,46,75,.09);
+  display:flex;align-items:center;justify-content:space-between;gap:22px;
+  padding:11px 40px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.nav-crest{width:46px;height:46px;background:var(--navy);border-radius:11px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  border:1px solid rgba(200,168,75,.28)}
+.nav-crest svg{width:42px;height:42px}
 .nav-brand{display:flex;flex-direction:column;gap:1px}
-.nav-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--charcoal);letter-spacing:.02em;line-height:1}
-.nav-type{font-size:10px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:var(--charcoal-light)}
-.nav-links{display:flex;flex-direction:row;gap:2rem;list-style:none;align-items:center;margin:0;padding:0}
-.nav-links a{font-size:13px;font-weight:400;color:var(--charcoal-light);text-decoration:none;letter-spacing:.04em;transition:color .2s}
-.nav-links a:hover{color:var(--charcoal)}
-.nav-apply{font-size:12px!important;font-weight:600!important;letter-spacing:.1em!important;text-transform:uppercase!important;color:var(--brass)!important;border:1px solid var(--brass);padding:8px 18px;border-radius:2px;transition:background .2s,color .2s!important}
-.nav-apply:hover{background:var(--brass)!important;color:var(--white)!important}
-.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
-.ham span{display:block;width:22px;height:1.5px;background:var(--charcoal);border-radius:1px}
+.nav-name{font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.01em;
+  color:var(--navy);line-height:1;display:flex;align-items:baseline}
+.nav-name span{font-family:var(--serif);font-weight:700;font-size:19px}
+.nav-type{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sage);font-weight:600}
+.nav-links{display:flex;align-items:center;gap:19px;list-style:none;flex-wrap:nowrap}
+.nav-links a{font-size:13px;font-weight:600;text-decoration:none;color:var(--text-mid);
+  white-space:nowrap;padding:6px 0;border-bottom:2px solid transparent;transition:.18s}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a.active{color:var(--navy);border-bottom-color:var(--gold)}
+.nav-apply{background:var(--gold);color:var(--navy)!important;border-radius:999px;
+  padding:9px 20px!important;border-bottom:none!important;font-weight:700}
+.nav-apply:hover{background:var(--gold-dk)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);margin:4px 0;border-radius:2px}
 
-/* HERO */
-#hero{padding-top:66px;min-height:100vh;background:var(--navy);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
-.hero-texture{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
-.hero-left{padding:10vh 5vw 8vh 6vw;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;border-right:1px solid rgba(255,255,255,.07)}
-.hero-eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-light);margin-bottom:2.5rem}
-.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--brass)}
-.hero-h1{font-family:var(--serif);font-size:clamp(3rem,5vw,4.6rem);font-weight:300;color:var(--white);line-height:1.1;letter-spacing:-.01em;margin-bottom:2rem}
-.hero-h1 em{font-style:italic;font-weight:300;color:var(--brass-light)}
-.hero-rule{width:48px;height:1px;background:var(--brass);margin-bottom:2rem}
-.hero-p{font-size:16px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.8;max-width:400px;margin-bottom:3rem}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-brass{background:var(--brass);color:var(--white);padding:14px 32px;border-radius:2px;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .2s;display:inline-block}
-.btn-brass:hover{background:var(--brass-light)}
-.btn-ghost{background:transparent;color:rgba(255,255,255,.6);padding:14px 32px;border-radius:2px;border:1px solid rgba(255,255,255,.2);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;transition:border-color .2s,color .2s;display:inline-block}
-.btn-ghost:hover{border-color:rgba(255,255,255,.45);color:rgba(255,255,255,.85)}
-.hero-right{display:flex;flex-direction:column;justify-content:center;padding:8vh 6vw 8vh 5vw;position:relative;z-index:2}
-.hero-stat{padding:2.5rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
-.hero-stat:last-child{border-bottom:none}
-.hstat-num{font-family:var(--serif);font-size:3.2rem;font-weight:300;color:var(--white);line-height:1;margin-bottom:.35rem}
-.hstat-label{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);letter-spacing:.03em;line-height:1.5}
-.hstat-tag{display:inline-block;margin-top:.6rem;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-light)}
+/* ---------- TYPE ---------- */
+.s-eyebrow{font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;
+  font-weight:700;color:var(--sage);display:flex;align-items:center;gap:11px}
+.s-eyebrow::before{content:'';width:26px;height:2px;background:var(--gold)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:700;letter-spacing:-.01em;line-height:1.18}
+.s-title{font-size:clamp(1.8rem,3vw,2.6rem);margin-top:1rem;color:var(--navy)}
+.s-title em{font-style:italic;color:var(--gold)}
+.s-lead{max-width:720px;margin-top:1.05rem;font-size:16.5px;color:var(--text-mid);line-height:1.8}
 
-/* DECLARATION BAND */
-.decl{background:var(--white);padding:0;border-bottom:3px solid var(--brass)}
-.decl-inner{max-width:1100px;margin:0 auto;padding:4rem 2.5rem;display:flex;gap:4rem;align-items:center;border-left:4px solid var(--brass);margin-left:6vw;margin-right:6vw}
-.decl blockquote{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:300;font-style:italic;color:var(--charcoal);line-height:1.5;flex:1}
-.decl-aside{flex-shrink:0;text-align:right;border-left:1px solid var(--rule);padding-left:3rem}
-.decl-aside strong{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--brass);margin-bottom:4px}
-.decl-aside span{font-size:11px;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal-light);display:block;line-height:1.6}
+/* ---------- BUTTONS ---------- */
+.btn-gold,.btn-outline{display:inline-block;text-decoration:none;font-weight:700;
+  font-size:14.5px;padding:13px 28px;border-radius:999px;transition:.18s;cursor:pointer}
+.btn-gold{background:var(--gold);color:var(--navy);border:2px solid var(--gold)}
+.btn-gold:hover{background:var(--gold-dk);border-color:var(--gold-dk)}
+.btn-outline{background:transparent;color:var(--navy);border:2px solid rgba(27,46,75,.25)}
+.btn-outline:hover{border-color:var(--navy)}
 
-/* SECTION UTIL */
-section{scroll-margin-top:66px}
-.wrap{max-width:1100px;margin:0 auto;padding:0 6vw}
-.s-label{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
-.s-title{font-family:var(--serif);font-size:clamp(2rem,3.2vw,3rem);font-weight:300;color:var(--charcoal);line-height:1.2;letter-spacing:-.01em}
-.s-title em{font-style:italic;color:var(--brass)}
-.s-rule{width:40px;height:1px;background:var(--brass);margin:1.25rem 0}
-.s-body{font-size:15px;font-weight:300;color:var(--charcoal-light);line-height:1.8;max-width:520px}
+/* ---------- PAGE HERO ---------- */
+.page-hero{background:var(--navy);color:#fff;padding:82px 0 78px;position:relative;overflow:hidden}
+.page-hero .s-eyebrow{color:rgba(255,255,255,.62)}
+.ph-title{font-size:clamp(2rem,3.6vw,3rem);color:#fff;margin-top:1rem}
+.ph-title em{font-style:italic;color:var(--gold)}
+.ph-sub{max-width:730px;margin-top:1.15rem;font-size:16.5px;color:rgba(255,255,255,.66);line-height:1.8}
+.ph-bg-circle{position:absolute;border-radius:50%;pointer-events:none}
+.ph-bg-circle.a{width:420px;height:420px;background:rgba(200,168,75,.05);top:-160px;right:-90px}
+.ph-bg-circle.b{width:300px;height:300px;background:rgba(107,143,113,.06);bottom:-150px;left:-80px}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
+.fgrid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:40px}
+.fbrand-name{font-size:1.15rem;font-weight:800;color:rgba(255,255,255,.85);
+  margin-bottom:.6rem;display:flex;align-items:center;gap:8px;font-family:var(--serif)}
+.fbrand-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.fbrand-desc{font-size:13px;color:rgba(255,255,255,.35);line-height:1.75;margin-bottom:1.25rem}
+.ftax-note{font-size:11.5px;color:rgba(255,255,255,.2);line-height:1.7}
+.fcol h5{font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.32);margin-bottom:1rem;font-family:inherit;font-weight:700}
+.fcol a{display:block;font-size:13.5px;color:rgba(255,255,255,.55);
+  text-decoration:none;margin-bottom:.62rem;transition:.16s}
+.fcol a:hover{color:var(--gold)}
+.fsignup{margin:0 0 1.35rem}
+.fsignup-lbl{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);font-weight:700;margin-bottom:.45rem}
+.fsignup-sub{font-size:12px;color:rgba(255,255,255,.32);line-height:1.6;margin-bottom:.7rem}
+.fsignup-row{display:flex;gap:8px;max-width:340px}
+.fsignup-input{flex:1;min-width:0;padding:9px 12px;border-radius:8px;font-size:13.5px;
+  font-family:inherit;color:#fff;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);outline:none;transition:.15s}
+.fsignup-input::placeholder{color:rgba(255,255,255,.32)}
+.fsignup-input:focus{border-color:var(--gold);background:rgba(255,255,255,.11)}
+.fsignup-btn{padding:9px 16px;border-radius:8px;border:none;background:var(--gold);
+  color:var(--navy);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
+  white-space:nowrap;transition:.15s}
+.fsignup-btn:hover{background:var(--gold-dk)}
+.form-status{font-size:12.5px;line-height:1.6;margin-top:.7rem;display:none}
+.form-status.show{display:block}
+.form-status.ok{color:var(--gold)}
+.form-status.err{color:#e08a72}
+.fbot{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:12px;color:rgba(255,255,255,.28)}
+
+@media(max-width:1400px){
+  .nav-type{display:none}
+  .nav-links{gap:15px}
+  .nav-links a{font-size:12.5px}
+  .nav-apply{padding:8px 17px!important}
+}
+@media(max-width:1240px){
+  .nav-links{gap:12px}
+  .nav-links a{font-size:12px}
+  .nav-apply{padding:7px 14px!important}
+  .nav-crest{width:42px;height:42px}
+  .nav-crest svg{width:38px;height:38px}
+}
+@media(max-width:1180px){
+  .nav-toggle{display:block}
+  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--cream);
+    flex-direction:column;align-items:flex-start;gap:0;padding:10px 40px 20px;
+    border-bottom:1px solid rgba(27,46,75,.09);display:none}
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{display:block;padding:11px 0;width:100%}
+  .fgrid{grid-template-columns:1fr 1fr;gap:32px}
+  .wrap{padding:0 24px}
+  nav#mainNav{padding:11px 24px}
+  section{padding:66px 0}
+}
+@media(max-width:620px){.fgrid{grid-template-columns:1fr}}
+@media(max-width:520px){
+  nav#mainNav{padding:10px 18px;gap:10px}
+  .nav-links{padding:10px 18px 18px}
+  .nav-type{display:none}
+  .nav-crest{width:40px;height:40px}
+  .nav-crest svg{width:36px;height:36px}
+  .nav-name,.nav-name span{font-size:17px}
+  .wrap{padding:0 18px}
+}
+
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:78px 0 88px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;position:relative;z-index:2}
+.hero-tag{display:inline-block;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
+  font-weight:700;color:var(--gold);border:1px solid rgba(200,168,75,.34);
+  border-radius:999px;padding:6px 15px;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.15rem,4.1vw,3.35rem);color:#fff;line-height:1.13}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p.lead{margin-top:1.3rem;font-size:17px;color:rgba(255,255,255,.68);line-height:1.8;max-width:540px}
+.hero-cta{margin-top:2.2rem;display:flex;gap:13px;flex-wrap:wrap}
+.hero-photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.34);
+  border:1px solid rgba(255,255,255,.09)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
+.hero-badge{margin-top:1.15rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:11px;padding:14px 18px;font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.65}
+.hero-badge strong{color:var(--gold);font-weight:700}
+
+/* WHY NOW STATS */
+.why-sec{background:var(--cream2)}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3rem}
+.stat-card{background:#fff;border-radius:var(--radius);padding:2rem 1.75rem;
+  box-shadow:0 2px 16px rgba(27,46,75,.06)}
+.stat-val{font-family:var(--serif);font-size:2.1rem;font-weight:700;color:var(--navy);line-height:1}
+.stat-lbl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+  font-weight:700;margin:.75rem 0 .6rem}
+.stat-card p{font-size:14px;color:var(--text-mid);line-height:1.72}
 
 /* MISSION */
-#mission{padding:7rem 0;background:var(--parchment)}
-.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:7rem;margin-top:5rem;align-items:start}
-.flow-card{background:var(--white);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
-.flow-head{background:var(--navy);padding:1.25rem 1.75rem;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.flow-row{display:flex;gap:16px;align-items:flex-start;padding:1.5rem 1.75rem;border-bottom:1px solid var(--parchment-dark);transition:background .15s}
-.flow-row:last-child{border-bottom:none}
-.flow-row:hover{background:var(--brass-pale)}
-.flow-icon{width:42px;height:42px;flex-shrink:0;border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;margin-top:2px;background:var(--parchment)}
-.flow-text strong{font-size:14px;font-weight:600;color:var(--charcoal);display:block;margin-bottom:4px}
-.flow-text p{font-size:13px;font-weight:300;color:var(--charcoal-light);line-height:1.6}
-.flow-arrow{text-align:center;padding:6px 0 4px;color:var(--brass);font-size:14px;letter-spacing:.1em}
-.mission-pillars{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)}
-.mpillar{padding:2rem 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:28px 1fr;gap:1.25rem;align-items:start}
-.mpillar-num{font-family:var(--serif);font-size:13px;font-weight:300;font-style:italic;color:var(--brass);padding-top:3px}
-.mpillar h4{font-size:15px;font-weight:600;color:var(--charcoal);margin-bottom:.5rem}
-.mpillar p{font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.7}
+.mission-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3rem}
+.mtile{background:#fff;border-radius:var(--radius);padding:2rem 1.75rem;
+  box-shadow:0 2px 16px rgba(27,46,75,.06);border-top:none}
+.mtile .ico{width:42px;height:42px;border-radius:11px;background:rgba(200,168,75,.16);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.15rem}
+.mtile .ico svg{width:21px;height:21px;stroke:var(--gold-dk);fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.mtile h4{font-size:17px;color:var(--navy);margin-bottom:.55rem}
+.mtile p{font-size:14px;color:var(--text-mid);line-height:1.72}
 
-/* PROCESS */
-#process{padding:7rem 0;background:var(--navy)}
-#process .s-title{color:var(--white)}
-#process .s-body{color:rgba(255,255,255,.45)}
-.process-steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:5rem;border:1px solid rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
-.pstep{padding:2.5rem 2rem;border-right:1px solid rgba(255,255,255,.07);transition:background .2s}
-.pstep:last-child{border-right:none}
-.pstep:hover{background:rgba(255,255,255,.03)}
-.pstep-n{font-family:var(--serif);font-size:3.5rem;font-weight:300;font-style:italic;color:rgba(184,134,11,.25);line-height:1;margin-bottom:1.25rem}
-.pstep-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:.75rem;line-height:1.3}
-.pstep-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.7}
-.pstep-tag{display:inline-block;margin-top:1.25rem;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-light);padding-bottom:2px;border-bottom:1px solid rgba(184,149,42,.35)}
-.donor-strip{margin-top:4rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--brass);padding:2.5rem 3rem;display:flex;gap:3rem;align-items:center;flex-wrap:wrap}
-.donor-strip-text h4{font-family:var(--serif);font-size:1.4rem;font-weight:300;font-style:italic;color:var(--white);margin-bottom:.5rem}
-.donor-strip-text p{font-size:14px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.65;max-width:540px}
-
-/* ELIGIBILITY */
-#eligibility{padding:7rem 0;background:var(--parchment-dark)}
-.elig-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:5rem;margin-top:5rem;align-items:start}
-.elig-req{background:var(--white);border:1px solid var(--rule);padding:2rem;border-radius:2px}
-.elig-req h4{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--charcoal);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--rule)}
-.elig-req ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.elig-req ul li{font-size:13px;font-weight:300;color:var(--charcoal-light);padding-left:18px;position:relative;line-height:1.55}
-.elig-req ul li::before{content:'—';position:absolute;left:0;color:var(--brass);font-size:11px;font-weight:600}
-.elig-privacy{background:var(--brass-pale);border-left:3px solid var(--brass);padding:1.25rem 1.5rem;font-size:13px;font-weight:300;color:var(--charcoal-mid);line-height:1.65;margin-top:1.5rem}
-.elig-note{font-size:12px;font-weight:300;color:var(--charcoal-light);margin-top:12px;line-height:1.65;padding-left:1rem;border-left:2px solid var(--brass)}
-.elig-aside{display:flex;flex-direction:column;gap:1.5rem}
-.elig-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:.5rem}
-.btn-charcoal{background:var(--charcoal);color:var(--white);padding:12px 24px;border-radius:2px;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s;display:inline-block}
-.btn-charcoal:hover{background:var(--charcoal-mid)}
-.btn-outline-brass{background:transparent;color:var(--brass);padding:12px 24px;border-radius:2px;border:1px solid var(--brass);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,color .2s;display:inline-block}
-.btn-outline-brass:hover{background:var(--brass);color:var(--white)}
-
-/* PROGRAMS */
-#programs{padding:7rem 0;background:var(--parchment)}
-.prog-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:4rem}
-.prog-cards{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule);border-radius:2px;overflow:hidden;background:var(--white)}
-.prog-card{display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:start;padding:2.25rem 2.5rem;border-bottom:1px solid var(--parchment-dark);transition:background .2s}
-.prog-card:last-child{border-bottom:none}
-.prog-card:hover{background:var(--brass-pale)}
-.prog-index{font-family:var(--serif);font-size:2.5rem;font-weight:300;font-style:italic;color:rgba(184,134,11,.25);line-height:1;padding-top:2px;width:36px}
-.prog-body h4{font-size:16px;font-weight:600;color:var(--charcoal);margin-bottom:.5rem}
-.prog-body p{font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.7}
-.prog-tag{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);white-space:nowrap;padding-top:4px}
-.award-note{margin-top:2.5rem;border:1px solid var(--rule);border-top:3px solid var(--brass);background:var(--white);padding:1.75rem 2rem;display:flex;gap:1.5rem;align-items:flex-start}
-.award-note-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--brass);flex-shrink:0;padding-top:3px}
-.award-note p{font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.7}
-
-/* COMPLIANCE */
-#compliance{padding:7rem 0;background:var(--navy)}
-#compliance .s-title{color:var(--white)}
-#compliance .s-body{color:rgba(255,255,255,.45)}
-.comp-grid{display:grid;grid-template-columns:1fr 2fr;gap:6rem;margin-top:5rem;align-items:start}
-.comp-items{display:flex;flex-direction:column;gap:0}
-.ci{padding:1.75rem 0;border-bottom:1px solid rgba(255,255,255,.07);display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;transition:padding-left .2s}
-.ci:last-child{border-bottom:none}
-.ci:hover{padding-left:6px}
-.ci-glyph{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--brass);width:28px;text-align:center;padding-top:2px;flex-shrink:0}
-.ci h5{font-size:15px;font-weight:600;color:var(--white);margin-bottom:.35rem}
-.ci p{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.65}
-
-/* CONTACT */
-#contact{padding:3rem 0 5rem;background:var(--parchment-dark)}
-.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;margin-top:2rem;align-items:start}
-.contact-info{display:flex;flex-direction:column;gap:0}
-.ci2{display:flex;gap:1.25rem;align-items:flex-start;padding:1.5rem 0;border-bottom:1px solid var(--rule)}
-.ci2:last-child{border-bottom:none}
-.ci2-icon{width:36px;height:36px;flex-shrink:0;border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;background:var(--white);margin-top:2px}
-.ci2 strong{display:block;font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:3px}
-.ci2 span{font-size:13px;font-weight:300;color:var(--charcoal-light)}
-.contact-note{margin-top:2rem;font-size:13px;font-weight:300;color:var(--charcoal-light);line-height:1.7;padding-left:1rem;border-left:2px solid var(--brass)}
-.cform{background:var(--white);border:1px solid var(--rule);padding:2.5rem;border-radius:2px;display:flex;flex-direction:column;gap:16px}
-.cform-title{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:var(--charcoal);padding-bottom:1.25rem;border-bottom:1px solid var(--rule);margin-bottom:.25rem}
-.crow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.fg{display:flex;flex-direction:column;gap:5px}
-.fg label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--charcoal-light)}
-.fg input,.fg select,.fg textarea{background:var(--parchment);border:1px solid var(--rule);border-radius:1px;padding:11px 14px;color:var(--charcoal);font-family:var(--sans);font-size:14px;font-weight:300;outline:none;transition:border-color .2s}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--brass)}
-.fg textarea{resize:vertical;min-height:96px}
-.fg input::placeholder,.fg textarea::placeholder{color:var(--rule)}
-.fsub{background:var(--charcoal);color:var(--white);padding:13px 28px;border-radius:2px;border:none;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;align-self:flex-start}
-.fsub:hover{background:var(--charcoal-mid)}
-.fok{font-size:13px;color:var(--brass);margin-top:4px;display:none;font-style:italic;font-family:var(--serif)}
-
-/* FOOTER */
-footer{background:#111111;padding:5rem 0 2.5rem}
-.fwrap{max-width:1100px;margin:0 auto;padding:0 6vw}
-.ftop{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
-.fbrand-name{font-family:var(--serif);font-size:1.3rem;font-weight:300;color:rgba(255,255,255,.7);margin-bottom:.75rem;display:flex;align-items:center;gap:10px}
-.fbrand-name::before{content:'';display:block;width:24px;height:1px;background:var(--brass)}
-.fbrand-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.28);line-height:1.7;margin-bottom:1.5rem}
-.ftax-note{font-size:11px;font-weight:300;color:rgba(255,255,255,.18);line-height:1.65}
-.fcol h6{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:1.1rem}
-.fcol ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.fcol ul li a{font-size:13px;font-weight:300;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s;letter-spacing:.02em}
-.fcol ul li a:hover{color:rgba(255,255,255,.75)}
-.fbot{padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.fbot p{font-size:11px;font-weight:300;color:rgba(255,255,255,.2);letter-spacing:.04em}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
-.reveal.visible{opacity:1;transform:none}
-
-/* 501(c)(3) APPROVED BANNER */
-#approved-banner{background:var(--navy);border-bottom:1px solid rgba(184,134,11,0.25);padding:9px 6vw;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;font-size:12px;font-family:var(--sans);color:rgba(255,255,255,0.65);line-height:1.5;position:relative;z-index:101}
-#approved-banner .ab-dot{width:7px;height:7px;border-radius:50%;background:var(--brass-light);flex-shrink:0}
-#approved-banner strong{font-weight:600;color:rgba(255,255,255,0.88)}
-
-/* RESPONSIVE */
-@media(min-width:981px){
-.nav-links{display:flex !important;flex-direction:row !important}
-.ham{display:none !important}
+/* CTA BAND */
+.cta-band{background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden}
+.cta-band h2{font-size:clamp(1.8rem,3vw,2.5rem);color:#fff}
+.cta-band h2 em{font-style:italic;color:var(--gold)}
+.cta-band p{max-width:590px;margin:1.1rem auto 0;color:rgba(255,255,255,.6);font-size:16px}
+.cta-band .btns{margin-top:2.1rem;display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+@media(max-width:940px){
+  .hero-grid{grid-template-columns:1fr;gap:38px}
+  .stat3,.mission-tiles{grid-template-columns:1fr}
 }
-@media(max-width:980px){
-#hero{grid-template-columns:1fr;min-height:auto;padding-bottom:5rem}
-.hero-right{display:none}
-.decl-inner{flex-direction:column;gap:2rem;border-left:none;padding-left:0;border-top:3px solid var(--brass)}
-.decl-aside{text-align:left;border-left:none;padding-left:0;border-top:1px solid var(--rule);padding-top:1.5rem}
-.mission-grid,.elig-grid,.comp-grid,.contact-grid{grid-template-columns:1fr;gap:3.5rem}
-.prog-intro{grid-template-columns:1fr}
-.process-steps{grid-template-columns:1fr 1fr}
-.pstep:nth-child(2){border-right:none}
-.ftop{grid-template-columns:1fr 1fr;gap:2.5rem}
-.crow{grid-template-columns:1fr}
-.nav-links{display:none !important}
-.ham{display:flex}
-.nav-links.open{display:flex !important;flex-direction:column;position:absolute;top:66px;left:0;right:0;background:var(--parchment);border-bottom:1px solid var(--rule);padding:1.5rem 6vw;gap:1.25rem;box-shadow:0 8px 24px rgba(28,28,28,.08)}
-}
-@media(max-width:600px){
-.process-steps{grid-template-columns:1fr}
-.pstep{border-right:none!important;border-bottom:1px solid rgba(255,255,255,.1)}
-.pstep:last-child{border-bottom:none}
-.ftop{grid-template-columns:1fr}
-}
+
 </style>
+
 </head>
 <body>
-
-<!-- Netlify form detection (hidden) -->
-<form name="contact" netlify netlify-honeypot="bot-field" hidden>
-<input type="text" name="first-name">
-<input type="text" name="last-name">
-<input type="email" name="email">
-<input type="tel" name="phone">
-<select name="interest"></select>
-<input type="text" name="state">
-<textarea name="message"></textarea>
-</form>
-
-<!-- 501(c)(3) APPROVED BANNER -->
-<div id="approved-banner" role="status">
-<span class="ab-dot"></span>
-<span><strong>ScholarStreet is an IRS-approved 501(c)(3) public charity</strong> — effective May 19, 2026. Contributions are tax-deductible under IRC §170.</span>
+<div id="topbar">
+  <span class="dot"></span>
+  <span><strong>Scholar Street is an IRS-approved 501(c)(3) public charity</strong> &mdash; EIN 42-2704061 &middot; Arlington, Virginia &middot; Contributions are tax-deductible under IRC &#167;170.</span>
 </div>
-
 <nav id="mainNav">
-<a class="nav-logo" href="#hero">
-<div class="nav-crest">S</div>
-<div class="nav-brand">
-<span class="nav-name">ScholarStreet</span>
-<span class="nav-type">Scholarship Granting Organization</span>
-</div>
-</a>
-<ul class="nav-links" id="navLinks">
-<li><a href="#mission">Mission</a></li>
-<li><a href="#process">How It Works</a></li>
-<li><a href="#eligibility">Eligibility</a></li>
-<li><a href="#programs">Programs</a></li>
-<li><a href="#compliance">Compliance</a></li>
-<li><a href="#contact" class="nav-apply" onclick="scrollToForm(event)">Apply / Donate</a></li>
-</ul>
-<button class="ham" id="ham" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <a class="nav-logo" href="index.html">
+    <div class="nav-crest"><svg viewBox="7 6 30 30" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 30 L9 18 Q22 14 22 14 Q22 14 35 18 L35 30 Q22 26 22 26 Q22 26 9 30 Z" fill="#F9F7F2"/>
+        <line x1="22" y1="14" x2="22" y2="30" stroke="#C8A84B" stroke-width="1.2"/>
+        <line x1="11" y1="31" x2="33" y2="31" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="13" y1="33" x2="31" y2="33" stroke="#C8A84B" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+        <polygon points="22,9 32,14.5 22,20 12,14.5" fill="#C8A84B"/>
+        <polygon points="22,9 32,14.5 22,14.5 12,14.5" fill="#b8953e" opacity="0.4"/>
+        <line x1="32" y1="14.5" x2="32" y2="21" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="32" cy="22" r="2" fill="#C8A84B"/>
+      </svg></div>
+    <div class="nav-brand">
+      <span class="nav-name"><span style="color:#1B2E4B">Scholar</span><span style="color:#C8A84B;margin-left:7px">Street</span></span>
+      <span class="nav-type">Scholarship Granting Organization</span>
+    </div>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="why-25f.html">Why &#167;25F</a></li>
+    <li><a href="how-giving-works.html">How It Works</a></li>
+    <li><a href="impact.html">Impact</a></li>
+    <li><a href="platform.html">Our Difference</a></li>
+    <li><a href="leadership.html">Leadership</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="donate.html" class="nav-apply">Donate</a></li>
+  </ul>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-<div class="hero-texture"></div>
-<div class="hero-left">
-<div class="hero-eyebrow">Scholarship Granting Organization — IRC §25F</div>
-<h1 class="hero-h1">Opening doors<br>families didn't<br>know <em>existed.</em></h1>
-<div class="hero-rule"></div>
-    <p class="hero-p">ScholarStreet connects income-eligible families with scholarship funding under the federal Education Freedom Tax Credit — placing students in the schools where they can truly flourish.</p>
-    <p class="hero-p">ScholarStreet empowers income-eligible families with scholarship funding under the federal Education Freedom Tax Credit — giving every child the resources to learn and flourish in the environment that's right for them.</p>
-<div class="hero-btns">
-<a href="#eligibility" class="btn-brass">Learn About Eligibility</a>
-<a href="#mission" class="btn-ghost">Our Mission</a>
-</div>
-</div>
-<div class="hero-right">
-<div class="hero-stat reveal">
-<div class="hstat-num">IRC §25F</div>
-<div class="hstat-label">Governing federal authority — Education Freedom Tax Credit</div>
-<div class="hstat-tag">Federally authorized</div>
-</div>
-<div class="hero-stat reveal">
-<div class="hstat-num">300%</div>
-<div class="hstat-label">Area Median Income threshold for household eligibility</div>
-<div class="hstat-tag">Based on county AMI · <span id="hud-fy-label"></span></div>
-</div>
-<div class="hero-stat reveal">
-<div class="hstat-num">K – 12</div>
-<div class="hstat-label">All grade levels, all qualifying school models, no fee to apply</div>
-<div class="hstat-tag">Serving families &amp; donors nationwide</div>
-</div>
-<div class="hero-stat reveal">
-<div class="hstat-num">$0</div>
-<div class="hstat-label">Cost to families to apply for a ScholarStreet scholarship</div>
-<div class="hstat-tag">Always free</div>
-</div>
-</div>
+<section class="hero">
+  <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-tag">Virginia Scholarship Granting Organization &middot; IRC &#167;25F</div>
+        <h1>Expanding K&ndash;12 educational<br>opportunity, <em>together.</em></h1>
+        <p class="lead">Scholar Street awards need- and merit-based scholarships to income-eligible Virginia
+        students &mdash; funded by donors who redirect their federal tax liability into a child&rsquo;s education.</p>
+        <div class="hero-cta">
+          <a href="contact.html" class="btn-gold">Become a Founding Donor</a>
+          <a href="how-giving-works.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.32)">How Giving Works</a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-photo"><img src="data:image/jpeg;base64,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" alt="Students in a classroom"></div>
+        <div class="hero-badge">The federal <strong>Education Freedom Tax Credit</strong> takes effect
+        January 1, 2027. Virginia was the first state to opt in.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- DECLARATION -->
-<div class="decl">
-<div class="decl-inner">
-<blockquote>"Every child deserves a school that sees them. ScholarStreet exists to help families get there."</blockquote>
-<div class="decl-aside">
-<strong>§25F</strong>
-<span>Education Freedom<br>Tax Credit</span>
-<span style="margin-top:.75rem">Federal authorization<br>for SGO scholarship<br>granting activity</span>
-</div>
-</div>
-</div>
+<section class="why-sec">
+  <div class="wrap">
+    <div class="s-eyebrow">Why Now</div>
+    <h2 class="s-title">A new federal opportunity<br>for <em>scholarship giving.</em></h2>
+    <p class="s-lead">In 2025, Congress created the first federal tax credit for K&ndash;12 scholarship
+    donations &mdash; the Education Freedom Tax Credit (IRC &#167;25F) &mdash; effective January 1, 2027.
+    Virginia was the first state to opt in.</p>
 
-<!-- MISSION -->
-<section id="mission">
-<div class="wrap">
-<div class="s-label">Our Mission</div>
-<h2 class="s-title">Built for families.<br>Accountable to <em>every dollar.</em></h2>
-<div class="s-rule"></div>
-<p class="s-body">ScholarStreet was founded on the belief that access to the right school shouldn't depend on a family's income. We operate as a federally authorized Scholarship Granting Organization, channeling donor contributions into scholarships for students who need them most.</p>
-<div class="mission-grid">
-<div class="flow-card reveal">
-<div class="flow-head">How scholarship funding reaches your family</div>
-<div class="flow-row">
-<div class="flow-icon">🏦</div>
-<div class="flow-text">
-<strong>Donors &amp; businesses contribute</strong>
-            <p>Contributions may generate a federal tax credit of up to $1,700 per taxpayer per year under IRC §25F — making ScholarStreet a zero-net-cost giving option for many donors.</p>
-            <p>Contributions may generate a federal tax credit of up to $1,700 per taxpayer per year ($3,400 for couples filing jointly) under IRC §25F — making ScholarStreet a zero-net-cost giving option for many donors.</p>
-</div>
-</div>
-<div class="flow-arrow">↓ &nbsp; &nbsp; ↓</div>
-<div class="flow-row">
-<div class="flow-icon">🏛️</div>
-<div class="flow-text">
-<strong>ScholarStreet reviews and awards</strong>
-<p>We verify income eligibility against county AMI data, manage full federal compliance, and award scholarships to qualifying families in priority order.</p>
-</div>
-</div>
-<div class="flow-arrow">↓ &nbsp; &nbsp; ↓</div>
-<div class="flow-row">
-<div class="flow-icon">👨‍👩‍👧</div>
-<div class="flow-text">
-<strong>Your family receives an award</strong>
-<p>Scholarship funds are disbursed directly to qualifying schools or approved educational expenses. Awards are federal income tax-free under §139K.</p>
-</div>
-</div>
-</div>
-<div class="mission-pillars reveal">
-<div class="mpillar">
-<div class="mpillar-num">i.</div>
-<div>
-<h4>Income-eligible families, first and always</h4>
-<p>Every award is reserved for households at or below 300% of the Area Median Income for their county. No exceptions and no favoritism — the statute sets the floor and our commitment goes beyond it.</p>
-</div>
-</div>
-<div class="mpillar">
-<div class="mpillar-num">ii.</div>
-<div>
-<h4>School choice belongs to families</h4>
-<p>Private school, homeschool co-op, microschool, or specialized learning program — if it qualifies under §25F, we'll help fund it. Parents know their children best.</p>
-</div>
-</div>
-<div class="mpillar">
-<div class="mpillar-num">iii.</div>
-<div>
-<h4>Rigorous, transparent stewardship</h4>
-<p>We document every application, every decision, and every disbursement. Federal compliance isn't a checkbox for us — it's the foundation of the trust families and donors place in ScholarStreet.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <div class="stat3">
+      <div class="stat-card reveal">
+        <div class="stat-val">$1,700</div>
+        <div class="stat-lbl">Per Taxpayer</div>
+        <p>A dollar-for-dollar federal credit, nonrefundable, with a five-year carryforward.
+        Joint-filer treatment is pending Treasury guidance.</p>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-val">Any Taxpayer</div>
+        <div class="stat-lbl">No Income Limit</div>
+        <p>Any individual with U.S. federal tax liability can claim the credit.
+        There is no donor income limit. Cash gifts only.</p>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-val">300% AMI</div>
+        <div class="stat-lbl">Access, Not Cost</div>
+        <p>Eligibility reaches households up to 300% of area median income. For many Virginia families,
+        cost &mdash; not eligibility &mdash; stands between their child and the right school.</p>
+      </div>
+    </div>
+    <div style="margin-top:2.4rem">
+      <a href="why-25f.html" class="btn-outline">Understand the Credit</a>
+    </div>
+  </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process">
-<div class="wrap">
-<div class="s-label" style="color:var(--brass-light)">Process</div>
-<h2 class="s-title">Four steps.<br><em>Straightforward</em> by design.</h2>
-<div class="s-rule"></div>
-<p class="s-body">Families navigating educational decisions carry enough complexity. We've built a process that stays out of the way.</p>
-<div class="process-steps">
-<div class="pstep reveal">
-<div class="pstep-n">01</div>
-<div class="pstep-title">Submit your household application</div>
-<p class="pstep-body">Complete our online application with household income details, student information, and your intended school or educational program. There is no fee to apply.</p>
-<span class="pstep-tag">Families</span>
-</div>
-<div class="pstep reveal">
-<div class="pstep-n">02</div>
-<div class="pstep-title">Eligibility review</div>
-<p class="pstep-body">We verify income against your county's HUD AMI threshold and review documentation. Our team reaches out if anything is needed. Expect a response within a few business days.</p>
-<span class="pstep-tag">Our commitment</span>
-</div>
-<div class="pstep reveal">
-<div class="pstep-n">03</div>
-<div class="pstep-title">Receive your award letter</div>
-        <p class="pstep-body">Approved families receive an official §139K scholarship award letter. This document confirms your award amount and is your record for tax purposes. Awards are federal income tax-free.</p>
-        <p class="pstep-body">ScholarStreet conducts one to two award cycles per year. Approved families are notified at the close of each cycle and receive an official §139K scholarship award letter confirming their award amount. Awards are federal income tax-free.</p>
-<span class="pstep-tag">For families</span>
-</div>
-<div class="pstep reveal">
-<div class="pstep-n">04</div>
-<div class="pstep-title">Funds disbursed to your school</div>
-<p class="pstep-body">Scholarship funds are sent directly to qualifying educational institutions or approved expense categories. No money passes through family hands — it goes straight to the school.</p>
-<span class="pstep-tag">For students</span>
-</div>
-</div>
-<div class="donor-strip reveal">
-<div class="donor-strip-text" style="flex:1;min-width:260px">
-<h4>For donors: redirect your tax liability into student scholarships.</h4>
-        <p>Under IRC §25F, contributions to ScholarStreet may generate a federal tax credit of up to $1,700 per taxpayer annually. That's money that would otherwise go to the IRS — directed instead to a child's education. Donors receive a formal §25F acknowledgment letter for their records.</p>
-        <p>Under IRC §25F, contributions to ScholarStreet may generate a federal tax credit of up to $1,700 per taxpayer annually ($3,400 for couples filing jointly). That's money that would otherwise go to the IRS — directed instead to a child's education. Donations of any dollar amount are accepted and put to work; the tax credit applies to contributions up to the annual limit. Donors receive a formal §25F acknowledgment letter for their records.</p>
-</div>
-<a href="#contact" class="btn-brass" style="flex-shrink:0" onclick="scrollToForm(event)">Contribute Now</a>
-</div>
-</div>
+<section id="glance">
+  <div class="wrap">
+    <div class="s-eyebrow">Our Mission</div>
+    <h2 class="s-title">Scholarships built on<br><em>need and merit.</em></h2>
+    <p class="s-lead">Scholar Street is organized to operate as a Scholarship Granting Organization under the
+    Education Freedom Tax Credit program. We award K&ndash;12 scholarships to income-eligible Virginia students
+    based on both financial need and academic merit &mdash; evaluated together for every award.</p>
+
+    <div class="mission-tiles">
+      <div class="mtile reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg></div>
+        <h4>Reach Underserved Communities</h4>
+        <p>Donors may support our general fund or direct their gift to a designated fund serving
+        a specific community &mdash; faith-based education, special needs, or military families.</p>
+      </div>
+      <div class="mtile reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 15a4 4 0 100-8 4 4 0 000 8z"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"/></svg></div>
+        <h4>Awards Sized to Matter</h4>
+        <p>A $5,000 target award, scaling with need and funding. We would rather fund fewer students
+        than spread support too thin to change a family&rsquo;s decision.</p>
+      </div>
+      <div class="mtile reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/><path d="M3 21h18"/></svg></div>
+        <h4>Built to Scale</h4>
+        <p>This tax credit only reaches as many children as SGOs can efficiently serve. Our platform is
+        built to scale nationally as the federal program expands state by state.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ELIGIBILITY -->
-<section id="eligibility">
-<div class="wrap">
-<div class="s-label">Eligibility</div>
-<h2 class="s-title">Understanding<br><em>eligibility criteria.</em></h2>
-<div class="s-rule"></div>
-<p class="s-body">ScholarStreet uses published scholarship criteria to help applicants understand whether an opportunity may be a good fit. Criteria may include factors such as state of residence, academic status, field of study, financial need, community involvement, or other scholarship-specific requirements.</p>
-<div class="elig-grid">
-<div class="reveal">
-<div class="elig-req" style="margin-bottom:1.5rem">
-<h4>About the income threshold</h4>
-<p style="font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.75;margin-bottom:1rem">Financial eligibility under the §25F program is based on the <strong style="color:var(--charcoal);font-weight:600">Median Family Income (MFI)</strong> for the applicant's local area — not a fixed national dollar amount. The U.S. Department of Housing and Urban Development (HUD) publishes these figures annually for every metropolitan area and county in the country.</p>
-<p style="font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.75;margin-bottom:1rem">To qualify, a household's prior-year gross income must fall at or below <strong style="color:var(--charcoal);font-weight:600">300% of the MFI</strong> for their area. Because median incomes vary by location, so does the threshold — a family in a high-cost metro may qualify at a much higher income level than one in a rural county.</p>
-<p style="font-size:14px;font-weight:300;color:var(--charcoal-light);line-height:1.75">For example: if the Median Family Income for a given metro area is $100,000, a household earning up to $300,000 in that area meets the income threshold. In a county where the median is $60,000, the threshold would be $180,000. <em style="color:var(--brass)">Your number depends entirely on where you live.</em></p>
-</div>
-<div class="elig-privacy">HUD MFI figures are updated each fiscal year. ScholarStreet references the most current published data when reviewing applications. You can look up your area's figures directly at <a href="https://www.huduser.gov/portal/datasets/il.html" target="_blank" style="color:var(--brass);text-decoration:underline;text-underline-offset:2px">huduser.gov</a>.</div>
-</div>
-<div class="elig-aside reveal">
-<div class="elig-req" style="margin-bottom:1.5rem">
-<h4>Other criteria we consider</h4>
-<ul>
-<li>State of residence within §25F participating program states</li>
-<li>Student grade level and current enrollment status</li>
-<li>Field of study or intended educational program</li>
-<li>Community involvement or service, where applicable</li>
-<li>Additional requirements specific to individual scholarship offerings</li>
-</ul>
-</div>
-<div class="elig-btns">
-<a href="#contact" class="btn-outline-brass" onclick="scrollToForm(event)">Ask a Question</a>
-</div>
-</div>
-</div>
-</div>
+<section class="cta-band">
+  <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="s-eyebrow" style="justify-content:center;color:rgba(255,255,255,.62)">Join Us</div>
+    <h2 style="margin-top:1rem">Expanding educational<br>opportunity, <em>together.</em></h2>
+    <p>Three donors giving the full $1,700 credit fund one $5,000 scholarship. We are inviting founding
+    donors, corporate donors, and partner schools to join us before the January 2027 launch.</p>
+    <div class="btns">
+      <a href="contact.html" class="btn-gold">Get in Touch</a>
+      <a href="leadership.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.36)">Meet the Team</a>
+    </div>
+  </div>
 </section>
 
-<!-- PROGRAMS -->
-<section id="programs">
-<div class="wrap">
-<div class="prog-intro">
-<div>
-<div class="s-label">Scholarship Programs</div>
-<h2 class="s-title">Awards shaped around<br><em>how students learn.</em></h2>
-<div class="s-rule"></div>
-</div>
-<p class="s-body">No two students are alike. Our scholarship categories reflect the genuine range of educational paths families pursue — from traditional private school to homeschool and beyond.</p>
-</div>
-<div class="prog-cards reveal">
-<div class="prog-card">
-<div class="prog-index">I</div>
-<div class="prog-body">
-<h4>Tuition &amp; Enrollment Scholarships</h4>
-          <p>Covers tuition and standard enrollment fees at qualifying private K–12 schools. Families identify the institution; ScholarStreet manages the award and works directly with the school on disbursement.</p>
-          <p>Scholarship funds may be applied toward tuition and standard enrollment fees at qualifying private K–12 schools. Families identify the institution; ScholarStreet manages the award and works directly with the school on disbursement.</p>
-</div>
-<div class="prog-tag">Most common</div>
-</div>
-<div class="prog-card">
-<div class="prog-index">II</div>
-<div class="prog-body">
-<h4>Special Needs &amp; Specialized Learning</h4>
-<p>Students with documented learning differences or diagnosed educational needs receive priority review. Awards may cover specialized programs, therapeutic educational services, and supplemental curricula beyond what traditional schools provide.</p>
-</div>
-<div class="prog-tag">Priority review</div>
-</div>
-<div class="prog-card">
-<div class="prog-index">III</div>
-<div class="prog-body">
-<h4>Homeschool &amp; Microschool Support</h4>
-<p>Families pursuing homeschool or microschool education models may access scholarship funds for approved instructional materials, co-operative enrollment fees, and qualifying educational expenses consistent with §25F guidelines.</p>
-</div>
-<div class="prog-tag">Growing program</div>
-</div>
-</div>
-<div class="award-note reveal">
-<div class="award-note-label">Note</div>
-<p>Scholarship award amounts are established by ScholarStreet based on available funding, student circumstances, and program parameters. Families are encouraged to contact us before finalizing enrollment arrangements so expectations can be properly set.</p>
-</div>
-</div>
-</section>
-
-<!-- COMPLIANCE -->
-<section id="compliance">
-<div class="wrap">
-<div class="s-label" style="color:var(--brass-light)">Compliance &amp; Governance</div>
-<h2 class="s-title">Accountability is<br>not <em>optional here.</em></h2>
-<div class="s-rule"></div>
-<p class="s-body" style="max-width:100%">As a federally authorized SGO, ScholarStreet operates under a rigorous compliance framework. Families trust us with sensitive information. Donors trust us with their contributions. We honor both responsibilities unconditionally.</p>
-<div class="comp-grid">
-<div class="reveal">
-<p class="s-body" style="max-width:100%;color:rgba(255,255,255,.45)">Our compliance documentation is available upon request. We welcome scrutiny — it reflects our commitment to operating exactly as the law requires and as our donors and families deserve.</p>
-<a href="#contact" class="btn-outline-brass" style="margin-top:2rem;display:inline-block" onclick="scrollToForm(event)">Request Compliance Summary</a>
-</div>
-<div class="comp-items reveal">
-<div class="ci"><div class="ci-glyph">§</div><div><h5>IRC §25F Federal Authorization</h5><p>ScholarStreet operates as a Scholarship Granting Organization under the Education Freedom Tax Credit provisions of the Internal Revenue Code. Every aspect of our activity flows from this authorization.</p></div></div>
-<div class="ci"><div class="ci-glyph">↗</div><div><h5>Income Verification &amp; AMI Methodology</h5><p>We apply income determination procedures consistent with current HUD Median Family Income data and IRS Notice 2025-70. Our verification workflows are reviewed as regulatory guidance continues to develop.</p></div></div>
-<div class="ci"><div class="ci-glyph">≡</div><div><h5>Application &amp; Award Recordkeeping</h5><p>Every application, eligibility determination, award decision, and disbursement is documented and retained in accordance with federal recordkeeping requirements. Nothing is improvised.</p></div></div>
-<div class="ci"><div class="ci-glyph">✦</div><div><h5>Donor Acknowledgment Letters</h5><p>Each donor receives a formal written §25F acknowledgment containing the information required to claim the Education Freedom Tax Credit on their federal return.</p></div></div>
-<div class="ci"><div class="ci-glyph">◇</div><div><h5>Non-Discrimination Policy</h5><p>Scholarships are awarded without regard to race, religion, gender, national origin, or disability. Student financial need and income eligibility are the sole determining criteria.</p></div></div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" style="scroll-margin-top:66px">
-<div class="wrap">
-<div class="s-label">Get In Touch</div>
-<h2 class="s-title">Every conversation<br>starts <em>simply.</em></h2>
-<div class="s-rule"></div>
-<p class="s-body">Whether you are a family exploring your options, a donor considering a contribution, or a school seeking to partner — we will respond thoughtfully and promptly.</p>
-<div class="contact-grid">
-<div>
-<div class="contact-info reveal">
-<div class="ci2"><div class="ci2-icon">✉</div><div><strong>General Inquiries</strong><span>info@scholarstreet.org</span></div></div>
-<div class="ci2"><div class="ci2-icon">📋</div><div><strong>Scholarship Applications</strong><span>apply@scholarstreet.org</span></div></div>
-<div class="ci2"><div class="ci2-icon">🤝</div><div><strong>Donor Relations</strong><span>donate@scholarstreet.org</span></div></div>
-<div class="ci2"><div class="ci2-icon">📍</div><div><strong>Organization</strong><span>ScholarStreet · Virginia — National Operations</span></div></div>
-</div>
-<p class="contact-note reveal">We respond to all inquiries within two business days. For time-sensitive compliance or application matters, please note that in your message and we will prioritize accordingly.</p>
-</div>
-<div class="cform reveal" id="contactForm">
-<div class="cform-title">Send us a message</div>
-<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="scholarForm">
-<input type="hidden" name="form-name" value="contact">
-<div style="display:none"><label>Do not fill this out: <input name="bot-field"></label></div>
-<div class="crow">
-<div class="fg"><label for="f-first">First Name</label><input id="f-first" name="first-name" type="text" placeholder="Jane" required></div>
-<div class="fg"><label for="f-last">Last Name</label><input id="f-last" name="last-name" type="text" placeholder="Smith" required></div>
-</div>
-<div class="fg"><label for="f-email">Email Address</label><input id="f-email" name="email" type="email" placeholder="jane@example.com" required></div>
-<div class="fg"><label for="f-phone">Phone (optional)</label><input id="f-phone" name="phone" type="tel" placeholder="(555) 000-0000"></div>
-<div class="fg">
-<label for="f-interest">I am a</label>
-<select id="f-interest" name="interest">
-<option value="">Select one</option>
-<option>Family seeking a scholarship</option>
-<option>Donor or contributing business</option>
-<option>School or educational institution</option>
-<option>Attorney, CPA, or advisor</option>
-<option>Other</option>
-</select>
-</div>
-<div class="fg" style="position:relative">
-<label for="f-state-input">State</label>
-<input id="f-state-input" type="text" placeholder="Type or select a state..." autocomplete="off" oninput="filterStates()" onfocus="openDropdown()" onblur="closeDropdown()" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-state-list" role="combobox">
-<input type="hidden" id="f-state" name="state">
-<ul id="f-state-list" role="listbox" aria-label="States" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--parchment);border:1px solid var(--brass);border-top:none;max-height:200px;overflow-y:auto;z-index:200;margin:0;padding:0;list-style:none;border-radius:0 0 2px 2px;box-shadow:0 4px 12px rgba(0,0,0,.12)"></ul>
-</div>
-<div class="fg"><label for="f-msg">Your Message</label><textarea id="f-msg" name="message" placeholder="How can we help?" required></textarea></div>
-<button type="submit" class="fsub" id="formBtn">Send Message</button>
-<p class="fok" id="formOk" style="display:none">Your message has been received. We will be in touch within two business days.</p>
-</form>
-</div>
-</div>
-</div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-<div class="fwrap">
-<div class="ftop">
-<div>
-<div class="fbrand-name">ScholarStreet</div>
-<p class="fbrand-desc">A federally authorized Scholarship Granting Organization operating under IRC §25F, dedicated to expanding K–12 educational access for income-eligible families across the United States.</p>
-<p class="ftax-note">ScholarStreet is an IRS-approved 501(c)(3) public charity (EIN 42-2704061), effective May 19, 2026. Contributions are tax-deductible under IRC §170 and may qualify for the Education Freedom Tax Credit under IRC §25F. Consult a qualified tax professional regarding your specific circumstances. ScholarStreet does not provide legal or tax advice.</p>
-</div>
-<div class="fcol"><h6>Organization</h6><ul><li><a href="#mission">Our Mission</a></li><li><a href="#process">How It Works</a></li><li><a href="#compliance">Compliance</a></li><li><a href="#contact">Contact</a></li></ul></div>
-<div class="fcol"><h6>Families</h6><ul><li><a href="#eligibility">Eligibility Criteria</a></li><li><a href="#programs">Scholarship Programs</a></li><li><a href="#contact">Apply Now</a></li><li><a href="#contact">FAQ</a></li></ul></div>
-<div class="fcol"><h6>Donors</h6><ul><li><a href="#process">Tax Credit Overview</a></li><li><a href="#contact">Contribute</a></li><li><a href="#contact">Corporate Giving</a></li><li><a href="#compliance">Our Standards</a></li></ul></div>
-</div>
-<div class="fbot">
-      <p>© 2026 ScholarStreet. All rights reserved.</p>
-<p>Scholarship Granting Organization · IRC §25F · Education Freedom Tax Credit</p>
-</div>
-</div>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="fbrand-name"><span class="fbrand-dot"></span>Scholar Street</div>
+        <p class="fbrand-desc">Organized to operate as a Scholarship Granting Organization under the federal Education Freedom Tax Credit (IRC &#167;25F). We award K&ndash;12 scholarships to income-eligible Virginia students on the basis of need and merit.</p>
+        <form class="fsignup" data-formspree="mdaqvkvo" method="POST">
+          <label class="fsignup-lbl" for="fsignup-email">Stay informed</label>
+          <p class="fsignup-sub">Updates on Scholar Street and the federal tax credit. We&rsquo;ll also let you know when scholarship applications open.</p>
+          <div class="fsignup-row">
+            <input class="fsignup-input" id="fsignup-email" type="email" name="email" placeholder="Your email" required aria-label="Email address">
+            <button class="fsignup-btn" type="submit">Sign Up</button>
+          </div>
+          <input type="hidden" name="_subject" value="Scholar Street mailing list signup">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+          <p class="form-status" role="status"></p>
+        </form>
+        <p class="ftax-note">Contributions may qualify for the Education Freedom Tax Credit under IRC &#167;25F beginning January 1, 2027. Provided for general informational purposes only &mdash; not tax, legal, or financial advice. Consult a qualified tax professional regarding individual eligibility.</p>
+      </div>
+      <div class="fcol">
+        <h5>Program</h5>
+        <a href="why-25f.html">Why &#167;25F</a>
+        <a href="how-giving-works.html">How It Works</a>
+        <a href="impact.html">Targeted Impact</a>
+        <a href="platform.html">Our Difference</a>
+      </div>
+      <div class="fcol">
+        <h5>Organization</h5>
+        <a href="platform.html#governance">Governance</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="index.html">Home</a>
+      </div>
+      <div class="fcol">
+        <h5>Get Involved</h5>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Partner With Us</a>
+        <a href="contact.html">Apply for a Scholarship</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>&copy; 2026 Scholar Street SGO. All rights reserved.</p>
+      <p>Scholarship Granting Organization &middot; IRC &#167;25F &middot; Education Freedom Tax Credit</p>
+    </div>
+  </div>
 </footer>
-
 <script>
-/* 501(c)(3) APPROVED BANNER — offset nav */
-(function(){
-var banner=document.getElementById('approved-banner');
-var nav=document.getElementById('mainNav');
-if(!banner||!nav) return;
-function adjustNav(){
-var h=banner.offsetHeight;
-nav.style.top=h+'px';
-var hero=document.getElementById('hero');
-if(hero) hero.style.paddingTop=(66+h)+'px';
-}
-adjustNav();
-window.addEventListener('resize',adjustNav);
-})();
+document.addEventListener('DOMContentLoaded',function(){
+  // ---- Formspree forms: submit via fetch so the visitor stays on the page ----
+  document.querySelectorAll('form[data-formspree]').forEach(function(form){
+    var id = form.getAttribute('data-formspree');
+    var status = form.querySelector('.form-status');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!id || id.indexOf('REPLACE_') === 0){
+        if(status){ status.textContent = 'This form is not connected yet.'; status.className = 'form-status show err'; }
+        return;
+      }
+      var btn = form.querySelector('button[type=submit], .f-submit, .fsignup-btn');
+      var label = btn ? btn.textContent : '';
+      if(btn){ btn.disabled = true; btn.textContent = 'Sending...'; }
+      if(status){ status.className = 'form-status'; status.textContent = ''; }
+      fetch('https://formspree.io/f/' + id, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(r){
+        if(r.ok){
+          form.reset();
+          if(status){
+            status.textContent = form.classList.contains('fsignup')
+              ? 'Thanks. You are on the list.'
+              : 'Thank you. We have received your message and will be in touch.';
+            status.className = 'form-status show ok';
+          }
+        } else {
+          return r.json().then(function(d){
+            throw new Error((d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Submission failed');
+          });
+        }
+      }).catch(function(err){
+        if(status){
+          status.textContent = 'Sorry, something went wrong. Please email info@scholarstreet.org.';
+          status.className = 'form-status show err';
+        }
+        console.error('Form error:', err);
+      }).then(function(){
+        if(btn){ btn.disabled = false; btn.textContent = label; }
+      });
+    });
+  });
 
-/* SCROLL TO TOP ON LOAD */
-if(history.scrollRestoration){history.scrollRestoration='manual';}
-window.scrollTo(0,0);
-
-/* HUD FISCAL YEAR LABEL */
-(function(){
-var now=new Date();
-var month=now.getMonth()+1;
-var year=now.getFullYear();
-var fy=(month>=4)?year:year-1;
-var el=document.getElementById('hud-fy-label');
-if(el) el.textContent='HUD FY'+fy;
-})();
-
-/* NAV */
-var nav=document.getElementById('mainNav');
-window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>20)});
-document.getElementById('ham').addEventListener('click',function(){
-document.getElementById('navLinks').classList.toggle('open');
-});
-document.querySelectorAll('#navLinks a').forEach(function(a){
-a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open')});
-});
-
-/* SMOOTH SCROLL */
-document.querySelectorAll('a[href^="#"]').forEach(function(a){
-a.addEventListener('click',function(e){
-var t=document.querySelector(a.getAttribute('href'));
-if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
-});
-});
-
-/* SCROLL TO FORM */
-function scrollToForm(e){
-if(e) e.preventDefault();
-document.getElementById('contactForm').scrollIntoView({behavior:'instant'});
-document.getElementById('f-first').focus();
-}
-
-/* REVEAL ON SCROLL */
-var obs=new IntersectionObserver(function(entries){
-entries.forEach(function(e,i){
-if(e.isIntersecting){
-setTimeout(function(){e.target.classList.add('visible')},i*80);
-obs.unobserve(e.target);
-}
-});
-},{threshold:.06});
-document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
-
-/* STATE COMBOBOX */
-var STATES=['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut',
-'Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas',
-'Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota',
-'Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey',
-'New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon',
-'Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas',
-'Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
-
-var stateInput=document.getElementById('f-state-input');
-var stateHidden=document.getElementById('f-state');
-var stateList=document.getElementById('f-state-list');
-var activeIdx=-1;
-
-function renderList(items){
-stateList.innerHTML='';
-activeIdx=-1;
-items.forEach(function(s,i){
-var li=document.createElement('li');
-li.textContent=s;
-li.setAttribute('role','option');
-li.style.cssText='padding:10px 14px;cursor:pointer;font-size:14px;font-weight:300;color:var(--charcoal);border-bottom:1px solid var(--rule)';
-li.addEventListener('mousedown',function(){selectState(s)});
-li.addEventListener('mouseover',function(){setActive(i)});
-stateList.appendChild(li);
-});
-}
-function openDropdown(){renderList(STATES);stateList.style.display='block';stateInput.setAttribute('aria-expanded','true')}
-function closeDropdown(){setTimeout(function(){stateList.style.display='none';stateInput.setAttribute('aria-expanded','false')},180)}
-function filterStates(){
-var q=stateInput.value.toLowerCase();
-var filtered=STATES.filter(function(s){return s.toLowerCase().indexOf(q)!==-1});
-renderList(filtered);
-stateList.style.display=filtered.length?'block':'none';
-stateHidden.value='';
-}
-function selectState(s){stateInput.value=s;stateHidden.value=s;stateList.style.display='none'}
-function setActive(i){
-var items=stateList.querySelectorAll('li');
-items.forEach(function(el){el.style.background=''});
-activeIdx=i;
-if(items[i]) items[i].style.background='var(--brass-pale)';
-}
-stateInput.addEventListener('keydown',function(e){
-var items=stateList.querySelectorAll('li');
-if(!items.length) return;
-if(e.key==='ArrowDown'){e.preventDefault();setActive(Math.min(activeIdx+1,items.length-1));if(items[activeIdx])items[activeIdx].scrollIntoView({block:'nearest'})}
-else if(e.key==='ArrowUp'){e.preventDefault();setActive(Math.max(activeIdx-1,0));if(items[activeIdx])items[activeIdx].scrollIntoView({block:'nearest'})}
-else if(e.key==='Enter'&&activeIdx>=0){e.preventDefault();selectState(items[activeIdx].textContent)}
-else if(e.key==='Escape'){stateList.style.display='none'}
-});
-
-/* NETLIFY FORM SUBMIT */
-document.getElementById('scholarForm').addEventListener('submit',function(e){
-e.preventDefault();
-var btn=document.getElementById('formBtn');
-if(!stateHidden.value&&stateInput.value) stateHidden.value=stateInput.value;
-btn.disabled=true;
-btn.textContent='Sending…';
-
-var formData=new FormData(this);
-var encoded=new URLSearchParams(formData).toString();
-
-fetch('/',{
-method:'POST',
-headers:{'Content-Type':'application/x-www-form-urlencoded'},
-body:encoded
-})
-.then(function(response){
-if(response.ok||response.status===200||response.redirected){
-btn.style.display='none';
-document.getElementById('formOk').style.display='block';
-document.getElementById('scholarForm').reset();
-document.getElementById('f-state-input').value='';
-} else {
-throw new Error('Response status: '+response.status);
-}
-})
-.catch(function(err){
-console.error('Form error:',err);
-btn.disabled=false;
-btn.textContent='Send Message';
-alert('Something went wrong submitting the form. Please email us directly at info@scholarstreet.org');
-});
+  var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
+  if(t&&l){t.addEventListener('click',function(){l.classList.toggle('open');});}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 });
 </script>
 </body>
