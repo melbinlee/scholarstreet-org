@@ -308,6 +308,12 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       frame.style.height = (h + 24) + 'px';
       frame.style.minHeight = '0';
     }
+    // After a successful gift the portal swaps to a short thank-you card.
+    // The parent is still scrolled to where the form used to be, so bring
+    // the frame back into view or the donor sees the footer.
+    if(d.scholarstreetScrollToFrame === true){
+      frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }, false);
 
   // If the portal never loads, offer a direct link instead of a blank box.
