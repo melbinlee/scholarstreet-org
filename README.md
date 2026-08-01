@@ -1,1 +1,0 @@
-# scholarstreet-org
