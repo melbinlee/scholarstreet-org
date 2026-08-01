@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scholar Street SGO &mdash; K&ndash;12 Scholarships for Virginia Families</title>
 <meta name="description" content="Scholar Street is a Virginia Scholarship Granting Organization awarding need- and merit-based K-12 scholarships under the federal Education Freedom Tax Credit (IRC 25F).">
+
+<!-- Warm up the donation portal before the visitor clicks Donate -->
+<link rel="preconnect" href="https://scholarship-insights.com" crossorigin>
+<link rel="preconnect" href="https://js.stripe.com" crossorigin>
+<link rel="dns-prefetch" href="https://jyrpfbjhojnfnefmbdpf.supabase.co">
+<script type="speculationrules">
+{
+  "prerender": [
+    { "where": { "href_matches": "/donate.html" }, "eagerness": "moderate" }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
