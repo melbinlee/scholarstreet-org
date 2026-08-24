@@ -71,6 +71,9 @@ nav#mainNav{position:sticky;top:0;z-index:50;background:rgba(249,247,242,.96);
 .nav-apply{background:var(--gold);color:var(--navy)!important;border-radius:999px;
   padding:9px 20px!important;border-bottom:none!important;font-weight:700}
 .nav-apply:hover{background:var(--gold-dk)}
+.nav-apply-outline{background:transparent;color:var(--navy)!important;border:2px solid var(--gold);border-radius:999px;
+  padding:9px 20px!important;border-bottom:none!important;font-weight:700}
+.nav-apply-outline:hover{background:rgba(200,168,75,.12)}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);margin:4px 0;border-radius:2px}
 
@@ -145,11 +148,13 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   .nav-links{gap:15px}
   .nav-links a{font-size:12.5px}
   .nav-apply{padding:8px 17px!important}
+  .nav-apply-outline{padding:8px 17px!important}
 }
 @media(max-width:1240px){
   .nav-links{gap:12px}
   .nav-links a{font-size:12px}
   .nav-apply{padding:7px 14px!important}
+  .nav-apply-outline{padding:7px 14px!important}
   .nav-crest{width:42px;height:42px}
   .nav-crest svg{width:38px;height:38px}
 }
@@ -214,6 +219,16 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .mtile h4{font-size:17px;color:var(--navy);margin-bottom:.55rem}
 .mtile p{font-size:14px;color:var(--text-mid);line-height:1.72}
 
+/* FOR FAMILIES */
+.fam-sec{background:var(--cream2)}
+.fam-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:center;margin-top:2.6rem}
+.fam-btns{margin-top:1.7rem;display:flex;gap:13px;flex-wrap:wrap}
+.fam-card{background:#fff;border-radius:var(--radius);padding:2rem;text-align:center;
+  box-shadow:0 2px 16px rgba(27,46,75,.06);justify-self:center}
+.fam-qr{width:170px;height:170px;margin:0 auto}
+.fam-qr svg{display:block;width:100%;height:100%}
+.fam-qr-cap{font-size:12.5px;color:var(--text-lt);margin-top:1rem}
+
 /* CTA BAND */
 .cta-band{background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden}
 .cta-band h2{font-size:clamp(1.8rem,3vw,2.5rem);color:#fff}
@@ -221,7 +236,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .cta-band p{max-width:590px;margin:1.1rem auto 0;color:rgba(255,255,255,.6);font-size:16px}
 .cta-band .btns{margin-top:2.1rem;display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
 @media(max-width:940px){
-  .hero-grid{grid-template-columns:1fr;gap:38px}
+  .hero-grid,.fam-grid{grid-template-columns:1fr;gap:38px}
   .stat3,.mission-tiles{grid-template-columns:1fr}
 }
 
@@ -259,6 +274,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     <li><a href="platform.html">Our Difference</a></li>
     <li><a href="leadership.html">Leadership</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://scholarship-insights.com/?invited=family&org=scholarstreet" target="_blank" rel="noopener" class="nav-apply-outline">Apply</a></li>
     <li><a href="donate.html" class="nav-apply">Donate</a></li>
   </ul>
 </nav>
@@ -351,6 +367,27 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </div>
 </section>
 
+<section class="fam-sec">
+  <div class="wrap">
+    <div class="s-eyebrow">For Families</div>
+    <h2 class="s-title">Applying for a scholarship?<br><em>Start here.</em></h2>
+    <p class="s-lead">Scan the code with your phone to create a free family account and begin your
+    application. Already registered? No need to scan again &mdash; just come back to this page and
+    sign in to check your status.</p>
+
+    <div class="fam-grid">
+      <div class="fam-btns">
+        <a href="https://scholarship-insights.com/?invited=family&org=scholarstreet" target="_blank" rel="noopener" class="btn-gold">Create My Account</a>
+        <a href="https://scholarship-insights.com/?invited=family&org=scholarstreet" target="_blank" rel="noopener" class="btn-outline">Sign In</a>
+      </div>
+      <div class="fam-card reveal">
+        <div id="fam-qr" class="fam-qr"></div>
+        <div class="fam-qr-cap">Scan with your phone camera</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="cta-band">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
   <div class="wrap" style="position:relative;z-index:2">
@@ -400,8 +437,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div class="fcol">
         <h5>Get Involved</h5>
         <a href="donate.html">Donate</a>
+        <a href="https://scholarship-insights.com/?invited=family&org=scholarstreet" target="_blank" rel="noopener">Apply for a Scholarship</a>
         <a href="contact.html">Partner With Us</a>
-        <a href="contact.html">Apply for a Scholarship</a>
         <a href="contact.html">Contact</a>
       </div>
     </div>
@@ -411,6 +448,25 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     </div>
   </div>
 </footer>
+<script src="qrcode.js"></script>
+<script>
+/* ── Family application QR ────────────────────────────────────────
+   apply.html/portal.html live on scholarship-insights.com (the
+   Scholarship Insights LLC platform), not on this site. This links to
+   the "invited to apply" screen there, which opens Clerk sign-up for
+   org=scholarstreet and hands off to the application, and also covers
+   returning families via its "Sign in here" link. */
+(function(){
+  var target = document.getElementById('fam-qr');
+  if(!target || typeof qrcode === 'undefined') return;
+  try {
+    var qr = qrcode(0, 'M');
+    qr.addData('https://scholarship-insights.com/?invited=family&org=scholarstreet');
+    qr.make();
+    target.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 4, scalable: true });
+  } catch(e) { console.warn('QR render failed:', e.message); }
+})();
+</script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   // ---- Formspree forms: submit via fetch so the visitor stays on the page ----
