@@ -274,7 +274,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     <li><a href="platform.html">Our Difference</a></li>
     <li><a href="leadership.html">Leadership</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2F%3Finvited%3Dfamily%26org%3Dscholarstreet" target="_blank" rel="noopener" class="nav-apply-outline">Apply</a></li>
+    <li><a href="https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener" class="nav-apply-outline">Apply</a></li>
     <li><a href="donate.html" class="nav-apply">Donate</a></li>
   </ul>
 </nav>
@@ -377,8 +377,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 
     <div class="fam-grid">
       <div class="fam-btns">
-        <a href="https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2F%3Finvited%3Dfamily%26org%3Dscholarstreet" target="_blank" rel="noopener" class="btn-gold">Create My Account</a>
-        <a href="https://accounts.scholarship-insights.com/sign-in?redirect_url=https%3A%2F%2Fscholarship-insights.com%2F%3Finvited%3Dfamily%26org%3Dscholarstreet" target="_blank" rel="noopener" class="btn-outline">Sign In</a>
+        <a href="https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener" class="btn-gold">Create My Account</a>
+        <a href="https://accounts.scholarship-insights.com/sign-in?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener" class="btn-outline">Sign In</a>
       </div>
       <div class="fam-card reveal">
         <div id="fam-qr" class="fam-qr"></div>
@@ -437,7 +437,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div class="fcol">
         <h5>Get Involved</h5>
         <a href="donate.html">Donate</a>
-        <a href="https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2F%3Finvited%3Dfamily%26org%3Dscholarstreet" target="_blank" rel="noopener">Apply for a Scholarship</a>
+        <a href="https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener">Apply for a Scholarship</a>
         <a href="contact.html">Partner With Us</a>
         <a href="contact.html">Contact</a>
       </div>
@@ -464,7 +464,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   if(!target || typeof qrcode === 'undefined') return;
   try {
     var qr = qrcode(0, 'M');
-    qr.addData('https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2F%3Finvited%3Dfamily%26org%3Dscholarstreet');
+    qr.addData('https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet');
     qr.make();
     target.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 4, scalable: true });
   } catch(e) { console.warn('QR render failed:', e.message); }
