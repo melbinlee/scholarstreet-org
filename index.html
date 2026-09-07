@@ -10,7 +10,14 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-ZP28ZWB133');
+  // Cross-domain: scholarstreet.org and scholarship-insights.com are one
+  // funnel -- the Apply and Donate links hand off between them. Without
+  // this, a handoff starts a fresh session attributed as a referral from
+  // our own site. accounts.scholarship-insights.com needs no entry: it is
+  // a subdomain and already shares the _ga cookie.
+  gtag('config', 'G-ZP28ZWB133', {
+    linker: { domains: ['scholarstreet.org', 'scholarship-insights.com'] }
+  });
 </script>
 <title>Scholar Street SGO &mdash; Nationwide K&ndash;12 Scholarships under the Federal Tax Credit</title>
 <meta name="description" content="Scholar Street is a Scholarship Granting Organization awarding need- and merit-based K–12 scholarships to families in the states we serve, under the federal Education Freedom Tax Credit (IRC §25F).">

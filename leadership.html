@@ -10,7 +10,14 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-ZP28ZWB133');
+  // Cross-domain: scholarstreet.org and scholarship-insights.com are one
+  // funnel -- the Apply and Donate links hand off between them. Without
+  // this, a handoff starts a fresh session attributed as a referral from
+  // our own site. accounts.scholarship-insights.com needs no entry: it is
+  // a subdomain and already shares the _ga cookie.
+  gtag('config', 'G-ZP28ZWB133', {
+    linker: { domains: ['scholarstreet.org', 'scholarship-insights.com'] }
+  });
 </script>
 <title>Leadership &mdash; Scholar Street SGO</title>
 <meta name="description" content="Meet the co-founders of Scholar Street SGO: Ryan Hill, Board Chair, President & CEO, and Mel Sisaithong, COO, Secretary & Treasurer.">
