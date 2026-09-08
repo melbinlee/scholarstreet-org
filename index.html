@@ -428,7 +428,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div>
         <div class="fbrand-name"><span class="fbrand-dot"></span>Scholar Street</div>
         <p class="fbrand-desc">Organized to operate as a Scholarship Granting Organization under the federal Education Freedom Tax Credit (IRC &#167;25F). We award K&ndash;12 scholarships to income-eligible students in the states we serve, on the basis of need and merit.</p>
-        <form class="fsignup">
+        <form class="fsignup" action="https://scholarstreet.substack.com/subscribe" method="GET" target="_blank" rel="noopener">
           <label class="fsignup-lbl" for="fsignup-email">Stay informed</label>
           <p class="fsignup-sub">Updates on Scholar Street and the federal tax credit. We&rsquo;ll also let you know when scholarship applications open.</p>
           <div class="fsignup-row">
@@ -571,34 +571,28 @@ document.addEventListener('DOMContentLoaded',function(){
     });
   });
 
-  // ---- Mailing list: hand the address to Substack ----
-  // The list used to post to Formspree, which on our plan sends the subscriber
-  // nothing, caps the whole account at 50 submissions a month and cannot offer
-  // an unsubscribe. Substack already hosts the newsletter, sends its own
-  // welcome mail, manages unsubscribes and supplies the postal address a bulk
-  // sender needs. We keep our own field and styling and let Substack record
-  // the subscriber, which is the part that actually matters.
+  // ---- Mailing list: Substack ----
+  // The form's own action posts to Substack, so the handoff is an ordinary
+  // form submission and the browser builds ?email= from the input's name.
+  // It used to be a scripted window.open, which popup blockers can swallow
+  // silently -- the status text would update and no tab would ever appear.
+  // A real submit is a user navigation, is not blocked, and still works if
+  // this script never runs at all.
+  //
+  // Note there is no preventDefault here: the listener only reports the
+  // signup, then gets out of the way and lets the submission proceed.
   document.querySelectorAll('form.fsignup').forEach(function(form){
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var input = form.querySelector('input[type=email]');
-      var email = input ? input.value.trim() : '';
-      if(!email) return;
+    form.addEventListener('submit', function(){
       var status = form.querySelector('.form-status');
       if(status){
         status.textContent = 'Opening Substack to confirm your subscription\u2026';
         status.className = 'form-status show ok';
       }
-      // Measured so signups show up as a conversion rather than an unexplained
+      // Measured so signups show as a conversion rather than an unexplained
       // exit to substack.com, which we cannot tag.
       if(typeof gtag === 'function'){
         gtag('event', 'newsletter_signup', { method: 'substack' });
       }
-      // New tab: the reader keeps the page they were on. Substack prefills the
-      // address and takes it from there.
-      window.open('https://scholarstreet.substack.com/subscribe?email=' +
-        encodeURIComponent(email), '_blank', 'noopener');
-      form.reset();
     });
   });
 
