@@ -421,15 +421,13 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div>
         <div class="fbrand-name"><span class="fbrand-dot"></span>Scholar Street</div>
         <p class="fbrand-desc">Organized to operate as a Scholarship Granting Organization under the federal Education Freedom Tax Credit (IRC &#167;25F). We award K&ndash;12 scholarships to income-eligible students in the states we serve, on the basis of need and merit.</p>
-        <form class="fsignup" data-formspree="mdaqvkvo" method="POST">
+        <form class="fsignup">
           <label class="fsignup-lbl" for="fsignup-email">Stay informed</label>
           <p class="fsignup-sub">Updates on Scholar Street and the federal tax credit. We&rsquo;ll also let you know when scholarship applications open.</p>
           <div class="fsignup-row">
             <input class="fsignup-input" id="fsignup-email" type="email" name="email" placeholder="Your email" required aria-label="Email address">
             <button class="fsignup-btn" type="submit">Sign Up</button>
           </div>
-          <input type="hidden" name="_subject" value="Scholar Street mailing list signup">
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
           <p class="form-status" role="status"></p>
         </form>
         <div class="social-links" aria-label="Follow Scholar Street on social media">
@@ -528,17 +526,7 @@ document.addEventListener('DOMContentLoaded',function(){
         if(r.ok){
           form.reset();
           if(status){
-            if(form.classList.contains('fsignup')){
-              // They have just opted in, so point them at the newsletter while
-              // the intent is fresh -- the footer icon is the only other route
-              // and it is unlabelled. Static markup: nothing user-supplied is
-              // interpolated, so innerHTML is safe here.
-              status.innerHTML = 'Thanks \u2014 you\u2019re on the list. ' +
-                '<a href="https://scholarstreet.substack.com" target="_blank" ' +
-                'rel="noopener noreferrer">Read the newsletter on Substack \u2192</a>';
-            } else {
-              status.textContent = 'Thank you. We have received your message and will be in touch.';
-            }
+            status.textContent = 'Thank you. We have received your message and will be in touch.';
             status.className = 'form-status show ok';
           }
         } else {
@@ -555,6 +543,37 @@ document.addEventListener('DOMContentLoaded',function(){
       }).then(function(){
         if(btn){ btn.disabled = false; btn.textContent = label; }
       });
+    });
+  });
+
+  // ---- Mailing list: hand the address to Substack ----
+  // The list used to post to Formspree, which on our plan sends the subscriber
+  // nothing, caps the whole account at 50 submissions a month and cannot offer
+  // an unsubscribe. Substack already hosts the newsletter, sends its own
+  // welcome mail, manages unsubscribes and supplies the postal address a bulk
+  // sender needs. We keep our own field and styling and let Substack record
+  // the subscriber, which is the part that actually matters.
+  document.querySelectorAll('form.fsignup').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var input = form.querySelector('input[type=email]');
+      var email = input ? input.value.trim() : '';
+      if(!email) return;
+      var status = form.querySelector('.form-status');
+      if(status){
+        status.textContent = 'Opening Substack to confirm your subscription\u2026';
+        status.className = 'form-status show ok';
+      }
+      // Measured so signups show up as a conversion rather than an unexplained
+      // exit to substack.com, which we cannot tag.
+      if(typeof gtag === 'function'){
+        gtag('event', 'newsletter_signup', { method: 'substack' });
+      }
+      // New tab: the reader keeps the page they were on. Substack prefills the
+      // address and takes it from there.
+      window.open('https://scholarstreet.substack.com/subscribe?email=' +
+        encodeURIComponent(email), '_blank', 'noopener');
+      form.reset();
     });
   });
 
