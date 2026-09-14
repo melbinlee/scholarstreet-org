@@ -42,8 +42,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A news news.html sitemap.xml scripts/last-sync.txt
-          if git diff --cached --quiet -- news news.html sitemap.xml; then
+          git add -A news news.html index.html sitemap.xml scripts/last-sync.txt
+          if git diff --cached --quiet -- news news.html index.html sitemap.xml; then
             # Heartbeat only. [skip netlify] stops a redeploy of an
             # unchanged site.
             git commit -m "Record weekly Substack check [skip netlify]"

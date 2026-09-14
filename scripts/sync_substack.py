@@ -253,10 +253,10 @@ def read_api(known_slugs):
 # Pages
 # ---------------------------------------------------------------------------
 
-def region(page, name, replacement):
+def region(page, name, replacement, filename="news.html"):
     pattern = re.compile(rf"(<!-- {name}:START -->).*?(<!-- {name}:END -->)", re.S)
     if not pattern.search(page):
-        sys.exit(f"news.html is missing its <!-- {name}:START/END --> markers")
+        sys.exit(f"{filename} is missing its <!-- {name}:START/END --> markers")
     return pattern.sub(lambda m: m.group(1) + "\n" + replacement + "\n" + m.group(2), page)
 
 
@@ -357,6 +357,28 @@ def index_main(articles):
 </section>"""
 
 
+def latest_section(articles):
+    """The homepage's newest-three block. Empty (no section at all) until
+    there is an article to show."""
+    if not articles:
+        return ""
+    cards = "\n".join(f"""      <a class="latest-card reveal" href="news/{a['slug']}.html">
+        <time datetime="{a['date']}">{nice_date(a['date'])}</time>
+        <h3>{esc(a['title'])}</h3>
+        <span class="latest-more">Read article &rarr;</span>
+      </a>""" for a in articles[:3])
+    return f"""<section>
+  <div class="wrap">
+    <div class="s-eyebrow">Latest from Scholar Street</div>
+    <h2 class="s-title">What we&rsquo;re <em>watching.</em></h2>
+    <div class="latest-grid">
+{cards}
+    </div>
+    <div class="latest-all"><a href="news.html" class="btn-outline">All News</a></div>
+  </div>
+</section>"""
+
+
 def sitemap(articles):
     urls = [f"  <url><loc>{SITE}/{p}</loc></url>" for p in STATIC_PAGES]
     urls += [
@@ -403,6 +425,9 @@ def main():
 
     for a in articles:
         write_if_changed(NEWS_DIR / f"{a['slug']}.html", article_page(template, a))
+    home = ROOT / "index.html"
+    write_if_changed(home, region(home.read_text(encoding="utf-8"), "LATEST",
+                                  latest_section(articles), "index.html"))
     write_if_changed(ROOT / "sitemap.xml", sitemap(articles))
 
 

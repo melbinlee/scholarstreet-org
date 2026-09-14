@@ -256,9 +256,19 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .cta-band h2 em{font-style:italic;color:var(--gold)}
 .cta-band p{max-width:590px;margin:1.1rem auto 0;color:rgba(255,255,255,.6);font-size:16px}
 .cta-band .btns{margin-top:2.1rem;display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+/* LATEST NEWS (cards written by scripts/sync_substack.py) */
+.latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:2.8rem}
+.latest-card{display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);
+  padding:1.8rem 1.7rem;box-shadow:0 2px 16px rgba(27,46,75,.06);text-decoration:none;
+  border:1px solid transparent;transition:.18s}
+.latest-card:hover{border-color:rgba(200,168,75,.55);transform:translateY(-2px)}
+.latest-card time{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);font-weight:700}
+.latest-card h3{font-size:1.2rem;color:var(--navy);margin:.55rem 0 1rem;flex:1}
+.latest-more{font-size:13.5px;font-weight:700;color:var(--gold-dk)}
+.latest-all{margin-top:2.4rem}
 @media(max-width:940px){
   .hero-grid,.fam-grid{grid-template-columns:1fr;gap:38px}
-  .stat3,.mission-tiles{grid-template-columns:1fr}
+  .stat3,.mission-tiles,.latest-grid{grid-template-columns:1fr}
 }
 
 </style>
@@ -409,6 +419,28 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     </div>
   </div>
 </section>
+
+<!-- LATEST:START -->
+<section>
+  <div class="wrap">
+    <div class="s-eyebrow">Latest from Scholar Street</div>
+    <h2 class="s-title">What we&rsquo;re <em>watching.</em></h2>
+    <div class="latest-grid">
+      <a class="latest-card reveal" href="news/what-sgos-should-be-doing-right-now.html">
+        <time datetime="2026-09-14">September 14, 2026</time>
+        <h3>What SGOs Should Be Doing Right Now: A Section 25F Compliance Checklist</h3>
+        <span class="latest-more">Read article &rarr;</span>
+      </a>
+      <a class="latest-card reveal" href="news/the-rules-arriving-this-month-may.html">
+        <time datetime="2026-09-09">September 9, 2026</time>
+        <h3>The Rules Arriving This Month May Already Be Law</h3>
+        <span class="latest-more">Read article &rarr;</span>
+      </a>
+    </div>
+    <div class="latest-all"><a href="news.html" class="btn-outline">All News</a></div>
+  </div>
+</section>
+<!-- LATEST:END -->
 
 <section class="cta-band">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
