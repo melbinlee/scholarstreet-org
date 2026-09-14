@@ -1,0 +1,53 @@
+# Copies new Substack articles onto scholarstreet.org.
+#
+# Runs weekly, and on demand: Actions tab -> "Sync Substack articles" ->
+# "Run workflow" publishes a just-released article within about a minute
+# instead of waiting for Monday. The commit it pushes is what deploys the
+# site -- Netlify builds on every push to main.
+name: Sync Substack articles
+
+on:
+  schedule:
+    # Mondays 13:00 UTC (9am Eastern in summer, 8am in winter).
+    - cron: "0 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-substack
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch feed and rebuild news pages
+        run: python scripts/sync_substack.py
+
+      # GitHub disables scheduled workflows in a public repo after 60 days
+      # without a commit. If no article is published for two months the
+      # sync would stop silently, so every run leaves a commit behind.
+      - name: Record the run
+        run: date -u +"%Y-%m-%dT%H:%M:%SZ" > scripts/last-sync.txt
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A news news.html sitemap.xml scripts/last-sync.txt
+          if git diff --cached --quiet -- news news.html sitemap.xml; then
+            # Heartbeat only. [skip netlify] stops a redeploy of an
+            # unchanged site.
+            git commit -m "Record weekly Substack check [skip netlify]"
+          else
+            git commit -m "Sync articles from Substack"
+          fi
+          git push

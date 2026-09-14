@@ -1,0 +1,13 @@
+# Netlify publishes the whole repo, so anything in it is a public URL unless
+# listed here. The trailing ! is load-bearing: Netlify serves a matching
+# static file before it consults redirect rules, and ! forces the rule to win.
+#
+# /news/data holds the sync script's per-article records -- the same text as
+# the article pages, and a duplicate-content copy if crawled.
+/CLAUDE.md          /404  404!
+/scripts/*          /404  404!
+/news/data/*        /404  404!
+/.github/*          /404  404!
+
+# Browsers request /favicon.ico regardless of the <link rel="icon"> tag.
+/favicon.ico        /favicon.svg  200

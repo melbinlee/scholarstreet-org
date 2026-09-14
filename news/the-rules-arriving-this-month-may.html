@@ -20,16 +20,32 @@
     linker: { domains: ['scholarstreet.org', 'scholarship-insights.com'] }
   });
 </script>
-<title>Donate &mdash; Scholar Street SGO</title>
-<meta name="description" content="Donate to Scholar Street SGO and fund need- and merit-based K–12 scholarships for income-eligible students in the states we serve. Secure giving by card or bank transfer.">
+<!-- HEAD:START -->
+<title>The Rules Arriving This Month May Already Be Law — Scholar Street SGO</title>
+<meta name="description" content="Treasury’s own filings suggest the Section 25F rules could take effect immediately, not after a comment period.">
+<link rel="canonical" href="https://scholarstreet.org/news/the-rules-arriving-this-month-may.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Rules Arriving This Month May Already Be Law — Scholar Street SGO">
+<meta property="og:description" content="Treasury’s own filings suggest the Section 25F rules could take effect immediately, not after a comment period.">
+<meta property="og:url" content="https://scholarstreet.org/news/the-rules-arriving-this-month-may.html">
+<meta property="og:image" content="https://substackcdn.com/image/fetch/$s_!fCxp!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F708a0c6e-48f1-417c-a5f2-d80203adcdbc_1024x1024.png">
+<!-- HEAD:END -->
+
+<!-- Warm up the donation portal before the visitor clicks Donate -->
 <link rel="preconnect" href="https://scholarship-insights.com" crossorigin>
 <link rel="preconnect" href="https://js.stripe.com" crossorigin>
-<link rel="preconnect" href="https://jyrpfbjhojnfnefmbdpf.supabase.co" crossorigin>
-<link rel="dns-prefetch" href="https://api.stripe.com">
+<link rel="dns-prefetch" href="https://jyrpfbjhojnfnefmbdpf.supabase.co">
+<script type="speculationrules">
+{
+  "prerender": [
+    { "where": { "href_matches": "/donate.html" }, "eagerness": "moderate" }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --navy:#1B2E4B; --navy-dk:#132238; --gold:#C8A84B; --gold-dk:#b8953e;
@@ -194,29 +210,44 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   .wrap{padding:0 18px}
 }
 
+/* ---------- NEWS LIST ---------- */
+.news-list{display:grid;gap:22px;max-width:860px}
+.news-card{display:block;background:#fff;border-radius:var(--radius);padding:1.9rem 2rem;
+  box-shadow:0 2px 16px rgba(27,46,75,.06);text-decoration:none;border:1px solid transparent;transition:.18s}
+.news-card:hover{border-color:rgba(200,168,75,.55);transform:translateY(-2px)}
+.news-card time{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);font-weight:700}
+.news-card h2{font-size:1.45rem;color:var(--navy);margin:.55rem 0 .6rem}
+.news-card p{font-size:15px;color:var(--text-mid);line-height:1.75}
+.news-more{display:inline-block;margin-top:.9rem;font-size:13.5px;font-weight:700;color:var(--gold-dk)}
+.news-subscribe{max-width:860px;margin-top:2.6rem;display:flex;align-items:center;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;padding-top:2rem;border-top:1px solid rgba(27,46,75,.09)}
+.news-subscribe p{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--navy)}
 
-.d-frame-wrap{padding:56px 0 76px}
-.d-frame-inner{max-width:1000px;margin:0 auto;padding:0 24px}
-#donateFrame{width:100%;border:none;display:block;min-height:1450px;
-  background:transparent;overflow:hidden}
-.d-fallback{max-width:620px;margin:0 auto;text-align:center;background:#fff;
-  border-radius:var(--radius);padding:2.4rem 2.2rem;box-shadow:0 2px 16px rgba(27,46,75,.06)}
-.d-fallback h3{font-size:19px;color:var(--navy);margin-bottom:.7rem}
-.d-fallback p{font-size:14.5px;color:var(--text-mid);line-height:1.75;margin-bottom:1.5rem}
-
-.d-other{background:var(--navy);color:#fff}
-.d-other .s-eyebrow{color:rgba(255,255,255,.62)}
-.d-other h2{color:#fff}
-.d-other h2 em{font-style:italic;color:var(--gold)}
-.d-other-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:2.8rem}
-.d-other-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  border-radius:var(--radius);padding:1.9rem 1.7rem}
-.d-other-card h4{font-size:16.5px;color:#fff;margin-bottom:.5rem}
-.d-other-card p{font-size:13.5px;color:rgba(255,255,255,.56);line-height:1.7}
-.d-other-card a{color:var(--gold);text-decoration:none;font-weight:600;font-size:13.5px;
-  display:inline-block;margin-top:.75rem}
-.d-other-card a:hover{text-decoration:underline}
-@media(max-width:940px){.d-other-grid{grid-template-columns:1fr}}
+/* ---------- ARTICLE ---------- */
+.page-hero .crumb{color:inherit;text-decoration:none}
+.page-hero .crumb:hover{color:var(--gold)}
+.post-meta{margin-top:1.3rem;font-size:13.5px;color:rgba(255,255,255,.5)}
+.post-body{max-width:720px;font-size:17px;line-height:1.8;color:var(--text)}
+.post-body > * + *{margin-top:1.1em}
+.post-body h2{font-size:1.65rem;color:var(--navy);margin-top:2.1em}
+.post-body h3{font-size:1.25rem;color:var(--navy);margin-top:1.7em}
+.post-body h4{font-size:1.05rem;color:var(--navy);margin-top:1.5em}
+.post-body ul,.post-body ol{padding-left:1.4em}
+.post-body li + li{margin-top:.35em}
+.post-body li p{margin:0}
+.post-body a{color:var(--navy);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+.post-body a:hover{color:var(--gold-dk)}
+.post-body blockquote{border-left:3px solid var(--gold);padding:.2em 0 .2em 1.2em;color:var(--text-mid);font-style:italic}
+.post-body img{border-radius:10px;margin:0 auto}
+.post-body figcaption{font-size:13.5px;color:var(--text-lt);text-align:center;margin-top:.5em}
+.post-body hr{border:none;border-top:1px solid rgba(27,46,75,.12);margin:2em 0}
+.post-body table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-x:auto}
+.post-body th,.post-body td{border:1px solid rgba(27,46,75,.12);padding:.5em .7em;text-align:left}
+.post-foot{max-width:720px;margin-top:3rem;padding-top:1.8rem;border-top:1px solid rgba(27,46,75,.09)}
+.post-foot p{font-size:14.5px;color:var(--text-mid)}
+.post-foot p a{color:var(--navy);font-weight:600}
+.post-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:1.4rem}
+@media(max-width:620px){.news-card{padding:1.5rem 1.35rem}.post-body{font-size:16.5px}}
 
 </style>
 
@@ -227,7 +258,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   <span><strong>Scholar Street is an IRS-approved 501(c)(3) public charity</strong> &mdash; EIN 42-2704061 &middot; Arlington, Virginia &middot; Contributions are tax-deductible under IRC &#167;170.</span>
 </div>
 <nav id="mainNav">
-  <a class="nav-logo" href="index.html">
+  <a class="nav-logo" href="../index.html">
     <div class="nav-crest"><svg viewBox="7 6 30 30" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 30 L9 18 Q22 14 22 14 Q22 14 35 18 L35 30 Q22 26 22 26 Q22 26 9 30 Z" fill="#F9F7F2"/>
         <line x1="22" y1="14" x2="22" y2="30" stroke="#C8A84B" stroke-width="1.2"/>
@@ -245,120 +276,47 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="why-25f.html">Why &#167;25F</a></li>
-    <li><a href="how-giving-works.html">How It Works</a></li>
-    <li><a href="impact.html">Impact</a></li>
-    <li><a href="platform.html">Our Difference</a></li>
-    <li><a href="leadership.html">Leadership</a></li>
-    <li><a href="news.html">News</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../why-25f.html">Why &#167;25F</a></li>
+    <li><a href="../how-giving-works.html">How It Works</a></li>
+    <li><a href="../impact.html">Impact</a></li>
+    <li><a href="../platform.html">Our Difference</a></li>
+    <li><a href="../leadership.html">Leadership</a></li>
+    <li><a href="../news.html" class="active">News</a></li>
+    <li><a href="../contact.html">Contact</a></li>
     <li><a href="https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener" class="nav-apply-outline">Apply</a></li>
-    <li><a href="donate.html" class="nav-apply active">Donate</a></li>
+    <li><a href="../donate.html" class="nav-apply">Donate</a></li>
   </ul>
 </nav>
 
+<!-- MAIN:START -->
 <section class="page-hero">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
   <div class="wrap">
-    <div class="s-eyebrow">Donate</div>
-    <h1 class="ph-title">Every donation<br>makes a <em>difference.</em></h1>
-    <p class="ph-sub">Contributions support the singular mission to help kids get the education
-    that&rsquo;s best for them.</p>
+    <div class="s-eyebrow"><a href="../news.html" class="crumb">News</a></div>
+    <h1 class="ph-title">The Rules Arriving This Month May Already Be Law</h1>
+    <p class="ph-sub">Treasury’s own filings suggest the Section 25F rules could take effect immediately, not after a comment period.</p>
+    <p class="post-meta">Scholar Street &middot; <time datetime="2026-09-09">September 9, 2026</time></p>
   </div>
 </section>
 
-<section class="d-frame-wrap">
-  <div class="d-frame-inner">
-    <noscript>
-      <div class="d-fallback">
-        <h3>JavaScript required</h3>
-        <p>Our secure donation form needs JavaScript enabled. Please turn it on and reload,
-        or email us and we&rsquo;ll take your gift directly.</p>
-        <a href="mailto:mel@scholarstreet.org" class="btn-gold">Email Us</a>
-      </div>
-    </noscript>
-    <!-- The payment portal lives on scholarship-insights.com and is named
-         donate.html there. This page is the wrapper; they are different files
-         with the same name on different domains. Do not point this at itself. -->
-    <iframe id="donateFrame"
-            src="https://scholarship-insights.com/donate.html?org=scholarstreet&embedded=true"
-            title="Scholar Street secure donation form"
-            allow="payment"
-            scrolling="no"></iframe>
-    <div class="d-fallback" id="frameFallback" style="display:none">
-      <h3>Having trouble loading the form?</h3>
-      <p>You can open our secure donation page directly in a new tab, or get in touch and
-      we&rsquo;ll help you give another way.</p>
-      <a href="https://scholarship-insights.com/donate.html?org=scholarstreet" class="btn-gold" target="_blank" rel="noopener">Open Donation Page</a>
-    </div>
-  </div>
-</section>
-
-<section class="d-other">
+<section>
   <div class="wrap">
-    <div class="s-eyebrow">Other Ways to Give</div>
-    <h2 class="s-title">Gifts that need<br>a <em>conversation.</em></h2>
-    <p class="s-lead" style="color:rgba(255,255,255,.62)">Some contributions are handled directly
-    rather than through the form. We&rsquo;ll walk you through any of these.</p>
-
-    <div class="d-other-grid">
-      <div class="d-other-card reveal">
-        <h4>State-specific programs</h4>
-        <p>In our home state of Virginia, the Education Improvement Scholarships Tax Credit (EISTC)
-        requires state preauthorization before a gift can be processed, so we handle those
-        contributions directly.</p>
-        <a href="mailto:mel@scholarstreet.org?subject=Virginia%20EISTC%20Inquiry">Ask about EISTC</a>
-      </div>
-      <div class="d-other-card reveal">
-        <h4>Stock, wire, or DAF</h4>
-        <p>Appreciated securities, wire transfers, and donor-advised fund grants are arranged
-        directly with us. Note the federal credit applies to cash contributions.</p>
-        <a href="mailto:ryan@scholarstreet.org?subject=Stock%20or%20Wire%20Gift">Arrange a Gift</a>
-      </div>
-      <div class="d-other-card reveal">
-        <h4>Corporate &amp; founding donors</h4>
-        <p>Businesses supporting educational access, and donors who want to help shape the
-        first award cycle, should start with a conversation.</p>
-        <a href="contact.html">Start a Conversation</a>
+    <article class="post-body">
+<p>Everyone waiting for the Treasury&#8217;s Section 25F regulations has been told the same story: proposed rules by the end of September, a comment period, then final regulations before the credit goes live on January 1, 2027.</p><p>The Treasury said as much on June 10, when Deputy Assistant Secretary Kevin Salinger previewed the forthcoming guidance and committed to a September deadline.</p><p>But the Treasury&#8217;s own paperwork tells a different story.</p><p>And if you&#8217;re a scholarship granting organization trying to build compliance systems, a state revenue department figuring out how to certify SGOs, or an advisor telling donors what to expect&#8212;this distinction is not academic.</p><h2>What the Unified Agenda Actually Says</h2><p>On July 3, 2026, the Office of Information and Regulatory Affairs published the 2026 Unified Agenda of Federal Regulatory and Deregulatory Actions.</p><p>Buried in it are the first two entries ever filed for the Section 25F program:</p><ul><li><p>RIN 1545-BR97 &#8212; covering the proposed regulations under IRC &#167;25F</p></li><li><p>RIN 1545-BS17 &#8212; covering temporary regulations for the tax credit for contributions to SGOs</p></li></ul><p>Both entries list their timetable action as an interim final rule&#8212;not a notice of proposed rulemaking.</p><p>As eftccredit.com reported on July 29, that designation has a specific legal meaning: an interim final rule takes effect the day it publishes in the Federal Register. Comments are collected afterward, while states, SGOs, and donors are already living under the rule.</p><p>This is not unusual in tax regulation. The Treasury uses interim final rules when statutory deadlines make the standard propose-comment-finalize sequence impractical.</p><p>The Affordable Care Act&#8217;s employer mandate regulations, the Opportunity Zone rules under Section 1400Z-2, and the SALT cap workaround guidance all followed this path.</p><p>The practical consequence is the same every time: the people most affected by the rule learn its final terms and must comply with them simultaneously.</p><p>There is a wrinkle.</p><p>RIN 1545-BR97&#8217;s abstract still uses the phrase &#8220;proposed regulations&#8221; in the Treasury&#8217;s own summary, while the timetable field says &#8220;interim final rule.&#8221;</p><p>Whether that reflects a genuine split&#8212;some provisions proposed, others interim-final&#8212;or simply a mismatch in how the Treasury filled out the form, no one outside the building knows.</p><p>The most likely reading, based on how the Treasury has handled comparable situations, is that at least the operational rules&#8212;such as SGO certification, state list mechanics, the 90-percent spending test, and donor reporting&#8212;will be binding upon publication, while the more contested questions may get a separate proposed rule with a comment period.</p><p>For SGOs, that distinction matters.</p><h2>What Goes Live Without a Comment Period</h2><p>Salinger&#8217;s June preview outlined the framework the Treasury intends to codify.</p><p>If those provisions result as an interim final rule, SGOs and states will be operating under them immediately&#8212;with no window to push back before the rules take hold.</p><p>Here is what that covers.</p><h3>The 90-Percent Spending Test</h3><p>The rule will measure spending against total receipts, unreduced by expenses, with a safe harbor for organizations that maintain a segregated Section 25F account.</p><p>For multistate SGOs, the safe harbor must be satisfied separately for each state-specific account.</p><p>An SGO that has been running a state-program scholarship fund for a decade will need to set up an entirely new, legally separate account for federal-credit contributions&#8212;and the spending math on that account will be measured from day one.</p><h3>Income Verification</h3><p>SGOs will be allowed to verify a student&#8217;s household income&#8212;the 300%-of-area-median-gross-income threshold under 26 U.S.C. &#167;25F(c)(2)(A)&#8212;through:</p><ul><li><p>Paystubs</p></li><li><p>Tax returns</p></li><li><p>W-2s</p></li><li><p>Crediting agencies</p></li><li><p>Categorical eligibility in needs-based federal or state programs</p></li></ul><p>Foster children will satisfy the income requirement automatically.</p><p>These safe harbors are reasonable, but no official AMGI threshold tables for Section 25F have been published yet.</p><p>That means an SGO could be required to verify income against a benchmark it cannot yet reference on an IRS page.</p><h3>The Unique Donor Number</h3><p>Donors will not give their Social Security numbers to SGOs.</p><p>Instead, each SGO will generate a unique donor number under an IRS-provided method, include it in the written acknowledgment, and report it to the IRS for matching.</p><p>The IRS has announced a forthcoming portal to support this, but has said that &#8220;the precise functionality and timing may develop in phases rather than all being available on day one.&#8221;</p><p>If the rule is final on publication, SGOs will need the number-generation method immediately.</p><p>Whether the IRS portal is ready to receive that data is a separate question.</p><h3>Annual Audits</h3><p>Each SGO must obtain an annual financial and programmatic audit from a qualified independent third party and provide it to every state on whose list it appears.</p><p>Smaller SGOs may use a streamlined internal-committee audit, signed under penalties of perjury.</p><p>The threshold for &#8220;smaller&#8221; has not been defined.</p><h2>What Remains Unresolved&#8212;and May Get a Separate Proposed Rule</h2><p>The June preview explicitly left several questions open.</p><p>These are the items most likely to follow the conventional propose-and-comment path.</p><h3>The Joint-Filer Question</h3><p>Section 25F(b)(1) says the credit &#8220;shall not exceed $1,700&#8221; per &#8220;taxpayer&#8221; per taxable year.</p><p>Whether married couples filing jointly are one taxpayer or two&#8212;and therefore whether the cap is $1,700 or $3,400 per return&#8212;is the single, highest-dollar unresolved question in the program.</p><p>The prevailing reading, shared by Holland &amp; Knight and most tax commentators, is $1,700 per return regardless of filing status.</p><p>But the Treasury has not confirmed.</p><h3>AMT Coordination</h3><p>How the Section 25F credit interacts with the alternative minimum tax remains unresolved.</p><h3>The Scope of Eligible Expenses Under Section 530</h3><p>Salinger confirmed that the Treasury &#8220;fully intend[s] that scholarships may be used to support additive academic tutoring and special needs services,&#8221; but said that the guidance would be a &#8220;separate workstream&#8221; after the Section 25F regulations.</p><p>Families and SGOs planning for support for tutoring and therapy services will therefore not have a definitive list of eligible expenses when the credit launches.</p><h2>The Real Risk: A Legitimacy Gap</h2><p>The procedural question&#8212;a proposed rule versus an interim final rule&#8212;is not just a matter of timing.</p><p>It is a question of whether the people impacted by these rules had a meaningful opportunity to shape them before they take effect.</p><p>The Treasury solicited comments through IRS Notice 2025-70, which closed on December 26, 2025.</p><p>That was nearly nine months ago, before most states had opted in, before any SGO had begun building federal compliance systems, and before the practical questions of implementation had fully surfaced.</p><p>The June preview addressed many of those questions at a high level.</p><p>But a preview does not make a comment period.</p><p>Stakeholders could not submit formal objections to provisions that existed as bullet points in a speech.</p><p>If the September rules arrive as an interim final rule with a post-publication comment period, the comment process becomes retrospective.</p><p>SGOs will be filing comments asking the Treasury to change rules they are already required to follow.</p><p>The Treasury can and does revise interim final rules based on comments, but the revision timeline is measured in months or years&#8212;not weeks.</p><p>The first year of the program will run on rules that no one outside the Treasury had the chance to formally challenge before taking effect.</p><p>It also means that the organizations closest to the ground&#8212;the SGOs that will verify incomes, manage accounts, generate donor numbers, and deliver scholarships to families&#8212;need to treat the June preview not as a heads-up, but as a near-final draft.</p><p>The rules are coming, and they may be binding the day you read them in the Federal Register.</p><h2>Coming Next</h2><p>Next in this series: Which states have opted in, which governors are being overridden by their own legislatures, and what that means if you&#8217;re in one of the 14 states still on the fence.</p><p>Then: A practical checklist of what SGOs should be doing right now before the rules land.</p><h2>About Scholar Street</h2><p>Scholar Street connects donors and families to make the scholarship process easier to navigate&#8212;not just for tax code experts.</p><p>If you believe every family deserves access to educational opportunities of their choice, visit scholarstreet.org to support our work.</p>
+    </article>
+    <div class="post-foot">
+      <p>This article first appeared in the Scholar Street newsletter.
+      <a href="https://scholarstreet.substack.com/subscribe" target="_blank" rel="noopener">Subscribe on Substack</a>
+      to get new articles by email.</p>
+      <div class="post-actions">
+        <a href="../news.html" class="btn-outline">&larr; All News</a>
+        <a href="../donate.html" class="btn-gold">Support Scholar Street</a>
       </div>
     </div>
   </div>
 </section>
-
-<script>
-(function(){
-  var frame = document.getElementById('donateFrame');
-  if(!frame) return;
-
-  // Grow the iframe to match the form so there's no scrollbar inside a scrollbar.
-  window.addEventListener('message', function(e){
-    var d = e && e.data;
-    if(!d || typeof d !== 'object') return;
-    var h = d.scholarstreetEmbedHeight;
-    if(typeof h === 'number' && h > 300 && h < 20000){
-      frame.style.height = (h + 24) + 'px';
-      frame.style.minHeight = '0';
-    }
-    // After a successful gift the portal swaps to a short thank-you card.
-    // The parent is still scrolled to where the form used to be, so bring
-    // the frame back into view or the donor sees the footer.
-    if(d.scholarstreetScrollToFrame === true){
-      frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, false);
-
-  // If the portal never loads, offer a direct link instead of a blank box.
-  var loaded = false;
-  frame.addEventListener('load', function(){ loaded = true; });
-  setTimeout(function(){
-    if(!loaded){
-      frame.style.display = 'none';
-      document.getElementById('frameFallback').style.display = 'block';
-    }
-  }, 12000);
-})();
-</script>
+<!-- MAIN:END -->
 
 <footer>
   <div class="wrap">
@@ -418,24 +376,24 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       </div>
       <div class="fcol">
         <h5>Program</h5>
-        <a href="why-25f.html">Why &#167;25F</a>
-        <a href="how-giving-works.html">How It Works</a>
-        <a href="impact.html">Targeted Impact</a>
-        <a href="platform.html">Our Difference</a>
+        <a href="../why-25f.html">Why &#167;25F</a>
+        <a href="../how-giving-works.html">How It Works</a>
+        <a href="../impact.html">Targeted Impact</a>
+        <a href="../platform.html">Our Difference</a>
       </div>
       <div class="fcol">
         <h5>Organization</h5>
-        <a href="platform.html#governance">Governance</a>
-        <a href="leadership.html">Leadership</a>
-        <a href="news.html">News</a>
-        <a href="index.html">Home</a>
+        <a href="../platform.html#governance">Governance</a>
+        <a href="../leadership.html">Leadership</a>
+        <a href="../news.html">News</a>
+        <a href="../index.html">Home</a>
       </div>
       <div class="fcol">
         <h5>Get Involved</h5>
-        <a href="donate.html">Donate</a>
+        <a href="../donate.html">Donate</a>
         <a href="https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener">Apply for a Scholarship</a>
-        <a href="contact.html">Partner With Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="../contact.html">Partner With Us</a>
+        <a href="../contact.html">Contact</a>
       </div>
     </div>
     <div class="fbot">
