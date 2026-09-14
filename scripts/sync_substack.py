@@ -30,6 +30,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 FEED_URL = "https://scholarstreet.substack.com/feed"
+API_URL = "https://scholarstreet.substack.com/api/v1"
 SITE = "https://scholarstreet.org"
 ROOT = Path(__file__).resolve().parent.parent
 NEWS_DIR = ROOT / "news"
@@ -158,17 +159,26 @@ def clean_html(raw):
 # Feed
 # ---------------------------------------------------------------------------
 
+# Substack sits behind Cloudflare, which answers urllib's default
+# "Python-urllib" user agent with an error page (code 1010) instead of the feed.
+USER_AGENT = ("Mozilla/5.0 (compatible; ScholarStreetNewsSync/1.0; "
+              "+https://scholarstreet.org/news.html)")
+
+
+def fetch(url):
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return r.read()
+
+
 def read_feed(source):
-    if source:
-        data = Path(source).read_bytes()
-    else:
-        req = urllib.request.Request(FEED_URL, headers={
-            "User-Agent": "scholarstreet.org news sync",
-            "Cache-Control": "no-cache",
-        })
-        with urllib.request.urlopen(req, timeout=60) as r:
-            data = r.read()
-    root = ET.fromstring(data)
+    data = Path(source).read_bytes() if source else fetch(FEED_URL)
+    try:
+        root = ET.fromstring(data)
+    except ET.ParseError:
+        # A block page or outage. Fail the run loudly rather than carry on
+        # with nothing and look like there were no new articles.
+        sys.exit(f"feed is not XML -- blocked or down? First bytes: {data[:200]!r}")
     articles = []
     for item in root.iter("item"):
         link = (item.findtext("link") or "").strip()
@@ -193,6 +203,49 @@ def read_feed(source):
             "image": enclosure.get("url") if enclosure is not None else "",
             "body": clean_html(body),
         })
+    return articles
+
+
+def read_api(known_slugs):
+    """Articles the feed is missing, from Substack's post API.
+
+    Substack caches the feed per edge server, and on the day an article is
+    published some servers keep handing out the old copy for hours. The
+    archive endpoint is current, so it catches what the feed has not caught up
+    to yet. It is undocumented: if it fails or changes shape, warn and rely on
+    the feed alone -- the article will arrive on a later run.
+    """
+    try:
+        listing = json.loads(fetch(f"{API_URL}/archive?sort=new&limit=12"))
+    except Exception as e:  # noqa: BLE001 -- any failure here is non-fatal
+        print(f"warning: archive API unavailable ({e}); using feed only")
+        return []
+    articles = []
+    for item in listing:
+        slug = item.get("slug")
+        if not slug or slug in known_slugs or item.get("audience") != "everyone":
+            continue
+        try:
+            post = json.loads(fetch(f"{API_URL}/posts/{slug}"))
+            body = post["body_html"]
+            published = post["post_date"][:10]
+        except Exception as e:  # noqa: BLE001
+            print(f"warning: could not fetch {slug} from API ({e})")
+            continue
+        if not body or "paywall" in body:
+            continue
+        bylines = post.get("publishedBylines") or []
+        articles.append({
+            "slug": slug,
+            "title": (post.get("title") or "").strip(),
+            "description": (post.get("subtitle") or post.get("description") or "").strip(),
+            "author": bylines[0]["name"] if bylines else "Scholar Street",
+            "date": published,
+            "substack_url": post.get("canonical_url") or f"https://scholarstreet.substack.com/p/{slug}",
+            "image": post.get("cover_image") or "",
+            "body": clean_html(body),
+        })
+        print(f"from API (not yet in feed): {slug}")
     return articles
 
 
@@ -325,8 +378,11 @@ def write_if_changed(path, text):
 
 
 def main():
-    fetched = read_feed(sys.argv[1] if len(sys.argv) > 1 else None)
+    source = sys.argv[1] if len(sys.argv) > 1 else None
+    fetched = read_feed(source)
     print(f"feed: {len(fetched)} article(s)")
+    if not source:
+        fetched += read_api({a["slug"] for a in fetched})
     for a in fetched:
         write_if_changed(DATA_DIR / f"{a['slug']}.json",
                          json.dumps(a, indent=2, ensure_ascii=False) + "\n")
