@@ -20,8 +20,8 @@
     linker: { domains: ['scholarstreet.org', 'scholarship-insights.com'] }
   });
 </script>
-<title>Targeted Impact &mdash; Scholar Street SGO</title>
-<meta name="description" content="Give to Scholar Street's general scholarship fund or direct support to a designated fund serving faith-based education, special needs students, or military families.">
+<title>Impact &mdash; Scholar Street SGO</title>
+<meta name="description" content="How Scholar Street directs scholarship support to underserved communities, why the federal Education Freedom Tax Credit (IRC §25F) matters, and how a gift becomes a scholarship.">
 
 <!-- Warm up the donation portal before the visitor clicks Donate -->
 <link rel="preconnect" href="https://scholarship-insights.com" crossorigin>
@@ -257,6 +257,70 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   .gen-fund{grid-template-columns:1fr}
 }
 
+/* ---------- MERGED-PAGE ANCHORS ---------- */
+section[id]{scroll-margin-top:78px}
+.jump{display:flex;gap:10px;flex-wrap:wrap;margin-top:2rem}
+.jump a{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;
+  color:rgba(255,255,255,.78);text-decoration:none;padding:9px 18px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.26);transition:.18s}
+.jump a:hover{color:var(--navy);background:var(--gold);border-color:var(--gold)}
+.sec-lead{max-width:760px;margin-top:1.15rem;font-size:16.5px;color:var(--text-mid);line-height:1.8}
+
+/* ---------- WHY 25F ---------- */
+.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3.2rem}
+.big-card{background:#fff;border-radius:var(--radius);padding:2.1rem 1.8rem;
+  box-shadow:0 2px 16px rgba(27,46,75,.06)}
+.big-val{font-family:var(--serif);font-size:2.3rem;font-weight:700;color:var(--navy);line-height:1}
+.big-lbl{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);
+  font-weight:700;margin:.8rem 0 .65rem}
+.big-card p{font-size:14.5px;color:var(--text-mid);line-height:1.75}
+.facts{background:var(--cream2)}
+.fact-row{display:grid;grid-template-columns:200px 1fr;gap:26px;padding:1.5rem 0;
+  border-bottom:1px solid rgba(27,46,75,.09)}
+.fact-row:last-child{border-bottom:none}
+.fact-k{font-family:var(--serif);font-size:16.5px;font-weight:700;color:var(--navy)}
+.fact-v{font-size:15px;color:var(--text-mid);line-height:1.78}
+@media(max-width:940px){.big3{grid-template-columns:1fr}.fact-row{grid-template-columns:1fr;gap:8px}}
+
+/* ---------- HOW IT WORKS ---------- */
+.steps{margin-top:3.2rem;max-width:820px;position:relative}
+.steps::before{content:'';position:absolute;left:27px;top:20px;bottom:20px;width:2px;
+  background:linear-gradient(180deg,var(--gold) 0%,rgba(200,168,75,.25) 100%)}
+.step{display:grid;grid-template-columns:56px 1fr;gap:26px;align-items:start;
+  padding:0 0 2.5rem;position:relative}
+.step:last-child{padding-bottom:0}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--navy);
+  font-family:var(--serif);font-size:1.15rem;font-weight:700;display:flex;
+  align-items:center;justify-content:center;position:relative;z-index:2;
+  box-shadow:0 0 0 7px var(--cream)}
+.step-body{padding-top:.55rem}
+.step h4{font-size:19px;color:var(--navy);margin-bottom:.5rem}
+.step p{font-size:15px;color:var(--text-mid);line-height:1.78;max-width:620px}
+@media(max-width:620px){
+  .steps::before{left:20px}
+  .step{grid-template-columns:42px 1fr;gap:18px}
+  .step-num{width:42px;height:42px;font-size:1rem;box-shadow:0 0 0 6px var(--cream)}
+}
+.money{background:var(--navy);color:#fff}
+.money .s-eyebrow{color:rgba(255,255,255,.62)}
+.money h2{color:#fff}
+.money h2 em{font-style:italic;color:var(--gold)}
+.money-lead{max-width:760px;margin-top:1.1rem;font-size:16.5px;color:rgba(255,255,255,.68);line-height:1.82}
+.money-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3rem;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--radius);overflow:hidden}
+.money-item{background:var(--navy);padding:2rem 1.9rem}
+.money-statement{margin-top:2.4rem;font-size:16.5px;color:rgba(255,255,255,.72);
+  line-height:1.82;max-width:820px;padding-left:1.2rem;border-left:2px solid var(--gold)}
+.money-statement strong{color:var(--gold);font-weight:700}
+.money-item h4{font-size:15.5px;color:#fff;margin-bottom:.55rem}
+.money-item p{font-size:14px;color:rgba(255,255,255,.56);line-height:1.75}
+.money-ico{width:34px;height:34px;border-radius:9px;background:rgba(200,168,75,.14);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.money-ico svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:2.1;
+  stroke-linecap:round;stroke-linejoin:round}
+.disc{margin-top:2.4rem;font-size:12.5px;color:rgba(255,255,255,.34);line-height:1.7;max-width:760px}
+@media(max-width:940px){.money-grid{grid-template-columns:1fr}}
 </style>
 
 </head>
@@ -285,8 +349,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
-    <li><a href="why-25f.html">Why &#167;25F</a></li>
-    <li><a href="how-giving-works.html">How It Works</a></li>
     <li><a href="impact.html" class="active">Impact</a></li>
     <li><a href="platform.html">Our Difference</a></li>
     <li><a href="leadership.html">Leadership</a></li>
@@ -300,14 +362,19 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 <section class="page-hero">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
   <div class="wrap">
-    <div class="s-eyebrow">Targeted Impact</div>
+    <div class="s-eyebrow">Our Impact</div>
     <h1 class="ph-title">A tailored approach to<br><em>underserved communities.</em></h1>
     <p class="ph-sub">Donors can give to Scholar Street&rsquo;s general scholarship fund, or direct their
     support to a designated fund serving a specific community.</p>
+    <div class="jump">
+      <a href="#impact">Targeted Impact</a>
+      <a href="#why-25f">Why &#167;25F</a>
+      <a href="#how-it-works">How It Works</a>
+    </div>
   </div>
 </section>
 
-<section class="funds">
+<section class="funds" id="impact">
   <div class="wrap">
     <div class="gen-fund reveal">
       <div class="gen-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg></div>
@@ -379,6 +446,153 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </div>
 </section>
 
+<section id="why-25f">
+  <div class="wrap">
+    <div class="s-eyebrow">Why &#167;25F</div>
+    <h2 class="s-title">A new federal opportunity<br>for <em>scholarship giving.</em></h2>
+    <p class="sec-lead">In 2025, Congress created the first federal tax credit for K&ndash;12 scholarship
+    donations &mdash; the Education Freedom Tax Credit (IRC &#167;25F) &mdash; effective January 1, 2027.
+    Scholar Street is registered to operate in multiple states and is building its footprint ahead of
+    the January 1, 2027 launch.</p>
+    <div class="big3">
+      <div class="big-card reveal">
+        <div class="big-val">$1,700</div>
+        <div class="big-lbl">Dollar-for-Dollar</div>
+        <p>A federal tax credit per taxpayer, not a deduction. Nonrefundable, with a five-year
+        carryforward if your liability is smaller than your gift. Treasury has not yet issued
+        guidance on how the cap applies to joint returns.</p>
+      </div>
+      <div class="big-card reveal">
+        <div class="big-val">Any Taxpayer</div>
+        <div class="big-lbl">No Donor Income Limit</div>
+        <p>Any individual with U.S. federal tax liability can claim the credit. There is no income
+        ceiling for donors, and no phase-out. Cash gifts only.</p>
+      </div>
+      <div class="big-card reveal">
+        <div class="big-val">300% AMI</div>
+        <div class="big-lbl">Household Eligibility</div>
+        <p>Scholarship eligibility reaches households up to 300% of area median income &mdash; a
+        threshold that includes a wide range of working families.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="facts">
+  <div class="wrap">
+    <div class="s-eyebrow">The Details</div>
+    <h2 class="s-title">How the credit <em>actually works.</em></h2>
+
+    <div style="margin-top:2.8rem">
+      <div class="fact-row">
+        <div class="fact-k">A credit, not a deduction</div>
+        <div class="fact-v">A deduction reduces your taxable income. A credit reduces your tax bill
+        dollar-for-dollar. A $1,700 gift to Scholar Street offsets $1,700 of federal tax owed &mdash;
+        money that would otherwise go to the IRS, directed instead to a child&rsquo;s education.</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-k">Nonrefundable, with carryforward</div>
+        <div class="fact-v">The credit can reduce your federal liability to zero but not below it.
+        If your gift exceeds what you owe in a given year, the unused portion carries forward
+        for up to five years.</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-k">Cash contributions only</div>
+        <div class="fact-v">The federal credit applies to cash gifts. Contributions above the credited
+        amount may qualify as a charitable deduction if you itemize.</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-k">Effective January 1, 2027</div>
+        <div class="fact-v">The credit becomes available for contributions made on or after
+        January 1, 2027. Scholar Street is registered to operate in multiple states and is building its footprint ahead of the launch.</div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-k">Awards are tax-free to families</div>
+        <div class="fact-v">Scholarship awards received by families are not treated as federal
+        taxable income.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2.6rem;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#how-it-works" class="btn-gold">How Giving Works</a>
+      <a href="contact.html" class="btn-outline">Talk With Us</a>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works">
+  <div class="wrap">
+    <div class="s-eyebrow">How It Works</div>
+    <h2 class="s-title">A simple path from<br>gift <em>to scholarship.</em></h2>
+    <p class="sec-lead">Three steps connect a donor&rsquo;s contribution to a student&rsquo;s classroom &mdash;
+    with award decisions made independently of the people who raise the money.</p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Donor contributes</h4>
+          <p>A donor makes a cash gift securely through the Scholar Street platform and automatically
+        receives a donation receipt for their records.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Donor claims the federal credit</h4>
+          <p>Beginning in 2027, donors may claim a federal tax credit of up to $1,700, dollar-for-dollar.
+        Contributions above the credited amount may qualify as a charitable deduction if you itemize.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>An independent committee selects recipients</h4>
+          <p>An Independent Scholarship Selection Committee, operating outside Scholar Street&rsquo;s Board,
+        awards scholarships based on financial need and academic merit during the designated award cycle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="money">
+  <div class="wrap">
+    <div class="s-eyebrow">Where the Money Goes</div>
+    <h2 class="s-title">Paid directly to the<br><em>verified school.</em></h2>
+    <p class="money-lead">Scholarship funds are paid directly to the student&rsquo;s verified school &mdash;
+    never to the family &mdash; and may be used for tuition, tutoring, textbooks, technology,
+    transportation, and other qualified K&ndash;12 educational expenses.</p>
+
+    <div class="money-grid">
+      <div class="money-item reveal">
+        <div class="money-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-5h4v5"/></svg></div>
+        <h4>Funds go to the school</h4>
+        <p>Payment is made to the verified educational institution, not to the household. This protects
+        both the family and the integrity of the program.</p>
+      </div>
+      <div class="money-item reveal">
+        <div class="money-ico"><svg viewBox="0 0 24 24"><path d="M9 11a3 3 0 100-6 3 3 0 000 6zM2.5 20v-1.5A4.5 4.5 0 017 14h4a4.5 4.5 0 014.5 4.5V20"/><path d="M17 7.5h5M19.5 5v5"/></svg></div>
+        <h4>Renewable for a student and their siblings</h4>
+        <p>Our program is structured to support a student and their siblings each consecutive
+        year, as long as eligibility requirements continue to be met.</p>
+      </div>
+    </div>
+
+    <p class="money-statement reveal">Our target award is <strong>$5,000</strong>, scaling higher as
+    need and funding allow. We would rather fund fewer students well than spread support too thin to
+    actually change a family&rsquo;s decision about where their child goes to school.</p>
+
+    <p class="disc">General informational overview only; not tax, legal, or financial advice.
+    Consult a tax professional regarding individual eligibility.</p>
+
+    <div style="margin-top:2.6rem;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="donate.html" class="btn-gold">Become a Donor</a>
+      <a href="contact.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.36)">Talk With Us</a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="fgrid">
@@ -437,8 +651,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       </div>
       <div class="fcol">
         <h5>Program</h5>
-        <a href="why-25f.html">Why &#167;25F</a>
-        <a href="how-giving-works.html">How It Works</a>
+        <a href="impact.html#why-25f">Why &#167;25F</a>
+        <a href="impact.html#how-it-works">How It Works</a>
         <a href="impact.html">Targeted Impact</a>
         <a href="platform.html">Our Difference</a>
       </div>

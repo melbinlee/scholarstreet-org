@@ -242,13 +242,15 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 
 /* FOR FAMILIES */
 .fam-sec{background:var(--cream2)}
-.fam-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:center;margin-top:2.6rem}
-.fam-btns{margin-top:1.7rem;display:flex;gap:13px;flex-wrap:wrap}
+/* Both columns size to their content and sit together on the left, so the QR
+   card stays beside the buttons instead of drifting to the right margin. */
+.fam-grid{display:grid;grid-template-columns:max-content max-content;gap:34px;
+  align-items:center;justify-content:start;margin-top:2.6rem}
+.fam-btns{display:flex;gap:13px;flex-wrap:wrap}
 .fam-card{background:#fff;border-radius:var(--radius);padding:2rem;text-align:center;
-  box-shadow:0 2px 16px rgba(27,46,75,.06);justify-self:center}
+  box-shadow:0 2px 16px rgba(27,46,75,.06);justify-self:start}
 .fam-qr{width:170px;height:170px;margin:0 auto}
 .fam-qr svg{display:block;width:100%;height:100%}
-.fam-qr-cap{font-size:12.5px;color:var(--text-lt);margin-top:1rem}
 
 /* CTA BAND */
 .cta-band{background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden}
@@ -268,6 +270,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .latest-all{margin-top:2.4rem}
 @media(max-width:940px){
   .hero-grid,.fam-grid{grid-template-columns:1fr;gap:38px}
+  .fam-card{justify-self:center}
   .stat3,.mission-tiles,.latest-grid{grid-template-columns:1fr}
 }
 
@@ -299,8 +302,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="why-25f.html">Why &#167;25F</a></li>
-    <li><a href="how-giving-works.html">How It Works</a></li>
     <li><a href="impact.html">Impact</a></li>
     <li><a href="platform.html">Our Difference</a></li>
     <li><a href="leadership.html">Leadership</a></li>
@@ -322,7 +323,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         students in the states we serve &mdash; funded by donors who redirect their federal tax liability into a child&rsquo;s education.</p>
         <div class="hero-cta">
           <a href="contact.html" class="btn-gold">Become a Founding Donor</a>
-          <a href="how-giving-works.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.32)">How Giving Works</a>
+          <a href="impact.html#how-it-works" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.32)">How Giving Works</a>
         </div>
       </div>
       <div>
@@ -363,7 +364,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       </div>
     </div>
     <div style="margin-top:2.4rem">
-      <a href="why-25f.html" class="btn-outline">Understand the Credit</a>
+      <a href="impact.html#why-25f" class="btn-outline">Understand the Credit</a>
     </div>
   </div>
 </section>
@@ -413,8 +414,9 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         <a href="https://accounts.scholarship-insights.com/sign-in?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener" class="btn-outline">Sign In</a>
       </div>
       <div class="fam-card reveal">
-        <div id="fam-qr" class="fam-qr"></div>
-        <div class="fam-qr-cap">Scan with your phone camera</div>
+        <!-- No caption: the section lead already says to scan it. The label is
+             for screen readers, which get nothing from the generated SVG. -->
+        <div id="fam-qr" class="fam-qr" role="img" aria-label="QR code linking to the Scholar Street family account sign-up"></div>
       </div>
     </div>
   </div>
@@ -514,8 +516,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       </div>
       <div class="fcol">
         <h5>Program</h5>
-        <a href="why-25f.html">Why &#167;25F</a>
-        <a href="how-giving-works.html">How It Works</a>
+        <a href="impact.html#why-25f">Why &#167;25F</a>
+        <a href="impact.html#how-it-works">How It Works</a>
         <a href="impact.html">Targeted Impact</a>
         <a href="platform.html">Our Difference</a>
       </div>

@@ -7,11 +7,9 @@ The scholarstreet.org marketing and public-facing website for Scholar Street, a 
 - index.html — homepage
 - donate.html — donor-facing giving page
 - contact.html — contact page
-- impact.html — impact/outcomes page
+- impact.html — impact/outcomes, and since 2026-09-15 also the "Why §25F" and "How It Works" sections that used to be why-25f.html and how-giving-works.html; those URLs now 301 to its #why-25f / #how-it-works anchors
 - leadership.html — board and leadership page
 - platform.html — how the platform works
-- how-giving-works.html — donor education
-- why-25f.html — explains the federal Education Freedom Tax Credit (IRC §25F)
 - news.html + news/*.html — **generated**; articles copied from the Substack newsletter
 
 ## News (Substack sync)

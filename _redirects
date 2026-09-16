@@ -11,3 +11,8 @@
 
 # Browsers request /favicon.ico regardless of the <link rel="icon"> tag.
 /favicon.ico        /favicon.svg  200
+
+# Consolidated into impact.html (2026-09-15): Why 25F and How It Works are now
+# sections of the Impact page. Both old URLs were indexed and linked.
+/why-25f.html          /impact.html#why-25f       301
+/how-giving-works.html /impact.html#how-it-works  301
