@@ -20,15 +20,8 @@
     linker: { domains: ['scholarstreet.org', 'scholarship-insights.com'] }
   });
 </script>
-<!-- HEAD:START -->
-<title>News — Scholar Street SGO</title>
-<meta name="description" content="Analysis of the federal Education Freedom Tax Credit (IRC 25F) from Scholar Street: what the rules say, what is unresolved, and what it means for families, donors and schools.">
-<link rel="canonical" href="https://scholarstreet.org/news.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="News — Scholar Street SGO">
-<meta property="og:description" content="Analysis of the federal Education Freedom Tax Credit (IRC 25F) from Scholar Street: what the rules say, what is unresolved, and what it means for families, donors and schools.">
-<meta property="og:url" content="https://scholarstreet.org/news.html">
-<!-- HEAD:END -->
+<title>VA EISTC &mdash; Scholar Street SGO</title>
+<meta name="description" content="Virginia's Education Improvement Scholarships Tax Credits (EISTC): give to Scholar Street, fund scholarships for lower-income students, and receive a 65% Virginia tax credit.">
 
 <!-- Warm up the donation portal before the visitor clicks Donate -->
 <link rel="preconnect" href="https://scholarship-insights.com" crossorigin>
@@ -45,6 +38,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --navy:#1B2E4B; --navy-dk:#132238; --gold:#C8A84B; --gold-dk:#b8953e;
@@ -209,44 +203,90 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   .wrap{padding:0 18px}
 }
 
-/* ---------- NEWS LIST ---------- */
-.news-list{display:grid;gap:22px;max-width:860px}
-.news-card{display:block;background:#fff;border-radius:var(--radius);padding:1.9rem 2rem;
-  box-shadow:0 2px 16px rgba(27,46,75,.06);text-decoration:none;border:1px solid transparent;transition:.18s}
-.news-card:hover{border-color:rgba(200,168,75,.55);transform:translateY(-2px)}
-.news-card time{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);font-weight:700}
-.news-card h2{font-size:1.45rem;color:var(--navy);margin:.55rem 0 .6rem}
-.news-card p{font-size:15px;color:var(--text-mid);line-height:1.75}
-.news-more{display:inline-block;margin-top:.9rem;font-size:13.5px;font-weight:700;color:var(--gold-dk)}
-.news-subscribe{max-width:860px;margin-top:2.6rem;display:flex;align-items:center;justify-content:space-between;
-  gap:16px;flex-wrap:wrap;padding-top:2rem;border-top:1px solid rgba(27,46,75,.09)}
-.news-subscribe p{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--navy)}
+/* ---------- VA EISTC ---------- */
+.eh-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;position:relative;z-index:2}
+.eh-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:2rem}
+.page-hero .btn-outline{color:#fff;border-color:rgba(255,255,255,.32)}
+.page-hero .btn-outline:hover{border-color:#fff}
+.eh-photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.34)}
+.eh-photo img{width:100%;height:300px;object-fit:cover}
+.eh-badge{margin-top:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:11px;padding:14px 18px;font-size:13px;color:rgba(255,255,255,.62);line-height:1.65}
+.eh-badge strong{color:var(--gold);font-weight:700}
 
-/* ---------- ARTICLE ---------- */
-.page-hero .crumb{color:inherit;text-decoration:none}
-.page-hero .crumb:hover{color:var(--gold)}
-.post-meta{margin-top:1.3rem;font-size:13.5px;color:rgba(255,255,255,.5)}
-.post-body{max-width:720px;font-size:17px;line-height:1.8;color:var(--text)}
-.post-body > * + *{margin-top:1.1em}
-.post-body h2{font-size:1.65rem;color:var(--navy);margin-top:2.1em}
-.post-body h3{font-size:1.25rem;color:var(--navy);margin-top:1.7em}
-.post-body h4{font-size:1.05rem;color:var(--navy);margin-top:1.5em}
-.post-body ul,.post-body ol{padding-left:1.4em}
-.post-body li + li{margin-top:.35em}
-.post-body li p{margin:0}
-.post-body a{color:var(--navy);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
-.post-body a:hover{color:var(--gold-dk)}
-.post-body blockquote{border-left:3px solid var(--gold);padding:.2em 0 .2em 1.2em;color:var(--text-mid);font-style:italic}
-.post-body img{border-radius:10px;margin:0 auto}
-.post-body figcaption{font-size:13.5px;color:var(--text-lt);text-align:center;margin-top:.5em}
-.post-body hr{border:none;border-top:1px solid rgba(27,46,75,.12);margin:2em 0}
-.post-body table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-x:auto}
-.post-body th,.post-body td{border:1px solid rgba(27,46,75,.12);padding:.5em .7em;text-align:left}
-.post-foot{max-width:720px;margin-top:3rem;padding-top:1.8rem;border-top:1px solid rgba(27,46,75,.09)}
-.post-foot p{font-size:14.5px;color:var(--text-mid)}
-.post-foot p a{color:var(--navy);font-weight:600}
-.post-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:1.4rem}
-@media(max-width:620px){.news-card{padding:1.5rem 1.35rem}.post-body{font-size:16.5px}}
+.sep{background:var(--cream2);border-bottom:1px solid rgba(27,46,75,.09);padding:34px 0}
+.sep-inner{display:flex;gap:20px;align-items:flex-start}
+.sep-ico{flex-shrink:0;width:46px;height:46px;border-radius:11px;background:#fff;
+  display:flex;align-items:center;justify-content:center}
+.sep-ico svg{width:22px;height:22px;stroke:var(--gold-dk);fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.sep h3{font-size:18px;color:var(--navy);margin-bottom:.45rem}
+.sep p{font-size:15px;color:var(--text-mid);line-height:1.78;max-width:900px}
+.sep strong{color:var(--navy)}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.stat{background:#fff;border-radius:var(--radius);border-top:3px solid var(--gold);
+  padding:2rem 1.5rem;text-align:center;box-shadow:0 2px 16px rgba(27,46,75,.06)}
+.stat-num{font-family:var(--serif);font-weight:700;font-size:clamp(2.1rem,3.4vw,2.7rem);color:var(--navy);line-height:1}
+.stat-lbl{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-top:.7rem}
+.biz{margin-top:22px;background:rgba(200,168,75,.08);border-left:4px solid var(--gold);
+  border-radius:var(--radius);padding:1.1rem 1.5rem;font-size:15.5px;color:var(--text-mid);text-align:center}
+.biz strong{color:var(--navy)}
+
+.cards{display:grid;gap:22px;margin-top:3rem}
+.cards.two{grid-template-columns:1fr 1fr}
+.cards.three{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border-radius:var(--radius);padding:2.1rem 1.9rem;box-shadow:0 2px 16px rgba(27,46,75,.06)}
+.card h4{font-size:17.5px;color:var(--navy);margin-bottom:.6rem}
+.card p{font-size:14.5px;color:var(--text-mid);line-height:1.76}
+.card-ico{width:42px;height:42px;border-radius:11px;background:rgba(107,143,113,.15);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.15rem}
+.card-ico svg{width:21px;height:21px;stroke:var(--sage);fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.example{margin-top:22px;background:var(--navy);color:rgba(255,255,255,.72);border-radius:var(--radius);
+  padding:1.4rem 1.9rem;font-size:15px;line-height:1.75}
+.example strong{color:var(--gold)}
+.alt{background:var(--cream2)}
+
+.elig{background:#fff;border-radius:var(--radius);padding:2.2rem 2.1rem;margin-top:3rem;
+  box-shadow:0 2px 16px rgba(27,46,75,.06)}
+.elig-lead{font-size:15.5px;color:var(--text-mid);line-height:1.78;margin-bottom:1.4rem}
+.elig-lead strong{color:var(--navy)}
+.elig-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.6rem}
+.elig-item{display:flex;gap:12px;align-items:flex-start;font-size:14.8px;color:var(--text-mid);line-height:1.65}
+.elig-item::before{content:'';flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:8px}
+
+.how-grid{display:grid;grid-template-columns:1.5fr .85fr;gap:48px;align-items:start;margin-top:3rem}
+.steps{list-style:none}
+.step{position:relative;display:grid;grid-template-columns:56px 1fr;gap:20px;padding-bottom:30px}
+.step:last-child{padding-bottom:0}
+.step:not(:last-child)::after{content:'';position:absolute;left:27px;top:56px;bottom:0;width:2px;
+  background:rgba(200,168,75,.45)}
+.step-num{width:56px;height:56px;border-radius:50%;background:#fff;border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;font-family:var(--serif);
+  font-size:1.35rem;font-weight:700;color:var(--navy)}
+.step h4{font-size:17px;color:var(--navy);margin:.55rem 0 .35rem}
+.step p{font-size:14.8px;color:var(--text-mid);line-height:1.74}
+.learn{background:var(--navy);border-radius:var(--radius);padding:2.3rem 2.1rem;color:#fff;
+  position:sticky;top:96px;overflow:hidden;box-shadow:0 4px 24px rgba(27,46,75,.13)}
+.learn-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:.85rem}
+.learn h3{font-size:clamp(1.3rem,2.1vw,1.6rem);color:#fff;margin-bottom:.8rem}
+.learn h3 em{font-style:italic;color:var(--gold)}
+.learn p{font-size:15px;color:rgba(255,255,255,.7);line-height:1.78}
+.learn .btn-gold{margin-top:1.4rem}
+
+.fine{padding:40px 0 48px}
+.fine p{font-size:12.5px;color:var(--text-lt);line-height:1.7;max-width:900px;margin-bottom:.6rem}
+
+@media(max-width:980px){
+  .eh-grid,.how-grid{grid-template-columns:1fr;gap:36px}
+  .cards.three{grid-template-columns:1fr}
+  .learn{position:static}
+}
+@media(max-width:760px){
+  .stats,.cards.two,.elig-grid{grid-template-columns:1fr}
+  .sep-inner{flex-direction:column;gap:14px}
+}
 
 </style>
 
@@ -278,50 +318,210 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     <li><a href="index.html">Home</a></li>
     <li><a href="impact.html">Impact</a></li>
     <li><a href="platform.html">Our Difference</a></li>
-    <li><a href="va-eistc.html">VA EISTC</a></li>
+    <li><a href="va-eistc.html" class="active">VA EISTC</a></li>
     <li><a href="leadership.html">Leadership</a></li>
-    <li><a href="news.html" class="active">News</a></li>
+    <li><a href="news.html">News</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener" class="nav-apply-outline">Apply</a></li>
     <li><a href="donate.html" class="nav-apply">Donate</a></li>
   </ul>
 </nav>
 
-<!-- MAIN:START -->
 <section class="page-hero">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
   <div class="wrap">
-    <div class="s-eyebrow">News &amp; Analysis</div>
-    <h1 class="ph-title">What we&rsquo;re <em>watching.</em></h1>
-    <p class="ph-sub">Plain-language analysis of the federal Education Freedom Tax Credit (IRC &#167;25F)
-    for families, donors, schools and fellow scholarship organizations &mdash; what the rules say,
-    what is still unresolved, and what it means for students.</p>
+    <div class="eh-grid">
+      <div>
+        <div class="s-eyebrow">Virginia &middot; Education Improvement Scholarships Tax Credits</div>
+        <h1 class="ph-title">Turn a Virginia tax bill<br>into a <em>scholarship.</em></h1>
+        <p class="ph-sub">Through Virginia&rsquo;s EISTC program, a gift to Scholar Street funds
+        private-school tuition for students from lower-income families &mdash; and returns
+        <strong style="color:#fff">65% of every dollar</strong> as a Virginia tax credit.</p>
+        <div class="eh-cta">
+          <a href="contact.html" class="btn-gold">Request the preauthorization form</a>
+          <a href="#how" class="btn-outline">How it works</a>
+        </div>
+      </div>
+      <div>
+        <div class="eh-photo"><img src="img/students.jpg" alt="Students in a classroom"></div>
+        <div class="eh-badge">Scholar Street is a <strong>501(c)(3) scholarship foundation</strong>
+        (EIN 42-2704061) approved by the Virginia Department of Education under the EISTC program
+        and registered to solicit contributions in Virginia.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep">
+  <div class="wrap">
+    <div class="sep-inner">
+      <div class="sep-ico"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.5-3 7-7 9-4-2-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div>
+        <h3>A Virginia program, separate from the federal credit</h3>
+        <p>The EISTC is a <strong>Virginia state tax-credit program</strong>, administered by the
+        Virginia Department of Education. It is separate from the <strong>federal Education Freedom
+        Tax Credit (IRC &#167;25F)</strong>, which begins January 1, 2027 &mdash; a different agency,
+        different rules and a different credit. <strong>One contribution cannot take both credits in
+        full:</strong> the federal credit is reduced by any state credit received for the same
+        contribution. To use both programs, make a separate contribution for each.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat reveal"><div class="stat-num">65%</div><div class="stat-lbl">Virginia tax credit</div></div>
+      <div class="stat reveal"><div class="stat-num">$500</div><div class="stat-lbl">Individual minimum</div></div>
+      <div class="stat reveal"><div class="stat-num">$125K</div><div class="stat-lbl">Individual annual maximum</div></div>
+    </div>
+    <div class="biz"><strong>Businesses:</strong> the same 65% credit, with no donation minimum and no
+    annual maximum. Unused credits carry forward up to five years.</div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="s-eyebrow">Your Tax Benefit</div>
+    <h2 class="s-title">A state credit,<br>plus a <em>deduction.</em></h2>
+    <p class="s-lead">Most of your gift comes back as a Virginia credit. What remains may also be
+    deductible.</p>
+
+    <div class="cards two">
+      <div class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg></div>
+        <h4>A 65% Virginia tax credit</h4>
+        <p>Sixty-five cents of every dollar is a credit against your Virginia tax. The credit is
+        non-transferable and can&rsquo;t exceed your tax for the year, but any unused amount carries
+        forward up to five years.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H5V5"/><path d="M15 3v4h4"/><path d="M9 13h6M9 17h6"/></svg></div>
+        <h4>A deduction on the remaining 35%</h4>
+        <p>Because you receive a state credit, the charitable deduction applies only to the portion
+        of your gift the credit doesn&rsquo;t cover &mdash; generally 35% &mdash; on your federal and
+        Virginia returns, subject to the usual rules for charitable deductions, including itemizing.</p>
+      </div>
+    </div>
+    <div class="example"><strong>Example:</strong> a $10,000 gift can earn a $6,500 Virginia tax
+    credit. The remaining $3,500 may be deductible, and its value depends on your tax rates.</div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="news-list">
-      <a class="news-card reveal" href="news/what-sgos-should-be-doing-right-now.html">
-        <time datetime="2026-09-14">September 14, 2026</time>
-        <h2>What SGOs Should Be Doing Right Now: A Section 25F Compliance Checklist</h2>
-        <p>If the Treasury’s Section 25F regulations land as an interim final rule this September — which its own Unified Agenda filing suggests is the plan — scholarship granting organizations will be expected to comply from the day the rule publishes in the Federal Register.</p>
-        <span class="news-more">Read article &rarr;</span>
-      </a>
-      <a class="news-card reveal" href="news/the-rules-arriving-this-month-may.html">
-        <time datetime="2026-09-09">September 9, 2026</time>
-        <h2>The Rules Arriving This Month May Already Be Law</h2>
-        <p>Treasury’s own filings suggest the Section 25F rules could take effect immediately, not after a comment period.</p>
-        <span class="news-more">Read article &rarr;</span>
-      </a>
-    </div>
-    <div class="news-subscribe">
-      <p>Get new articles by email.</p>
-      <a href="https://scholarstreet.substack.com/subscribe" target="_blank" rel="noopener" class="btn-gold">Subscribe on Substack</a>
+    <div class="s-eyebrow">Where the Money Goes</div>
+    <h2 class="s-title">How your gift<br>is <em>used.</em></h2>
+
+    <div class="cards three">
+      <div class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 2.5 6 2.5S18 18 18 17v-5"/></svg></div>
+        <h4>At least 90% to scholarships</h4>
+        <p>By statute, at least 90% of credit-eligible donations must be paid out as scholarships.
+        We keep administrative costs low so the most reaches students.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.5-3 7-7 9-4-2-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h4>Never for a specific student</h4>
+        <p>Donors can&rsquo;t direct a gift to an individual child. Families choose the school, and
+        scholarships are paid directly to it.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H5V5"/><path d="M15 3v4h4"/><path d="M9 14l2 2 4-4"/></svg></div>
+        <h4>Preauthorized gifts only</h4>
+        <p>Only gifts to an approved foundation that the Department of Education has preauthorized
+        earn the credit. Gifts made directly to a school do not.</p>
+      </div>
     </div>
   </div>
 </section>
-<!-- MAIN:END -->
+
+<section class="alt">
+  <div class="wrap">
+    <div class="s-eyebrow">Eligibility</div>
+    <h2 class="s-title">Which students<br><em>qualify.</em></h2>
+    <div class="elig reveal">
+      <p class="elig-lead">Recipients must be Virginia residents from households with income at or
+      below <strong>300% of the federal poverty guidelines</strong>. Students with a disability and a
+      current Individualized Education Program (IEP) qualify at up to <strong>400%</strong>. Other
+      students must also meet one of the following:</p>
+      <div class="elig-grid">
+        <div class="elig-item">Eligible to enter kindergarten or first grade</div>
+        <div class="elig-item">Attended a Virginia public school for at least half of the current or prior school year</div>
+        <div class="elig-item">Lived in another state the prior school year, without attending a Virginia private school for more than half of it</div>
+        <div class="elig-item">A prior recipient of a scholarship under this program</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="s-eyebrow">How to Donate</div>
+    <h2 class="s-title">From request<br>to <em>certificate.</em></h2>
+    <p class="s-lead">Credits are reserved first-come, first-served against the state&rsquo;s annual
+    cap, so timing matters. We handle the paperwork with the Department of Education.</p>
+
+    <div class="how-grid">
+      <ol class="steps">
+        <li class="step">
+          <div class="step-num">1</div>
+          <div><h4>Request the preauthorization form</h4>
+          <p>Contact us and we&rsquo;ll send the Virginia Department of Education preauthorization form.</p></div>
+        </li>
+        <li class="step">
+          <div class="step-num">2</div>
+          <div><h4>We submit it to the Department</h4>
+          <p>Return the completed form and we submit your preauthorization request to the Virginia
+          Department of Education.</p></div>
+        </li>
+        <li class="step">
+          <div class="step-num">3</div>
+          <div><h4>Your credit is reserved for 180 days</h4>
+          <p>Once approved, your credit is reserved for 180 days. A preauthorization not acted on
+          within 180 days is void.</p></div>
+        </li>
+        <li class="step">
+          <div class="step-num">4</div>
+          <div><h4>Make your gift</h4>
+          <p>Contribute cash or marketable securities within the 180 days, and we confirm receipt to
+          the Department.</p></div>
+        </li>
+        <li class="step">
+          <div class="step-num">5</div>
+          <div><h4>Claim your credit</h4>
+          <p>The Department issues your Tax Credit Certificate. Attach it to your Virginia return for
+          the year of your gift, and carry any unused credit forward up to five years.</p></div>
+        </li>
+      </ol>
+
+      <aside class="learn reveal">
+        <div class="ph-bg-circle a" style="width:260px;height:260px;top:-110px;right:-70px"></div>
+        <div style="position:relative">
+          <div class="learn-tag">Get started</div>
+          <h3>Want to <em>learn more?</em></h3>
+          <p>Credits are awarded until the state&rsquo;s annual cap is reached. Reach out and
+          we&rsquo;ll walk you &mdash; or your client &mdash; through how it works and start your
+          preauthorization.</p>
+          <a href="contact.html" class="btn-gold">Request the preauthorization form</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<div class="fine alt">
+  <div class="wrap">
+    <p>This page is general information, not tax advice. Individual circumstances vary; consult your
+    tax advisor to determine your specific savings. EISTC figures reflect the Code of Virginia
+    (&#167;&#167; 58.1-439.25 et seq.) as of September 2026. The credit is currently authorized for
+    taxable years beginning before January 1, 2028.</p>
+    <p>A financial statement is available upon request from the Virginia Office of Charitable and
+    Regulatory Programs, Virginia Department of Agriculture and Consumer Services, P.O. Box 1163,
+    Richmond, VA 23218.</p>
+  </div>
+</div>
 
 <footer>
   <div class="wrap">

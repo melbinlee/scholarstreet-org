@@ -46,7 +46,8 @@ NS = {
 
 # Pages listed in the sitemap alongside the articles, in nav order.
 STATIC_PAGES = [
-    "", "impact.html", "platform.html", "leadership.html", "news.html",
+    "", "impact.html", "platform.html", "va-eistc.html", "leadership.html",
+    "news.html",
     "contact.html",
     "donate.html",
 ]
