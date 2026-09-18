@@ -50,7 +50,7 @@ STATIC_PAGES = [
     "news.html",
     "contact.html",
     "donate.html",
-    "families.html", "transparency.html", "privacy.html",
+    "apply.html", "families.html", "transparency.html", "privacy.html",
 ]
 
 
