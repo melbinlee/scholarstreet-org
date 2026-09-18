@@ -638,6 +638,11 @@ document.addEventListener('DOMContentLoaded',function(){
             status.textContent = 'Thank you. We have received your message and will be in touch.';
             status.className = 'form-status show ok';
           }
+          // The contact form is the one conversion that completes on this
+          // site, so it is measured on success rather than on click.
+          if(typeof gtag === 'function'){
+            gtag('event', 'generate_lead', { form_id: id, page_path: location.pathname });
+          }
         } else {
           return r.json().then(function(d){
             throw new Error((d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Submission failed');
@@ -678,6 +683,28 @@ document.addEventListener('DOMContentLoaded',function(){
         gtag('event', 'newsletter_signup', { method: 'substack' });
       }
     });
+  });
+
+  // ---- Conversion events (GA4) ----
+  // Ad Grants requires at least one tracked conversion, and the actions that
+  // matter here all leave this site: the application platform, the donation
+  // form in its iframe, an email client. A click is the last thing we can see,
+  // so that is what we count. One delegated listener covers every page.
+  //
+  // Names are GA4 recommended events where one fits (generate_lead) and
+  // snake_case custom ones otherwise. Mark them as key events in GA4, then
+  // import them into Google Ads.
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if(!a || typeof gtag !== 'function') return;
+    var href = a.getAttribute('href') || '';
+    var name = '';
+    if(href.indexOf('accounts.scholarship-insights.com') !== -1){ name = 'apply_start'; }
+    else if(/(^|\/)donate(\.html)?$/.test(href)){ name = 'donate_start'; }
+    else if(href.indexOf('mailto:') === 0){
+      name = href.indexOf('EISTC') !== -1 ? 'eistc_inquiry' : 'email_click';
+    }
+    if(name){ gtag('event', name, { link_url: a.href, page_path: location.pathname }); }
   });
 
   var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
