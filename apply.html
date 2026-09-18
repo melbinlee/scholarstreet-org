@@ -19,6 +19,28 @@
   gtag('config', 'G-ZP28ZWB133', {
     linker: { domains: ['scholarstreet.org', 'scholarship-insights.com'] }
   });
+
+  // Google Ads conversion tracking. gtag.js is already loaded above for GA4,
+  // and one library serves any number of destinations, so the Ads property is
+  // configured here rather than pulling in a second copy of the script.
+  gtag('config', 'AW-18460500326');
+</script>
+<script>
+// Fired when a lead form is submitted successfully. The url argument is part
+// of Google's standard snippet, for buttons that navigate; nothing here does,
+// so it is called without one and the callback is a no-op.
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18460500326/IP1iCOfVxvwcEObC0-JE',
+      'event_callback': callback
+  });
+  return false;
+}
 </script>
 <title>Apply for a Scholarship &mdash; Scholar Street SGO</title>
 <meta name="description" content="How to apply for a Scholar Street K-12 scholarship: who can apply, what you will need, how awards are decided, and when applications open.">

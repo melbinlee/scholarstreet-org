@@ -19,6 +19,28 @@
   gtag('config', 'G-ZP28ZWB133', {
     linker: { domains: ['scholarstreet.org', 'scholarship-insights.com'] }
   });
+
+  // Google Ads conversion tracking. gtag.js is already loaded above for GA4,
+  // and one library serves any number of destinations, so the Ads property is
+  // configured here rather than pulling in a second copy of the script.
+  gtag('config', 'AW-18460500326');
+</script>
+<script>
+// Fired when a lead form is submitted successfully. The url argument is part
+// of Google's standard snippet, for buttons that navigate; nothing here does,
+// so it is called without one and the callback is a no-op.
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18460500326/IP1iCOfVxvwcEObC0-JE',
+      'event_callback': callback
+  });
+  return false;
+}
 </script>
 <title>Contact &mdash; Scholar Street SGO</title>
 <meta name="description" content="Contact Scholar Street SGO to apply for a scholarship, donate and claim the federal tax credit, become a partner school, or explore a strategic partnership.">
@@ -532,6 +554,9 @@ document.addEventListener('DOMContentLoaded',function(){
           if(typeof gtag === 'function'){
             gtag('event', 'generate_lead', { form_id: id, page_path: location.pathname });
           }
+          // Google Ads conversion. Formspree has accepted the submission at
+          // this point, so this counts a real lead rather than a click.
+          if(typeof gtag_report_conversion === 'function'){ gtag_report_conversion(); }
         } else {
           return r.json().then(function(d){
             throw new Error((d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Submission failed');
