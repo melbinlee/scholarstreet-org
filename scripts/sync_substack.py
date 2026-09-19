@@ -158,6 +158,72 @@ def clean_html(raw):
 
 
 # ---------------------------------------------------------------------------
+# Description
+# ---------------------------------------------------------------------------
+
+# An author who leaves the Substack subtitle empty gets a description Substack
+# extracts from the body, cut at the first period -- which lands mid-sentence
+# on any post opening with "Rep.", "Sen." or a similar abbreviation. The whole
+# description of one real post was "On September 16, Rep." Both the feed and
+# the API carry that same string, so the fix has to be here.
+MIN_DESCRIPTION = 80     # shorter than this, and a body prefix, means cut off
+TARGET_DESCRIPTION = 120  # stop adding sentences once past this
+MAX_DESCRIPTION = 200    # but never start a sentence that would pass this
+
+# Words whose trailing period does not end a sentence.
+ABBREVIATIONS = {
+    "Rep", "Reps", "Sen", "Sens", "Gov", "Govs", "Dr", "Mr", "Mrs", "Ms",
+    "Prof", "St", "Inc", "Corp", "Co", "Ltd", "Jr", "Sr", "vs", "etc",
+    "eg", "ie", "No", "Art", "Sec", "Fig", "Cf", "Ed", "Vol", "pp", "al",
+}
+
+
+def plain_text(body):
+    """The cleaned article body as running text."""
+    text = re.sub(r"<[^>]+>", " ", body)
+    return re.sub(r"\s+", " ", html.unescape(text)).strip()
+
+
+def sentences(text):
+    """Split into sentences, ignoring periods inside abbreviations."""
+    out, start = [], 0
+    for m in re.finditer(r"""[.!?]["')\]]?(?=\s|$)""", text):
+        word = re.search(r"([A-Za-z]+)\.?$", text[start:m.start() + 1])
+        if m.group()[0] == "." and word:
+            w = word.group(1)
+            # "Rep." continues the sentence; so does the "S" of "U.S."
+            if w in ABBREVIATIONS or (len(w) == 1 and w.isupper()):
+                continue
+        out.append(text[start:m.end()].strip())
+        start = m.end()
+    tail = text[start:].strip()
+    if tail:
+        out.append(tail)
+    return out
+
+
+def build_description(raw, body):
+    """A meta description that is always a whole thought.
+
+    A real subtitle is kept as written. Substack's truncated stand-in is
+    always a prefix of the body, so a short description that is one gets
+    rebuilt from whole sentences instead.
+    """
+    raw = re.sub(r"\s+", " ", html.unescape(raw or "")).strip()
+    text = plain_text(body)
+    if raw and not (len(raw) < MIN_DESCRIPTION and text.startswith(raw)):
+        return raw
+    out = ""
+    for s in sentences(text):
+        if out and len(out) + 1 + len(s) > MAX_DESCRIPTION:
+            break
+        out = f"{out} {s}".strip()
+        if len(out) >= TARGET_DESCRIPTION:
+            break
+    return out or raw
+
+
+# ---------------------------------------------------------------------------
 # Feed
 # ---------------------------------------------------------------------------
 
@@ -195,15 +261,16 @@ def read_feed(source):
             continue
         published = email.utils.parsedate_to_datetime(item.findtext("pubDate"))
         enclosure = item.find("enclosure")
+        body = clean_html(body)
         articles.append({
             "slug": m.group(1),
             "title": html.unescape((item.findtext("title") or "").strip()),
-            "description": html.unescape((item.findtext("description") or "").strip()),
+            "description": build_description(item.findtext("description"), body),
             "author": (item.findtext("dc:creator", namespaces=NS) or "Scholar Street").strip(),
             "date": published.strftime("%Y-%m-%d"),
             "substack_url": link,
             "image": enclosure.get("url") if enclosure is not None else "",
-            "body": clean_html(body),
+            "body": body,
         })
     return articles
 
@@ -237,15 +304,17 @@ def read_api(known_slugs):
         if not body or "paywall" in body:
             continue
         bylines = post.get("publishedBylines") or []
+        body = clean_html(body)
         articles.append({
             "slug": slug,
             "title": (post.get("title") or "").strip(),
-            "description": (post.get("subtitle") or post.get("description") or "").strip(),
+            "description": build_description(
+                post.get("subtitle") or post.get("description"), body),
             "author": bylines[0]["name"] if bylines else "Scholar Street",
             "date": published,
             "substack_url": post.get("canonical_url") or f"https://scholarstreet.substack.com/p/{slug}",
             "image": post.get("cover_image") or "",
-            "body": clean_html(body),
+            "body": body,
         })
         print(f"from API (not yet in feed): {slug}")
     return articles
