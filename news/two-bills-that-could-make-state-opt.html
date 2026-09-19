@@ -42,8 +42,16 @@ function gtag_report_conversion(url) {
   return false;
 }
 </script>
-<title>Scholar Street SGO &mdash; Nationwide K&ndash;12 Scholarships under the Federal Tax Credit</title>
-<meta name="description" content="Scholar Street is a Scholarship Granting Organization awarding need- and merit-based K–12 scholarships to families in the states we serve, under the federal Education Freedom Tax Credit (IRC §25F).">
+<!-- HEAD:START -->
+<title>Two Bills That Could Make State Opt-In Irrelevant — Scholar Street SGO</title>
+<meta name="description" content="On September 16, Rep. Adrian Smith (R-NE) introduced two bills that go after the two parts of Section 25F that practitioners complain about most.">
+<link rel="canonical" href="https://scholarstreet.org/news/two-bills-that-could-make-state-opt.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Two Bills That Could Make State Opt-In Irrelevant — Scholar Street SGO">
+<meta property="og:description" content="On September 16, Rep. Adrian Smith (R-NE) introduced two bills that go after the two parts of Section 25F that practitioners complain about most.">
+<meta property="og:url" content="https://scholarstreet.org/news/two-bills-that-could-make-state-opt.html">
+<meta property="og:image" content="https://substackcdn.com/image/fetch/$s_!fCxp!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F708a0c6e-48f1-417c-a5f2-d80203adcdbc_1024x1024.png">
+<!-- HEAD:END -->
 
 <!-- Warm up the donation portal before the visitor clicks Donate -->
 <link rel="preconnect" href="https://scholarship-insights.com" crossorigin>
@@ -60,7 +68,6 @@ function gtag_report_conversion(url) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --navy:#1B2E4B; --navy-dk:#132238; --gold:#C8A84B; --gold-dk:#b8953e;
@@ -225,76 +232,44 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   .wrap{padding:0 18px}
 }
 
-.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:78px 0 88px}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;position:relative;z-index:2}
-.hero-tag{display:inline-block;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
-  font-weight:700;color:var(--gold);border:1px solid rgba(200,168,75,.34);
-  border-radius:999px;padding:6px 15px;margin-bottom:1.5rem}
-.hero h1{font-size:clamp(2.15rem,4.1vw,3.35rem);color:#fff;line-height:1.13}
-.hero h1 em{font-style:italic;color:var(--gold)}
-.hero p.lead{margin-top:1.3rem;font-size:17px;color:rgba(255,255,255,.68);line-height:1.8;max-width:540px}
-.hero-cta{margin-top:2.2rem;display:flex;gap:13px;flex-wrap:wrap}
-.hero-photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.34);
-  border:1px solid rgba(255,255,255,.09)}
-.hero-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
-.hero-badge{margin-top:1.15rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  border-radius:11px;padding:14px 18px;font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.65}
-.hero-badge strong{color:var(--gold);font-weight:700}
+/* ---------- NEWS LIST ---------- */
+.news-list{display:grid;gap:22px;max-width:860px}
+.news-card{display:block;background:#fff;border-radius:var(--radius);padding:1.9rem 2rem;
+  box-shadow:0 2px 16px rgba(27,46,75,.06);text-decoration:none;border:1px solid transparent;transition:.18s}
+.news-card:hover{border-color:rgba(200,168,75,.55);transform:translateY(-2px)}
+.news-card time{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);font-weight:700}
+.news-card h2{font-size:1.45rem;color:var(--navy);margin:.55rem 0 .6rem}
+.news-card p{font-size:15px;color:var(--text-mid);line-height:1.75}
+.news-more{display:inline-block;margin-top:.9rem;font-size:13.5px;font-weight:700;color:var(--gold-dk)}
+.news-subscribe{max-width:860px;margin-top:2.6rem;display:flex;align-items:center;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;padding-top:2rem;border-top:1px solid rgba(27,46,75,.09)}
+.news-subscribe p{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--navy)}
 
-/* WHY NOW STATS */
-.why-sec{background:var(--cream2)}
-.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3rem}
-.stat-card{background:#fff;border-radius:var(--radius);padding:2rem 1.75rem;
-  box-shadow:0 2px 16px rgba(27,46,75,.06)}
-.stat-val{font-family:var(--serif);font-size:2.1rem;font-weight:700;color:var(--navy);line-height:1}
-.stat-lbl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
-  font-weight:700;margin:.75rem 0 .6rem}
-.stat-card p{font-size:14px;color:var(--text-mid);line-height:1.72}
-
-/* MISSION */
-.mission-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3rem}
-.mtile{background:#fff;border-radius:var(--radius);padding:2rem 1.75rem;
-  box-shadow:0 2px 16px rgba(27,46,75,.06);border-top:none}
-.mtile .ico{width:42px;height:42px;border-radius:11px;background:rgba(200,168,75,.16);
-  display:flex;align-items:center;justify-content:center;margin-bottom:1.15rem}
-.mtile .ico svg{width:21px;height:21px;stroke:var(--gold-dk);fill:none;stroke-width:2;
-  stroke-linecap:round;stroke-linejoin:round}
-.mtile h4{font-size:17px;color:var(--navy);margin-bottom:.55rem}
-.mtile p{font-size:14px;color:var(--text-mid);line-height:1.72}
-
-/* FOR FAMILIES */
-.fam-sec{background:var(--cream2)}
-/* Both columns size to their content and sit together on the left, so the QR
-   card stays beside the buttons instead of drifting to the right margin. */
-.fam-grid{display:grid;grid-template-columns:max-content max-content;gap:34px;
-  align-items:center;justify-content:start;margin-top:2.6rem}
-.fam-btns{display:flex;gap:13px;flex-wrap:wrap}
-.fam-card{background:#fff;border-radius:var(--radius);padding:2rem;text-align:center;
-  box-shadow:0 2px 16px rgba(27,46,75,.06);justify-self:start}
-.fam-qr{width:170px;height:170px;margin:0 auto}
-.fam-qr svg{display:block;width:100%;height:100%}
-
-/* CTA BAND */
-.cta-band{background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden}
-.cta-band h2{font-size:clamp(1.8rem,3vw,2.5rem);color:#fff}
-.cta-band h2 em{font-style:italic;color:var(--gold)}
-.cta-band p{max-width:590px;margin:1.1rem auto 0;color:rgba(255,255,255,.6);font-size:16px}
-.cta-band .btns{margin-top:2.1rem;display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
-/* LATEST NEWS (cards written by scripts/sync_substack.py) */
-.latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:2.8rem}
-.latest-card{display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);
-  padding:1.8rem 1.7rem;box-shadow:0 2px 16px rgba(27,46,75,.06);text-decoration:none;
-  border:1px solid transparent;transition:.18s}
-.latest-card:hover{border-color:rgba(200,168,75,.55);transform:translateY(-2px)}
-.latest-card time{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);font-weight:700}
-.latest-card h3{font-size:1.2rem;color:var(--navy);margin:.55rem 0 1rem;flex:1}
-.latest-more{font-size:13.5px;font-weight:700;color:var(--gold-dk)}
-.latest-all{margin-top:2.4rem}
-@media(max-width:940px){
-  .hero-grid,.fam-grid{grid-template-columns:1fr;gap:38px}
-  .fam-card{justify-self:center}
-  .stat3,.mission-tiles,.latest-grid{grid-template-columns:1fr}
-}
+/* ---------- ARTICLE ---------- */
+.page-hero .crumb{color:inherit;text-decoration:none}
+.page-hero .crumb:hover{color:var(--gold)}
+.post-meta{margin-top:1.3rem;font-size:13.5px;color:rgba(255,255,255,.5)}
+.post-body{max-width:720px;font-size:17px;line-height:1.8;color:var(--text)}
+.post-body > * + *{margin-top:1.1em}
+.post-body h2{font-size:1.65rem;color:var(--navy);margin-top:2.1em}
+.post-body h3{font-size:1.25rem;color:var(--navy);margin-top:1.7em}
+.post-body h4{font-size:1.05rem;color:var(--navy);margin-top:1.5em}
+.post-body ul,.post-body ol{padding-left:1.4em}
+.post-body li + li{margin-top:.35em}
+.post-body li p{margin:0}
+.post-body a{color:var(--navy);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+.post-body a:hover{color:var(--gold-dk)}
+.post-body blockquote{border-left:3px solid var(--gold);padding:.2em 0 .2em 1.2em;color:var(--text-mid);font-style:italic}
+.post-body img{border-radius:10px;margin:0 auto}
+.post-body figcaption{font-size:13.5px;color:var(--text-lt);text-align:center;margin-top:.5em}
+.post-body hr{border:none;border-top:1px solid rgba(27,46,75,.12);margin:2em 0}
+.post-body table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-x:auto}
+.post-body th,.post-body td{border:1px solid rgba(27,46,75,.12);padding:.5em .7em;text-align:left}
+.post-foot{max-width:720px;margin-top:3rem;padding-top:1.8rem;border-top:1px solid rgba(27,46,75,.09)}
+.post-foot p{font-size:14.5px;color:var(--text-mid)}
+.post-foot p a{color:var(--navy);font-weight:600}
+.post-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:1.4rem}
+@media(max-width:620px){.news-card{padding:1.5rem 1.35rem}.post-body{font-size:16.5px}}
 
 </style>
 
@@ -305,7 +280,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   <span><strong>Scholar Street is an IRS-approved 501(c)(3) public charity</strong> &mdash; EIN 42-2704061 &middot; Arlington, Virginia &middot; Contributions are tax-deductible under IRC &#167;170.</span>
 </div>
 <nav id="mainNav">
-  <a class="nav-logo" href="index.html">
+  <a class="nav-logo" href="../index.html">
     <div class="nav-crest"><svg viewBox="7 6 30 30" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 30 L9 18 Q22 14 22 14 Q22 14 35 18 L35 30 Q22 26 22 26 Q22 26 9 30 Z" fill="#F9F7F2"/>
         <line x1="22" y1="14" x2="22" y2="30" stroke="#C8A84B" stroke-width="1.2"/>
@@ -323,168 +298,46 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="impact.html">Impact</a></li>
-    <li><a href="platform.html">Our Difference</a></li>
-    <li><a href="va-eistc.html">VA EISTC</a></li>
-    <li><a href="leadership.html">Leadership</a></li>
-    <li><a href="news.html">News</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="apply.html" class="nav-apply-outline">Apply</a></li>
-    <li><a href="donate.html" class="nav-apply">Donate</a></li>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../impact.html">Impact</a></li>
+    <li><a href="../platform.html">Our Difference</a></li>
+    <li><a href="../va-eistc.html">VA EISTC</a></li>
+    <li><a href="../leadership.html">Leadership</a></li>
+    <li><a href="../news.html" class="active">News</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../apply.html" class="nav-apply-outline">Apply</a></li>
+    <li><a href="../donate.html" class="nav-apply">Donate</a></li>
   </ul>
 </nav>
 
-<section class="hero">
+<!-- MAIN:START -->
+<section class="page-hero">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
   <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-tag">Nationally-Focused Scholarship Granting Organization &middot; IRC &#167;25F</div>
-        <h1>Expanding K&ndash;12 educational<br>opportunity, <em>together.</em></h1>
-        <p class="lead">Scholar Street awards need- and merit-based scholarships to income-eligible
-        students in the states we serve &mdash; funded by donors who redirect their federal tax liability into a child&rsquo;s education.</p>
-        <div class="hero-cta">
-          <a href="contact.html" class="btn-gold">Become a Founding Donor</a>
-          <a href="impact.html#how-it-works" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.32)">How Giving Works</a>
-        </div>
-      </div>
-      <div>
-        <div class="hero-photo"><img src="img/students-in-a-classroom.jpg" alt="Students in a classroom"></div>
-        <div class="hero-badge">The federal <strong>Education Freedom Tax Credit</strong> takes effect
-        January 1, 2027. Scholar Street is registered to operate in multiple states and is building its footprint ahead of the January 1, 2027 launch.</div>
-      </div>
-    </div>
+    <div class="s-eyebrow"><a href="../news.html" class="crumb">News</a></div>
+    <h1 class="ph-title">Two Bills That Could Make State Opt-In Irrelevant</h1>
+    <p class="ph-sub">On September 16, Rep. Adrian Smith (R-NE) introduced two bills that go after the two parts of Section 25F that practitioners complain about most.</p>
+    <p class="post-meta">Scholar Street &middot; <time datetime="2026-09-19">September 19, 2026</time></p>
   </div>
 </section>
 
-<section class="why-sec">
-  <div class="wrap">
-    <div class="s-eyebrow">Why Now</div>
-    <h2 class="s-title">A new federal opportunity<br>for <em>scholarship giving.</em></h2>
-    <p class="s-lead">In 2025, Congress created the first federal tax credit for K&ndash;12 scholarship
-    donations &mdash; the Education Freedom Tax Credit (IRC &#167;25F) &mdash; effective January 1, 2027.
-    Scholar Street is registered to operate in multiple states and is building its footprint ahead of the January 1, 2027 launch.</p>
-
-    <div class="stat3">
-      <div class="stat-card reveal">
-        <div class="stat-val">$1,700</div>
-        <div class="stat-lbl">Per Taxpayer</div>
-        <p>A dollar-for-dollar federal credit, nonrefundable, with a five-year carryforward.
-        Joint-filer treatment is pending Treasury guidance.</p>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-val">Any Taxpayer</div>
-        <div class="stat-lbl">No Income Limit</div>
-        <p>Any individual with U.S. federal tax liability can claim the credit.
-        There is no donor income limit. Cash gifts only.</p>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-val">300% AMI</div>
-        <div class="stat-lbl">Access, Not Cost</div>
-        <p>Eligibility reaches households up to 300% of area median income. For many families,
-        cost &mdash; not eligibility &mdash; stands between their child and the right school.</p>
-      </div>
-    </div>
-    <div style="margin-top:2.4rem">
-      <a href="impact.html#why-25f" class="btn-outline">Understand the Credit</a>
-    </div>
-  </div>
-</section>
-
-<section id="glance">
-  <div class="wrap">
-    <div class="s-eyebrow">Our Mission</div>
-    <h2 class="s-title">Scholarships built on<br><em>need and merit.</em></h2>
-    <p class="s-lead">Scholar Street helps families afford the K&ndash;12 school that fits their child.
-    We will award scholarships to income-eligible students on financial need and academic merit,
-    evaluated together for every award, funded by donors who receive a tax credit for giving.</p>
-
-    <div class="mission-tiles">
-      <div class="mtile reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg></div>
-        <h4>Reach Underserved Communities</h4>
-        <p>Donors may support our general fund or direct their gift to a designated fund serving
-        a specific community &mdash; faith-based education, special needs, or military families.</p>
-      </div>
-      <div class="mtile reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 15a4 4 0 100-8 4 4 0 000 8z"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"/></svg></div>
-        <h4>Awards Sized to Matter</h4>
-        <p>A $5,000 target award, scaling with need and funding. We would rather fund fewer students
-        than spread support too thin to change a family&rsquo;s decision.</p>
-      </div>
-      <div class="mtile reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/><path d="M3 21h18"/></svg></div>
-        <h4>Built to Scale</h4>
-        <p>This tax credit only reaches as many children as SGOs can efficiently serve. Our platform is
-        built to scale nationally as the federal program expands state by state.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="fam-sec">
-  <div class="wrap">
-    <div class="s-eyebrow">For Families</div>
-    <h2 class="s-title">Applying for a scholarship?<br><em>Start here.</em></h2>
-    <p class="s-lead">Read how applying works, or scan the code with your phone to create a free
-    family account. Already registered? No need to scan again &mdash; just come back to this page and
-    sign in to check your status.</p>
-
-    <div class="fam-grid">
-      <div class="fam-btns">
-        <a href="apply.html" class="btn-gold">How to Apply</a>
-        <a href="https://accounts.scholarship-insights.com/sign-in?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener" class="btn-outline">Sign In</a>
-      </div>
-      <div class="fam-card reveal">
-        <!-- No caption: the section lead already says to scan it. The label is
-             for screen readers, which get nothing from the generated SVG. -->
-        <div id="fam-qr" class="fam-qr" role="img" aria-label="QR code linking to the Scholar Street family account sign-up"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LATEST:START -->
 <section>
   <div class="wrap">
-    <div class="s-eyebrow">Latest from Scholar Street</div>
-    <h2 class="s-title">What we&rsquo;re <em>watching.</em></h2>
-    <div class="latest-grid">
-      <a class="latest-card reveal" href="news/two-bills-that-could-make-state-opt.html">
-        <time datetime="2026-09-19">September 19, 2026</time>
-        <h3>Two Bills That Could Make State Opt-In Irrelevant</h3>
-        <span class="latest-more">Read article &rarr;</span>
-      </a>
-      <a class="latest-card reveal" href="news/what-sgos-should-be-doing-right-now.html">
-        <time datetime="2026-09-14">September 14, 2026</time>
-        <h3>What SGOs Should Be Doing Right Now: A Section 25F Compliance Checklist</h3>
-        <span class="latest-more">Read article &rarr;</span>
-      </a>
-      <a class="latest-card reveal" href="news/the-rules-arriving-this-month-may.html">
-        <time datetime="2026-09-09">September 9, 2026</time>
-        <h3>The Rules Arriving This Month May Already Be Law</h3>
-        <span class="latest-more">Read article &rarr;</span>
-      </a>
-    </div>
-    <div class="latest-all"><a href="news.html" class="btn-outline">All News</a></div>
-  </div>
-</section>
-<!-- LATEST:END -->
-
-<section class="cta-band">
-  <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
-  <div class="wrap" style="position:relative;z-index:2">
-    <div class="s-eyebrow" style="justify-content:center;color:rgba(255,255,255,.62)">Join Us</div>
-    <h2 style="margin-top:1rem">Expanding educational<br>opportunity, <em>together.</em></h2>
-    <p>Three donors giving the full $1,700 credit fund one $5,000 scholarship. We are inviting founding
-    donors, corporate donors, and partner schools to join us before the January 2027 launch.</p>
-    <div class="btns">
-      <a href="contact.html" class="btn-gold">Get in Touch</a>
-      <a href="leadership.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.36)">Meet the Team</a>
+    <article class="post-body">
+<p>On September 16, Rep. Adrian Smith (R-NE) introduced two bills that go after the two parts of Section 25F that practitioners complain about most. The next day, Sen. Bill Cassidy (R-LA) filed the Senate companion. If either becomes law, the state-by-state opt-in map that has driven a year of legislative fights, exclusions, and PR announcements stops mattering.</p><h2>What the bills actually do</h2><p>H.R. 10412 and its Senate twin, S. 5421, repeal the state opt-in requirement outright. Under current law, a donor can only claim the credit for gifts to an SGO in a state whose governor filed an election with Treasury. That&#8217;s the reason we&#8217;ve spent the year tracking which of 30-plus states signed up and which didn&#8217;t. Repeal it, and the credit works the same in every state, whether that state&#8217;s governor ever opted in or not.</p><p>H.R. 10413 fixes something narrower but real: married couples filing jointly are currently capped at the same $1,700 as a single filer. The bill doubles it to $3,400 for joint returns.</p><p>Smith&#8217;s framing matters here: he&#8217;s calling this a correction, not an expansion. The opt-in requirement wasn&#8217;t in the original design. It got added during 2025 reconciliation review because of the Byrd Rule, the same procedural constraint that shapes everything else about how this credit came into being.</p><h2>Why &#8220;regular order&#8221; is the whole story</h2><p>That&#8217;s also the catch. The original credit passed through budget reconciliation, which needs only a simple Senate majority but restricts what can ride along, hence the opt-in requirement in the first place. This new package is not reconciliation. It&#8217;s a standalone bill, referred to House Ways and Means and Senate Finance on September 16 and 17. Standalone bills need 60 votes to clear a Senate filibuster.</p><p>Right now, S. 5421 has one sponsor. H.R. 10412 has two cosponsors. That&#8217;s not momentum. That&#8217;s a bill on day one of its life. And it&#8217;s sitting in the same Finance Committee as S. 4297, Sen. Mark Kelly&#8217;s bill to repeal the credit program altogether, which already has 31 Democratic and independent cosponsors from April.</p><h2>What actually happens next</h2><p>Nothing, procedurally, until Ways and Means or Finance schedules a markup, and there&#8217;s no sign either has. If a markup happens and the committee votes to report the bill, it goes to the floor under a rule in the House, or needs unanimous consent or 60 votes just to get called up in the Senate. Given the opposition already staked out in Finance, a clean floor vote looks like a long shot in the current environment.</p><p>The more realistic path is the same one that created 25F to begin with: attachment to a future reconciliation bill, where it only needs 50 votes plus the Vice President. That requires a reconciliation vehicle to exist at all, which isn&#8217;t something Smith or Cassidy control on their own timeline.</p><h2>What this means for the movement</h2><p>Read charitably, this is the coalition treating the opt-in requirement as unfinished business rather than a permanent feature of the law: proof that 2025 was meant to be a floor, not a ceiling. Read skeptically, two cosponsors and a Senate bill with a single sponsor is a marker being laid down, not a serious near-term push. Both readings can be true at once. What&#8217;s certain is that the fight over federal school choice didn&#8217;t end when reconciliation passed. It just moved from one big vote to a slower fight over markups and committee math, running in parallel with an opposition bill that would repeal the whole program. Whether the opt-in requirement survives the year says more about where that fight actually stands than any opt-in announcement has so far.</p><hr><p>Scholar Street connects donors and families to make the scholarship process easier to navigate, not just tax code experts. If you believe every family deserves access to educational opportunities of their choice, visit scholarstreet.org to support our work.</p>
+    </article>
+    <div class="post-foot">
+      <p>This article first appeared in the Scholar Street newsletter.
+      <a href="https://scholarstreet.substack.com/subscribe" target="_blank" rel="noopener">Subscribe on Substack</a>
+      to get new articles by email.</p>
+      <div class="post-actions">
+        <a href="../news.html" class="btn-outline">&larr; All News</a>
+        <a href="../donate.html" class="btn-gold">Support Scholar Street</a>
+      </div>
     </div>
   </div>
 </section>
+<!-- MAIN:END -->
 
 <footer>
   <div class="wrap">
@@ -544,28 +397,28 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       </div>
       <div class="fcol">
         <h5>Program</h5>
-        <a href="impact.html#why-25f">Why &#167;25F</a>
-        <a href="impact.html#how-it-works">How It Works</a>
-        <a href="impact.html">Targeted Impact</a>
-        <a href="platform.html">Our Difference</a>
-        <a href="va-eistc.html">VA EISTC</a>
+        <a href="../impact.html#why-25f">Why &#167;25F</a>
+        <a href="../impact.html#how-it-works">How It Works</a>
+        <a href="../impact.html">Targeted Impact</a>
+        <a href="../platform.html">Our Difference</a>
+        <a href="../va-eistc.html">VA EISTC</a>
       </div>
       <div class="fcol">
         <h5>Organization</h5>
-        <a href="platform.html#governance">Governance</a>
-        <a href="leadership.html">Leadership</a>
-        <a href="news.html">News</a>
-        <a href="transparency.html">Transparency</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="index.html">Home</a>
+        <a href="../platform.html#governance">Governance</a>
+        <a href="../leadership.html">Leadership</a>
+        <a href="../news.html">News</a>
+        <a href="../transparency.html">Transparency</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../index.html">Home</a>
       </div>
       <div class="fcol">
         <h5>Get Involved</h5>
-        <a href="families.html">For Families</a>
-        <a href="donate.html">Donate</a>
-        <a href="apply.html">Apply for a Scholarship</a>
-        <a href="contact.html">Partner With Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="../families.html">For Families</a>
+        <a href="../donate.html">Donate</a>
+        <a href="../apply.html">Apply for a Scholarship</a>
+        <a href="../contact.html">Partner With Us</a>
+        <a href="../contact.html">Contact</a>
       </div>
     </div>
     <div class="fbot">
@@ -574,28 +427,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     </div>
   </div>
 </footer>
-<script src="qrcode.js"></script>
-<script>
-/* ── Family application QR ────────────────────────────────────────
-   apply.html/portal.html live on scholarship-insights.com (the
-   Scholarship Insights LLC platform), not on this site. This links
-   straight to Clerk's hosted sign-up page (accounts.scholarship-insights.com)
-   with redirect_url set back to scholarship-insights.com's invited=family
-   landing, which routes a newly-registered family straight into the
-   application. Going straight to the hosted page instead of scholarship-
-   insights.com's own in-page "invited to apply" JS avoids a load-order
-   race where that page can render before Clerk finishes initializing. */
-(function(){
-  var target = document.getElementById('fam-qr');
-  if(!target || typeof qrcode === 'undefined') return;
-  try {
-    var qr = qrcode(0, 'M');
-    qr.addData('https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet');
-    qr.make();
-    target.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 4, scalable: true });
-  } catch(e) { console.warn('QR render failed:', e.message); }
-})();
-</script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   // ---- Formspree forms: submit via fetch so the visitor stays on the page ----
