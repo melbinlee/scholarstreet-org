@@ -573,21 +573,8 @@ document.addEventListener('DOMContentLoaded',function(){
           }
           // Google Ads conversion. Formspree has accepted the submission at
           // this point, so this counts a real lead rather than a click.
-          // TEMPORARY diagnostic -- remove once a conversion is confirmed in
-          // Google Ads. Logs that this branch was reached and that both the
-          // tag and the snippet exist at the moment of the call.
-          console.log('[conversion] Formspree accepted, firing gtag_report_conversion', {
-            form_id: id,
-            gtag: typeof gtag,
-            snippet: typeof gtag_report_conversion,
-            queued: (window.dataLayer || []).length
-          });
           if(typeof reportAdsConversion === 'function'){ reportAdsConversion('contact_form'); }
         } else {
-          // TEMPORARY diagnostic -- remove with the one above. 429 here means
-          // the Formspree monthly quota is spent, which would explain a
-          // conversion that never fires while the code is correct.
-          console.warn('[conversion] Formspree rejected the submission; conversion not fired. HTTP ' + r.status);
           return r.json().then(function(d){
             throw new Error((d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Submission failed');
           });
