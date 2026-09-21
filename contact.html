@@ -41,6 +41,23 @@ function gtag_report_conversion(url) {
   });
   return false;
 }
+
+// One "Submit lead form" per page load, whatever triggers it.
+//
+// gtag_report_conversion() has no guard of its own, so a double-click on the
+// Apply CTA, or a second contact submission after correcting a typo, reports
+// two leads for one person. Both spots share conversion label
+// IP1iCOfVxvwcEObC0-JE, so they are counted against the same action and share
+// this latch. Page loads are the natural boundary: Google Ads' own "Count"
+// setting on the action is what dedupes across a whole click-through.
+var adsConversionFired = false;
+function reportAdsConversion(source) {
+  if (adsConversionFired) { return false; }
+  if (typeof gtag_report_conversion !== 'function') { return false; }
+  adsConversionFired = true;
+  gtag_report_conversion();
+  return true;
+}
 </script>
 <title>Contact &mdash; Scholar Street SGO</title>
 <meta name="description" content="Contact Scholar Street SGO to apply for a scholarship, donate and claim the federal tax credit, become a partner school, or explore a strategic partnership.">
@@ -556,8 +573,21 @@ document.addEventListener('DOMContentLoaded',function(){
           }
           // Google Ads conversion. Formspree has accepted the submission at
           // this point, so this counts a real lead rather than a click.
-          if(typeof gtag_report_conversion === 'function'){ gtag_report_conversion(); }
+          // TEMPORARY diagnostic -- remove once a conversion is confirmed in
+          // Google Ads. Logs that this branch was reached and that both the
+          // tag and the snippet exist at the moment of the call.
+          console.log('[conversion] Formspree accepted, firing gtag_report_conversion', {
+            form_id: id,
+            gtag: typeof gtag,
+            snippet: typeof gtag_report_conversion,
+            queued: (window.dataLayer || []).length
+          });
+          if(typeof reportAdsConversion === 'function'){ reportAdsConversion('contact_form'); }
         } else {
+          // TEMPORARY diagnostic -- remove with the one above. 429 here means
+          // the Formspree monthly quota is spent, which would explain a
+          // conversion that never fires while the code is correct.
+          console.warn('[conversion] Formspree rejected the submission; conversion not fired. HTTP ' + r.status);
           return r.json().then(function(d){
             throw new Error((d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Submission failed');
           });
@@ -619,6 +649,22 @@ document.addEventListener('DOMContentLoaded',function(){
       name = href.indexOf('EISTC') !== -1 ? 'eistc_inquiry' : 'email_click';
     }
     if(name){ gtag('event', name, { link_url: a.href, page_path: location.pathname }); }
+
+    // Google Ads "Submit lead form". Scoped to the sign-up link specifically,
+    // NOT every accounts.* link: index.html's "Sign In" button also matches
+    // apply_start, and an existing user signing in is not a lead. (The GA4
+    // apply_start event has that same blind spot and predates this.)
+    //
+    // Deliberately NOT `return gtag_report_conversion(href)`. Google's snippet
+    // navigates via window.location in its event_callback, which suits a
+    // same-tab link; this one carries target="_blank", so that would open the
+    // new tab AND navigate this one. It also has no timeout, so a blocked
+    // gtag.js would leave the CTA going nowhere. Calling it without a url
+    // keeps the browser's own navigation and lets this page send the beacon.
+    if(name === 'apply_start' && href.indexOf('/sign-up') !== -1 &&
+       typeof reportAdsConversion === 'function'){
+      reportAdsConversion('apply_cta');
+    }
   });
 
   var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');

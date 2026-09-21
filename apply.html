@@ -41,6 +41,23 @@ function gtag_report_conversion(url) {
   });
   return false;
 }
+
+// One "Submit lead form" per page load, whatever triggers it.
+//
+// gtag_report_conversion() has no guard of its own, so a double-click on the
+// Apply CTA, or a second contact submission after correcting a typo, reports
+// two leads for one person. Both spots share conversion label
+// IP1iCOfVxvwcEObC0-JE, so they are counted against the same action and share
+// this latch. Page loads are the natural boundary: Google Ads' own "Count"
+// setting on the action is what dedupes across a whole click-through.
+var adsConversionFired = false;
+function reportAdsConversion(source) {
+  if (adsConversionFired) { return false; }
+  if (typeof gtag_report_conversion !== 'function') { return false; }
+  adsConversionFired = true;
+  gtag_report_conversion();
+  return true;
+}
 </script>
 <title>Apply for a Scholarship &mdash; Scholar Street SGO</title>
 <meta name="description" content="How to apply for a Scholar Street K-12 scholarship: who can apply, what you will need, how awards are decided, and when applications open.">
@@ -539,6 +556,22 @@ document.addEventListener('DOMContentLoaded',function(){
       name = href.indexOf('EISTC') !== -1 ? 'eistc_inquiry' : 'email_click';
     }
     if(name){ gtag('event', name, { link_url: a.href, page_path: location.pathname }); }
+
+    // Google Ads "Submit lead form". Scoped to the sign-up link specifically,
+    // NOT every accounts.* link: index.html's "Sign In" button also matches
+    // apply_start, and an existing user signing in is not a lead. (The GA4
+    // apply_start event has that same blind spot and predates this.)
+    //
+    // Deliberately NOT `return gtag_report_conversion(href)`. Google's snippet
+    // navigates via window.location in its event_callback, which suits a
+    // same-tab link; this one carries target="_blank", so that would open the
+    // new tab AND navigate this one. It also has no timeout, so a blocked
+    // gtag.js would leave the CTA going nowhere. Calling it without a url
+    // keeps the browser's own navigation and lets this page send the beacon.
+    if(name === 'apply_start' && href.indexOf('/sign-up') !== -1 &&
+       typeof reportAdsConversion === 'function'){
+      reportAdsConversion('apply_cta');
+    }
   });
 
   var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
