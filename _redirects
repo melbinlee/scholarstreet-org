@@ -16,3 +16,7 @@
 # sections of the Impact page. Both old URLs were indexed and linked.
 /why-25f.html          /impact.html#why-25f       301
 /how-giving-works.html /impact.html#how-it-works  301
+# Netlify served every page at its extensionless path too, so Google also
+# knows these two without .html. Without these rules they 404.
+/why-25f               /impact.html#why-25f       301
+/how-giving-works      /impact.html#how-it-works  301
