@@ -291,6 +291,23 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .example{margin-top:22px;background:var(--navy);color:rgba(255,255,255,.72);border-radius:var(--radius);
   padding:1.4rem 1.9rem;font-size:15px;line-height:1.75}
 .example strong{color:var(--gold)}
+
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:3rem}
+.ledger{background:#fff;border-radius:var(--radius);border-top:3px solid var(--gold);
+  box-shadow:0 2px 16px rgba(27,46,75,.06);padding:1.4rem 1.9rem;list-style:none}
+.ledger li{display:flex;justify-content:space-between;gap:16px;padding:.8rem 0;
+  border-bottom:1px solid rgba(27,46,75,.09);font-size:15px;color:var(--text-mid);line-height:1.5}
+.ledger li:last-child{border-bottom:0}
+.ledger .amt{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--navy);font-weight:600}
+.ledger .total{font-weight:700;color:var(--navy)}
+.ledger .net{margin:.6rem -1.9rem -1.4rem;padding:1.1rem 1.9rem;background:var(--navy);
+  border-radius:0 0 var(--radius) var(--radius);color:#fff;font-weight:700}
+.ledger .net .amt{color:var(--gold);font-family:var(--serif);font-size:1.6rem;font-weight:700}
+.calc-body p{font-size:15.5px;color:var(--text-mid);line-height:1.8;margin-bottom:1.1rem}
+.calc-body strong{color:var(--navy)}
+.calc-note{margin-top:1.4rem}
+@media(max-width:900px){.calc{grid-template-columns:1fr;gap:28px}}
+@media(max-width:520px){.ledger{padding:1.1rem 1.2rem}.ledger .net{margin:.6rem -1.2rem -1.1rem;padding:1rem 1.2rem}}
 .alt{background:var(--cream2)}
 
 .elig{background:#fff;border-radius:var(--radius);padding:2.2rem 2.1rem;margin-top:3rem;
@@ -321,7 +338,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .learn .btn-gold{margin-top:1.4rem}
 
 .fine{padding:40px 0 48px}
-.fine p{font-size:12.5px;color:var(--text-lt);line-height:1.7;max-width:900px;margin-bottom:.6rem}
+.fine p,.calc-note{font-size:12.5px;color:var(--text-lt);line-height:1.7;max-width:900px;margin-bottom:.6rem}
 
 @media(max-width:980px){
   .eh-grid,.how-grid{grid-template-columns:1fr;gap:36px}
@@ -466,6 +483,37 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 
 <section>
   <div class="wrap">
+    <div class="s-eyebrow">A Worked Example</div>
+    <h2 class="s-title">A $10,000 gift.<br>A <em>$2,459 net cost.</em></h2>
+    <p class="s-lead">Here&rsquo;s the math, not the marketing.</p>
+
+    <div class="calc">
+      <div class="calc-body">
+        <p>A Virginia couple who itemizes, with <strong>$220,000 in taxable income</strong>, gives
+        <strong>$10,000</strong> through Scholar Street.</p>
+        <p>The 65% credit only applies to the gift itself. The deductions apply to what&rsquo;s
+        left after the credit, <strong>$3,500</strong>, not the full $10,000. That&rsquo;s federal
+        law (Treas. Reg. &#167;1.170A-1(h)(3)): once a state credit passes 15% of the gift, the
+        federal deduction shrinks by the credit amount.</p>
+        <p>Takes the standard deduction instead of itemizing? Still get the full 65% credit. Just
+        not the two lines under it.</p>
+      </div>
+      <ul class="ledger reveal">
+        <li><span>Donation</span><span class="amt">$10,000</span></li>
+        <li><span>Virginia EISTC credit (65%)</span><span class="amt">&minus;$6,500</span></li>
+        <li><span>Federal savings on what&rsquo;s left ($3,500, 24% bracket)</span><span class="amt">&minus;$840</span></li>
+        <li><span>Virginia savings on what&rsquo;s left ($3,500, 5.75% top rate)</span><span class="amt">&minus;$201</span></li>
+        <li class="total"><span>Total tax savings</span><span class="amt">&minus;$7,541</span></li>
+        <li class="net"><span>Net cost</span><span class="amt">$2,459</span></li>
+      </ul>
+    </div>
+    <p class="calc-note">This is general information, not tax advice. Talk to your CPA about your
+    specific situation.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
     <div class="s-eyebrow">Where the Money Goes</div>
     <h2 class="s-title">How your gift<br>is <em>used.</em></h2>
 
@@ -492,7 +540,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </div>
 </section>
 
-<section class="alt">
+<section>
   <div class="wrap">
     <div class="s-eyebrow">Eligibility</div>
     <h2 class="s-title">Which students<br><em>qualify.</em></h2>
@@ -511,7 +559,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </div>
 </section>
 
-<section id="how">
+<section id="how" class="alt">
   <div class="wrap">
     <div class="s-eyebrow">How to Donate</div>
     <h2 class="s-title">From request<br>to <em>certificate.</em></h2>
@@ -566,7 +614,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </div>
 </section>
 
-<div class="fine alt">
+<div class="fine">
   <div class="wrap">
     <p>This page is general information, not tax advice. Individual circumstances vary; consult your
     tax advisor to determine your specific savings. EISTC figures reflect the Code of Virginia
