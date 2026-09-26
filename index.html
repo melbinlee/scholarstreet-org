@@ -595,20 +595,18 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 <script src="qrcode.js"></script>
 <script>
 /* ── Family application QR ────────────────────────────────────────
-   apply.html/portal.html live on scholarship-insights.com (the
-   Scholarship Insights LLC platform), not on this site. This links
-   straight to Clerk's hosted sign-up page (accounts.scholarship-insights.com)
-   with redirect_url set back to scholarship-insights.com's invited=family
-   landing, which routes a newly-registered family straight into the
-   application. Going straight to the hosted page instead of scholarship-
-   insights.com's own in-page "invited to apply" JS avoids a load-order
-   race where that page can render before Clerk finishes initializing. */
+   The application lives on the scholarship platform, not on this site.
+   /a/scholarstreet is Scholar Street's short apply link there: a branded
+   page that loads no sign-in library itself (so the old load-order race
+   with the in-page invite screen does not apply) and hands off to the
+   hosted sign-up, returning to Scholar Street's portal. It is the same URL
+   printed on the family flyer, so it never has to change. */
 (function(){
   var target = document.getElementById('fam-qr');
   if(!target || typeof qrcode === 'undefined') return;
   try {
     var qr = qrcode(0, 'M');
-    qr.addData('https://accounts.scholarship-insights.com/sign-up?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet');
+    qr.addData('https://scholarship-insights.com/a/scholarstreet');
     qr.make();
     target.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 4, scalable: true });
   } catch(e) { console.warn('QR render failed:', e.message); }
