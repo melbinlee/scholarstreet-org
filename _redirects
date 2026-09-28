@@ -20,3 +20,25 @@
 # knows these two without .html. Without these rules they 404.
 /why-25f               /impact.html#why-25f       301
 /how-giving-works      /impact.html#how-it-works  301
+
+# Netlify serves every page at its extensionless path with a 200, and that
+# copy carries the same canonical tag as the .html page. Search Console showed
+# Google picking /impact as canonical over the declared /impact.html and
+# leaving the .html page unindexed. 301 each extensionless path to the .html
+# URL the canonical tags and sitemap.xml name. Forced (!) because the
+# extensionless path resolves to a file on disk, which would otherwise shadow
+# the rule. Keep this list in step with sitemap.xml.
+/impact        /impact.html        301!
+/platform      /platform.html      301!
+/va-eistc      /va-eistc.html      301!
+/leadership    /leadership.html    301!
+/news          /news.html          301!
+/contact       /contact.html       301!
+/donate        /donate.html        301!
+/apply         /apply.html         301!
+/families      /families.html      301!
+/transparency  /transparency.html  301!
+/privacy       /privacy.html       301!
+/news/two-bills-that-could-make-state-opt     /news/two-bills-that-could-make-state-opt.html     301!
+/news/what-sgos-should-be-doing-right-now     /news/what-sgos-should-be-doing-right-now.html     301!
+/news/the-rules-arriving-this-month-may       /news/the-rules-arriving-this-month-may.html       301!
