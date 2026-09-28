@@ -1,15 +1,16 @@
 # Copies new Substack articles onto scholarstreet.org.
 #
-# Runs weekly, and on demand: Actions tab -> "Sync Substack articles" ->
-# "Run workflow" publishes a just-released article within about a minute
-# instead of waiting for Monday. The commit it pushes is what deploys the
-# site -- Netlify builds on every push to main.
+# On demand only: Actions tab -> "Sync Substack articles" -> "Run workflow".
+# The commit it pushes is what deploys the site -- Netlify builds on every
+# push to main.
+#
+# The weekly schedule was removed 2026-09-28. Substack's Cloudflare answers
+# GitHub's runners with a 403, so every run since 2026-09-21 failed at the
+# feed fetch. Articles are synced by hand instead, from a machine the feed
+# does answer: python scripts/sync_substack.py, then commit and push.
 name: Sync Substack articles
 
 on:
-  schedule:
-    # Mondays 13:00 UTC (9am Eastern in summer, 8am in winter).
-    - cron: "0 13 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -32,22 +33,14 @@ jobs:
       - name: Fetch feed and rebuild news pages
         run: python scripts/sync_substack.py
 
-      # GitHub disables scheduled workflows in a public repo after 60 days
-      # without a commit. If no article is published for two months the
-      # sync would stop silently, so every run leaves a commit behind.
-      - name: Record the run
-        run: date -u +"%Y-%m-%dT%H:%M:%SZ" > scripts/last-sync.txt
-
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A news news.html index.html sitemap.xml _redirects scripts/last-sync.txt
-          if git diff --cached --quiet -- news news.html index.html sitemap.xml _redirects; then
-            # Heartbeat only. [skip netlify] stops a redeploy of an
-            # unchanged site.
-            git commit -m "Record weekly Substack check [skip netlify]"
-          else
-            git commit -m "Sync articles from Substack"
+          git add -A news news.html index.html sitemap.xml _redirects
+          if git diff --cached --quiet; then
+            echo "No new or changed articles."
+            exit 0
           fi
+          git commit -m "Sync articles from Substack"
           git push
