@@ -259,56 +259,74 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   border-radius:11px;padding:14px 18px;font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.65}
 .hero-badge strong{color:var(--gold);font-weight:700}
 
-/* STATE LOOKUP (centred strip between the nav and the hero). Type-ahead over
-   state-status-data.js. Kept out of the nav, which is full and collapses on
-   phones, and out of the hero, so opening a card never shifts the headline.
-   The four status colours exist only here, and each badge always carries
-   its text label, so colour is never the only signal. */
-.sl-strip{background:var(--navy);padding:22px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-.sl{max-width:680px;margin:0 auto}
-.sl-row{display:flex;align-items:center;gap:18px}
-.sl-field{position:relative;flex:1;min-width:0}
-.sl-label{font-family:var(--serif);font-size:1.12rem;font-weight:700;color:#fff;white-space:nowrap}
-@media(max-width:620px){
-  .sl-row{flex-direction:column;align-items:stretch;gap:10px}
-  .sl-label{white-space:normal;text-align:center}
-}
-.sl-input{width:100%;padding:11px 14px;border-radius:11px;font-size:15px;font-family:inherit;
-  color:#fff;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
-  outline:none;transition:.15s}
-.sl-input::placeholder{color:rgba(255,255,255,.38)}
-.sl-input:focus{border-color:var(--gold);background:rgba(255,255,255,.11)}
-.sl-list{position:absolute;left:0;right:0;top:100%;margin-top:6px;list-style:none;z-index:5;
-  background:#fff;border-radius:11px;box-shadow:0 14px 40px rgba(0,0,0,.3);
-  max-height:248px;overflow-y:auto;padding:6px 0}
-.sl-list[hidden]{display:none}
-.sl-opt{padding:9px 14px;font-size:14.5px;color:var(--navy);cursor:pointer;
-  display:flex;justify-content:space-between;gap:12px}
-.sl-opt small{color:var(--text-lt);font-size:12px;font-weight:600}
-.sl-opt.active,.sl-opt:hover{background:var(--cream2)}
-.sl-empty{padding:9px 14px;font-size:13.5px;color:var(--text-mid)}
-.sl-result{margin-top:.8rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  border-radius:11px;padding:16px 18px;font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.7}
-.sl-result[hidden]{display:none}
-.sl-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.sl-head h3{font-size:1.25rem;color:#fff}
+/* STATE STATUS TABLE (own section under the hero, on the grey of Why Now).
+   Every state from state-status-data.js in one table with the same columns,
+   narrowed by the status chips and the search box; the updates of whatever
+   is showing run along the bottom. Status colours exist only here, and each
+   badge always carries its text label, so colour is never the only signal. */
+.sl-sec{background:var(--cream2);padding-bottom:0}
+.sl-card{margin-top:2.2rem;background:#fff;border-radius:var(--radius);
+  box-shadow:0 2px 16px rgba(27,46,75,.06);overflow:hidden}
+.sl-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:16px 22px;border-bottom:1px solid rgba(27,46,75,.08)}
+.sl-chips{display:flex;flex-wrap:wrap;gap:8px}
+.sl-chip{font-family:inherit;font-size:13px;font-weight:600;color:var(--text-mid);cursor:pointer;
+  background:transparent;border:1.5px solid rgba(27,46,75,.16);border-radius:999px;
+  padding:6px 14px;transition:.15s;display:inline-flex;align-items:center;gap:7px}
+.sl-chip:hover{border-color:var(--navy);color:var(--navy)}
+.sl-chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.sl-chip .n{font-size:11.5px;opacity:.6}
+.sl-chip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.sl-search{width:240px;max-width:100%;padding:8px 14px;border-radius:999px;font-size:14px;
+  font-family:inherit;color:var(--navy);background:var(--cream);
+  border:1.5px solid rgba(27,46,75,.14);outline:none;transition:.15s}
+.sl-search::placeholder{color:var(--text-lt)}
+.sl-search:focus{border-color:var(--gold);background:#fff}
+.sl-scroll{max-height:430px;overflow-y:auto}
+.sl-table{width:100%;border-collapse:collapse}
+.sl-table th{position:sticky;top:0;z-index:1;background:#fff;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:700;color:var(--text-lt);text-align:left;
+  padding:12px 16px 9px;border-bottom:1px solid rgba(27,46,75,.08)}
+.sl-table td{font-size:14px;color:var(--text);padding:12px 16px;vertical-align:top;
+  border-bottom:1px solid rgba(27,46,75,.06);line-height:1.5}
+.sl-table th:first-child,.sl-table td:first-child{padding-left:22px}
+.sl-table td.sl-state{font-family:var(--serif);font-weight:700;font-size:15.5px;color:var(--navy)}
+.sl-table td small{display:block;font-size:12px;color:var(--text-lt);margin-top:1px}
+.sl-table td strong{color:var(--navy);font-weight:700}
+.sl-na{color:rgba(27,46,75,.28)}
+.sl-sample{background:#fdf1dc;color:#7a4a12;font-size:13px;font-weight:600;padding:10px 22px;
+  border-bottom:1px solid rgba(163,86,26,.2)}
+.sl-none{padding:28px 22px;text-align:center;color:var(--text-mid);font-size:14px}
 .sl-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:999px;
-  background:rgba(255,255,255,.08);color:#fff}
-.sl-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor}
-.sl-badge.opted-in{color:#8fc497;background:rgba(107,143,113,.22)}
-.sl-badge.pending-warm{color:#f0a860;background:rgba(240,168,96,.16)}
-.sl-badge.pending-cold{color:#8fb8e6;background:rgba(143,184,230,.16)}
-.sl-badge.not-participating{color:#ec8a7e;background:rgba(236,138,126,.16)}
-.sl-badge.unverified{color:rgba(255,255,255,.62)}
-.sl-result p{margin-top:.7rem}
-.sl-credit{margin-top:.8rem;padding-top:.8rem;border-top:1px solid rgba(255,255,255,.1)}
-.sl-credit strong{color:var(--gold);font-weight:700}
-.sl-sub{margin-top:.8rem;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  font-weight:700;color:rgba(255,255,255,.45)}
-.sl-updates{list-style:none;margin-top:.35rem}
-.sl-updates li{display:flex;gap:12px;padding:3px 0}
-.sl-updates time{flex-shrink:0;color:rgba(255,255,255,.45);font-size:12.5px;min-width:92px}
+  letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.sl-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor}
+.opted-in{--sl:#3f6b48}
+.pending-warm{--sl:#a3561a}
+.pending-cold{--sl:#2e62a0}
+.not-participating{--sl:#a8392f}
+.unverified{--sl:#7d8798}
+.sl-badge{color:var(--sl);background:color-mix(in srgb,var(--sl) 11%,#fff)}
+.sl-chip i{background:var(--sl)}
+.sl-feed{display:flex;align-items:baseline;gap:18px;padding:13px 22px;background:var(--cream);
+  border-top:1px solid rgba(27,46,75,.08);font-size:13px;color:var(--text-mid)}
+.sl-feed-lbl{flex-shrink:0;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:var(--sage)}
+.sl-feed ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 28px}
+.sl-feed b{color:var(--navy);font-weight:700;margin-right:6px}
+.sl-feed time{color:var(--text-lt);margin-right:8px}
+@media(max-width:940px){
+  .sl-search{width:100%}
+  .sl-scroll{max-height:none}
+  .sl-table thead{display:none}
+  .sl-table,.sl-table tbody,.sl-table tr,.sl-table td{display:block;width:100%}
+  .sl-table tr{padding:10px 0;border-bottom:1px solid rgba(27,46,75,.1)}
+  .sl-table td{display:grid;grid-template-columns:42% 1fr;gap:12px;padding:5px 22px;border:none}
+  .sl-table td::before{content:attr(data-label);font-family:'Source Sans 3',system-ui,sans-serif;
+    font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+    color:var(--text-lt);padding-top:3px}
+  .sl-feed{flex-direction:column;gap:8px}
+  .sl-feed ul{flex-direction:column}
+}
 
 /* WHY NOW STATS */
 .why-sec{background:var(--cream2)}
@@ -404,23 +422,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </ul>
 </nav>
 
-<section class="sl-strip" aria-label="State lookup">
-  <div class="wrap">
-    <div class="sl">
-      <div class="sl-row">
-        <label class="sl-label" for="sl-input">Is your state participating?</label>
-        <div class="sl-field">
-          <input id="sl-input" class="sl-input" type="text" placeholder="Start typing a state&hellip;"
-            autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list"
-            aria-expanded="false" aria-controls="sl-list">
-          <ul id="sl-list" class="sl-list" role="listbox" hidden></ul>
-        </div>
-      </div>
-      <div id="sl-result" class="sl-result" aria-live="polite" hidden></div>
-    </div>
-  </div>
-</section>
-
 <section class="hero">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
   <div class="wrap">
@@ -439,6 +440,44 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         <div class="hero-photo"><img src="img/students-in-a-classroom.jpg" alt="Students in a classroom"></div>
         <div class="hero-badge">The federal <strong>Education Freedom Tax Credit</strong> takes effect
         January 1, 2027. Scholar Street is registered to operate in multiple states and is building its footprint ahead of the January 1, 2027 launch.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl-sec" id="states">
+  <div class="wrap">
+    <div class="s-eyebrow">State by State</div>
+    <h2 class="s-title">Where &#167;25F stands<br><em>in every state.</em></h2>
+    <p class="s-lead">Each state decides whether its residents can use the federal Education Freedom
+    Tax Credit. Filter by status, or search for your state.</p>
+
+    <div class="sl-card">
+      <div class="sl-bar">
+        <div class="sl-chips" id="sl-chips" role="group" aria-label="Filter by status"></div>
+        <input id="sl-search" class="sl-search" type="search" placeholder="Search a state&hellip;"
+          autocomplete="off" spellcheck="false" aria-label="Search a state" aria-controls="sl-body">
+      </div>
+      <div class="sl-scroll">
+        <table class="sl-table">
+          <thead>
+            <tr>
+              <th scope="col">State</th>
+              <th scope="col">&#167;25F status</th>
+              <th scope="col">Opted in</th>
+              <th scope="col">Governor at opt-in</th>
+              <th scope="col">Current governor</th>
+              <th scope="col">On IRS list</th>
+              <th scope="col">State tax credit</th>
+            </tr>
+          </thead>
+          <tbody id="sl-body"></tbody>
+        </table>
+        <div id="sl-none" class="sl-none" hidden></div>
+      </div>
+      <div class="sl-feed">
+        <span class="sl-feed-lbl">Latest</span>
+        <ul id="sl-feed"></ul>
       </div>
     </div>
   </div>
@@ -682,26 +721,32 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 </script>
 <script src="state-status-data.js"></script>
 <script>
-/* ── State lookup (hero) ──────────────────────────────────────────
-   Type-ahead over window.SS_STATES. Names starting with the query rank
-   ahead of names merely containing it; a two-letter postal code also
-   matches. Picking a state renders its card below the input. */
+/* ── State status table ───────────────────────────────────────────
+   Renders every state in window.SS_STATES, alphabetically.
+   The chips filter by status (one at a time; "All" clears it) and the
+   search box narrows by name or postal code. The feed shows the newest
+   updates among the rows currently showing. */
 (function(){
   var states = window.SS_STATES;
-  var input = document.getElementById('sl-input');
-  var list = document.getElementById('sl-list');
-  var result = document.getElementById('sl-result');
-  if(!states || !input || !list || !result) return;
+  var body = document.getElementById('sl-body');
+  var chips = document.getElementById('sl-chips');
+  var search = document.getElementById('sl-search');
+  var none = document.getElementById('sl-none');
+  var feed = document.getElementById('sl-feed');
+  if(!states || !body || !chips || !search || !none || !feed) return;
 
-  var LABELS = {
-    'opted-in': 'Opted In',
-    'pending-warm': 'Pending — Warm',
-    'pending-cold': 'Pending — Cold',
-    'not-participating': 'Not Participating'
-  };
+  var STATUSES = [
+    ['opted-in', 'Opted In'],
+    ['pending-warm', 'Pending — Warm'],
+    ['pending-cold', 'Pending — Cold'],
+    ['not-participating', 'Not Participating']
+  ];
+  var LABELS = {};
+  STATUSES.forEach(function(s){ LABELS[s[0]] = s[1]; });
   var MONTHS = ['January','February','March','April','May','June','July',
     'August','September','October','November','December'];
-  var matches = [], active = -1;
+  var FEED_MAX = 4;
+  var filter = 'all';
 
   function esc(s){
     return String(s).replace(/[&<>"']/g, function(c){
@@ -712,107 +757,113 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     var p = iso.split('-');
     return MONTHS[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0];
   }
+  function statusOf(s){ return s.status || 'unverified'; }
 
-  function search(q){
-    q = q.trim().toLowerCase();
-    if(!q) return [];
-    var starts = [], contains = [];
-    states.forEach(function(s){
-      var name = s.name.toLowerCase();
-      if(name.indexOf(q) === 0 || s.code.toLowerCase() === q) starts.push(s);
-      else if(name.indexOf(q) > 0) contains.push(s);
+  var sorted = states.slice().sort(function(a, b){ return a.name.localeCompare(b.name); });
+
+  /* Postal code, then names starting with the query, then any word in the
+     name starting with it. Each tier only applies when the one before it
+     found nothing, so "virginia" is Virginia alone (not West Virginia),
+     "va" is Virginia, and "carolina" still finds both Carolinas. */
+  function matchesQuery(list, q){
+    if(!q) return list;
+    var code = list.filter(function(s){ return s.code.toLowerCase() === q; });
+    if(code.length) return code;
+    var starts = list.filter(function(s){ return s.name.toLowerCase().indexOf(q) === 0; });
+    if(starts.length) return starts;
+    return list.filter(function(s){
+      return s.name.toLowerCase().split(' ').some(function(w){ return w.indexOf(q) === 0; });
     });
-    return starts.concat(contains);
   }
 
-  function close(){
-    list.hidden = true;
-    input.setAttribute('aria-expanded', 'false');
-    input.removeAttribute('aria-activedescendant');
-    active = -1;
+  var NA = '<span class="sl-na">&mdash;</span>';
+  function cell(label, content, cls){
+    return '<td data-label="' + label + '"' + (cls ? ' class="' + cls + '"' : '') + '>' +
+      '<span>' + content + '</span></td>';
+  }
+  function dateCell(iso){
+    return iso ? '<time datetime="' + iso + '">' + niceDate(iso) + '</time>' : NA;
+  }
+  function row(s){
+    var st = statusOf(s);
+    var badge = '<span class="sl-badge ' + st + '">' +
+      (s.status ? LABELS[s.status] : 'Not yet verified') + '</span>';
+    var credit = s.credit
+      ? '<strong>' + esc(s.credit.name) + '</strong><small>' + esc(s.credit.detail) + '</small>'
+      : (s.verified ? 'None' : NA);
+    return '<tr>' +
+      cell('State', esc(s.name), 'sl-state') +
+      cell('&#167;25F status', badge) +
+      cell('Opted in', dateCell(s.optInDate)) +
+      cell('Governor at opt-in', s.optInGovernor ? esc(s.optInGovernor) : NA) +
+      cell('Current governor', s.currentGovernor
+        ? esc(s.currentGovernor) + (s.optInGovernor && s.optInGovernor !== s.currentGovernor
+            ? '<small>Different from opt-in governor</small>' : '')
+        : NA) +
+      cell('On IRS list', dateCell(s.irsListed)) +
+      cell('State tax credit', credit) +
+      '</tr>';
   }
 
-  function highlight(i){
-    var opts = list.querySelectorAll('.sl-opt');
-    opts.forEach(function(o){ o.classList.remove('active'); o.setAttribute('aria-selected', 'false'); });
-    active = i;
-    if(i < 0 || !opts[i]) { input.removeAttribute('aria-activedescendant'); return; }
-    opts[i].classList.add('active');
-    opts[i].setAttribute('aria-selected', 'true');
-    input.setAttribute('aria-activedescendant', opts[i].id);
-    opts[i].scrollIntoView({ block: 'nearest' });
+  function drawChips(){
+    var counts = {};
+    states.forEach(function(s){ counts[statusOf(s)] = (counts[statusOf(s)] || 0) + 1; });
+    chips.innerHTML =
+      '<button type="button" class="sl-chip" data-f="all" aria-pressed="' + (filter === 'all') + '">' +
+        'All states <span class="n">' + states.length + '</span></button>' +
+      STATUSES.map(function(s){
+        return '<button type="button" class="sl-chip ' + s[0] + '" data-f="' + s[0] + '" aria-pressed="' +
+          (filter === s[0]) + '"><i></i>' + s[1] + ' <span class="n">' + (counts[s[0]] || 0) + '</span></button>';
+      }).join('');
   }
 
-  function open(){
-    matches = search(input.value);
-    if(!input.value.trim()) { close(); return; }
-    list.innerHTML = matches.length
-      ? matches.map(function(s, i){
-          return '<li class="sl-opt" role="option" id="sl-opt-' + i + '" aria-selected="false" data-i="' + i + '">' +
-            esc(s.name) + '<small>' + s.code + '</small></li>';
+  function draw(){
+    var q = search.value.trim().toLowerCase();
+    var shown = matchesQuery(sorted.filter(function(s){
+      return filter === 'all' || s.status === filter;
+    }), q);
+    body.innerHTML = shown.map(row).join('');
+    if(shown.length){
+      none.hidden = true;
+    } else {
+      none.hidden = false;
+      none.textContent = q
+        ? 'No state matches “' + search.value.trim() + '”' + (filter !== 'all' ? ' under ' + LABELS[filter] + '.' : '.')
+        : 'No states are ' + LABELS[filter] + ' yet.';
+    }
+    var updates = [];
+    shown.forEach(function(s){
+      s.updates.forEach(function(u){ updates.push({ state: s.name, date: u.date, text: u.text }); });
+    });
+    updates.sort(function(a, b){ return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+    feed.innerHTML = updates.length
+      ? updates.slice(0, FEED_MAX).map(function(u){
+          return '<li><b>' + esc(u.state) + '</b><time datetime="' + u.date + '">' + niceDate(u.date) +
+            '</time>' + esc(u.text) + '</li>';
         }).join('')
-      : '<li class="sl-empty">No matching state</li>';
-    list.hidden = false;
-    input.setAttribute('aria-expanded', 'true');
-    highlight(matches.length ? 0 : -1);
+      : '<li>No updates for the states shown.</li>';
   }
 
-  function render(s){
-    var badge = s.status
-      ? '<span class="sl-badge ' + s.status + '">' + LABELS[s.status] + '</span>'
-      : '<span class="sl-badge unverified">Not yet verified</span>';
-    var html = '<div class="sl-head"><h3>' + esc(s.name) + '</h3>' + badge + '</div>';
-    html += s.summary
-      ? '<p>' + esc(s.summary) + '</p>'
-      : '<p>We haven’t verified ' + esc(s.name) + '’s §25F status yet. ' +
-        'Check back as states continue to opt in.</p>';
-    if(s.credit){
-      html += '<div class="sl-credit"><strong>' + esc(s.credit.name) + '</strong><br>' +
-        esc(s.credit.detail) + '</div>';
-    }
-    if(s.updates && s.updates.length){
-      html += '<div class="sl-sub">Recent updates</div><ul class="sl-updates">' +
-        s.updates.map(function(u){
-          return '<li><time datetime="' + u.date + '">' + niceDate(u.date) + '</time><span>' +
-            esc(u.text) + '</span></li>';
-        }).join('') + '</ul>';
-    }
-    result.innerHTML = html;
-    result.hidden = false;
-  }
-
-  function choose(i){
-    var s = matches[i];
-    if(!s) return;
-    input.value = s.name;
-    close();
-    render(s);
-  }
-
-  input.addEventListener('input', open);
-  input.addEventListener('focus', function(){ if(input.value.trim()) open(); });
-  input.addEventListener('keydown', function(e){
-    if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
-      if(list.hidden) { open(); return; }
-      e.preventDefault();
-      var n = matches.length;
-      if(!n) return;
-      highlight(e.key === 'ArrowDown' ? (active + 1) % n : (active - 1 + n) % n);
-    } else if(e.key === 'Enter'){
-      if(!list.hidden && active >= 0) { e.preventDefault(); choose(active); }
-    } else if(e.key === 'Escape'){
-      close();
-    }
+  chips.addEventListener('click', function(e){
+    var b = e.target.closest('.sl-chip');
+    if(!b) return;
+    filter = b.getAttribute('data-f');
+    drawChips();
+    draw();
   });
-  // mousedown, not click: a click lands after the input's blur has
-  // already closed the list.
-  list.addEventListener('mousedown', function(e){
-    var opt = e.target.closest('.sl-opt');
-    if(!opt) return;
-    e.preventDefault();
-    choose(+opt.getAttribute('data-i'));
-  });
-  input.addEventListener('blur', close);
+  search.addEventListener('input', draw);
+
+  if(window.SS_SAMPLE){
+    var note = document.createElement('div');
+    note.className = 'sl-sample';
+    note.textContent = 'Sample data — every state except Virginia is made up, for trying the filters. ' +
+      'Remove ?sample=1 from the address to see the real table.';
+    var card = chips.parentNode.parentNode;
+    card.insertBefore(note, card.firstChild);
+  }
+
+  drawChips();
+  draw();
 })();
 </script>
 <script>
