@@ -27,18 +27,21 @@
 # leaving the .html page unindexed. 301 each extensionless path to the .html
 # URL the canonical tags and sitemap.xml name. Forced (!) because the
 # extensionless path resolves to a file on disk, which would otherwise shadow
-# the rule. Keep this list in step with sitemap.xml.
-/impact        /impact.html        301!
-/platform      /platform.html      301!
-/va-eistc      /va-eistc.html      301!
-/leadership    /leadership.html    301!
-/news          /news.html          301!
-/contact       /contact.html       301!
-/donate        /donate.html        301!
-/apply         /apply.html         301!
-/families      /families.html      301!
-/transparency  /transparency.html  301!
-/privacy       /privacy.html       301!
-/news/two-bills-that-could-make-state-opt     /news/two-bills-that-could-make-state-opt.html     301!
-/news/what-sgos-should-be-doing-right-now     /news/what-sgos-should-be-doing-right-now.html     301!
-/news/the-rules-arriving-this-month-may       /news/the-rules-arriving-this-month-may.html       301!
+# the rule. scripts/sync_substack.py rebuilds the rules between the markers
+# from the same list as sitemap.xml -- edit STATIC_PAGES there, not here.
+# EXTENSIONLESS:START
+/impact                                    /impact.html                                    301!
+/platform                                  /platform.html                                  301!
+/va-eistc                                  /va-eistc.html                                  301!
+/leadership                                /leadership.html                                301!
+/news                                      /news.html                                      301!
+/contact                                   /contact.html                                   301!
+/donate                                    /donate.html                                    301!
+/apply                                     /apply.html                                     301!
+/families                                  /families.html                                  301!
+/transparency                              /transparency.html                              301!
+/privacy                                   /privacy.html                                   301!
+/news/two-bills-that-could-make-state-opt  /news/two-bills-that-could-make-state-opt.html  301!
+/news/what-sgos-should-be-doing-right-now  /news/what-sgos-should-be-doing-right-now.html  301!
+/news/the-rules-arriving-this-month-may    /news/the-rules-arriving-this-month-may.html    301!
+# EXTENSIONLESS:END

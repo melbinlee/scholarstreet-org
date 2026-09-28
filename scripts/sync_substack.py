@@ -1,7 +1,8 @@
 """Copy Scholar Street's Substack articles onto scholarstreet.org.
 
 Reads the public RSS feed, writes one page per article to news/<slug>.html,
-rebuilds the article list in news.html, and regenerates sitemap.xml.
+rebuilds the article list in news.html, and regenerates sitemap.xml and the
+extensionless-path redirects in _redirects.
 
 news.html is the template: every article page is news.html with its
 <!-- HEAD --> and <!-- MAIN --> regions swapped out, so the nav, footer and
@@ -461,6 +462,31 @@ def sitemap(articles):
             + "\n".join(urls) + "\n</urlset>\n")
 
 
+def redirects(articles):
+    """301 rules from each sitemap page's extensionless path to its .html URL.
+
+    Netlify serves /impact as well as /impact.html, both with a 200 and the
+    same canonical tag, and Google picked the extensionless copy as canonical.
+    Built from the same list as the sitemap so a new article gets its rule on
+    the run that publishes it. Forced (!) because the extensionless path
+    resolves to a file on disk, which would otherwise shadow the rule.
+    """
+    pages = [p for p in STATIC_PAGES if p]
+    pages += [f"news/{a['slug']}.html" for a in articles]
+    pairs = [(f"/{p[:-len('.html')]}", f"/{p}") for p in pages]
+    src_width = max(len(src) for src, _ in pairs) + 2
+    dest_width = max(len(dest) for _, dest in pairs) + 2
+    return "\n".join(f"{src:<{src_width}}{dest:<{dest_width}}301!"
+                     for src, dest in pairs)
+
+
+def redirects_region(text, rules):
+    pattern = re.compile(r"(# EXTENSIONLESS:START\n).*?(# EXTENSIONLESS:END)", re.S)
+    if not pattern.search(text):
+        sys.exit("_redirects is missing its # EXTENSIONLESS:START/END markers")
+    return pattern.sub(lambda m: m.group(1) + rules + "\n" + m.group(2), text)
+
+
 def write_if_changed(path, text):
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists() and path.read_text(encoding="utf-8") == text:
@@ -500,6 +526,9 @@ def main():
     write_if_changed(home, region(home.read_text(encoding="utf-8"), "LATEST",
                                   latest_section(articles), "index.html"))
     write_if_changed(ROOT / "sitemap.xml", sitemap(articles))
+    rules = ROOT / "_redirects"
+    write_if_changed(rules, redirects_region(rules.read_text(encoding="utf-8"),
+                                             redirects(articles)))
 
 
 if __name__ == "__main__":
