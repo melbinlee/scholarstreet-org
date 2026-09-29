@@ -175,6 +175,30 @@
   var section = document.getElementById('states');
   var HASH = /^#states-([a-z]{2})$/i;
 
+  /* ── Analytics ──
+     GA4 events for how visitors use the table, so an ad that lands here can
+     be judged by engagement, not just arrival. Mark state_select as a key
+     event in GA4 if it should count toward Ads optimization.
+       state_select  a state isolated: state_code, source (click | link)
+       state_filter  a chip: filter (status or has_program), active (on/off)
+       state_search  a typed search once the visitor pauses: search_term,
+                     results (rows shown)
+     Clicks through to program, governor and source sites are already
+     counted by GA4's outbound-click measurement. */
+  function track(name, params){
+    if(typeof gtag === 'function') gtag('event', name, params);
+  }
+  var searchTimer = null, lastSearchSent = '';
+  function trackSearchSoon(){
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function(){
+      var term = search.value.trim();
+      if(!term || term === lastSearchSent || isolated) return;
+      lastSearchSent = term;
+      track('state_search', { search_term: term.slice(0, 100), results: body.rows.length });
+    }, 1200);
+  }
+
   function setHash(code){
     var url = window.location.pathname + window.location.search + (code ? '#states-' + code.toLowerCase() : '');
     try { history.replaceState(null, '', url); } catch(e) {}
@@ -195,7 +219,7 @@
   // A shared link isolates the state while the page is still loading; a
   // scroll then gets undone by the browser's own load-time positioning,
   // so wait for load. "instant" overrides the page's smooth scrolling,
-  // which would otherwise animate down the whole homepage.
+  // which would otherwise animate down the whole page.
   function scrollToSection(){
     function go(){
       var nav = document.getElementById('mainNav');
@@ -218,7 +242,8 @@
     var b = e.target.closest('.sl-pick');
     if(!b) return;
     var code = b.getAttribute('data-code');
-    if(isolated === code) release(); else isolate(code);
+    if(isolated === code) release();
+    else { isolate(code); track('state_select', { state_code: code, source: 'click' }); }
   });
   clearBtn.addEventListener('click', function(){ release(); search.focus(); });
 
@@ -226,14 +251,20 @@
     var b = e.target.closest('.sl-chip');
     if(!b) return;
     if(isolated){ isolated = null; search.value = ''; clearBtn.hidden = true; setHash(null); }
-    if(b.hasAttribute('data-toggle')) withProgram = !withProgram;
-    else filter = b.getAttribute('data-f');
+    if(b.hasAttribute('data-toggle')){
+      withProgram = !withProgram;
+      track('state_filter', { filter: 'has_program', active: withProgram ? 'on' : 'off' });
+    } else {
+      filter = b.getAttribute('data-f');
+      track('state_filter', { filter: filter, active: 'on' });
+    }
     drawChips();
     draw();
   });
   search.addEventListener('input', function(){
     if(isolated){ isolated = null; clearBtn.hidden = true; setHash(null); }
     draw();
+    trackSearchSoon();
   });
   search.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && isolated){ e.preventDefault(); release(); }
@@ -241,7 +272,10 @@
 
   function fromHash(){
     var m = HASH.exec(window.location.hash);
-    if(m) isolate(m[1].toUpperCase(), true);
+    if(m){
+      isolate(m[1].toUpperCase(), true);
+      if(isolated) track('state_select', { state_code: isolated, source: 'link' });
+    }
   }
   window.addEventListener('hashchange', fromHash);
 
