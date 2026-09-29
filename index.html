@@ -319,6 +319,10 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .sl-table td strong a{color:inherit;text-decoration:underline;text-decoration-color:rgba(200,168,75,.6);
   text-underline-offset:3px;transition:.15s}
 .sl-table td strong a:hover{text-decoration-color:var(--gold);color:var(--gold-dk)}
+/* Governor names: a fainter underline than program links, gold on hover. */
+.sl-gov{color:inherit;text-decoration:underline;text-decoration-color:rgba(27,46,75,.18);
+  text-underline-offset:3px;transition:.15s}
+.sl-gov:hover{color:var(--navy);text-decoration-color:var(--gold)}
 .sl-na{color:rgba(27,46,75,.28)}
 .sl-none{padding:28px 22px;text-align:center;color:var(--text-mid);font-size:14px}
 .sl-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
@@ -820,6 +824,14 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   function dateCell(iso, by){
     return iso ? (by ? 'By ' : '') + '<time datetime="' + iso + '">' + niceDate(iso) + '</time>' : NA;
   }
+  // A governor's name, linked to their Wikipedia article when we have one.
+  var GOV_LINKS = window.SS_GOVERNOR_LINKS || {};
+  function governor(name){
+    var url = GOV_LINKS[name];
+    return url
+      ? '<a class="sl-gov" href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(name) + '</a>'
+      : esc(name);
+  }
   function row(s){
     var st = statusOf(s);
     var badge = '<span class="sl-badge ' + st + '">' +
@@ -843,10 +855,10 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         (isolated === s.code) + '" title="Show only ' + esc(s.name) + '">' + esc(s.name) + '</button>', 'sl-state') +
       cell('&#167;25F status', badge) +
       cell('Opted in', optIn) +
-      cell('Governor at opt-in', s.optInGovernor ? esc(s.optInGovernor)
+      cell('Governor at opt-in', s.optInGovernor ? governor(s.optInGovernor)
         : (s.optInVia ? esc(s.optInVia) : NA)) +
       cell('Current governor', s.currentGovernor
-        ? esc(s.currentGovernor) + (s.optInGovernor && s.optInGovernor !== s.currentGovernor
+        ? governor(s.currentGovernor) + (s.optInGovernor && s.optInGovernor !== s.currentGovernor
             ? '<small>Different from opt-in governor</small>' : '')
         : NA) +
       cell('On IRS list', dateCell(s.irsListed, s.irsListedBy)) +

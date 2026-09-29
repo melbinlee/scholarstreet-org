@@ -936,4 +936,62 @@
     };
   });
 
+  /* Wikipedia article for each governor named in the table (current and
+     opt-in), keyed by name as it appears above. Titles taken from Wikipedia's
+     "List of current United States governors" and checked 2026-09-28 to be
+     the governor's own article, not a disambiguation page. A name missing
+     here just shows unlinked. */
+  window.SS_GOVERNOR_LINKS = {
+    "Abigail Spanberger": "https://en.wikipedia.org/wiki/Abigail_Spanberger",
+    "Andy Beshear": "https://en.wikipedia.org/wiki/Andy_Beshear",
+    "Bill Lee": "https://en.wikipedia.org/wiki/Bill_Lee_(Tennessee_politician)",
+    "Bob Ferguson": "https://en.wikipedia.org/wiki/Bob_Ferguson_(politician)",
+    "Brad Little": "https://en.wikipedia.org/wiki/Brad_Little",
+    "Brian Kemp": "https://en.wikipedia.org/wiki/Brian_Kemp",
+    "Dan McKee": "https://en.wikipedia.org/wiki/Dan_McKee",
+    "Gavin Newsom": "https://en.wikipedia.org/wiki/Gavin_Newsom",
+    "Glenn Youngkin": "https://en.wikipedia.org/wiki/Glenn_Youngkin",
+    "Greg Abbott": "https://en.wikipedia.org/wiki/Greg_Abbott",
+    "Greg Gianforte": "https://en.wikipedia.org/wiki/Greg_Gianforte",
+    "Gretchen Whitmer": "https://en.wikipedia.org/wiki/Gretchen_Whitmer",
+    "Henry McMaster": "https://en.wikipedia.org/wiki/Henry_McMaster",
+    "JB Pritzker": "https://en.wikipedia.org/wiki/JB_Pritzker",
+    "Janet Mills": "https://en.wikipedia.org/wiki/Janet_Mills",
+    "Jared Polis": "https://en.wikipedia.org/wiki/Jared_Polis",
+    "Jeff Landry": "https://en.wikipedia.org/wiki/Jeff_Landry",
+    "Jim Pillen": "https://en.wikipedia.org/wiki/Jim_Pillen",
+    "Joe Lombardo": "https://en.wikipedia.org/wiki/Joe_Lombardo",
+    "Josh Green": "https://en.wikipedia.org/wiki/Josh_Green_(politician)",
+    "Josh Shapiro": "https://en.wikipedia.org/wiki/Josh_Shapiro",
+    "Josh Stein": "https://en.wikipedia.org/wiki/Josh_Stein",
+    "Kathy Hochul": "https://en.wikipedia.org/wiki/Kathy_Hochul",
+    "Katie Hobbs": "https://en.wikipedia.org/wiki/Katie_Hobbs",
+    "Kay Ivey": "https://en.wikipedia.org/wiki/Kay_Ivey",
+    "Kelly Armstrong": "https://en.wikipedia.org/wiki/Kelly_Armstrong",
+    "Kelly Ayotte": "https://en.wikipedia.org/wiki/Kelly_Ayotte",
+    "Kevin Stitt": "https://en.wikipedia.org/wiki/Kevin_Stitt",
+    "Kim Reynolds": "https://en.wikipedia.org/wiki/Kim_Reynolds",
+    "Larry Rhoden": "https://en.wikipedia.org/wiki/Larry_Rhoden",
+    "Laura Kelly": "https://en.wikipedia.org/wiki/Laura_Kelly",
+    "Mark Gordon": "https://en.wikipedia.org/wiki/Mark_Gordon",
+    "Matt Meyer": "https://en.wikipedia.org/wiki/Matt_Meyer",
+    "Maura Healey": "https://en.wikipedia.org/wiki/Maura_Healey",
+    "Michelle Lujan Grisham": "https://en.wikipedia.org/wiki/Michelle_Lujan_Grisham",
+    "Mike Braun": "https://en.wikipedia.org/wiki/Mike_Braun",
+    "Mike DeWine": "https://en.wikipedia.org/wiki/Mike_DeWine",
+    "Mike Dunleavy": "https://en.wikipedia.org/wiki/Mike_Dunleavy_(politician)",
+    "Mike Kehoe": "https://en.wikipedia.org/wiki/Mike_Kehoe",
+    "Mikie Sherrill": "https://en.wikipedia.org/wiki/Mikie_Sherrill",
+    "Ned Lamont": "https://en.wikipedia.org/wiki/Ned_Lamont",
+    "Patrick Morrisey": "https://en.wikipedia.org/wiki/Patrick_Morrisey",
+    "Phil Scott": "https://en.wikipedia.org/wiki/Phil_Scott",
+    "Ron DeSantis": "https://en.wikipedia.org/wiki/Ron_DeSantis",
+    "Sarah Huckabee Sanders": "https://en.wikipedia.org/wiki/Sarah_Huckabee_Sanders",
+    "Spencer Cox": "https://en.wikipedia.org/wiki/Spencer_Cox",
+    "Tate Reeves": "https://en.wikipedia.org/wiki/Tate_Reeves",
+    "Tim Walz": "https://en.wikipedia.org/wiki/Tim_Walz",
+    "Tina Kotek": "https://en.wikipedia.org/wiki/Tina_Kotek",
+    "Tony Evers": "https://en.wikipedia.org/wiki/Tony_Evers",
+    "Wes Moore": "https://en.wikipedia.org/wiki/Wes_Moore"
+  };
 })();
