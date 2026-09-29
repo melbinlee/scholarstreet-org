@@ -318,9 +318,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     <li><a href="impact.html">Impact</a></li>
     <li><a href="platform.html">Our Difference</a></li>
     <li><a href="va-eistc.html">VA EISTC</a></li>
-    <li><a href="leadership.html">Leadership</a></li>
+    <li><a href="team.html">Our Team</a></li>
     <li><a href="news.html" class="active">News</a></li>
-    <li><a href="contact.html">Contact</a></li>
     <li><a href="apply.html" class="nav-apply-outline">Apply</a></li>
     <li><a href="donate.html" class="nav-apply">Donate</a></li>
   </ul>
@@ -338,8 +337,53 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </div>
 </section>
 
+<section class="sl-sec" id="states">
+  <link rel="stylesheet" href="state-table.css">
+  <div class="wrap">
+    <div class="s-eyebrow">State by State</div>
+    <h2 class="s-title">Where &#167;25F stands<br><em>in every state.</em></h2>
+    <p class="s-lead"><strong>You can give from any state.</strong> Donors everywhere can claim the federal
+    Education Freedom Tax Credit by giving to a scholarship organization in a participating state.
+    What a state&rsquo;s opt-in decides is whether <em>its</em> families can apply for those scholarships.
+    Filter by status or state program, or search for your state.</p>
+
+    <div class="sl-card">
+      <div class="sl-bar">
+        <div class="sl-chips" id="sl-chips" role="group" aria-label="Filter by status"></div>
+        <div class="sl-find">
+          <button type="button" id="sl-clear" class="sl-clear" hidden>All states <span aria-hidden="true">&times;</span></button>
+          <input id="sl-search" class="sl-search" type="search" placeholder="Search a state&hellip;"
+            autocomplete="off" spellcheck="false" aria-label="Search a state" aria-controls="sl-body">
+        </div>
+      </div>
+      <div class="sl-scroll">
+        <table class="sl-table">
+          <thead>
+            <tr>
+              <th scope="col">State</th>
+              <th scope="col">&#167;25F status</th>
+              <th scope="col">Opted in</th>
+              <th scope="col">Current governor</th>
+              <th scope="col">On IRS list</th>
+              <th scope="col">State tax credit</th>
+            </tr>
+          </thead>
+          <tbody id="sl-body"></tbody>
+        </table>
+        <div id="sl-none" class="sl-none" hidden></div>
+      </div>
+      <div class="sl-feed">
+        <span class="sl-feed-lbl">Latest</span>
+        <ul id="sl-feed"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
+    <div class="s-eyebrow">Scholar Street</div>
+    <h2 class="s-title" style="margin-bottom:2.2rem">Recently <em>published.</em></h2>
     <div class="news-list">
       <a class="news-card reveal" href="news/two-bills-that-could-make-state-opt.html">
         <time datetime="2026-09-19">September 19, 2026</time>
@@ -366,6 +410,9 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     </div>
   </div>
 </section>
+
+<script src="state-status-data.js"></script>
+<script src="state-table.js"></script>
 <!-- MAIN:END -->
 
 <footer>
@@ -435,7 +482,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div class="fcol">
         <h5>Organization</h5>
         <a href="platform.html#governance">Governance</a>
-        <a href="leadership.html">Leadership</a>
+        <a href="team.html">Our Team</a>
         <a href="news.html">News</a>
         <a href="transparency.html">Transparency</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -446,8 +493,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         <a href="families.html">For Families</a>
         <a href="donate.html">Donate</a>
         <a href="apply.html">Apply for a Scholarship</a>
-        <a href="contact.html">Partner With Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="team.html#contact">Partner With Us</a>
+        <a href="team.html#contact">Contact</a>
       </div>
     </div>
     <div class="fbot">

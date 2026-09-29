@@ -59,9 +59,9 @@ function reportAdsConversion(source) {
   return true;
 }
 </script>
-<title>Contact &mdash; Scholar Street SGO</title>
-<meta name="description" content="Contact Scholar Street SGO to apply for a scholarship, donate and claim the federal tax credit, become a partner school, or explore a strategic partnership.">
-<link rel="canonical" href="https://scholarstreet.org/contact.html">
+<title>Our Team &mdash; Scholar Street SGO</title>
+<meta name="description" content="Meet the co-founders of Scholar Street SGO, Ryan Hill and Mel Sisaithong, and get in touch to apply, donate and claim the federal tax credit, or explore a partnership.">
+<link rel="canonical" href="https://scholarstreet.org/team.html">
 
 <!-- Warm up the donation portal before the visitor clicks Donate -->
 <link rel="preconnect" href="https://scholarship-insights.com" crossorigin>
@@ -243,6 +243,28 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   .wrap{padding:0 18px}
 }
 
+.bios{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:3.2rem;align-items:start}
+.bio{background:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 3px 20px rgba(27,46,75,.07);display:flex;flex-direction:column;height:100%}
+.bio-photo{width:75%;aspect-ratio:1/1;overflow:hidden;background:var(--cream2);
+  margin:2rem auto 0;border-radius:18px;box-shadow:0 4px 18px rgba(27,46,75,.12)}
+.bio-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.bio-body{padding:2.1rem 2rem;display:flex;flex-direction:column;flex:1}
+.bio-name{font-family:var(--serif);font-size:23px;font-weight:700;color:var(--navy);line-height:1.2}
+.bio-role{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);
+  font-weight:700;margin-top:.5rem;line-height:1.6}
+.bio-body p{font-size:14.4px;color:var(--text-mid);line-height:1.78;margin-top:1.15rem}
+.bio-quote{margin-top:1.35rem;padding:1.35rem 1.5rem;background:var(--cream);
+  border-left:3px solid var(--gold);border-radius:0 10px 10px 0}
+.bio-quote p{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--navy);
+  line-height:1.72;margin:0}
+.bio-contact{margin-top:1.3rem;font-size:13.5px}
+.bio-contact a{color:var(--sage);font-weight:600;text-decoration:none}
+.bio-contact a:hover{color:var(--navy)}
+@media(max-width:980px){.bios{grid-template-columns:1fr}}
+
+/* CONTACT (merged in from the old contact.html) */
+.team-contact{background:var(--cream2)}
 .c-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:start;margin-top:3rem}
 .form-card{background:#fff;border-radius:var(--radius);padding:2.4rem 2.2rem;
   box-shadow:0 3px 20px rgba(27,46,75,.08)}
@@ -324,9 +346,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     <li><a href="impact.html">Impact</a></li>
     <li><a href="platform.html">Our Difference</a></li>
     <li><a href="va-eistc.html">VA EISTC</a></li>
-    <li><a href="leadership.html">Leadership</a></li>
+    <li><a href="team.html" class="active">Our Team</a></li>
     <li><a href="news.html">News</a></li>
-    <li><a href="contact.html" class="active">Contact</a></li>
     <li><a href="apply.html" class="nav-apply-outline">Apply</a></li>
     <li><a href="donate.html" class="nav-apply">Donate</a></li>
   </ul>
@@ -335,15 +356,72 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 <section class="page-hero">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
   <div class="wrap">
-    <div class="s-eyebrow">Join Us</div>
-    <h1 class="ph-title">Expanding educational<br>opportunity, <em>together.</em></h1>
-    <p class="ph-sub">To learn more about Scholar Street or discuss a partnership, we&rsquo;d welcome
-    the conversation.</p>
+    <div class="s-eyebrow">Our Team</div>
+    <h1 class="ph-title">The people behind<br><em>Scholar Street.</em></h1>
+    <p class="ph-sub">Two co-founders who understand every child is unique, driven by a single
+    focused mission: helping families provide the best education for their child.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
+    <div class="bios">
+
+      <div class="bio reveal">
+        <div class="bio-photo"><img src="img/ryan-hill.jpg" alt="Ryan Hill"></div>
+        <div class="bio-body">
+          <div class="bio-name">Ryan Hill</div>
+          <div class="bio-role">Co-Founder, Board Chair,<br>President &amp; CEO</div>
+          <p>As Board Chair, President &amp; CEO, Ryan drives Scholar Street&rsquo;s vision, donor
+          development, and government relations, and serves as the organization&rsquo;s primary spokesperson.</p>
+          <p>He brings more than 20 years of capital markets and business development experience,
+          including executive leadership roles as Managing Director at a structured finance firm and at
+          an early-stage fintech company. This blend of institutional capital experience and start-up
+          operating discipline is the same foundation Scholar Street is built on. Most recently, Ryan
+          served as SVP of Capital Markets at Student Quarters, leading equity and debt strategy for a
+          $1.3B CRE asset portfolio. He holds a BBA from James Madison University and an MBA from
+          Georgetown&rsquo;s McDonough School of Business.</p>
+          <div class="bio-quote">
+            <p>&ldquo;A value-based education matters to our family &mdash; our son attends Saint Agnes
+            School in Arlington. Through Scholar Street, I hope to help families pursue the education
+            that&rsquo;s right for their child by lessening financial obstacles.&rdquo;</p>
+          </div>
+          <div class="bio-contact"><a href="mailto:ryan@scholarstreet.org">ryan@scholarstreet.org</a></div>
+        </div>
+      </div>
+
+      <div class="bio reveal">
+        <div class="bio-photo"><img src="img/mel-sisaithong-2.jpg" alt="Mel Sisaithong"></div>
+        <div class="bio-body">
+          <div class="bio-name">Mel Sisaithong</div>
+          <div class="bio-role">Co-Founder, COO,<br>Secretary &amp; Treasurer</div>
+          <p>As COO, Secretary &amp; Treasurer, Mel is Scholar Street&rsquo;s operational backbone &mdash;
+          overseeing technology, compliance, financial management, and recordkeeping to meet the
+          standards of an IRS-designated Scholarship Granting Organization.</p>
+          <p>After more than 15 years in wine importing and distribution, Mel&rsquo;s path changed
+          following the loss of his son, Milo, to a congenital heart defect &mdash; redirecting his career
+          toward healthcare and technology. Introduced to Salesforce at the United Network for Organ
+          Sharing (UNOS), he earned his Administrator certification and became a Senior Salesforce
+          Administrator across four organizations spanning healthcare, finance, and international
+          development. He holds a BS from Virginia Commonwealth University.</p>
+          <div class="bio-quote">
+            <p>&ldquo;My daughter needed more than just a school &mdash; she needed a community; one that
+            truly saw her for who she is. Every child deserves that fit.&rdquo;</p>
+          </div>
+          <div class="bio-contact"><a href="mailto:mel@scholarstreet.org">mel@scholarstreet.org</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="team-contact" id="contact">
+  <div class="wrap">
+    <div class="s-eyebrow">Contact</div>
+    <h2 class="s-title">Expanding educational<br>opportunity, <em>together.</em></h2>
+    <p class="s-lead">To learn more about Scholar Street or discuss a partnership, we&rsquo;d welcome
+    the conversation.</p>
     <div class="c-grid">
 
       <div class="form-card reveal">
@@ -519,7 +597,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div class="fcol">
         <h5>Organization</h5>
         <a href="platform.html#governance">Governance</a>
-        <a href="leadership.html">Leadership</a>
+        <a href="team.html">Our Team</a>
         <a href="news.html">News</a>
         <a href="transparency.html">Transparency</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -530,8 +608,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         <a href="families.html">For Families</a>
         <a href="donate.html">Donate</a>
         <a href="apply.html">Apply for a Scholarship</a>
-        <a href="contact.html">Partner With Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="team.html#contact">Partner With Us</a>
+        <a href="team.html#contact">Contact</a>
       </div>
     </div>
     <div class="fbot">

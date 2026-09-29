@@ -21,6 +21,14 @@
 /why-25f               /impact.html#why-25f       301
 /how-giving-works      /impact.html#how-it-works  301
 
+# Merged into team.html ("Our Team", 2026-09-29): Leadership's bios and the
+# Contact page's form now share one page. The contact form sits at #contact.
+# Both old URLs were indexed and are linked from outside the site.
+/leadership.html  /team.html          301
+/contact.html     /team.html#contact  301
+/leadership       /team.html          301
+/contact          /team.html#contact  301
+
 # Netlify serves every page at its extensionless path with a 200, and that
 # copy carries the same canonical tag as the .html page. Search Console showed
 # Google picking /impact as canonical over the declared /impact.html and
@@ -33,9 +41,8 @@
 /impact                                    /impact.html                                    301!
 /platform                                  /platform.html                                  301!
 /va-eistc                                  /va-eistc.html                                  301!
-/leadership                                /leadership.html                                301!
+/team                                      /team.html                                      301!
 /news                                      /news.html                                      301!
-/contact                                   /contact.html                                   301!
 /donate                                    /donate.html                                    301!
 /apply                                     /apply.html                                     301!
 /families                                  /families.html                                  301!
