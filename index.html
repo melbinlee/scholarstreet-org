@@ -290,6 +290,19 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   font-family:inherit;color:var(--navy);background:var(--cream);
   border:1.5px solid rgba(27,46,75,.14);outline:none;transition:.15s}
 .sl-search::placeholder{color:var(--text-lt)}
+/* Shown while one state is isolated; takes the search box's place at the
+   right end of the bar and sits just before it. */
+.sl-clear{margin-left:auto;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
+  color:var(--navy);background:rgba(200,168,75,.16);border:1.5px solid var(--gold);
+  border-radius:999px;padding:6px 14px;transition:.15s}
+.sl-clear:hover{background:rgba(200,168,75,.28)}
+.sl-clear[hidden]{display:none}
+.sl-clear:not([hidden]) + .sl-search{margin-left:0}
+.sl-pick{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer;
+  text-align:left;text-decoration:underline;text-decoration-color:transparent;
+  text-underline-offset:4px;transition:.15s}
+.sl-pick:hover,.sl-pick:focus-visible{text-decoration-color:var(--gold)}
+.sl-pick[aria-pressed="true"]{text-decoration-color:var(--gold)}
 .sl-search:focus{border-color:var(--gold);background:#fff}
 .sl-scroll{max-height:430px;overflow-y:auto}
 .sl-table{width:100%;border-collapse:collapse}
@@ -470,6 +483,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     <div class="sl-card">
       <div class="sl-bar">
         <div class="sl-chips" id="sl-chips" role="group" aria-label="Filter by status"></div>
+        <button type="button" id="sl-clear" class="sl-clear" hidden>All states <span aria-hidden="true">&times;</span></button>
         <input id="sl-search" class="sl-search" type="search" placeholder="Search a state&hellip;"
           autocomplete="off" spellcheck="false" aria-label="Search a state" aria-controls="sl-body">
       </div>
@@ -763,6 +777,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   var FEED_MAX = 4;
   var filter = 'all';
   var withProgram = false; // only states running their own tax-credit scholarship
+  var isolated = null;     // postal code of the one state shown, if any
 
   function esc(s){
     return String(s).replace(/[&<>"']/g, function(c){
@@ -820,7 +835,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       ? '<strong>' + creditName + '</strong><small>' + esc(s.credit.detail) + '</small>'
       : NA;
     return '<tr>' +
-      cell('State', esc(s.name), 'sl-state') +
+      cell('State', '<button type="button" class="sl-pick" data-code="' + s.code + '" aria-pressed="' +
+        (isolated === s.code) + '" title="Show only ' + esc(s.name) + '">' + esc(s.name) + '</button>', 'sl-state') +
       cell('&#167;25F status', badge) +
       cell('Opted in', optIn) +
       cell('Governor at opt-in', s.optInGovernor ? esc(s.optInGovernor)
@@ -889,18 +905,77 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       : '<li>No updates for the states shown.</li>';
   }
 
+  /* ── Isolating one state ──
+     Clicking a state name shows only that row. It works through the search
+     box (the postal code always matches exactly one state), so every other
+     path -- the feed, the empty message -- behaves as for a search. The
+     address becomes #states-va, a link that opens straight to that row.
+     Filters are cleared on isolate so the row is always there, and any
+     filter click or typed search ends the isolation. */
+  var clearBtn = document.getElementById('sl-clear');
+  var section = document.getElementById('states');
+  var HASH = /^#states-([a-z]{2})$/i;
+
+  function setHash(code){
+    var url = window.location.pathname + window.location.search + (code ? '#states-' + code.toLowerCase() : '');
+    try { history.replaceState(null, '', url); } catch(e) {}
+  }
+  function isolate(code, scroll){
+    var s = states.filter(function(x){ return x.code === code; })[0];
+    if(!s) return;
+    isolated = code;
+    filter = 'all';
+    withProgram = false;
+    search.value = code;
+    clearBtn.hidden = false;
+    setHash(code);
+    drawChips();
+    draw();
+    if(scroll) section.scrollIntoView({ block: 'start' });
+  }
+  function release(){
+    if(!isolated) return;
+    isolated = null;
+    search.value = '';
+    clearBtn.hidden = true;
+    setHash(null);
+    draw();
+  }
+
+  body.addEventListener('click', function(e){
+    var b = e.target.closest('.sl-pick');
+    if(!b) return;
+    var code = b.getAttribute('data-code');
+    if(isolated === code) release(); else isolate(code);
+  });
+  clearBtn.addEventListener('click', function(){ release(); search.focus(); });
+
   chips.addEventListener('click', function(e){
     var b = e.target.closest('.sl-chip');
     if(!b) return;
+    if(isolated){ isolated = null; search.value = ''; clearBtn.hidden = true; setHash(null); }
     if(b.hasAttribute('data-toggle')) withProgram = !withProgram;
     else filter = b.getAttribute('data-f');
     drawChips();
     draw();
   });
-  search.addEventListener('input', draw);
+  search.addEventListener('input', function(){
+    if(isolated){ isolated = null; clearBtn.hidden = true; setHash(null); }
+    draw();
+  });
+  search.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && isolated){ e.preventDefault(); release(); }
+  });
+
+  function fromHash(){
+    var m = HASH.exec(window.location.hash);
+    if(m) isolate(m[1].toUpperCase(), true);
+  }
+  window.addEventListener('hashchange', fromHash);
 
   drawChips();
   draw();
+  fromHash();
 })();
 </script>
 <script>
