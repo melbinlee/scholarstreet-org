@@ -277,7 +277,16 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .sl-chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
 .sl-chip .n{font-size:11.5px;opacity:.6}
 .sl-chip i{width:8px;height:8px;border-radius:50%;display:inline-block}
-.sl-search{width:240px;max-width:100%;padding:8px 14px;border-radius:999px;font-size:14px;
+.sl-chip-sep{width:1px;align-self:stretch;background:rgba(27,46,75,.14);margin:2px 4px}
+/* The program chip is an on/off switch that combines with a status chip,
+   so it gets a checkbox mark and a gold "on" state instead of navy. */
+.sl-check{width:13px;height:13px;border-radius:3px;border:1.5px solid currentColor;
+  display:inline-flex;align-items:center;justify-content:center;opacity:.7}
+.sl-toggle[aria-pressed="true"]{background:rgba(200,168,75,.16);border-color:var(--gold);color:var(--navy)}
+.sl-toggle[aria-pressed="true"] .sl-check{opacity:1;background:var(--gold);border-color:var(--gold)}
+.sl-toggle[aria-pressed="true"] .sl-check::after{content:'';width:6px;height:3px;margin-top:-2px;
+  border:solid var(--navy);border-width:0 0 2px 2px;transform:rotate(-45deg)}
+.sl-search{width:240px;max-width:100%;margin-left:auto;padding:8px 14px;border-radius:999px;font-size:14px;
   font-family:inherit;color:var(--navy);background:var(--cream);
   border:1.5px solid rgba(27,46,75,.14);outline:none;transition:.15s}
 .sl-search::placeholder{color:var(--text-lt)}
@@ -293,6 +302,9 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .sl-table td.sl-state{font-family:var(--serif);font-weight:700;font-size:15.5px;color:var(--navy)}
 .sl-table td small{display:block;font-size:12px;color:var(--text-lt);margin-top:1px}
 .sl-table td strong{color:var(--navy);font-weight:700}
+.sl-table td strong a{color:inherit;text-decoration:underline;text-decoration-color:rgba(200,168,75,.6);
+  text-underline-offset:3px;transition:.15s}
+.sl-table td strong a:hover{text-decoration-color:var(--gold);color:var(--gold-dk)}
 .sl-na{color:rgba(27,46,75,.28)}
 .sl-none{padding:28px 22px;text-align:center;color:var(--text-mid);font-size:14px}
 .sl-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
@@ -450,8 +462,10 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   <div class="wrap">
     <div class="s-eyebrow">State by State</div>
     <h2 class="s-title">Where &#167;25F stands<br><em>in every state.</em></h2>
-    <p class="s-lead">Each state decides whether its residents can use the federal Education Freedom
-    Tax Credit. Filter by status, or search for your state.</p>
+    <p class="s-lead"><strong>You can give from any state.</strong> Donors everywhere can claim the federal
+    Education Freedom Tax Credit by giving to a scholarship organization in a participating state.
+    What a state&rsquo;s opt-in decides is whether <em>its</em> families can apply for those scholarships.
+    Filter by status or state program, or search for your state.</p>
 
     <div class="sl-card">
       <div class="sl-bar">
@@ -748,6 +762,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     'August','September','October','November','December'];
   var FEED_MAX = 4;
   var filter = 'all';
+  var withProgram = false; // only states running their own tax-credit scholarship
 
   function esc(s){
     return String(s).replace(/[&<>"']/g, function(c){
@@ -793,8 +808,16 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     // No published opt-in date: it happened no later than the IRS listing.
     var optIn = s.optInDate ? dateCell(s.optInDate)
       : (s.status === 'opted-in' && s.irsListed ? dateCell(s.irsListed, true) : NA);
+    // Program pages on other sites open in a new tab; our own (Virginia's
+    // va-eistc.html) opens in place, a click from donating.
+    var creditName = esc(s.credit ? s.credit.name : '');
+    if(s.credit && s.credit.url){
+      var external = /^https?:/.test(s.credit.url);
+      creditName = '<a href="' + esc(s.credit.url) + '"' +
+        (external ? ' target="_blank" rel="noopener"' : '') + '>' + creditName + '</a>';
+    }
     var credit = s.credit
-      ? '<strong>' + esc(s.credit.name) + '</strong><small>' + esc(s.credit.detail) + '</small>'
+      ? '<strong>' + creditName + '</strong><small>' + esc(s.credit.detail) + '</small>'
       : NA;
     return '<tr>' +
       cell('State', esc(s.name), 'sl-state') +
@@ -811,31 +834,43 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       '</tr>';
   }
 
+  function hasProgram(s){ return !!s.credit; }
+
+  // Status counts follow the program toggle, so each chip says how many
+  // rows clicking it would show.
   function drawChips(){
+    var base = withProgram ? states.filter(hasProgram) : states;
     var counts = {};
-    states.forEach(function(s){ counts[statusOf(s)] = (counts[statusOf(s)] || 0) + 1; });
+    base.forEach(function(s){ counts[statusOf(s)] = (counts[statusOf(s)] || 0) + 1; });
     chips.innerHTML =
       '<button type="button" class="sl-chip" data-f="all" aria-pressed="' + (filter === 'all') + '">' +
-        'All states <span class="n">' + states.length + '</span></button>' +
+        'All states <span class="n">' + base.length + '</span></button>' +
       STATUSES.map(function(s){
         return '<button type="button" class="sl-chip ' + s[0] + '" data-f="' + s[0] + '" aria-pressed="' +
           (filter === s[0]) + '"><i></i>' + s[1] + ' <span class="n">' + (counts[s[0]] || 0) + '</span></button>';
-      }).join('');
+      }).join('') +
+      '<span class="sl-chip-sep" aria-hidden="true"></span>' +
+      '<button type="button" class="sl-chip sl-toggle" data-toggle="program" aria-pressed="' + withProgram + '"' +
+        ' title="States that also run their own tax-credit scholarship program">' +
+        '<span class="sl-check" aria-hidden="true"></span>Has state program <span class="n">' +
+        states.filter(hasProgram).length + '</span></button>';
   }
 
   function draw(){
     var q = search.value.trim().toLowerCase();
     var shown = matchesQuery(sorted.filter(function(s){
-      return filter === 'all' || s.status === filter;
+      return (filter === 'all' || s.status === filter) && (!withProgram || hasProgram(s));
     }), q);
     body.innerHTML = shown.map(row).join('');
     if(shown.length){
       none.hidden = true;
     } else {
+      var scope = (filter !== 'all' ? LABELS[filter] : '') +
+        (withProgram ? (filter !== 'all' ? ' with a state program' : 'with a state program') : '');
       none.hidden = false;
       none.textContent = q
-        ? 'No state matches “' + search.value.trim() + '”' + (filter !== 'all' ? ' under ' + LABELS[filter] + '.' : '.')
-        : 'No states are ' + LABELS[filter] + ' yet.';
+        ? 'No state matches “' + search.value.trim() + '”' + (scope ? ' under ' + scope + '.' : '.')
+        : 'No states are ' + scope + '.';
     }
     var updates = [];
     shown.forEach(function(s){
@@ -857,7 +892,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   chips.addEventListener('click', function(e){
     var b = e.target.closest('.sl-chip');
     if(!b) return;
-    filter = b.getAttribute('data-f');
+    if(b.hasAttribute('data-toggle')) withProgram = !withProgram;
+    else filter = b.getAttribute('data-f');
     drawChips();
     draw();
   });

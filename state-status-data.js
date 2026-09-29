@@ -48,6 +48,11 @@
      Updates with no cited source have no url.
      - EdChoice, tax-credit scholarship program list: the credit column. States
        it does not list show a dash, not "None" -- absence is not confirmed.
+       Each credit's url is the state agency's page for the program, checked
+       to load on 2026-09-28; AR, IA, NV and OK have no working official page,
+       so they link EdChoice's page instead. Virginia links our own
+       va-eistc.html. NV, PA and SD credits are for business donors only,
+       per those states' pages.
 
      Status rules. opted-in: on the IRS list. pending-warm: the governor has said
      publicly they will opt in (New York). pending-cold: undecided, no public
@@ -87,7 +92,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Alabama Education Scholarship Program",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://www.revenue.alabama.gov/individual-corporate/alabama-accountability-act/"
       },
       "updates": [
         {
@@ -111,7 +117,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Philanthropic Investment in Arkansas Kids",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://www.edchoice.org/school-choice/programs/philanthropic-investment-in-arkansas-kids-scholarship-program/"
       },
       "updates": [
         {
@@ -132,7 +139,8 @@
       "currentGovernor": "Katie Hobbs",
       "credit": {
         "name": "Four programs",
-        "detail": "Including the Original Individual Income Tax Credit Scholarship"
+        "detail": "Including the Original Individual Income Tax Credit Scholarship",
+        "url": "https://azdor.gov/tax-credits/credits-contributions-certified-school-tuition-organizations"
       },
       "updates": [
         {
@@ -219,7 +227,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Qualified Education Expense Tax Credit",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://dor.georgia.gov/qualified-education-expense-tax-credit-0"
       },
       "updates": [
         {
@@ -249,7 +258,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "School Tuition Organization Tax Credit",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://www.edchoice.org/school-choice/programs/iowa-school-tuition-organization-tax-credit/"
       },
       "updates": [
         {
@@ -304,7 +314,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "School Scholarship Tax Credit",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://www.in.gov/doe/students/indiana-choice-scholarship-program/school-scholarships/"
       },
       "updates": [
         {
@@ -332,7 +343,8 @@
       "irsListed": "2026-07-06",
       "credit": {
         "name": "Tax Credit for Low-Income Students",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://www.ksde.gov/student-success/access-and-opportunity-in-education/tax-credit-for-low-income-students-scholarship-program"
       },
       "updates": [
         {
@@ -381,7 +393,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Tuition Donation Credit Program",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://revenue.louisiana.gov/tax-education-and-faqs/faqs/tuition-donation-credit-program"
       },
       "updates": [
         {
@@ -477,7 +490,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Student Scholarship Organization credits",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://revenue.mt.gov/taxes/tax-credits/student-scholarship-org-credit"
       },
       "updates": [
         {
@@ -608,7 +622,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Nevada Educational Choice Scholarship",
-        "detail": "State tax-credit scholarship program"
+        "detail": "Business donors only, against the Modified Business Tax",
+        "url": "https://www.edchoice.org/school-choice/programs/nevada-educational-choice-scholarship-program/"
       },
       "updates": [
         {
@@ -639,7 +654,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Ohio Tax-Credit Scholarship Program",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://tax.ohio.gov/individual/scholarship-donation-credit"
       },
       "updates": [
         {
@@ -658,7 +674,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Equal Opportunity Education Scholarships",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://www.edchoice.org/school-choice/programs/oklahoma-equal-opportunity-education-scholarships/"
       },
       "updates": [
         {
@@ -694,7 +711,8 @@
       "currentGovernor": "Josh Shapiro",
       "credit": {
         "name": "EITC and OSTC",
-        "detail": "Educational Improvement and Opportunity Scholarship tax credits"
+        "detail": "Educational Improvement and Opportunity Scholarship credits · business donors",
+        "url": "https://www.pa.gov/agencies/revenue/business-tax-credits-and-economic-development-programs/business-tax-credits-and-incentives/educational-tax-credits"
       },
       "updates": []
     },
@@ -704,7 +722,8 @@
       "currentGovernor": "Dan McKee",
       "credit": {
         "name": "Scholarship Organization tax credits",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://tax.ri.gov/tax-sections/credits/scholarship-credit"
       },
       "updates": []
     },
@@ -717,7 +736,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Exceptional Needs Children Fund credit",
-        "detail": "State tax-credit scholarship program"
+        "detail": "State tax-credit scholarship program",
+        "url": "https://dor.sc.gov/tax-credits/ecenc-program-credits"
       },
       "updates": [
         {
@@ -736,7 +756,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "Partners in Education Tax Credit",
-        "detail": "State tax-credit scholarship program"
+        "detail": "Insurance companies only",
+        "url": "https://dlr.sd.gov/insurance/tax_credit_program.aspx"
       },
       "updates": [
         {
@@ -820,7 +841,8 @@
       "irsListedBy": true,
       "credit": {
         "name": "EISTC",
-        "detail": "65% credit · Va. Code § 58.1-439.26"
+        "detail": "65% credit · Va. Code § 58.1-439.26",
+        "url": "va-eistc.html"
       },
       "updates": [
         {
