@@ -33,7 +33,8 @@
     VA: 'Virginia', WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming'
   };
 
-  /* Researched 2026-09-28. Sources:
+  /* Researched 2026-09-28; re-verified 2026-09-29 (IRS list unchanged at
+     Sept. 14; updates added from news since Ballotpedia's June timeline). Sources:
      - IRS, "Federal Scholarship Tax Credit (FSTC)" participating-states page, as of
        Sept. 14, 2026 (30 states), and its Wayback Machine editions as of Mar. 17,
        Jun. 22, Jul. 6 and Jul. 24, 2026 for when each state first appears.
@@ -42,6 +43,8 @@
      - Ballotpedia, "State participation in the federal K-12 education tax credit
        program," as of Sept. 15, 2026: every other dated event, veto and override.
      - eftccredit.com state tracker (Aug. 20, 2026): Minnesota's Mar. 24 date only.
+     - 2026-09-29 additions from Ballotpedia News (RI H 7163, VT H.933), Education
+       Week (Mar. 4 HI/NM/OR reconsidering), CT Mirror, WNEM, Broad + Liberty.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -189,7 +192,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Ned Lamont",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-05-20",
+          "text": "Gov. Lamont calls opting in premature until more federal guidance is out.",
+          "url": "https://ctmirror.org/2026/05/20/lamont-ct-federal-scholarship-tax-credit-ny-hochul/"
+        }
+      ]
     },
     "DE": {
       "status": "pending-cold",
@@ -247,7 +256,13 @@
       "status": "not-participating",
       "verified": true,
       "currentGovernor": "Josh Green",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-03-04",
+          "text": "Gov. Green’s office says it is reviewing the program again.",
+          "url": "https://www.edweek.org/policy-politics/they-said-no-to-the-federal-school-choice-program-now-3-dems-are-reconsidering/2026/03"
+        }
+      ]
     },
     "IA": {
       "status": "opted-in",
@@ -431,7 +446,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Gretchen Whitmer",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-03-30",
+          "text": "House Speaker Matt Hall urges Gov. Whitmer to opt in; her office says it is waiting for Treasury guidance.",
+          "url": "https://www.wnem.com/2026/03/30/speaker-hall-urges-whitmer-join-federal-education-tax-credit-program/"
+        }
+      ]
     },
     "MN": {
       "status": "not-participating",
@@ -607,6 +628,11 @@
       "currentGovernor": "Michelle Lujan Grisham",
       "updates": [
         {
+          "date": "2026-03-04",
+          "text": "Gov. Lujan Grisham’s office says she is seeking more federal guidance before a final decision.",
+          "url": "https://www.edweek.org/policy-politics/they-said-no-to-the-federal-school-choice-program-now-3-dems-are-reconsidering/2026/03"
+        },
+        {
           "date": "2025-08-13",
           "text": "Gov. Lujan Grisham says New Mexico will not opt in.",
           "url": "https://www.chalkbeat.org/2025/08/13/federal-tax-credit-scholarship-divides-democratic-governors/"
@@ -699,6 +725,11 @@
           "text": "Gov. Kotek says Oregon will not participate after reviewing the draft rules."
         },
         {
+          "date": "2026-03-04",
+          "text": "Gov. Kotek’s office says she has not determined whether to participate.",
+          "url": "https://www.edweek.org/policy-politics/they-said-no-to-the-federal-school-choice-program-now-3-dems-are-reconsidering/2026/03"
+        },
+        {
           "date": "2025-08-13",
           "text": "Gov. Kotek says Oregon will not opt in.",
           "url": "https://www.chalkbeat.org/2025/08/13/federal-tax-credit-scholarship-divides-democratic-governors/"
@@ -714,7 +745,13 @@
         "detail": "Educational Improvement and Opportunity Scholarship credits · business donors",
         "url": "https://www.pa.gov/agencies/revenue/business-tax-credits-and-economic-development-programs/business-tax-credits-and-incentives/educational-tax-credits"
       },
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-08-18",
+          "text": "Gov. Shapiro’s office says he is awaiting federal guidance before deciding.",
+          "url": "https://broadandliberty.com/2026/08/18/pennsylvania-still-on-the-fence-about-federal-school-choice-tax-credits/"
+        }
+      ]
     },
     "RI": {
       "status": "pending-cold",
@@ -725,7 +762,13 @@
         "detail": "State tax-credit scholarship program",
         "url": "https://tax.ri.gov/tax-sections/credits/scholarship-credit"
       },
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-06-18",
+          "text": "Gov. McKee signs H 7163, requiring both the legislature and the governor to approve opting in.",
+          "url": "https://news.ballotpedia.org/2026/06/23/gov-mckee-d-signs-bill-to-require-governor-legislature-agreement-before-opting-into-education-freedom-tax-credit/"
+        }
+      ]
     },
     "SC": {
       "status": "opted-in",
@@ -861,7 +904,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Phil Scott",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-06-18",
+          "text": "Gov. Scott signs H.933, limiting how scholarships under the federal credit can be used.",
+          "url": "https://news.ballotpedia.org/2026/07/06/vermont-enacts-bill-to-limit-how-scholarships-under-education-freedom-tax-credit-can-be-used/"
+        }
+      ]
     },
     "WA": {
       "status": "pending-cold",
