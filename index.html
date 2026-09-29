@@ -259,107 +259,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   border-radius:11px;padding:14px 18px;font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.65}
 .hero-badge strong{color:var(--gold);font-weight:700}
 
-/* STATE STATUS TABLE (own section under the hero, on the grey of Why Now).
-   Every state from state-status-data.js in one table with the same columns,
-   narrowed by the status chips and the search box; the updates of whatever
-   is showing run along the bottom. Status colours exist only here, and each
-   badge always carries its text label, so colour is never the only signal. */
-.sl-sec{background:var(--cream2);padding-bottom:0}
-.sl-card{margin-top:2.2rem;background:#fff;border-radius:var(--radius);
-  box-shadow:0 2px 16px rgba(27,46,75,.06);overflow:hidden}
-.sl-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  padding:16px 22px;border-bottom:1px solid rgba(27,46,75,.08)}
-.sl-chips{display:flex;flex-wrap:wrap;gap:8px}
-.sl-chip{font-family:inherit;font-size:13px;font-weight:600;color:var(--text-mid);cursor:pointer;
-  background:transparent;border:1.5px solid rgba(27,46,75,.16);border-radius:999px;
-  padding:6px 14px;transition:.15s;display:inline-flex;align-items:center;gap:7px}
-.sl-chip:hover{border-color:var(--navy);color:var(--navy)}
-.sl-chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
-.sl-chip .n{font-size:11.5px;opacity:.6}
-.sl-chip i{width:8px;height:8px;border-radius:50%;display:inline-block}
-.sl-chip-sep{width:1px;align-self:stretch;background:rgba(27,46,75,.14);margin:2px 4px}
-/* The program chip is an on/off switch that combines with a status chip,
-   so it gets a checkbox mark and a gold "on" state instead of navy. */
-.sl-check{width:13px;height:13px;border-radius:3px;border:1.5px solid currentColor;
-  display:inline-flex;align-items:center;justify-content:center;opacity:.7}
-.sl-toggle[aria-pressed="true"]{background:rgba(200,168,75,.16);border-color:var(--gold);color:var(--navy)}
-.sl-toggle[aria-pressed="true"] .sl-check{opacity:1;background:var(--gold);border-color:var(--gold)}
-.sl-toggle[aria-pressed="true"] .sl-check::after{content:'';width:6px;height:3px;margin-top:-2px;
-  border:solid var(--navy);border-width:0 0 2px 2px;transform:rotate(-45deg)}
-.sl-search{width:240px;max-width:100%;margin-left:auto;padding:8px 14px;border-radius:999px;font-size:14px;
-  font-family:inherit;color:var(--navy);background:var(--cream);
-  border:1.5px solid rgba(27,46,75,.14);outline:none;transition:.15s}
-.sl-search::placeholder{color:var(--text-lt)}
-/* Search and "All states ×" (shown while one state is isolated) stay
-   together at the right end of the bar, even when the chips wrap. */
-.sl-find{margin-left:auto;display:flex;align-items:center;gap:8px;max-width:100%}
-.sl-find .sl-search{margin-left:0}
-.sl-clear{flex-shrink:0;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
-  color:var(--navy);background:rgba(200,168,75,.16);border:1.5px solid var(--gold);
-  border-radius:999px;padding:6px 14px;transition:.15s}
-.sl-clear:hover{background:rgba(200,168,75,.28)}
-.sl-clear[hidden]{display:none}
-.sl-pick{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer;
-  text-align:left;text-decoration:underline;text-decoration-color:transparent;
-  text-underline-offset:4px;transition:.15s}
-.sl-pick:hover,.sl-pick:focus-visible{text-decoration-color:var(--gold)}
-.sl-pick[aria-pressed="true"]{text-decoration-color:var(--gold)}
-.sl-search:focus{border-color:var(--gold);background:#fff}
-.sl-scroll{max-height:430px;overflow-y:auto}
-.sl-table{width:100%;border-collapse:collapse}
-.sl-table th{position:sticky;top:0;z-index:1;background:#fff;font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;font-weight:700;color:var(--text-lt);text-align:left;
-  padding:12px 16px 9px;border-bottom:1px solid rgba(27,46,75,.08)}
-.sl-table td{font-size:14px;color:var(--text);padding:12px 16px;vertical-align:top;
-  border-bottom:1px solid rgba(27,46,75,.06);line-height:1.5}
-.sl-table th:first-child,.sl-table td:first-child{padding-left:22px}
-.sl-table td.sl-state{font-family:var(--serif);font-weight:700;font-size:15.5px;color:var(--navy)}
-.sl-table td small{display:block;font-size:12px;color:var(--text-lt);margin-top:1px}
-.sl-table td strong{color:var(--navy);font-weight:700}
-.sl-table td strong a{color:inherit;text-decoration:underline;text-decoration-color:rgba(200,168,75,.6);
-  text-underline-offset:3px;transition:.15s}
-.sl-table td strong a:hover{text-decoration-color:var(--gold);color:var(--gold-dk)}
-/* Governor names: a fainter underline than program links, gold on hover. */
-.sl-gov{color:inherit;text-decoration:underline;text-decoration-color:rgba(27,46,75,.18);
-  text-underline-offset:3px;transition:.15s}
-.sl-gov:hover{color:var(--navy);text-decoration-color:var(--gold)}
-.sl-na{color:rgba(27,46,75,.28)}
-.sl-none{padding:28px 22px;text-align:center;color:var(--text-mid);font-size:14px}
-.sl-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
-  letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;white-space:nowrap}
-.sl-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor}
-.opted-in{--sl:#3f6b48}
-.pending-warm{--sl:#a3561a}
-.pending-cold{--sl:#2e62a0}
-.not-participating{--sl:#a8392f}
-.unverified{--sl:#7d8798}
-.sl-badge{color:var(--sl);background:color-mix(in srgb,var(--sl) 11%,#fff)}
-.sl-chip i{background:var(--sl)}
-.sl-feed{display:flex;align-items:baseline;gap:18px;padding:13px 22px;background:var(--cream);
-  border-top:1px solid rgba(27,46,75,.08);font-size:13px;color:var(--text-mid)}
-.sl-feed-lbl{flex-shrink:0;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  font-weight:700;color:var(--sage)}
-.sl-feed ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 28px}
-.sl-feed b{color:var(--navy);font-weight:700;margin-right:6px}
-.sl-feed time{color:var(--text-lt);margin-right:8px}
-.sl-feed a{color:var(--text-mid);text-decoration:underline;text-decoration-color:rgba(200,168,75,.6);
-  text-underline-offset:3px;transition:.15s}
-.sl-feed a:hover{color:var(--navy);text-decoration-color:var(--gold)}
-@media(max-width:940px){
-  .sl-find{width:100%}
-  .sl-search{width:100%}
-  .sl-scroll{max-height:none}
-  .sl-table thead{display:none}
-  .sl-table,.sl-table tbody,.sl-table tr,.sl-table td{display:block;width:100%}
-  .sl-table tr{padding:10px 0;border-bottom:1px solid rgba(27,46,75,.1)}
-  .sl-table td{display:grid;grid-template-columns:42% 1fr;gap:12px;padding:5px 22px;border:none}
-  .sl-table td::before{content:attr(data-label);font-family:'Source Sans 3',system-ui,sans-serif;
-    font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
-    color:var(--text-lt);padding-top:3px}
-  .sl-feed{flex-direction:column;gap:8px}
-  .sl-feed ul{flex-direction:column}
-}
-
 /* WHY NOW STATS */
 .why-sec{background:var(--cream2)}
 .stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3rem}
@@ -446,9 +345,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     <li><a href="impact.html">Impact</a></li>
     <li><a href="platform.html">Our Difference</a></li>
     <li><a href="va-eistc.html">VA EISTC</a></li>
-    <li><a href="leadership.html">Leadership</a></li>
+    <li><a href="team.html">Our Team</a></li>
     <li><a href="news.html">News</a></li>
-    <li><a href="contact.html">Contact</a></li>
     <li><a href="apply.html" class="nav-apply-outline">Apply</a></li>
     <li><a href="donate.html" class="nav-apply">Donate</a></li>
   </ul>
@@ -464,7 +362,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         <p class="lead">Scholar Street awards need- and merit-based scholarships to income-eligible
         students in the states we serve &mdash; funded by donors who redirect their federal tax liability into a child&rsquo;s education.</p>
         <div class="hero-cta">
-          <a href="contact.html" class="btn-gold">Become a Founding Donor</a>
+          <a href="team.html#contact" class="btn-gold">Become a Founding Donor</a>
           <a href="impact.html#how-it-works" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.32)">How Giving Works</a>
         </div>
       </div>
@@ -472,49 +370,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         <div class="hero-photo"><img src="img/students-in-a-classroom.jpg" alt="Students in a classroom"></div>
         <div class="hero-badge">The federal <strong>Education Freedom Tax Credit</strong> takes effect
         January 1, 2027. Scholar Street is registered to operate in multiple states and is building its footprint ahead of the January 1, 2027 launch.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sl-sec" id="states">
-  <div class="wrap">
-    <div class="s-eyebrow">State by State</div>
-    <h2 class="s-title">Where &#167;25F stands<br><em>in every state.</em></h2>
-    <p class="s-lead"><strong>You can give from any state.</strong> Donors everywhere can claim the federal
-    Education Freedom Tax Credit by giving to a scholarship organization in a participating state.
-    What a state&rsquo;s opt-in decides is whether <em>its</em> families can apply for those scholarships.
-    Filter by status or state program, or search for your state.</p>
-
-    <div class="sl-card">
-      <div class="sl-bar">
-        <div class="sl-chips" id="sl-chips" role="group" aria-label="Filter by status"></div>
-        <div class="sl-find">
-          <button type="button" id="sl-clear" class="sl-clear" hidden>All states <span aria-hidden="true">&times;</span></button>
-          <input id="sl-search" class="sl-search" type="search" placeholder="Search a state&hellip;"
-            autocomplete="off" spellcheck="false" aria-label="Search a state" aria-controls="sl-body">
-        </div>
-      </div>
-      <div class="sl-scroll">
-        <table class="sl-table">
-          <thead>
-            <tr>
-              <th scope="col">State</th>
-              <th scope="col">&#167;25F status</th>
-              <th scope="col">Opted in</th>
-              <th scope="col">Governor at opt-in</th>
-              <th scope="col">Current governor</th>
-              <th scope="col">On IRS list</th>
-              <th scope="col">State tax credit</th>
-            </tr>
-          </thead>
-          <tbody id="sl-body"></tbody>
-        </table>
-        <div id="sl-none" class="sl-none" hidden></div>
-      </div>
-      <div class="sl-feed">
-        <span class="sl-feed-lbl">Latest</span>
-        <ul id="sl-feed"></ul>
       </div>
     </div>
   </div>
@@ -642,8 +497,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     <p>Three donors giving the full $1,700 credit fund one $5,000 scholarship. We are inviting founding
     donors, corporate donors, and partner schools to join us before the January 2027 launch.</p>
     <div class="btns">
-      <a href="contact.html" class="btn-gold">Get in Touch</a>
-      <a href="leadership.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.36)">Meet the Team</a>
+      <a href="team.html#contact" class="btn-gold">Get in Touch</a>
+      <a href="team.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.36)">Meet the Team</a>
     </div>
   </div>
 </section>
@@ -715,7 +570,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div class="fcol">
         <h5>Organization</h5>
         <a href="platform.html#governance">Governance</a>
-        <a href="leadership.html">Leadership</a>
+        <a href="team.html">Our Team</a>
         <a href="news.html">News</a>
         <a href="transparency.html">Transparency</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -726,8 +581,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         <a href="families.html">For Families</a>
         <a href="donate.html">Donate</a>
         <a href="apply.html">Apply for a Scholarship</a>
-        <a href="contact.html">Partner With Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="team.html#contact">Partner With Us</a>
+        <a href="team.html#contact">Contact</a>
       </div>
     </div>
     <div class="fbot">
@@ -754,257 +609,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     qr.make();
     target.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 4, scalable: true });
   } catch(e) { console.warn('QR render failed:', e.message); }
-})();
-</script>
-<script src="state-status-data.js"></script>
-<script>
-/* ── State status table ───────────────────────────────────────────
-   Renders every state in window.SS_STATES, alphabetically.
-   The chips filter by status (one at a time; "All" clears it) and the
-   search box narrows by name or postal code. The feed shows the newest
-   updates among the rows currently showing. */
-(function(){
-  var states = window.SS_STATES;
-  var body = document.getElementById('sl-body');
-  var chips = document.getElementById('sl-chips');
-  var search = document.getElementById('sl-search');
-  var none = document.getElementById('sl-none');
-  var feed = document.getElementById('sl-feed');
-  if(!states || !body || !chips || !search || !none || !feed) return;
-
-  var STATUSES = [
-    ['opted-in', 'Opted In'],
-    ['pending-warm', 'Pending — Warm'],
-    ['pending-cold', 'Pending — Cold'],
-    ['not-participating', 'Not Participating']
-  ];
-  var LABELS = {};
-  STATUSES.forEach(function(s){ LABELS[s[0]] = s[1]; });
-  var MONTHS = ['January','February','March','April','May','June','July',
-    'August','September','October','November','December'];
-  var FEED_MAX = 4;
-  var filter = 'all';
-  var withProgram = false; // only states running their own tax-credit scholarship
-  var isolated = null;     // postal code of the one state shown, if any
-
-  function esc(s){
-    return String(s).replace(/[&<>"']/g, function(c){
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
-    });
-  }
-  function niceDate(iso){
-    var p = iso.split('-');
-    return MONTHS[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0];
-  }
-  function statusOf(s){ return s.status || 'unverified'; }
-
-  var sorted = states.slice().sort(function(a, b){ return a.name.localeCompare(b.name); });
-
-  /* Postal code, then names starting with the query, then any word in the
-     name starting with it. Each tier only applies when the one before it
-     found nothing, so "virginia" is Virginia alone (not West Virginia),
-     "va" is Virginia, and "carolina" still finds both Carolinas. */
-  function matchesQuery(list, q){
-    if(!q) return list;
-    var code = list.filter(function(s){ return s.code.toLowerCase() === q; });
-    if(code.length) return code;
-    var starts = list.filter(function(s){ return s.name.toLowerCase().indexOf(q) === 0; });
-    if(starts.length) return starts;
-    return list.filter(function(s){
-      return s.name.toLowerCase().split(' ').some(function(w){ return w.indexOf(q) === 0; });
-    });
-  }
-
-  var NA = '<span class="sl-na">&mdash;</span>';
-  function cell(label, content, cls){
-    return '<td data-label="' + label + '"' + (cls ? ' class="' + cls + '"' : '') + '>' +
-      '<span>' + content + '</span></td>';
-  }
-  // by: the date is the earliest one on record, so the event may be older.
-  function dateCell(iso, by){
-    return iso ? (by ? 'By ' : '') + '<time datetime="' + iso + '">' + niceDate(iso) + '</time>' : NA;
-  }
-  // A governor's name, linked to their Wikipedia article when we have one.
-  var GOV_LINKS = window.SS_GOVERNOR_LINKS || {};
-  function governor(name){
-    var url = GOV_LINKS[name];
-    return url
-      ? '<a class="sl-gov" href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(name) + '</a>'
-      : esc(name);
-  }
-  function row(s){
-    var st = statusOf(s);
-    var badge = '<span class="sl-badge ' + st + '">' +
-      (s.status ? LABELS[s.status] : 'Not yet verified') + '</span>';
-    // No published opt-in date: it happened no later than the IRS listing.
-    var optIn = s.optInDate ? dateCell(s.optInDate)
-      : (s.status === 'opted-in' && s.irsListed ? dateCell(s.irsListed, true) : NA);
-    // Program pages on other sites open in a new tab; our own (Virginia's
-    // va-eistc.html) opens in place, a click from donating.
-    var creditName = esc(s.credit ? s.credit.name : '');
-    if(s.credit && s.credit.url){
-      var external = /^https?:/.test(s.credit.url);
-      creditName = '<a href="' + esc(s.credit.url) + '"' +
-        (external ? ' target="_blank" rel="noopener"' : '') + '>' + creditName + '</a>';
-    }
-    var credit = s.credit
-      ? '<strong>' + creditName + '</strong><small>' + esc(s.credit.detail) + '</small>'
-      : NA;
-    return '<tr>' +
-      cell('State', '<button type="button" class="sl-pick" data-code="' + s.code + '" aria-pressed="' +
-        (isolated === s.code) + '" title="Show only ' + esc(s.name) + '">' + esc(s.name) + '</button>', 'sl-state') +
-      cell('&#167;25F status', badge) +
-      cell('Opted in', optIn) +
-      cell('Governor at opt-in', s.optInGovernor ? governor(s.optInGovernor)
-        : (s.optInVia ? esc(s.optInVia) : NA)) +
-      cell('Current governor', s.currentGovernor
-        ? governor(s.currentGovernor) + (s.optInGovernor && s.optInGovernor !== s.currentGovernor
-            ? '<small>Different from opt-in governor</small>' : '')
-        : NA) +
-      cell('On IRS list', dateCell(s.irsListed, s.irsListedBy)) +
-      cell('State tax credit', credit) +
-      '</tr>';
-  }
-
-  function hasProgram(s){ return !!s.credit; }
-
-  // Status counts follow the program toggle, so each chip says how many
-  // rows clicking it would show.
-  function drawChips(){
-    var base = withProgram ? states.filter(hasProgram) : states;
-    var counts = {};
-    base.forEach(function(s){ counts[statusOf(s)] = (counts[statusOf(s)] || 0) + 1; });
-    chips.innerHTML =
-      '<button type="button" class="sl-chip" data-f="all" aria-pressed="' + (filter === 'all') + '">' +
-        'All states <span class="n">' + base.length + '</span></button>' +
-      STATUSES.map(function(s){
-        return '<button type="button" class="sl-chip ' + s[0] + '" data-f="' + s[0] + '" aria-pressed="' +
-          (filter === s[0]) + '"><i></i>' + s[1] + ' <span class="n">' + (counts[s[0]] || 0) + '</span></button>';
-      }).join('') +
-      '<span class="sl-chip-sep" aria-hidden="true"></span>' +
-      '<button type="button" class="sl-chip sl-toggle" data-toggle="program" aria-pressed="' + withProgram + '"' +
-        ' title="States that also run their own tax-credit scholarship program">' +
-        '<span class="sl-check" aria-hidden="true"></span>Has state program <span class="n">' +
-        states.filter(hasProgram).length + '</span></button>';
-  }
-
-  function draw(){
-    var q = search.value.trim().toLowerCase();
-    var shown = matchesQuery(sorted.filter(function(s){
-      return (filter === 'all' || s.status === filter) && (!withProgram || hasProgram(s));
-    }), q);
-    body.innerHTML = shown.map(row).join('');
-    if(shown.length){
-      none.hidden = true;
-    } else {
-      var scope = (filter !== 'all' ? LABELS[filter] : '') +
-        (withProgram ? (filter !== 'all' ? ' with a state program' : 'with a state program') : '');
-      none.hidden = false;
-      none.textContent = q
-        ? 'No state matches “' + search.value.trim() + '”' + (scope ? ' under ' + scope + '.' : '.')
-        : 'No states are ' + scope + '.';
-    }
-    var updates = [];
-    shown.forEach(function(s){
-      s.updates.forEach(function(u){ updates.push({ state: s.name, date: u.date, text: u.text, url: u.url }); });
-    });
-    updates.sort(function(a, b){ return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
-    feed.innerHTML = updates.length
-      ? updates.slice(0, FEED_MAX).map(function(u){
-          // Outside sources open in a new tab so the table stays put.
-          var text = u.url
-            ? '<a href="' + esc(u.url) + '" target="_blank" rel="noopener">' + esc(u.text) + '</a>'
-            : esc(u.text);
-          return '<li><b>' + esc(u.state) + '</b><time datetime="' + u.date + '">' + niceDate(u.date) +
-            '</time>' + text + '</li>';
-        }).join('')
-      : '<li>No updates for the states shown.</li>';
-  }
-
-  /* ── Isolating one state ──
-     Clicking a state name shows only that row. It works through the search
-     box (the postal code always matches exactly one state), so every other
-     path -- the feed, the empty message -- behaves as for a search. The
-     address becomes #states-va, a link that opens straight to that row.
-     Filters are cleared on isolate so the row is always there, and any
-     filter click or typed search ends the isolation. */
-  var clearBtn = document.getElementById('sl-clear');
-  var section = document.getElementById('states');
-  var HASH = /^#states-([a-z]{2})$/i;
-
-  function setHash(code){
-    var url = window.location.pathname + window.location.search + (code ? '#states-' + code.toLowerCase() : '');
-    try { history.replaceState(null, '', url); } catch(e) {}
-  }
-  function isolate(code, scroll){
-    var s = states.filter(function(x){ return x.code === code; })[0];
-    if(!s) return;
-    isolated = code;
-    filter = 'all';
-    withProgram = false;
-    search.value = code;
-    clearBtn.hidden = false;
-    setHash(code);
-    drawChips();
-    draw();
-    if(scroll) scrollToSection();
-  }
-  // A shared link isolates the state while the page is still loading; a
-  // scroll then gets undone by the browser's own load-time positioning,
-  // so wait for load. "instant" overrides the page's smooth scrolling,
-  // which would otherwise animate down the whole homepage.
-  function scrollToSection(){
-    function go(){
-      var nav = document.getElementById('mainNav');
-      var top = section.getBoundingClientRect().top + window.pageYOffset - (nav ? nav.offsetHeight : 0);
-      window.scrollTo({ top: top, behavior: 'instant' });
-    }
-    if(document.readyState === 'complete') go();
-    else window.addEventListener('load', function(){ setTimeout(go, 0); }, { once: true });
-  }
-  function release(){
-    if(!isolated) return;
-    isolated = null;
-    search.value = '';
-    clearBtn.hidden = true;
-    setHash(null);
-    draw();
-  }
-
-  body.addEventListener('click', function(e){
-    var b = e.target.closest('.sl-pick');
-    if(!b) return;
-    var code = b.getAttribute('data-code');
-    if(isolated === code) release(); else isolate(code);
-  });
-  clearBtn.addEventListener('click', function(){ release(); search.focus(); });
-
-  chips.addEventListener('click', function(e){
-    var b = e.target.closest('.sl-chip');
-    if(!b) return;
-    if(isolated){ isolated = null; search.value = ''; clearBtn.hidden = true; setHash(null); }
-    if(b.hasAttribute('data-toggle')) withProgram = !withProgram;
-    else filter = b.getAttribute('data-f');
-    drawChips();
-    draw();
-  });
-  search.addEventListener('input', function(){
-    if(isolated){ isolated = null; clearBtn.hidden = true; setHash(null); }
-    draw();
-  });
-  search.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && isolated){ e.preventDefault(); release(); }
-  });
-
-  function fromHash(){
-    var m = HASH.exec(window.location.hash);
-    if(m) isolate(m[1].toUpperCase(), true);
-  }
-  window.addEventListener('hashchange', fromHash);
-
-  drawChips();
-  draw();
-  fromHash();
 })();
 </script>
 <script>

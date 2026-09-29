@@ -47,12 +47,59 @@ NS = {
 
 # Pages listed in the sitemap alongside the articles, in nav order.
 STATIC_PAGES = [
-    "", "impact.html", "platform.html", "va-eistc.html", "leadership.html",
+    "", "impact.html", "platform.html", "va-eistc.html", "team.html",
     "news.html",
-    "contact.html",
     "donate.html",
     "apply.html", "families.html", "transparency.html", "privacy.html",
 ]
+
+# The state-by-state 25F table at the top of the News page. Its data lives in
+# state-status-data.js and its behaviour in state-table.js/.css; this is only
+# the frame they fill. Part of index_main so a sync can't drop it.
+STATE_TABLE = """<section class="sl-sec" id="states">
+  <link rel="stylesheet" href="state-table.css">
+  <div class="wrap">
+    <div class="s-eyebrow">State by State</div>
+    <h2 class="s-title">Where &#167;25F stands<br><em>in every state.</em></h2>
+    <p class="s-lead"><strong>You can give from any state.</strong> Donors everywhere can claim the federal
+    Education Freedom Tax Credit by giving to a scholarship organization in a participating state.
+    What a state&rsquo;s opt-in decides is whether <em>its</em> families can apply for those scholarships.
+    Filter by status or state program, or search for your state.</p>
+
+    <div class="sl-card">
+      <div class="sl-bar">
+        <div class="sl-chips" id="sl-chips" role="group" aria-label="Filter by status"></div>
+        <div class="sl-find">
+          <button type="button" id="sl-clear" class="sl-clear" hidden>All states <span aria-hidden="true">&times;</span></button>
+          <input id="sl-search" class="sl-search" type="search" placeholder="Search a state&hellip;"
+            autocomplete="off" spellcheck="false" aria-label="Search a state" aria-controls="sl-body">
+        </div>
+      </div>
+      <div class="sl-scroll">
+        <table class="sl-table">
+          <thead>
+            <tr>
+              <th scope="col">State</th>
+              <th scope="col">&#167;25F status</th>
+              <th scope="col">Opted in</th>
+              <th scope="col">Current governor</th>
+              <th scope="col">On IRS list</th>
+              <th scope="col">State tax credit</th>
+            </tr>
+          </thead>
+          <tbody id="sl-body"></tbody>
+        </table>
+        <div id="sl-none" class="sl-none" hidden></div>
+      </div>
+      <div class="sl-feed">
+        <span class="sl-feed-lbl">Latest</span>
+        <ul id="sl-feed"></ul>
+      </div>
+    </div>
+  </div>
+</section>"""
+STATE_TABLE_SCRIPTS = """<script src="state-status-data.js"></script>
+<script src="state-table.js"></script>"""
 
 
 # ---------------------------------------------------------------------------
@@ -416,8 +463,12 @@ def index_main(articles):
   </div>
 </section>
 
+{STATE_TABLE}
+
 <section>
   <div class="wrap">
+    <div class="s-eyebrow">Scholar Street</div>
+    <h2 class="s-title" style="margin-bottom:2.2rem">Recently <em>published.</em></h2>
     <div class="news-list">
 {cards}
     </div>
@@ -426,7 +477,9 @@ def index_main(articles):
       <a href="https://scholarstreet.substack.com/subscribe" target="_blank" rel="noopener" class="btn-gold">Subscribe on Substack</a>
     </div>
   </div>
-</section>"""
+</section>
+
+{STATE_TABLE_SCRIPTS}"""
 
 
 def latest_section(articles):
