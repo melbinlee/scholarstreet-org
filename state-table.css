@@ -3,7 +3,7 @@
    narrowed by the status chips and the search box; the updates of whatever
    is showing run along the bottom. Status colours exist only here, and each
    badge always carries its text label, so colour is never the only signal. */
-.sl-sec{background:var(--cream2);padding-bottom:0}
+.sl-sec{background:var(--cream2)}
 .sl-card{margin-top:2.2rem;background:#fff;border-radius:var(--radius);
   box-shadow:0 2px 16px rgba(27,46,75,.06);overflow:hidden}
 .sl-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
