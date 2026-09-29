@@ -69,6 +69,43 @@
      optInGovernor where a legislature opted the state in over a veto.
      irsListed is the IRS list edition a state first appears in; irsListedBy
      means it was already on the earliest archived edition (Mar. 17, 2026). */
+  /* Researched 2026-09-28; re-verified 2026-09-29 (IRS list unchanged at
+     Sept. 14; updates added from news since Ballotpedia's June timeline). Sources:
+     - IRS, "Federal Scholarship Tax Credit (FSTC)" participating-states page, as of
+       Sept. 14, 2026 (30 states), and its Wayback Machine editions as of Mar. 17,
+       Jun. 22, Jul. 6 and Jul. 24, 2026 for when each state first appears.
+     - Virginia Governor's release, Jan. 9, 2026 ("On January 1, 2026, Virginia
+       formally elected to participate").
+     - Ballotpedia, "State participation in the federal K-12 education tax credit
+       program," as of Sept. 15, 2026: every other dated event, veto and override.
+     - eftccredit.com state tracker (Aug. 20, 2026): Minnesota's Mar. 24 date only.
+     - 2026-09-29 additions from Ballotpedia News (RI H 7163, VT H.933), Education
+       Week (Mar. 4 HI/NM/OR reconsidering), CT Mirror, WNEM, Broad + Liberty,
+       City & State (NY, Sept. 16), Jewish Insider (NJ, May 12).
+     - Wikipedia, "List of current United States governors."
+     Each update's url is the source Ballotpedia cites for that event (the
+     Virginia release's own URL is dead, so a news report of it stands in).
+     Updates with no cited source have no url.
+     - EdChoice, tax-credit scholarship program list: the credit column. States
+       it does not list show a dash, not "None" -- absence is not confirmed.
+       Each credit's url is the state agency's page for the program, checked
+       to load on 2026-09-28; AR, IA, NV and OK have no working official page,
+       so they link EdChoice's page instead. Virginia links our own
+       va-eistc.html. NV, PA and SD credits are for business donors only,
+       per those states' pages.
+
+     Status rules. opted-in: on the IRS list. pending-warm: the governor has said
+     publicly they will opt in (New York). pending-cold: undecided, no public
+     commitment either way. not-participating: the governor declined, or vetoed
+     opt-in legislation that was not overridden. Warm/cold is Scholar Street's
+     call to make; change it here.
+
+     optInDate is set only where a source ties a formal action to a date (an
+     executive order, Form 15714, a formal announcement, a veto override).
+     Statements of intent are updates, not opt-in dates. optInVia replaces
+     optInGovernor where a legislature opted the state in over a veto.
+     irsListed is the IRS list edition a state first appears in; irsListedBy
+     means it was already on the earliest archived edition (Mar. 17, 2026). */
   var KNOWN = {
     "AK": {
       "status": "opted-in",
@@ -620,7 +657,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Mikie Sherrill",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-05-12",
+          "text": "Gov. Sherrill’s office says she will evaluate the program once federal rules are final.",
+          "url": "https://jewishinsider.com/2026/05/mikie-sherrill-education-tax-initiative-not-committed-kathy-hochul/"
+        }
+      ]
     },
     "NM": {
       "status": "not-participating",
@@ -664,6 +707,11 @@
       "verified": true,
       "currentGovernor": "Kathy Hochul",
       "updates": [
+        {
+          "date": "2026-09-16",
+          "text": "As teachers’ unions urge her to opt out, Gov. Hochul’s office reiterates her support, pending final federal rules.",
+          "url": "https://www.cityandstateny.com/policy/2026/09/hochul-weighs-opting-tax-credit-teachers-unions-and-school-choice-advocates-vie-her-ear/416038/"
+        },
         {
           "date": "2026-05-07",
           "text": "Gov. Hochul says New York plans to opt in once IRS regulations are out.",
