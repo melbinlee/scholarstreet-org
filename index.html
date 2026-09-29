@@ -294,8 +294,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .sl-table td small{display:block;font-size:12px;color:var(--text-lt);margin-top:1px}
 .sl-table td strong{color:var(--navy);font-weight:700}
 .sl-na{color:rgba(27,46,75,.28)}
-.sl-sample{background:#fdf1dc;color:#7a4a12;font-size:13px;font-weight:600;padding:10px 22px;
-  border-bottom:1px solid rgba(163,86,26,.2)}
 .sl-none{padding:28px 22px;text-align:center;color:var(--text-mid);font-size:14px}
 .sl-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
   letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;white-space:nowrap}
@@ -314,6 +312,9 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .sl-feed ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 28px}
 .sl-feed b{color:var(--navy);font-weight:700;margin-right:6px}
 .sl-feed time{color:var(--text-lt);margin-right:8px}
+.sl-feed a{color:var(--text-mid);text-decoration:underline;text-decoration-color:rgba(200,168,75,.6);
+  text-underline-offset:3px;transition:.15s}
+.sl-feed a:hover{color:var(--navy);text-decoration-color:var(--gold)}
 @media(max-width:940px){
   .sl-search{width:100%}
   .sl-scroll{max-height:none}
@@ -781,26 +782,31 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     return '<td data-label="' + label + '"' + (cls ? ' class="' + cls + '"' : '') + '>' +
       '<span>' + content + '</span></td>';
   }
-  function dateCell(iso){
-    return iso ? '<time datetime="' + iso + '">' + niceDate(iso) + '</time>' : NA;
+  // by: the date is the earliest one on record, so the event may be older.
+  function dateCell(iso, by){
+    return iso ? (by ? 'By ' : '') + '<time datetime="' + iso + '">' + niceDate(iso) + '</time>' : NA;
   }
   function row(s){
     var st = statusOf(s);
     var badge = '<span class="sl-badge ' + st + '">' +
       (s.status ? LABELS[s.status] : 'Not yet verified') + '</span>';
+    // No published opt-in date: it happened no later than the IRS listing.
+    var optIn = s.optInDate ? dateCell(s.optInDate)
+      : (s.status === 'opted-in' && s.irsListed ? dateCell(s.irsListed, true) : NA);
     var credit = s.credit
       ? '<strong>' + esc(s.credit.name) + '</strong><small>' + esc(s.credit.detail) + '</small>'
-      : (s.verified ? 'None' : NA);
+      : NA;
     return '<tr>' +
       cell('State', esc(s.name), 'sl-state') +
       cell('&#167;25F status', badge) +
-      cell('Opted in', dateCell(s.optInDate)) +
-      cell('Governor at opt-in', s.optInGovernor ? esc(s.optInGovernor) : NA) +
+      cell('Opted in', optIn) +
+      cell('Governor at opt-in', s.optInGovernor ? esc(s.optInGovernor)
+        : (s.optInVia ? esc(s.optInVia) : NA)) +
       cell('Current governor', s.currentGovernor
         ? esc(s.currentGovernor) + (s.optInGovernor && s.optInGovernor !== s.currentGovernor
             ? '<small>Different from opt-in governor</small>' : '')
         : NA) +
-      cell('On IRS list', dateCell(s.irsListed)) +
+      cell('On IRS list', dateCell(s.irsListed, s.irsListedBy)) +
       cell('State tax credit', credit) +
       '</tr>';
   }
@@ -833,13 +839,17 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     }
     var updates = [];
     shown.forEach(function(s){
-      s.updates.forEach(function(u){ updates.push({ state: s.name, date: u.date, text: u.text }); });
+      s.updates.forEach(function(u){ updates.push({ state: s.name, date: u.date, text: u.text, url: u.url }); });
     });
     updates.sort(function(a, b){ return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
     feed.innerHTML = updates.length
       ? updates.slice(0, FEED_MAX).map(function(u){
+          // Outside sources open in a new tab so the table stays put.
+          var text = u.url
+            ? '<a href="' + esc(u.url) + '" target="_blank" rel="noopener">' + esc(u.text) + '</a>'
+            : esc(u.text);
           return '<li><b>' + esc(u.state) + '</b><time datetime="' + u.date + '">' + niceDate(u.date) +
-            '</time>' + esc(u.text) + '</li>';
+            '</time>' + text + '</li>';
         }).join('')
       : '<li>No updates for the states shown.</li>';
   }
@@ -852,15 +862,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     draw();
   });
   search.addEventListener('input', draw);
-
-  if(window.SS_SAMPLE){
-    var note = document.createElement('div');
-    note.className = 'sl-sample';
-    note.textContent = 'Sample data — every state except Virginia is made up, for trying the filters. ' +
-      'Remove ?sample=1 from the address to see the real table.';
-    var card = chips.parentNode.parentNode;
-    card.insertBefore(note, card.firstChild);
-  }
 
   drawChips();
   draw();

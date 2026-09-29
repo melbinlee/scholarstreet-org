@@ -1,24 +1,24 @@
 /* State status for the homepage state status table.
-   Static placeholder data, meant to be swapped for a real source later.
-   The lookup only reads window.SS_STATES, so a replacement just has to
-   produce the same shape:
+   Static data, hand-researched (sources and rules in the comment above
+   KNOWN), meant to be swapped for a maintained source later. The table
+   only reads window.SS_STATES, so a replacement just has to produce the
+   same shape:
 
      code      two-letter postal code
      name      state name as displayed
      status    'opted-in' | 'pending-warm' | 'pending-cold' |
                'not-participating' | null (not yet verified)
-     verified  true only when every field below is sourced
-     optInDate        'YYYY-MM-DD' the state opted into §25F, or null
+     verified  true once the state's status has been researched
+     optInDate        'YYYY-MM-DD' of the formal opt-in, or null if undated
      optInGovernor    governor who made the opt-in, or null
+     optInVia         who opted in instead, when a legislature overrode a veto
      currentGovernor  sitting governor, or null
-     irsListed        'YYYY-MM-DD' the IRS listed the state, or null
-     credit    { name, detail } for a state scholarship tax credit, or null
-               (null on a verified state means it has none)
-     updates   [{ date: 'YYYY-MM-DD', text }], newest first
-
-   Only Virginia is populated. Every other state is a placeholder with no
-   status and no tax-credit claim; the page shows it as "Not yet verified"
-   rather than guessing. */
+     irsListed        'YYYY-MM-DD' IRS list edition the state first appears in
+     irsListedBy      true when that is the earliest archived edition, so the
+                      state may have been listed sooner
+     credit    { name, detail } for a state tax-credit scholarship, or null
+               (null means none was found, not that none exists)
+     updates   [{ date: 'YYYY-MM-DD', text }], newest first */
 (function () {
   var NAMES = {
     AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California',
@@ -33,21 +33,865 @@
     VA: 'Virginia', WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming'
   };
 
+  /* Researched 2026-09-28. Sources:
+     - IRS, "Federal Scholarship Tax Credit (FSTC)" participating-states page, as of
+       Sept. 14, 2026 (30 states), and its Wayback Machine editions as of Mar. 17,
+       Jun. 22, Jul. 6 and Jul. 24, 2026 for when each state first appears.
+     - Virginia Governor's release, Jan. 9, 2026 ("On January 1, 2026, Virginia
+       formally elected to participate").
+     - Ballotpedia, "State participation in the federal K-12 education tax credit
+       program," as of Sept. 15, 2026: every other dated event, veto and override.
+     - eftccredit.com state tracker (Aug. 20, 2026): Minnesota's Mar. 24 date only.
+     - Wikipedia, "List of current United States governors."
+     Each update's url is the source Ballotpedia cites for that event (the
+     Virginia release's own URL is dead, so a news report of it stands in).
+     Updates with no cited source have no url.
+     - EdChoice, tax-credit scholarship program list: the credit column. States
+       it does not list show a dash, not "None" -- absence is not confirmed.
+
+     Status rules. opted-in: on the IRS list. pending-warm: the governor has said
+     publicly they will opt in (New York). pending-cold: undecided, no public
+     commitment either way. not-participating: the governor declined, or vetoed
+     opt-in legislation that was not overridden. Warm/cold is Scholar Street's
+     call to make; change it here.
+
+     optInDate is set only where a source ties a formal action to a date (an
+     executive order, Form 15714, a formal announcement, a veto override).
+     Statements of intent are updates, not opt-in dates. optInVia replaces
+     optInGovernor where a legislature opted the state in over a veto.
+     irsListed is the IRS list edition a state first appears in; irsListedBy
+     means it was already on the earliest archived edition (Mar. 17, 2026). */
   var KNOWN = {
-    VA: {
-      status: 'opted-in',
-      verified: true,
-      optInDate: '2026-01-09',
-      optInGovernor: 'Glenn Youngkin',
-      currentGovernor: 'Abigail Spanberger',
-      irsListed: '2026-06-08',
-      credit: {
-        name: 'EISTC',
-        detail: '65% credit · Va. Code § 58.1-439.26'
+    "AK": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Mike Dunleavy",
+      "optInGovernor": "Mike Dunleavy",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        }
+      ]
+    },
+    "AL": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Kay Ivey",
+      "optInDate": "2026-01-16",
+      "optInGovernor": "Kay Ivey",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Alabama Education Scholarship Program",
+        "detail": "State tax-credit scholarship program"
       },
-      updates: [
-        { date: '2026-06-08', text: 'IRS confirms Virginia on its list of participating states.' },
-        { date: '2026-01-09', text: 'Virginia opts into §25F under Governor Youngkin, the first state to do so.' }
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-16",
+          "text": "Gov. Ivey signs Executive Order 742 opting Alabama in.",
+          "url": "https://governor.alabama.gov/newsroom/2026/01/executive-order-742/"
+        }
+      ]
+    },
+    "AR": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Sarah Huckabee Sanders",
+      "optInGovernor": "Sarah Huckabee Sanders",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Philanthropic Investment in Arkansas Kids",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-16",
+          "text": "Gov. Sanders says Arkansas will participate.",
+          "url": "https://governor.arkansas.gov/news_post/arkansas-to-participate-in-president-trumps-federal-tax-credit-scholarship-program-for-school-choice/"
+        }
+      ]
+    },
+    "AZ": {
+      "status": "not-participating",
+      "verified": true,
+      "currentGovernor": "Katie Hobbs",
+      "credit": {
+        "name": "Four programs",
+        "detail": "Including the Original Individual Income Tax Credit Scholarship"
+      },
+      "updates": [
+        {
+          "date": "2026-05-05",
+          "text": "Gov. Hobbs vetoes a third opt-in bill.",
+          "url": "https://apps.azleg.gov/BillStatus/BillOverview/85722"
+        },
+        {
+          "date": "2026-04-13",
+          "text": "Gov. Hobbs vetoes SB 1142, a second opt-in bill."
+        },
+        {
+          "date": "2026-01-16",
+          "text": "Gov. Hobbs vetoes SB 1106, a budget bill that included opting in.",
+          "url": "https://azmirror.com/2026/01/16/hobbs-vetoes-republican-tax-bill-deepening-a-political-battle-over-conformity-with-trumps-tax-cuts/"
+        }
+      ]
+    },
+    "CA": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Gavin Newsom",
+      "updates": []
+    },
+    "CO": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Jared Polis",
+      "optInGovernor": "Jared Polis",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2025-12-05",
+          "text": "Gov. Polis says Colorado will opt in.",
+          "url": "https://coloradosun.com/2025/12/05/colorado-federal-tax-credit-scholarship-program-voucher/"
+        }
+      ]
+    },
+    "CT": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Ned Lamont",
+      "updates": []
+    },
+    "DE": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Matt Meyer",
+      "updates": []
+    },
+    "FL": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Ron DeSantis",
+      "optInGovernor": "Ron DeSantis",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-28",
+          "text": "Gov. DeSantis announces Florida will participate.",
+          "url": "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-announces-florida-opts-federal-education-freedom-tax-credit"
+        }
+      ]
+    },
+    "GA": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Brian Kemp",
+      "optInDate": "2026-01-20",
+      "optInGovernor": "Brian Kemp",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Qualified Education Expense Tax Credit",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-20",
+          "text": "Gov. Kemp formally opts Georgia in.",
+          "url": "https://www.cbsnews.com/atlanta/news/gov-kemp-signs-georgia-into-federal-scholarship-tax-credit-program-for-k-12-families/"
+        }
+      ]
+    },
+    "HI": {
+      "status": "not-participating",
+      "verified": true,
+      "currentGovernor": "Josh Green",
+      "updates": []
+    },
+    "IA": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Kim Reynolds",
+      "optInGovernor": "Kim Reynolds",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "School Tuition Organization Tax Credit",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-05",
+          "text": "Gov. Reynolds announces she intends to opt Iowa in.",
+          "url": "https://governor.iowa.gov/press-release/2026-01-05/gov-reynolds-opts-federal-education-tax-credit-program-expands-school-choice-iowa-families"
+        }
+      ]
+    },
+    "ID": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Brad Little",
+      "optInDate": "2026-01-16",
+      "optInGovernor": "Brad Little",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-19",
+          "text": "HB 731 enacted, requiring Idaho to opt in every year."
+        },
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-16",
+          "text": "Gov. Little submits IRS Form 15714 electing to participate.",
+          "url": "https://www.idahoednews.org/legislature/idaho-will-participate-in-federal-education-tax-credit-governor-says/"
+        }
+      ]
+    },
+    "IL": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "JB Pritzker",
+      "updates": []
+    },
+    "IN": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Mike Braun",
+      "optInGovernor": "Mike Braun",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "School Scholarship Tax Credit",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-03-12",
+          "text": "HB 1266 enacted, requiring Indiana to opt in."
+        },
+        {
+          "date": "2026-01-22",
+          "text": "Gov. Braun announces Indiana will participate.",
+          "url": "https://events.in.gov/event/gov-braun-opts-in-to-new-federal-tax-credit-for-school-choice-scholarships"
+        }
+      ]
+    },
+    "KS": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Laura Kelly",
+      "optInDate": "2026-04-09",
+      "optInVia": "Legislature, over Gov. Kelly’s veto",
+      "irsListed": "2026-07-06",
+      "credit": {
+        "name": "Tax Credit for Low-Income Students",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-07-06",
+          "text": "Added to the IRS list of participating states.",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-04-09",
+          "text": "Legislature overrides Gov. Kelly’s veto of SB 361, opting Kansas in every year.",
+          "url": "https://www.kslegislature.gov/li/b2025_26/measures/sb361/"
+        },
+        {
+          "date": "2026-04-06",
+          "text": "Gov. Kelly vetoes HB 2468, an opt-in bill.",
+          "url": "https://kslegislature.gov/li/b2025_26/measures/hb2468/"
+        }
+      ]
+    },
+    "KY": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Andy Beshear",
+      "optInDate": "2026-03-17",
+      "optInVia": "Legislature, over Gov. Beshear’s veto",
+      "irsListed": "2026-07-24",
+      "updates": [
+        {
+          "date": "2026-07-24",
+          "text": "Added to the IRS list of participating states.",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-03-17",
+          "text": "Legislature overrides Gov. Beshear’s veto of HB 1, opting Kentucky in every year.",
+          "url": "https://apps.legislature.ky.gov/record/26rs/hb1.html"
+        }
+      ]
+    },
+    "LA": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Jeff Landry",
+      "optInGovernor": "Jeff Landry",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Tuition Donation Credit Program",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2025-12-17",
+          "text": "Gov. Landry says Louisiana will participate.",
+          "url": "https://www.facebook.com/GovJeffLandry/photos/earlier-this-year-president-donald-j-trumps-one-big-beautiful-bill-created-a-new/122254504466179824/"
+        }
+      ]
+    },
+    "MA": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Maura Healey",
+      "updates": []
+    },
+    "MD": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Wes Moore",
+      "updates": []
+    },
+    "ME": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Janet Mills",
+      "updates": []
+    },
+    "MI": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Gretchen Whitmer",
+      "updates": []
+    },
+    "MN": {
+      "status": "not-participating",
+      "verified": true,
+      "currentGovernor": "Tim Walz",
+      "updates": [
+        {
+          "date": "2026-03-24",
+          "text": "Gov. Walz says Minnesota will not participate."
+        }
+      ]
+    },
+    "MO": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Mike Kehoe",
+      "optInGovernor": "Mike Kehoe",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        }
+      ]
+    },
+    "MS": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Tate Reeves",
+      "optInDate": "2026-01-19",
+      "optInGovernor": "Tate Reeves",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-19",
+          "text": "Gov. Reeves formally opts Mississippi in.",
+          "url": "https://governorreeves.ms.gov/governor-reeves-opts-into-federal-tax-credit-scholarship-program-to-promote-school-choice/"
+        }
+      ]
+    },
+    "MT": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Greg Gianforte",
+      "optInDate": "2026-01-21",
+      "optInGovernor": "Greg Gianforte",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Student Scholarship Organization credits",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-21",
+          "text": "Gov. Gianforte formally opts Montana in.",
+          "url": "https://news.mt.gov/Governors-Office/Montana-Opts-in-to-Federal-Tax-Credit-Scholarship-Program-Expanding-Education-Freedom"
+        }
+      ]
+    },
+    "NC": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Josh Stein",
+      "optInDate": "2026-06-03",
+      "optInVia": "Legislature, over Gov. Stein’s veto",
+      "irsListed": "2026-06-22",
+      "updates": [
+        {
+          "date": "2026-06-22",
+          "text": "Added to the IRS list of participating states.",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-06-03",
+          "text": "Legislature overrides Gov. Stein’s veto of HB 87, opting North Carolina in every year.",
+          "url": "https://www.theassemblync.com/education/k-12-education/stein-vetoes-bill-opting-into-federal-school-vouchers/"
+        },
+        {
+          "date": "2025-08-06",
+          "text": "Gov. Stein vetoes HB 87, saying he would opt in after Treasury guidance.",
+          "url": "https://governor.nc.gov/news/press-releases/2025/08/06/governor-stein-takes-action-three-bills"
+        }
+      ]
+    },
+    "ND": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Kelly Armstrong",
+      "optInGovernor": "Kelly Armstrong",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-26",
+          "text": "Gov. Armstrong announces North Dakota will participate.",
+          "url": "https://www.governor.nd.gov/news/armstrong-nd-participate-federal-tax-credit-donations-scholarship-granting-organizations"
+        }
+      ]
+    },
+    "NE": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Jim Pillen",
+      "optInGovernor": "Jim Pillen",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2025-09-29",
+          "text": "Gov. Pillen orders state agencies to prepare to participate.",
+          "url": "https://governor.nebraska.gov/surrounded-students-gov-pillen-signs-order-opting-federal-scholarship-tax-credit"
+        }
+      ]
+    },
+    "NH": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Kelly Ayotte",
+      "optInDate": "2026-01-29",
+      "optInGovernor": "Kelly Ayotte",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-07-02",
+          "text": "HB 1774 enacted, requiring New Hampshire to opt in."
+        },
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-29",
+          "text": "Gov. Ayotte opts New Hampshire in."
+        }
+      ]
+    },
+    "NJ": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Mikie Sherrill",
+      "updates": []
+    },
+    "NM": {
+      "status": "not-participating",
+      "verified": true,
+      "currentGovernor": "Michelle Lujan Grisham",
+      "updates": [
+        {
+          "date": "2025-08-13",
+          "text": "Gov. Lujan Grisham says New Mexico will not opt in.",
+          "url": "https://www.chalkbeat.org/2025/08/13/federal-tax-credit-scholarship-divides-democratic-governors/"
+        }
+      ]
+    },
+    "NV": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Joe Lombardo",
+      "optInGovernor": "Joe Lombardo",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Nevada Educational Choice Scholarship",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        }
+      ]
+    },
+    "NY": {
+      "status": "pending-warm",
+      "verified": true,
+      "currentGovernor": "Kathy Hochul",
+      "updates": [
+        {
+          "date": "2026-05-07",
+          "text": "Gov. Hochul says New York plans to opt in once IRS regulations are out.",
+          "url": "https://www.chalkbeat.org/newyork/2026/05/08/kathy-hochul-opts-into-federal-tax-scholarship-school-choice/"
+        }
+      ]
+    },
+    "OH": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Mike DeWine",
+      "optInGovernor": "Mike DeWine",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Ohio Tax-Credit Scholarship Program",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        }
+      ]
+    },
+    "OK": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Kevin Stitt",
+      "optInGovernor": "Kevin Stitt",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Equal Opportunity Education Scholarships",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-04-17",
+          "text": "HB 3704 enacted, requiring Oklahoma to opt in every year."
+        },
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        }
+      ]
+    },
+    "OR": {
+      "status": "not-participating",
+      "verified": true,
+      "currentGovernor": "Tina Kotek",
+      "updates": [
+        {
+          "date": "2026-06-12",
+          "text": "Gov. Kotek says Oregon will not participate after reviewing the draft rules."
+        },
+        {
+          "date": "2025-08-13",
+          "text": "Gov. Kotek says Oregon will not opt in.",
+          "url": "https://www.chalkbeat.org/2025/08/13/federal-tax-credit-scholarship-divides-democratic-governors/"
+        }
+      ]
+    },
+    "PA": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Josh Shapiro",
+      "credit": {
+        "name": "EITC and OSTC",
+        "detail": "Educational Improvement and Opportunity Scholarship tax credits"
+      },
+      "updates": []
+    },
+    "RI": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Dan McKee",
+      "credit": {
+        "name": "Scholarship Organization tax credits",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": []
+    },
+    "SC": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Henry McMaster",
+      "optInGovernor": "Henry McMaster",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Exceptional Needs Children Fund credit",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        }
+      ]
+    },
+    "SD": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Larry Rhoden",
+      "optInGovernor": "Larry Rhoden",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "Partners in Education Tax Credit",
+        "detail": "State tax-credit scholarship program"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2025-11-14",
+          "text": "Gov. Rhoden announces South Dakota intends to participate.",
+          "url": "https://news.sd.gov/news?id=news_kb_article_view&sys_id=d8db85984799b290a497127ba26d43a7"
+        }
+      ]
+    },
+    "TN": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Bill Lee",
+      "optInGovernor": "Bill Lee",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-04-14",
+          "text": "SB 2206 enacted, requiring Tennessee to opt in."
+        },
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2025-08-04",
+          "text": "Gov. Lee’s office says Tennessee plans to opt in.",
+          "url": "https://www.edweek.org/policy-politics/opt-in-or-not-states-weigh-big-decision-on-federal-school-vouchers/2025/08"
+        }
+      ]
+    },
+    "TX": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Greg Abbott",
+      "optInGovernor": "Greg Abbott",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2025-12-10",
+          "text": "Gov. Abbott announces he intends to opt Texas in.",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-announces-texas-intent-to-opt-in-to-federal-school-choice-tax-credit-program"
+        }
+      ]
+    },
+    "UT": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Spencer Cox",
+      "optInGovernor": "Spencer Cox",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        }
+      ]
+    },
+    "VA": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Abigail Spanberger",
+      "optInDate": "2026-01-01",
+      "optInGovernor": "Glenn Youngkin",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "credit": {
+        "name": "EISTC",
+        "detail": "65% credit · Va. Code § 58.1-439.26"
+      },
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-01-09",
+          "text": "Gov. Youngkin announces Virginia is the first state to formally opt in, effective January 1.",
+          "url": "https://www.potomaclocal.com/2026/01/10/virginia-first-state-to-opt-into-education-freedom-tax-credit-program/"
+        }
+      ]
+    },
+    "VT": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Phil Scott",
+      "updates": []
+    },
+    "WA": {
+      "status": "pending-cold",
+      "verified": true,
+      "currentGovernor": "Bob Ferguson",
+      "updates": []
+    },
+    "WI": {
+      "status": "not-participating",
+      "verified": true,
+      "currentGovernor": "Tony Evers",
+      "updates": [
+        {
+          "date": "2026-03-30",
+          "text": "Gov. Evers vetoes AB 602, an opt-in bill.",
+          "url": "https://docs.legis.wisconsin.gov/2025/proposals/ab602"
+        },
+        {
+          "date": "2025-09-09",
+          "text": "Gov. Evers says he will not opt Wisconsin in.",
+          "url": "https://www.jsonline.com/story/news/politics/2025/09/09/tony-evers-says-he-wont-sign-on-to-federal-school-choice-tax-credits/85997868007/"
+        }
+      ]
+    },
+    "WV": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Patrick Morrisey",
+      "optInGovernor": "Patrick Morrisey",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        }
+      ]
+    },
+    "WY": {
+      "status": "opted-in",
+      "verified": true,
+      "currentGovernor": "Mark Gordon",
+      "optInGovernor": "Mark Gordon",
+      "irsListed": "2026-03-17",
+      "irsListedBy": true,
+      "updates": [
+        {
+          "date": "2026-03-17",
+          "text": "On the IRS list of participating states (earliest archived edition).",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        }
       ]
     }
   };
@@ -59,51 +903,15 @@
       name: NAMES[code],
       status: known ? known.status : null,
       verified: known ? known.verified : false,
-      optInDate: known ? known.optInDate : null,
-      optInGovernor: known ? known.optInGovernor : null,
+      optInDate: known ? known.optInDate || null : null,
+      optInGovernor: known ? known.optInGovernor || null : null,
+      optInVia: known ? known.optInVia || null : null,
       currentGovernor: known ? known.currentGovernor : null,
-      irsListed: known ? known.irsListed : null,
-      credit: known ? known.credit : null,
-      updates: known ? known.updates : []
+      irsListed: known ? known.irsListed || null : null,
+      irsListedBy: known ? !!known.irsListedBy : false,
+      credit: known ? known.credit || null : null,
+      updates: known ? known.updates || [] : []
     };
   });
 
-  /* Sample mode, for trying the table's filters before real data exists.
-     Only with ?sample=1 in the URL, so a normal visit can never show it.
-     Fills every unverified state with made-up values that say they are
-     made up ("Sample governor", "Sample credit"), sets SS_SAMPLE so the
-     page shows a "Sample data" notice, and leaves real states untouched.
-     Seeded from the postal code, so a state gets the same values each load. */
-  if (!/[?&]sample=1\b/.test(window.location.search)) return;
-  window.SS_SAMPLE = true;
-  var STATUSES = ['opted-in', 'pending-warm', 'pending-cold', 'not-participating'];
-  function rng(code) {
-    var h = code.charCodeAt(0) * 31 + code.charCodeAt(1) * 7;
-    return function () { h = (h * 1103515245 + 12345) % 2147483648; return h / 2147483648; };
-  }
-  function day(r, fromMonth, toMonth) {
-    var m = fromMonth + Math.floor(r() * (toMonth - fromMonth + 1));
-    var d = 1 + Math.floor(r() * 28);
-    return '2026-' + (m < 10 ? '0' : '') + m + '-' + (d < 10 ? '0' : '') + d;
-  }
-  window.SS_STATES.forEach(function (s) {
-    if (s.verified) return;
-    var r = rng(s.code);
-    s.status = STATUSES[Math.floor(r() * STATUSES.length)];
-    s.currentGovernor = 'Sample governor';
-    if (r() < 0.45) s.credit = { name: 'Sample credit', detail: 'Made-up state tax credit' };
-    if (s.status === 'opted-in') {
-      s.optInDate = day(r, 1, 5);
-      s.optInGovernor = r() < 0.7 ? 'Sample governor' : 'Earlier sample governor';
-      s.irsListed = day(r, 6, 8);
-      s.updates = [
-        { date: s.irsListed, text: 'Sample update: IRS lists ' + s.name + '.' },
-        { date: s.optInDate, text: 'Sample update: ' + s.name + ' opts in.' }
-      ];
-    } else if (s.status === 'not-participating') {
-      s.updates = [{ date: day(r, 3, 9), text: 'Sample update: ' + s.name + ' declines to opt in.' }];
-    } else {
-      s.updates = [{ date: day(r, 4, 9), text: 'Sample update: opt-in under discussion in ' + s.name + '.' }];
-    }
-  });
 })();
