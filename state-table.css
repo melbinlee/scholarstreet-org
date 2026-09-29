@@ -4,7 +4,12 @@
    is showing run along the bottom. Status colours exist only here, and each
    badge always carries its text label, so colour is never the only signal. */
 .sl-sec{background:var(--cream2)}
-.sl-card{margin-top:2.2rem;background:#fff;border-radius:var(--radius);
+.sl-updated{margin-top:1.1rem;font-size:13.5px;color:var(--text-mid);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.sl-updated[hidden]{display:none}
+.sl-updated strong{color:var(--navy);font-weight:700}
+.sl-updated-dot{width:8px;height:8px;border-radius:50%;background:var(--sage);flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(107,143,113,.18)}
+.sl-card{margin-top:1.4rem;background:#fff;border-radius:var(--radius);
   box-shadow:0 2px 16px rgba(27,46,75,.06);overflow:hidden}
 .sl-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
   padding:16px 22px;border-bottom:1px solid rgba(27,46,75,.08)}

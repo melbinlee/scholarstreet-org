@@ -279,6 +279,17 @@
   }
   window.addEventListener('hashchange', fromHash);
 
+  // "Updated <date> · Checked for changes every Monday and Thursday".
+  // The date is when reviewed data last went live (SS_UPDATED), not when
+  // the page was loaded, so it never claims more freshness than it has.
+  var updatedEl = document.getElementById('sl-updated');
+  if(updatedEl && /^\d{4}-\d{2}-\d{2}$/.test(window.SS_UPDATED || '')){
+    updatedEl.innerHTML = '<span class="sl-updated-dot" aria-hidden="true"></span>' +
+      '<strong>Updated <time datetime="' + window.SS_UPDATED + '">' + niceDate(window.SS_UPDATED) +
+      '</time></strong> &middot; Checked for changes every Monday and Thursday';
+    updatedEl.hidden = false;
+  }
+
   drawChips();
   draw();
   fromHash();

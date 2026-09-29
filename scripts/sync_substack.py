@@ -65,6 +65,7 @@ STATE_TABLE = """<section class="sl-sec" id="states">
     Education Freedom Tax Credit by giving to a scholarship organization in a participating state.
     What a state&rsquo;s opt-in decides is whether <em>its</em> families can apply for those scholarships.
     Filter by status or state program, or search for your state.</p>
+    <p class="sl-updated" id="sl-updated" hidden></p>
 
     <div class="sl-card">
       <div class="sl-bar">
