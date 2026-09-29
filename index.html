@@ -290,14 +290,15 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   font-family:inherit;color:var(--navy);background:var(--cream);
   border:1.5px solid rgba(27,46,75,.14);outline:none;transition:.15s}
 .sl-search::placeholder{color:var(--text-lt)}
-/* Shown while one state is isolated; takes the search box's place at the
-   right end of the bar and sits just before it. */
-.sl-clear{margin-left:auto;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
+/* Search and "All states ×" (shown while one state is isolated) stay
+   together at the right end of the bar, even when the chips wrap. */
+.sl-find{margin-left:auto;display:flex;align-items:center;gap:8px;max-width:100%}
+.sl-find .sl-search{margin-left:0}
+.sl-clear{flex-shrink:0;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
   color:var(--navy);background:rgba(200,168,75,.16);border:1.5px solid var(--gold);
   border-radius:999px;padding:6px 14px;transition:.15s}
 .sl-clear:hover{background:rgba(200,168,75,.28)}
 .sl-clear[hidden]{display:none}
-.sl-clear:not([hidden]) + .sl-search{margin-left:0}
 .sl-pick{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer;
   text-align:left;text-decoration:underline;text-decoration-color:transparent;
   text-underline-offset:4px;transition:.15s}
@@ -341,6 +342,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   text-underline-offset:3px;transition:.15s}
 .sl-feed a:hover{color:var(--navy);text-decoration-color:var(--gold)}
 @media(max-width:940px){
+  .sl-find{width:100%}
   .sl-search{width:100%}
   .sl-scroll{max-height:none}
   .sl-table thead{display:none}
@@ -483,9 +485,11 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     <div class="sl-card">
       <div class="sl-bar">
         <div class="sl-chips" id="sl-chips" role="group" aria-label="Filter by status"></div>
-        <button type="button" id="sl-clear" class="sl-clear" hidden>All states <span aria-hidden="true">&times;</span></button>
-        <input id="sl-search" class="sl-search" type="search" placeholder="Search a state&hellip;"
-          autocomplete="off" spellcheck="false" aria-label="Search a state" aria-controls="sl-body">
+        <div class="sl-find">
+          <button type="button" id="sl-clear" class="sl-clear" hidden>All states <span aria-hidden="true">&times;</span></button>
+          <input id="sl-search" class="sl-search" type="search" placeholder="Search a state&hellip;"
+            autocomplete="off" spellcheck="false" aria-label="Search a state" aria-controls="sl-body">
+        </div>
       </div>
       <div class="sl-scroll">
         <table class="sl-table">
@@ -931,7 +935,20 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     setHash(code);
     drawChips();
     draw();
-    if(scroll) section.scrollIntoView({ block: 'start' });
+    if(scroll) scrollToSection();
+  }
+  // A shared link isolates the state while the page is still loading; a
+  // scroll then gets undone by the browser's own load-time positioning,
+  // so wait for load. "instant" overrides the page's smooth scrolling,
+  // which would otherwise animate down the whole homepage.
+  function scrollToSection(){
+    function go(){
+      var nav = document.getElementById('mainNav');
+      var top = section.getBoundingClientRect().top + window.pageYOffset - (nav ? nav.offsetHeight : 0);
+      window.scrollTo({ top: top, behavior: 'instant' });
+    }
+    if(document.readyState === 'complete') go();
+    else window.addEventListener('load', function(){ setTimeout(go, 0); }, { once: true });
   }
   function release(){
     if(!isolated) return;
