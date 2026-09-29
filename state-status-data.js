@@ -1033,6 +1033,12 @@
     };
   });
 
+  /* Shown above the table as "Updated <date>". Set it to the day the data
+     was last reviewed and changed -- every update PR sets it to its run
+     date, so it goes live when that PR is merged. Don't bump it on a run
+     that changed nothing. */
+  window.SS_UPDATED = '2026-09-29';
+
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
      checked 2026-09-28 to load; where a site redirected, the final address is
