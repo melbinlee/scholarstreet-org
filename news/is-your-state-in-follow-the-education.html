@@ -60,13 +60,14 @@ function reportAdsConversion(source) {
 }
 </script>
 <!-- HEAD:START -->
-<title>News — Scholar Street SGO</title>
-<meta name="description" content="Analysis of the federal Education Freedom Tax Credit (IRC 25F) from Scholar Street: what the rules say, what is unresolved, and what it means for families, donors and schools.">
-<link rel="canonical" href="https://scholarstreet.org/news.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="News — Scholar Street SGO">
-<meta property="og:description" content="Analysis of the federal Education Freedom Tax Credit (IRC 25F) from Scholar Street: what the rules say, what is unresolved, and what it means for families, donors and schools.">
-<meta property="og:url" content="https://scholarstreet.org/news.html">
+<title>Is Your State In? Follow the Education Freedom Tax Credit in One Place — Scholar Street SGO</title>
+<meta name="description" content="Scholar Street’s new tracker brings the latest EFTC news and information for every state to one page.">
+<link rel="canonical" href="https://scholarstreet.org/news/is-your-state-in-follow-the-education.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Is Your State In? Follow the Education Freedom Tax Credit in One Place — Scholar Street SGO">
+<meta property="og:description" content="Scholar Street’s new tracker brings the latest EFTC news and information for every state to one page.">
+<meta property="og:url" content="https://scholarstreet.org/news/is-your-state-in-follow-the-education.html">
+<meta property="og:image" content="https://substackcdn.com/image/fetch/$s_!e2x5!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F59f737c3-6f64-4059-8fa5-278e9ce4064f_672x378.png">
 <!-- HEAD:END -->
 
 <!-- Warm up the donation portal before the visitor clicks Donate -->
@@ -315,13 +316,13 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="/">Home</a></li>
-    <li><a href="impact.html">Impact</a></li>
-    <li><a href="platform.html">Our Difference</a></li>
-    <li><a href="va-eistc.html">VA EISTC</a></li>
-    <li><a href="team.html">Our Team</a></li>
-    <li><a href="news.html" class="active">News</a></li>
-    <li><a href="apply.html" class="nav-apply-outline">Apply</a></li>
-    <li><a href="donate.html" class="nav-apply">Donate</a></li>
+    <li><a href="../impact.html">Impact</a></li>
+    <li><a href="../platform.html">Our Difference</a></li>
+    <li><a href="../va-eistc.html">VA EISTC</a></li>
+    <li><a href="../team.html">Our Team</a></li>
+    <li><a href="../news.html" class="active">News</a></li>
+    <li><a href="../apply.html" class="nav-apply-outline">Apply</a></li>
+    <li><a href="../donate.html" class="nav-apply">Donate</a></li>
   </ul>
 </nav>
 
@@ -329,97 +330,29 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 <section class="page-hero">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
   <div class="wrap">
-    <div class="s-eyebrow">News &amp; Analysis</div>
-    <h1 class="ph-title">What we&rsquo;re <em>watching.</em></h1>
-    <p class="ph-sub">Plain-language analysis of the federal Education Freedom Tax Credit (IRC &#167;25F)
-    for families, donors, schools and fellow scholarship organizations &mdash; what the rules say,
-    what is still unresolved, and what it means for students.</p>
-  </div>
-</section>
-
-<section class="sl-sec" id="states">
-  <link rel="stylesheet" href="state-table.css">
-  <div class="wrap">
-    <div class="s-eyebrow">State by State</div>
-    <h2 class="s-title">Where &#167;25F stands<br><em>in every state.</em></h2>
-    <p class="s-lead"><strong>You can give from any state.</strong> Donors everywhere can claim the federal
-    Education Freedom Tax Credit by giving to a scholarship organization in a participating state.
-    What a state&rsquo;s opt-in decides is whether <em>its</em> families can apply for those scholarships.
-    Filter by status or state program, or search for your state.</p>
-    <p class="sl-updated" id="sl-updated" hidden></p>
-
-    <div class="sl-card">
-      <div class="sl-bar">
-        <div class="sl-chips" id="sl-chips" role="group" aria-label="Filter by status"></div>
-        <div class="sl-find">
-          <button type="button" id="sl-clear" class="sl-clear" hidden>All states <span aria-hidden="true">&times;</span></button>
-          <input id="sl-search" class="sl-search" type="search" placeholder="Search a state&hellip;"
-            autocomplete="off" spellcheck="false" aria-label="Search a state" aria-controls="sl-body">
-        </div>
-      </div>
-      <div class="sl-scroll">
-        <table class="sl-table">
-          <thead>
-            <tr>
-              <th scope="col">State</th>
-              <th scope="col">&#167;25F status</th>
-              <th scope="col">Opted in</th>
-              <th scope="col">Current governor</th>
-              <th scope="col">On IRS list</th>
-              <th scope="col">State tax credit</th>
-            </tr>
-          </thead>
-          <tbody id="sl-body"></tbody>
-        </table>
-        <div id="sl-none" class="sl-none" hidden></div>
-      </div>
-      <div class="sl-feed">
-        <span class="sl-feed-lbl">Latest</span>
-        <ul id="sl-feed"></ul>
-      </div>
-    </div>
+    <div class="s-eyebrow"><a href="../news.html" class="crumb">News</a></div>
+    <h1 class="ph-title">Is Your State In? Follow the Education Freedom Tax Credit in One Place</h1>
+    <p class="ph-sub">Scholar Street’s new tracker brings the latest EFTC news and information for every state to one page.</p>
+    <p class="post-meta">Scholar Street &middot; <time datetime="2026-09-30">September 30, 2026</time></p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="s-eyebrow">Scholar Street</div>
-    <h2 class="s-title" style="margin-bottom:2.2rem">Recently <em>published.</em></h2>
-    <div class="news-list">
-      <a class="news-card reveal" href="news/is-your-state-in-follow-the-education.html">
-        <time datetime="2026-09-30">September 30, 2026</time>
-        <h2>Is Your State In? Follow the Education Freedom Tax Credit in One Place</h2>
-        <p>Scholar Street’s new tracker brings the latest EFTC news and information for every state to one page.</p>
-        <span class="news-more">Read article &rarr;</span>
-      </a>
-      <a class="news-card reveal" href="news/two-bills-that-could-make-state-opt.html">
-        <time datetime="2026-09-19">September 19, 2026</time>
-        <h2>Two Bills That Could Make State Opt-In Irrelevant</h2>
-        <p>On September 16, Rep. Adrian Smith (R-NE) introduced two bills that go after the two parts of Section 25F that practitioners complain about most.</p>
-        <span class="news-more">Read article &rarr;</span>
-      </a>
-      <a class="news-card reveal" href="news/what-sgos-should-be-doing-right-now.html">
-        <time datetime="2026-09-14">September 14, 2026</time>
-        <h2>What SGOs Should Be Doing Right Now: A Section 25F Compliance Checklist</h2>
-        <p>If the Treasury’s Section 25F regulations land as an interim final rule this September — which its own Unified Agenda filing suggests is the plan — scholarship granting organizations will be expected to comply from the day the rule publishes in the Federal Register.</p>
-        <span class="news-more">Read article &rarr;</span>
-      </a>
-      <a class="news-card reveal" href="news/the-rules-arriving-this-month-may.html">
-        <time datetime="2026-09-09">September 9, 2026</time>
-        <h2>The Rules Arriving This Month May Already Be Law</h2>
-        <p>Treasury’s own filings suggest the Section 25F rules could take effect immediately, not after a comment period.</p>
-        <span class="news-more">Read article &rarr;</span>
-      </a>
-    </div>
-    <div class="news-subscribe">
-      <p>Get new articles by email.</p>
-      <a href="https://scholarstreet.substack.com/subscribe" target="_blank" rel="noopener" class="btn-gold">Subscribe on Substack</a>
+    <article class="post-body">
+<figure><a href="https://substackcdn.com/image/fetch/$s_!e2x5!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F59f737c3-6f64-4059-8fa5-278e9ce4064f_672x378.png" target="_blank" rel="noopener"><img alt="" src="https://substackcdn.com/image/fetch/$s_!e2x5!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F59f737c3-6f64-4059-8fa5-278e9ce4064f_672x378.png" loading="lazy"></a></figure><p><em>Scholar Street&#8217;s new tracker brings the latest EFTC news and information for every state to one page.</em></p><p>If you&#8217;re a donor or a family thinking about a scholarship, one of the first questions is: what&#8217;s happening with the Education Freedom Tax Credit in my state?</p><p>The answer isn&#8217;t always easy to find, and it keeps changing. Governors are deciding, legislatures are weighing in, and there&#8217;s a lot of uncertainty about how each state will move. So we built a resource to help: <strong><a href="http://scholarstreet.org/news" target="_blank" rel="noopener">scholarstreet.org/news</a></strong></p><figure><a href="https://substackcdn.com/image/fetch/$s_!aFfe!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2538e248-bf81-4f1a-814a-810922f53264_1093x647.png" target="_blank" rel="noopener"><img alt="Article content" src="https://substackcdn.com/image/fetch/$s_!aFfe!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2538e248-bf81-4f1a-814a-810922f53264_1093x647.png" loading="lazy"></a><figcaption></figcaption></figure><p>For every state, you&#8217;ll find where things stand and the latest news and information behind it, so donors can see where their support can go and families can see where scholarships may become available. We&#8217;ll refresh it regularly and add plain-language analysis along the way.</p><p>Treasury&#8217;s federal rules are also expected soon. I check the <strong><a href="https://www.federalregister.gov/documents/current" target="_blank" rel="noopener">Federal Register</a></strong> every day, since that&#8217;s where they&#8217;ll appear, and we&#8217;ll share what they mean for each state as soon as they&#8217;re out.</p><p>Bookmark the page, pass it along to someone who&#8217;s asking, and subscribe there to get new updates by email.</p><p>For general information only; not tax, legal, or financial advice. State status can change quickly, so please confirm details with your state and a qualified tax professional. Scholar Street SGO is a Virginia-based 501(c)(3) public charity (EIN 42-2704061).</p>
+    </article>
+    <div class="post-foot">
+      <p>This article first appeared in the Scholar Street newsletter.
+      <a href="https://scholarstreet.substack.com/subscribe" target="_blank" rel="noopener">Subscribe on Substack</a>
+      to get new articles by email.</p>
+      <div class="post-actions">
+        <a href="../news.html" class="btn-outline">&larr; All News</a>
+        <a href="../donate.html" class="btn-gold">Support Scholar Street</a>
+      </div>
     </div>
   </div>
 </section>
-
-<script src="state-status-data.js"></script>
-<script src="state-table.js"></script>
 <!-- MAIN:END -->
 
 <footer>
@@ -480,28 +413,28 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       </div>
       <div class="fcol">
         <h5>Program</h5>
-        <a href="impact.html#why-25f">Why &#167;25F</a>
-        <a href="impact.html#how-it-works">How It Works</a>
-        <a href="impact.html">Targeted Impact</a>
-        <a href="platform.html">Our Difference</a>
-        <a href="va-eistc.html">VA EISTC</a>
+        <a href="../impact.html#why-25f">Why &#167;25F</a>
+        <a href="../impact.html#how-it-works">How It Works</a>
+        <a href="../impact.html">Targeted Impact</a>
+        <a href="../platform.html">Our Difference</a>
+        <a href="../va-eistc.html">VA EISTC</a>
       </div>
       <div class="fcol">
         <h5>Organization</h5>
-        <a href="platform.html#governance">Governance</a>
-        <a href="team.html">Our Team</a>
-        <a href="news.html">News</a>
-        <a href="transparency.html">Transparency</a>
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="../platform.html#governance">Governance</a>
+        <a href="../team.html">Our Team</a>
+        <a href="../news.html">News</a>
+        <a href="../transparency.html">Transparency</a>
+        <a href="../privacy.html">Privacy Policy</a>
         <a href="/">Home</a>
       </div>
       <div class="fcol">
         <h5>Get Involved</h5>
-        <a href="families.html">For Families</a>
-        <a href="donate.html">Donate</a>
-        <a href="apply.html">Apply for a Scholarship</a>
-        <a href="team.html#contact">Partner With Us</a>
-        <a href="team.html#contact">Contact</a>
+        <a href="../families.html">For Families</a>
+        <a href="../donate.html">Donate</a>
+        <a href="../apply.html">Apply for a Scholarship</a>
+        <a href="../team.html#contact">Partner With Us</a>
+        <a href="../team.html#contact">Contact</a>
       </div>
     </div>
     <div class="fbot">
