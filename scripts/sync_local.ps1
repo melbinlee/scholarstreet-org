@@ -18,7 +18,7 @@ function Log($msg) {
     "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')  $msg" | Out-File -Append -Encoding utf8 $log
 }
 
-function Git {
+function Invoke-Git {
     $out = & git -C $repo @args 2>&1
     if ($LASTEXITCODE -ne 0) { throw "git $($args -join ' ') failed: $out" }
     $out
@@ -26,23 +26,23 @@ function Git {
 
 try {
     Log 'start'
-    $branch = (Git rev-parse --abbrev-ref HEAD) -join ''
+    $branch = (Invoke-Git rev-parse --abbrev-ref HEAD) -join ''
     if ($branch -ne 'main') { Log "skip: on branch '$branch', not main"; exit 0 }
-    if (Git status --porcelain) { Log 'skip: working tree has uncommitted changes'; exit 0 }
+    if (Invoke-Git status --porcelain) { Log 'skip: working tree has uncommitted changes'; exit 0 }
 
-    Git pull --ff-only -q | Out-Null
+    Invoke-Git pull --ff-only -q | Out-Null
 
     $out = & python (Join-Path $PSScriptRoot 'sync_substack.py') 2>&1
     $out | ForEach-Object { Log "  $_" }
     if ($LASTEXITCODE -ne 0) { throw "sync_substack.py exited $LASTEXITCODE" }
 
-    Git add -A news news.html index.html sitemap.xml _redirects | Out-Null
+    Invoke-Git add -A news news.html index.html sitemap.xml _redirects | Out-Null
     & git -C $repo diff --cached --quiet
     if ($LASTEXITCODE -eq 0) { Log 'done: no new or changed articles'; exit 0 }
 
-    Git commit -q -m 'Sync articles from Substack' | Out-Null
-    Git push -q origin main | Out-Null
-    Log "done: pushed $((Git log --oneline -1) -join '')"
+    Invoke-Git commit -q -m 'Sync articles from Substack' | Out-Null
+    Invoke-Git push -q origin main | Out-Null
+    Log "done: pushed $((Invoke-Git log --oneline -1) -join '')"
 }
 catch {
     Log "ERROR: $_"
