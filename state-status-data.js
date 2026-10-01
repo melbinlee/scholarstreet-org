@@ -16,9 +16,11 @@
      irsListed        'YYYY-MM-DD' IRS list edition the state first appears in
      irsListedBy      true when that is the earliest archived edition, so the
                       state may have been listed sooner
-     credit    { name, detail } for a state tax-credit scholarship, or null
-               (null means none was found, not that none exists)
-     updates   [{ date: 'YYYY-MM-DD', text }], newest first */
+     credit    { name, detail, url } for a state tax-credit scholarship, or
+               null (null means none was found, not that none exists); url
+               is optional and may be a page on this site
+     updates   [{ date: 'YYYY-MM-DD', text, url }], newest first; url is
+               optional (left out when there is no working source) */
 (function () {
   var NAMES = {
     AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California',
