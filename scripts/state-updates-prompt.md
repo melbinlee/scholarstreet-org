@@ -66,6 +66,12 @@ EACH RUN
    own site for the title.
    Negative news counts as much as positive: a governor criticising the
    program, refusing, or stalling is a development to record.
+   The dates in the list are when Google News picked an item up, not when
+   it was published. Outlets repost old stories, so a months-old article
+   can show up as this week's. Always take the date from the article page
+   itself (its byline date or published date). If that date is older than
+   7 days, still record the development if it isn't in the file yet,
+   but use the article's own date.
    If an article is paywalled or blocked, retry with a browser user-agent;
    if you still can't read it, don't guess what it says. Put it in
    "Needs your call" with its headline and link.
