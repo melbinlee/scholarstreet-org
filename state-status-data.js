@@ -693,6 +693,11 @@
           "url": "https://www.cityandstateny.com/policy/2026/09/hochul-weighs-opting-tax-credit-teachers-unions-and-school-choice-advocates-vie-her-ear/416038/"
         },
         {
+          "date": "2026-07-10",
+          "text": "Gov. Hochul’s office says she supports the federal tax credit scholarship and its potential to help New York students and schools.",
+          "url": "https://radiocatskill.org/unions-say-trump-program-will-lead-to-public-school-defunding-hochul-eyes-opting-in/"
+        },
+        {
           "date": "2026-05-07",
           "text": "Gov. Hochul says New York plans to opt in once IRS regulations are out.",
           "url": "https://www.chalkbeat.org/newyork/2026/05/08/kathy-hochul-opts-into-federal-tax-scholarship-school-choice/"
