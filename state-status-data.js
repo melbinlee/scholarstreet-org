@@ -63,11 +63,15 @@
        va-eistc.html. NV, PA and SD credits are for business donors only,
        per those states' pages.
 
-     Status rules. opted-in: on the IRS list. pending-warm: the governor has said
-     publicly they will opt in (New York). pending-cold: undecided, no public
-     commitment either way. not-participating: the governor declined, or vetoed
-     opt-in legislation that was not overridden. Warm/cold is Scholar Street's
-     call to make; change it here.
+     Status rules. opted-in: on the IRS list. pending-warm: the sitting governor
+     or their office has said publicly the state will, plans to, or may opt in
+     (New York), or an opt-in law or veto override has passed but the state is
+     not on the IRS list yet. pending-cold: no public commitment either way --
+     undecided, waiting for federal rules, reviewing, or skeptical without
+     declining. not-participating: the governor declined, or vetoed opt-in
+     legislation that was not overridden. The scheduled update job applies
+     these rules from the latest statement, and every change goes through a
+     reviewed pull request; Scholar Street can override any of them here.
 
      optInDate is set only where a source ties a formal action to a date (an
      executive order, Form 15714, a formal announcement, a veto override).
