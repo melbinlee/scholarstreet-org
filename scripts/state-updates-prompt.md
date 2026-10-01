@@ -35,13 +35,21 @@ EACH RUN
       or open it in the browser. Never treat an empty page as "nothing
       new". If you still can't read it, say so in the report and rely
       on (a) and (c) for this run.
-   c) ONE web search for news from the past 7 days, adding the current
-      month and year to the query, e.g. for a run in October 2026:
+   c) News from the past 7 days, from the Google News search feed (dated
+      and sorted, unlike a web search):
+      https://news.google.com/rss/search?q=%22Education+Freedom+Tax+Credit%22+OR+%22federal+scholarship+tax+credit%22+OR+%22federal+tax+credit+scholarship%22+when:7d&hl=en-US&gl=US&ceid=US:en
+      Fetch it with a browser user-agent. Each <item> has a title, a
+      pubDate and a <source url> naming the outlet. Read the titles and
+      skip op-eds, commentary, explainers, advocacy groups' own posts and
+      anything that names no state. Most results will be these. For an
+      item that may report a state action, find the article itself on the
+      outlet's site (the <link> is a Google redirect, not the article)
+      and read it.
+      If the feed fails or is empty, fall back to ONE web search with the
+      current month and year, e.g. for a run in October 2026:
       ("Education Freedom Tax Credit" OR "federal scholarship tax credit") opt in October 2026
-      Use the search tool's recency/date filter if it has one. Ignore any
-      result published more than 7 days ago. Old explainers and past
-      opt-ins are not news. Open a result only if it's within 7 days
-      and names a specific state.
+      and ignore results older than 7 days. Say in the report that you
+      used the fallback.
       (Ballotpedia's timeline can lag by months, so don't rely on it alone.)
    Compare them to the file:
    - Is any state on the IRS list that isn't "opted-in" in the file, or the
@@ -85,8 +93,18 @@ EACH RUN
      updates, not optInDate.
    - Never invent a date, URL, name or number. If something isn't confirmed,
      leave it out and mention it in the PR.
+   - Only a sitting governor, their office, the legislature or the IRS
+     makes an update. Statements by candidates, governors-elect,
+     individual lawmakers, advocacy groups and op-ed writers don't go in
+     `updates`. Mention a notable one in the PR's "Needs your call".
+   - If the article doesn't say when a statement was made, don't guess a
+     date. Propose the update in "Needs your call" with the article's
+     date and say the event date is unconfirmed.
    - If a governor changes (resignation, death, a new term), update
-     currentGovernor and cite the source in the PR. Also add them to
+     currentGovernor and cite the source in the PR. An election doesn't
+     change it: switch to the new governor only once they've been sworn
+     in (most new governors take office in January 2027; the date varies
+     by state). Until then, note governors-elect in "Needs your call". Also add them to
      window.SS_GOVERNOR_LINKS at the bottom of the file, using the official
      governor's office website listed on their state's USA.gov page
      (https://www.usa.gov/states/<state-name>, e.g. /states/new-york).
