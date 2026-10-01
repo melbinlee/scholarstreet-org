@@ -21,7 +21,9 @@ Every news search in this run uses all of these phrases, joined with OR:
   "scholarship tax credit"
   "tax credit scholarship"
   "school choice tax credit"
-  25F
+Don't add "25F": India's Industrial Disputes Act has a Section 25F whose
+court rulings flood the results, and "Section 25F" in quotes breaks the
+Google News query.
 
 EACH RUN
 
@@ -44,30 +46,33 @@ EACH RUN
       or open it in the browser. Never treat an empty page as "nothing
       new". If you still can't read it, say so in the report and rely
       on the other sources for this run.
-   c) National news from the past 7 days, from the Google News search feed:
-      https://news.google.com/rss/search?q=<query>&hl=en-US&gl=US&ceid=US:en
-      where <query> is the SEARCH TERMS joined with OR, followed by when:7d,
-      URL-encoded. For example, unencoded:
-      ("Education Freedom Tax Credit" OR "federal scholarship tax credit" OR "scholarship tax credit" OR "tax credit scholarship" OR "school choice tax credit" OR 25F) when:7d
-   d) State-by-state news from the past 7 days, for EVERY state whose
-      status in the file is not "opted-in" (currently 20 states). For each
-      one, fetch the same Google News feed with this query, unencoded:
-      ("<State name>" OR "<current governor's last name>") (<SEARCH TERMS joined with OR>) when:7d
-      e.g. ("Washington" OR "Ferguson") ("Education Freedom Tax Credit" OR ... OR 25F) when:7d
-      Run all of these on every run, Monday and Thursday.
+   c) and d) News from the past 7 days, national and state by state, run
+      every time (Monday and Thursday). In the repo folder run:
+        python scripts/gnews.py
+      It searches Google News with the SEARCH TERMS once nationally and
+      once for EVERY state whose status in the file is not "opted-in"
+      (by state name or governor's last name), and prints a numbered list
+      of articles from the past 7 days grouped by state.
 
-   How to read the feeds (c and d): fetch with a browser user-agent. Each
-   <item> has a title, a pubDate and a <source url> naming the outlet.
-   Skip items older than 7 days. Skip items that aren't about that state
-   (e.g. "Washington" meaning D.C., or a different state's program). For
-   any item that may report something a governor, governor's office or
-   legislature said or did, find the article itself on the outlet's site
-   (the <link> is a Google redirect, not the article) and read it.
+   How to read the list: skip op-eds, commentary, explainers, advocacy
+   groups' own posts, and items that aren't about that state (e.g.
+   "Washington" meaning D.C., or another state's program). For any item
+   that may report something a governor, governor's office or legislature
+   said or did, get the real article address with
+     python scripts/gnews.py resolve <numbers>
+   (e.g. resolve 4 16 22), then open the article and read it. Google News
+   links are redirects and web searches often can't find the article, so
+   always use resolve. If resolve fails for an item, search the outlet's
+   own site for the title.
    Negative news counts as much as positive: a governor criticising the
    program, refusing, or stalling is a development to record.
-   If a feed fails, fall back to ONE web search with the same terms plus the
-   current month and year (e.g. "... October 2026"), ignore results older
-   than 7 days, and say in the report that you used the fallback.
+   If an article is paywalled or blocked, retry with a browser user-agent;
+   if you still can't read it, don't guess what it says. Put it in
+   "Needs your call" with its headline and link.
+   If the script fails or a group prints FEED FAILED, fall back to ONE web
+   search with the same terms plus the current month and year (e.g.
+   "... October 2026"), ignore results older than 7 days, and say in the
+   report that you used the fallback.
    (Ballotpedia's timeline can lag by months, so don't rely on it alone.)
 
    Compare all of this to the file:
@@ -136,9 +141,16 @@ EACH RUN
      updates, not optInDate.
    - Never invent a date, URL, name or number. If something isn't confirmed,
      leave it out and mention it in the PR.
-   - If the article doesn't say when a statement was made, don't guess a
-     date. Propose the update in "Needs your call" with the article's
-     date and say the event date is unconfirmed.
+   - Dating statements: when a governor's office or spokesperson is quoted
+     in an article ("said X, the governor's spokesperson") with no other
+     timing, they said it for that article, so use the article's
+     publication date. Use a stated date when the article gives one
+     ("said Tuesday", "told reporters on Sept. 12"). Don't guess when the
+     article suggests it was said at another time, e.g. "has said",
+     "previously said", "added after publication", or a quote that
+     refers to events already past. Then propose the update in "Needs
+     your call" with the article's date and say the event date is
+     unconfirmed.
    - If a governor changes (resignation, death, a new term), update
      currentGovernor and cite the source in the PR. An election doesn't
      change it: switch to the new governor only once they've been sworn
@@ -158,8 +170,11 @@ EACH RUN
    the way a person would. If this is the only thing that found anything,
    still open the PR (step 8) so the list gets seen.
 
-8. If nothing changed and no links are broken, stop. No branch, no PR.
-   Report "No changes."
+8. If nothing changed, no links are broken and nothing needs a decision,
+   stop. No branch, no PR, no email. Report "No changes."
+   If no data changed and no links are broken, but there are "Needs your
+   call" items, don't create a branch or PR. Skip to step 10 and send the
+   "decisions only" email.
    Otherwise (on a new branch, or the open PR's branch from step 1):
    - new branch name: state-updates/YYYY-MM-DD, created from main
    - edit only state-status-data.js
@@ -184,13 +199,19 @@ EACH RUN
 9. NEVER merge the PR, never push to main, and never deploy. A human reviews
    every change before it goes live.
 
-10. If you opened or updated a pull request this run, email
-   mel@scholarstreet.org from my Gmail with the subject
-   "State table updates ready for review (YYYY-MM-DD)". Body: the same
-   summary as your report, the PR link and the preview link to news.html.
-   Send nothing on runs with no changes.
+10. Email mel@scholarstreet.org from my Gmail:
+   - If you opened or updated a pull request this run: subject
+     "State table updates ready for review (YYYY-MM-DD)". Body: the same
+     summary as your report, the PR link and the preview link to
+     news.html, and the "Needs your call" items.
+   - If there was no PR but there are "Needs your call" items (step 8):
+     subject "State table: decisions needed (YYYY-MM-DD)". Body: each item
+     with the state, what was found, the article link, and the question
+     to decide (e.g. "Add this update dated X?", "Move to warm?").
+   Send nothing on "No changes" runs.
 
 REPORT
 End each run with a short summary: what changed (including any status
 changes and why), the PR link and preview link (if any), what needs a
-decision, and whether any source failed or a fallback was used.
+decision, whether an email was sent, and whether any source failed or a
+fallback was used.

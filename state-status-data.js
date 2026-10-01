@@ -51,6 +51,8 @@
      - 2026-10-01 addition: Washington State Standard (WA, Sept. 16; the
        governor's office comment was added after publication, so the date
        is the article's, not a confirmed date for the statement).
+     - 2026-10-01 addition: Spectrum News (NY, Sept. 28; the governor's
+       office quoted in the article, dated by the article).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -680,6 +682,11 @@
       "verified": true,
       "currentGovernor": "Kathy Hochul",
       "updates": [
+        {
+          "date": "2026-09-28",
+          "text": "Gov. Hochul’s office says she wants the federal scholarship tax credit to benefit all New York students.",
+          "url": "https://spectrumlocalnews.com/nys/capital-region/news/2026/09/28/religious-school-advocacy-group-hopes-new-york-opts-into-federal-education-tax-credit"
+        },
         {
           "date": "2026-09-16",
           "text": "As teachers’ unions urge her to opt out, Gov. Hochul’s office reiterates her support, pending final federal rules.",
