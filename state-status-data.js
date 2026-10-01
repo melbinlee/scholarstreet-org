@@ -48,6 +48,9 @@
      - 2026-09-29 additions from Ballotpedia News (RI H 7163, VT H.933), Education
        Week (Mar. 4 HI/NM/OR reconsidering), CT Mirror, WNEM, Broad + Liberty,
        City & State (NY, Sept. 16), Jewish Insider (NJ, May 12).
+     - 2026-10-01 addition: Washington State Standard (WA, Sept. 16; the
+       governor's office comment was added after publication, so the date
+       is the article's, not a confirmed date for the statement).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -930,7 +933,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Bob Ferguson",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-09-16",
+          "text": "Gov. Ferguson’s office says he will not decide until final federal rules are out.",
+          "url": "https://washingtonstatestandard.com/2026/09/16/will-a-new-federal-education-tax-credit-be-available-in-washington/"
+        }
+      ]
     },
     "WI": {
       "status": "not-participating",
@@ -1003,7 +1012,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-09-29';
+  window.SS_UPDATED = '2026-10-01';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
