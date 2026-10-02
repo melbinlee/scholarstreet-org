@@ -53,6 +53,15 @@
        is the article's, not a confirmed date for the statement).
      - 2026-10-01 addition: Spectrum News (NY, Sept. 28; the governor's
        office quoted in the article, dated by the article).
+     - 2026-10-02 addition: WWLP / State House News Service (MA, Oct. 1;
+       the governor answered questions "Thursday").
+     - 2026-10-02 addition: Capitol Fax (IL, Oct. 1; the governor's office
+       statement was added to the post after publication; Chalkbeat, Oct. 2,
+       confirms a Pritzker spokesperson said it "Thursday").
+     - 2026-10-02 addition: Chalkbeat (NY, Oct. 1; a Hochul spokesperson
+       "said Thursday").
+     - 2026-10-02 addition: Wisconsin Governor's release (WI, Apr. 2 radio
+       address), found by the governor newsroom check.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -330,7 +339,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "JB Pritzker",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-10-01",
+          "text": "Gov. Pritzker’s office says it is reviewing the new federal guidance and will decide based on what best supports working families, students and public schools.",
+          "url": "https://capitolfax.com/2026/10/01/feds-release-school-voucher-tax-credit-rules-pritzker-said-he-was-waiting-for/"
+        }
+      ]
     },
     "IN": {
       "status": "opted-in",
@@ -440,7 +455,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Maura Healey",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-10-01",
+          "text": "Gov. Healey says she wants more clarity on the new federal rules and will make sure nothing harms public education.",
+          "url": "https://www.wwlp.com/news/massachusetts/divisions-remain-after-feds-roll-out-scholarship-tax-credit-regs/"
+        }
+      ]
     },
     "MD": {
       "status": "pending-cold",
@@ -683,6 +704,11 @@
       "currentGovernor": "Kathy Hochul",
       "updates": [
         {
+          "date": "2026-10-01",
+          "text": "Gov. Hochul’s office says she wants to make sure the program benefits all students and doesn’t affect state and local budgets.",
+          "url": "https://www.chalkbeat.org/2026/10/02/federal-education-tax-credits-rules-pose-test-for-democratic-governors/"
+        },
+        {
           "date": "2026-09-28",
           "text": "Gov. Hochul’s office says she wants the federal scholarship tax credit to benefit all New York students.",
           "url": "https://spectrumlocalnews.com/nys/capital-region/news/2026/09/28/religious-school-advocacy-group-hopes-new-york-opts-into-federal-education-tax-credit"
@@ -691,6 +717,11 @@
           "date": "2026-09-16",
           "text": "As teachers’ unions urge her to opt out, Gov. Hochul’s office reiterates her support, pending final federal rules.",
           "url": "https://www.cityandstateny.com/policy/2026/09/hochul-weighs-opting-tax-credit-teachers-unions-and-school-choice-advocates-vie-her-ear/416038/"
+        },
+        {
+          "date": "2026-07-10",
+          "text": "Gov. Hochul’s office says she supports the federal tax credit scholarship and its potential to help New York students and schools.",
+          "url": "https://radiocatskill.org/unions-say-trump-program-will-lead-to-public-school-defunding-hochul-eyes-opting-in/"
         },
         {
           "date": "2026-05-07",
@@ -958,6 +989,11 @@
       "currentGovernor": "Tony Evers",
       "updates": [
         {
+          "date": "2026-04-02",
+          "text": "In a radio address, Gov. Evers celebrates his veto and says public funds should go to public schools.",
+          "url": "https://content.govdelivery.com/accounts/WIGOV/bulletins/41118a6"
+        },
+        {
           "date": "2026-03-30",
           "text": "Gov. Evers vetoes AB 602, an opt-in bill.",
           "url": "https://docs.legis.wisconsin.gov/2025/proposals/ab602"
@@ -1023,7 +1059,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-01';
+  window.SS_UPDATED = '2026-10-02';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
