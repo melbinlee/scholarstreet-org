@@ -56,8 +56,10 @@
      - 2026-10-02 addition: WWLP / State House News Service (MA, Oct. 1;
        the governor answered questions "Thursday").
      - 2026-10-02 addition: Capitol Fax (IL, Oct. 1; the governor's office
-       statement was added to the post after publication, so the date is
-       the post's, as Scholar Street decided).
+       statement was added to the post after publication; Chalkbeat, Oct. 2,
+       confirms a Pritzker spokesperson said it "Thursday").
+     - 2026-10-02 addition: Chalkbeat (NY, Oct. 1; a Hochul spokesperson
+       "said Thursday").
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -699,6 +701,11 @@
       "verified": true,
       "currentGovernor": "Kathy Hochul",
       "updates": [
+        {
+          "date": "2026-10-01",
+          "text": "Gov. Hochul’s office says she wants to make sure the program benefits all students and doesn’t affect state and local budgets.",
+          "url": "https://www.chalkbeat.org/2026/10/02/federal-education-tax-credits-rules-pose-test-for-democratic-governors/"
+        },
         {
           "date": "2026-09-28",
           "text": "Gov. Hochul’s office says she wants the federal scholarship tax credit to benefit all New York students.",
