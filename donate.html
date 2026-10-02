@@ -258,7 +258,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 .d-other-card a:hover{text-decoration:underline}
 @media(max-width:940px){.d-other-grid{grid-template-columns:1fr}}
 /* Tax credit calculator: reference only, not connected to the donation form. */
-.tc-calc{margin-top:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+.tc-calc{margin:0 0 28px;background:var(--navy);border:1px solid var(--navy);color:#fff;
   border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .tc-calc h4{font-size:16.5px;color:#fff;margin-bottom:.35rem}
 .tc-intro{font-size:13.5px;color:rgba(255,255,255,.56);line-height:1.7;margin-bottom:1.1rem}
@@ -341,6 +341,49 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 
 <section class="d-frame-wrap">
   <div class="d-frame-inner">
+    <!-- Reference-only calculator. It takes no payment and does not talk to
+         the donation form below. Constants live in TC_CONFIG. -->
+    <div class="tc-calc" id="tc-calc">
+      <div>
+        <h4>Estimate your tax credits</h4>
+        <p class="tc-intro">See what a Virginia EISTC gift and a federal &#167;25F gift could each earn.
+        For reference only. This does not make a donation.</p>
+        <div class="tc-field">
+          <label for="tc-eistc">EISTC gift</label>
+          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-eistc" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
+        </div>
+        <div class="tc-field">
+          <label for="tc-25f">&#167;25F gift</label>
+          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-25f" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
+        </div>
+        <fieldset class="tc-field tc-filer">
+          <legend class="tc-legend">Filer type</legend>
+          <label><input type="radio" name="tc-filer" value="individual" checked> Individual</label>
+          <label><input type="radio" name="tc-filer" value="business"> Business</label>
+        </fieldset>
+      </div>
+
+      <div class="tc-results" aria-live="polite">
+        <div class="tc-row"><span>EISTC gift</span><b id="tc-out-eistc-gift">$0</b></div>
+        <div class="tc-row tc-credit"><span>EISTC credit (65%)</span><b id="tc-out-eistc">$0</b></div>
+        <div class="tc-note" id="tc-note-eistc"></div>
+        <div class="tc-row"><span>&#167;25F gift</span><b id="tc-out-25f-gift">$0</b></div>
+        <div class="tc-row tc-credit"><span>&#167;25F credit <span class="tc-tag">Begins January 1, 2027</span></span><b id="tc-out-25f">$0</b></div>
+        <div class="tc-note" id="tc-note-25f"></div>
+        <div class="tc-row tc-total"><span>Total credits</span><b id="tc-out-credits">$0</b></div>
+        <div class="tc-row tc-total"><span>Total giving</span><b id="tc-out-giving">$0</b></div>
+      </div>
+
+      <div class="tc-disclaimer">
+        <p>This is an estimate for reference only, not tax advice. EISTC gifts
+        require preauthorization from the Virginia Department of Education
+        before you give. Federal rules for &#167;25F are still being finalized by
+        the IRS. Talk to your tax advisor, and contact us to start an EISTC
+        gift.</p>
+        <a href="mailto:info@scholarstreet.org?subject=Virginia%20EISTC%20Inquiry" class="btn-gold">Ask about EISTC</a>
+      </div>
+    </div>
+
     <noscript>
       <div class="d-fallback">
         <h3>JavaScript required</h3>
@@ -395,48 +438,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       </div>
     </div>
 
-    <!-- Reference-only calculator. It takes no payment and does not talk to
-         the donation form above. Constants live in TC_CONFIG below. -->
-    <div class="tc-calc reveal" id="tc-calc">
-      <div>
-        <h4>Estimate your tax credits</h4>
-        <p class="tc-intro">See what a Virginia EISTC gift and a federal &#167;25F gift could each earn.
-        For reference only. This does not make a donation.</p>
-        <div class="tc-field">
-          <label for="tc-eistc">EISTC gift</label>
-          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-eistc" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
-        </div>
-        <div class="tc-field">
-          <label for="tc-25f">&#167;25F gift</label>
-          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-25f" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
-        </div>
-        <fieldset class="tc-field tc-filer">
-          <legend class="tc-legend">Filer type</legend>
-          <label><input type="radio" name="tc-filer" value="individual" checked> Individual</label>
-          <label><input type="radio" name="tc-filer" value="business"> Business</label>
-        </fieldset>
-      </div>
-
-      <div class="tc-results" aria-live="polite">
-        <div class="tc-row"><span>EISTC gift</span><b id="tc-out-eistc-gift">$0</b></div>
-        <div class="tc-row tc-credit"><span>EISTC credit (65%)</span><b id="tc-out-eistc">$0</b></div>
-        <div class="tc-note" id="tc-note-eistc"></div>
-        <div class="tc-row"><span>&#167;25F gift</span><b id="tc-out-25f-gift">$0</b></div>
-        <div class="tc-row tc-credit"><span>&#167;25F credit <span class="tc-tag">Begins January 1, 2027</span></span><b id="tc-out-25f">$0</b></div>
-        <div class="tc-note" id="tc-note-25f"></div>
-        <div class="tc-row tc-total"><span>Total credits</span><b id="tc-out-credits">$0</b></div>
-        <div class="tc-row tc-total"><span>Total giving</span><b id="tc-out-giving">$0</b></div>
-      </div>
-
-      <div class="tc-disclaimer">
-        <p>This is an estimate for reference only, not tax advice. EISTC gifts
-        require preauthorization from the Virginia Department of Education
-        before you give. Federal rules for &#167;25F are still being finalized by
-        the IRS. Talk to your tax advisor, and contact us to start an EISTC
-        gift.</p>
-        <a href="mailto:info@scholarstreet.org?subject=Virginia%20EISTC%20Inquiry" class="btn-gold">Ask about EISTC</a>
-      </div>
-    </div>
   </div>
 </section>
 
