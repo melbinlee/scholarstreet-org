@@ -62,6 +62,15 @@ EACH RUN
         one. States marked OPEN IN BROWSER (sites that block scripts or need
         JavaScript) and any FAILED or "NO DATES FOUND" line: open that
         newsroom in the browser and read the headlines from the past 7 days.
+        Follow the HOW line printed under it: New York needs a full-text
+        search of every item (many are generic "Statement" titles), and
+        Pennsylvania's list only loads through its search box. Headlines
+        that don't name the program can still hold a statement about it;
+        open any generic statement or press-conference transcript.
+        Also compare what the newsroom shows against the state's updates
+        even outside the 7-day window: a governor's statement about the
+        program that the file is missing (e.g. WI's Apr. 2, 2026 radio
+        address, found this way) is a development to add.
         If a newsroom URL has moved, find the new one and update NEWSROOMS
         in scripts/gnews.py in a separate PR, not this one.
       - LEGISLATION: bills about the program with an action in the window,
