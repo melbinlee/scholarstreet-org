@@ -463,7 +463,9 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         the full 65% Virginia credit and the full $1,700 federal credit. A married couple filing
         jointly can give once and each spouse receives their own federal credit. The EISTC still requires preauthorization
         from the Virginia Department of Education before you give, and covers taxable years
-        through 2027. <a href="mailto:info@scholarstreet.org?subject=Virginia%20EISTC%20Inquiry">Email us</a> and we&rsquo;ll send you the preauthorization form.</p>
+        through 2027. <a href="mailto:info@scholarstreet.org?subject=Virginia%20EISTC%20Inquiry">Email us</a> and we&rsquo;ll send you the preauthorization form.
+        EISTC gifts are arranged directly with us after VDOE preauthorization, not through our
+        online donation form.</p>
       </div>
     </div>
   </div>
@@ -489,7 +491,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         <fieldset class="tc-field tc-filer">
           <legend class="tc-legend">Filer type</legend>
           <label><input type="radio" name="tc-filer" value="individual" checked> Individual</label>
-          <label><input type="radio" name="tc-filer" value="business"> Business</label>
+          <label><input type="radio" name="tc-filer" value="couple"> Married couple (filing jointly)</label>
         </fieldset>
       </div>
 
@@ -942,25 +944,28 @@ document.addEventListener('DOMContentLoaded',function(){
   function update(){
     var eistcGift = amount('tc-eistc');
     var f25Gift = amount('tc-25f');
-    var business = document.querySelector('input[name="tc-filer"]:checked').value === 'business';
+    var couple = document.querySelector('input[name="tc-filer"]:checked').value === 'couple';
 
     var eistcCredit = 0, eistcNote = '';
     if(eistcGift > 0 && eistcGift < TC_CONFIG.EISTC_MIN){
       eistcNote = 'Below the ' + fmt(TC_CONFIG.EISTC_MIN) + ' EISTC minimum.';
     } else if(eistcGift > 0){
-      var creditable = business ? eistcGift : Math.min(eistcGift, TC_CONFIG.EISTC_MAX_INDIVIDUAL);
+      // One preauthorization covers a couple, so the same cap applies.
+      var creditable = Math.min(eistcGift, TC_CONFIG.EISTC_MAX_INDIVIDUAL);
       eistcCredit = Math.round(creditable * TC_CONFIG.EISTC_RATE * 100) / 100;
-      if(!business && eistcGift > TC_CONFIG.EISTC_MAX_INDIVIDUAL){
-        eistcNote = 'Credit figured on the first ' + fmt(TC_CONFIG.EISTC_MAX_INDIVIDUAL) + ' an individual gives in a year.';
+      if(eistcGift > TC_CONFIG.EISTC_MAX_INDIVIDUAL){
+        eistcNote = 'Credit figured on the first ' + fmt(TC_CONFIG.EISTC_MAX_INDIVIDUAL) + ' given in a year.';
       }
     }
 
-    var f25Credit = 0, f25Note = '';
-    if(business && f25Gift > 0){
-      f25Note = 'Only individuals can claim the \u00a725F credit.';
-    } else {
-      f25Credit = Math.min(f25Gift, TC_CONFIG.F25_CAP);
-      if(f25Gift > TC_CONFIG.F25_CAP) f25Note = 'Credit capped at ' + fmt(TC_CONFIG.F25_CAP) + '. The rest is a regular gift.';
+    // Only individuals earn the §25F credit (Treas. Reg. §1.25F-1(a)(12),
+    // proposed). Spouses filing jointly are two taxpayers, each with their own cap.
+    var f25Cap = TC_CONFIG.F25_CAP * (couple ? 2 : 1);
+    var f25Credit = Math.min(f25Gift, f25Cap), f25Note = '';
+    if(f25Gift > f25Cap){
+      f25Note = 'Credit capped at ' + fmt(f25Cap) + (couple ? ' for a couple (' + fmt(TC_CONFIG.F25_CAP) + ' each)' : '') + '. The rest is a regular gift.';
+    } else if(couple && f25Gift > 0){
+      f25Note = 'Each spouse can claim up to ' + fmt(TC_CONFIG.F25_CAP) + ' and designates their own share.';
     }
 
     $('tc-out-eistc-gift').textContent = fmt(eistcGift);
