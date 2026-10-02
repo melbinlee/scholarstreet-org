@@ -257,39 +257,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   display:inline-block;margin-top:.75rem}
 .d-other-card a:hover{text-decoration:underline}
 @media(max-width:940px){.d-other-grid{grid-template-columns:1fr}}
-/* Tax credit calculator: reference only, not connected to the donation form. */
-.tc-calc{margin:0 0 28px;background:var(--navy);border:1px solid var(--navy);color:#fff;
-  border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.tc-calc h4{font-size:16.5px;color:#fff;margin-bottom:.35rem}
-.tc-intro{font-size:13.5px;color:rgba(255,255,255,.56);line-height:1.7;margin-bottom:1.1rem}
-.tc-field{margin-bottom:14px}
-.tc-field label,.tc-legend{display:block;font-size:12px;font-weight:700;letter-spacing:.04em;
-  color:rgba(255,255,255,.7);margin-bottom:6px}
-.tc-money{position:relative}
-.tc-money span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.45);font-size:15px}
-.tc-input{width:100%;padding:11px 12px 11px 26px;border-radius:8px;font-size:16px;font-family:inherit;
-  color:#fff;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);outline:none}
-.tc-input:focus{border-color:var(--gold);background:rgba(255,255,255,.11)}
-.tc-filer{display:flex;gap:8px;flex-wrap:wrap;border:0;padding:0;margin:0}
-.tc-filer label{display:flex;align-items:center;gap:7px;cursor:pointer;font-size:13.5px;
-  color:rgba(255,255,255,.8);padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.18)}
-.tc-filer input{accent-color:var(--gold)}
-.tc-filer label:has(input:checked){border-color:var(--gold);color:#fff}
-.tc-results{background:rgba(0,0,0,.14);border-radius:10px;padding:18px 20px;font-size:14px}
-.tc-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:7px 0;
-  border-bottom:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.75)}
-.tc-row b{color:#fff;white-space:nowrap}
-.tc-row.tc-credit b{color:var(--gold)}
-.tc-row.tc-total{border-bottom:0;padding-top:10px}
-.tc-row.tc-total span,.tc-row.tc-total b{font-weight:700;color:#fff}
-.tc-tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:var(--navy);
-  background:var(--gold);border-radius:99px;padding:1px 8px;margin-left:6px;vertical-align:1px}
-.tc-note{font-size:12.5px;color:rgba(255,255,255,.6);padding:2px 0 6px;line-height:1.5}
-.tc-note:empty{display:none}
-.tc-disclaimer{grid-column:1/-1;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.7;
-  border-top:1px solid rgba(255,255,255,.1);padding-top:16px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.tc-disclaimer p{flex:1 1 380px;margin:0}
-@media(max-width:760px){.tc-calc{grid-template-columns:1fr;padding:20px;gap:20px}}
 
 </style>
 
@@ -341,49 +308,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 
 <section class="d-frame-wrap">
   <div class="d-frame-inner">
-    <!-- Reference-only calculator. It takes no payment and does not talk to
-         the donation form below. Constants live in TC_CONFIG. -->
-    <div class="tc-calc" id="tc-calc">
-      <div>
-        <h4>Estimate your tax credits</h4>
-        <p class="tc-intro">See what a Virginia EISTC gift and a federal &#167;25F gift could each earn.
-        For reference only. This does not make a donation.</p>
-        <div class="tc-field">
-          <label for="tc-eistc">EISTC gift</label>
-          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-eistc" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
-        </div>
-        <div class="tc-field">
-          <label for="tc-25f">&#167;25F gift</label>
-          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-25f" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
-        </div>
-        <fieldset class="tc-field tc-filer">
-          <legend class="tc-legend">Filer type</legend>
-          <label><input type="radio" name="tc-filer" value="individual" checked> Individual</label>
-          <label><input type="radio" name="tc-filer" value="business"> Business</label>
-        </fieldset>
-      </div>
-
-      <div class="tc-results" aria-live="polite">
-        <div class="tc-row"><span>EISTC gift</span><b id="tc-out-eistc-gift">$0</b></div>
-        <div class="tc-row tc-credit"><span>EISTC credit (65%)</span><b id="tc-out-eistc">$0</b></div>
-        <div class="tc-note" id="tc-note-eistc"></div>
-        <div class="tc-row"><span>&#167;25F gift</span><b id="tc-out-25f-gift">$0</b></div>
-        <div class="tc-row tc-credit"><span>&#167;25F credit <span class="tc-tag">Begins January 1, 2027</span></span><b id="tc-out-25f">$0</b></div>
-        <div class="tc-note" id="tc-note-25f"></div>
-        <div class="tc-row tc-total"><span>Total credits</span><b id="tc-out-credits">$0</b></div>
-        <div class="tc-row tc-total"><span>Total giving</span><b id="tc-out-giving">$0</b></div>
-      </div>
-
-      <div class="tc-disclaimer">
-        <p>This is an estimate for reference only, not tax advice. EISTC gifts
-        require preauthorization from the Virginia Department of Education
-        before you give. Federal rules for &#167;25F are still being finalized by
-        the IRS. Talk to your tax advisor, and contact us to start an EISTC
-        gift.</p>
-        <a href="mailto:info@scholarstreet.org?subject=Virginia%20EISTC%20Inquiry" class="btn-gold">Ask about EISTC</a>
-      </div>
-    </div>
-
     <noscript>
       <div class="d-fallback">
         <h3>JavaScript required</h3>
@@ -437,70 +361,8 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
         <a href="team.html#contact">Start a Conversation</a>
       </div>
     </div>
-
   </div>
 </section>
-
-<script>
-/* Tax credit calculator. Reference only: no payment, no link to the form. */
-(function(){
-  var TC_CONFIG = {
-    EISTC_RATE: 0.65,
-    EISTC_MIN: 500,
-    EISTC_MAX_INDIVIDUAL: 125000,
-    F25_CAP: 1700
-  };
-  var $ = function(id){ return document.getElementById(id); };
-  if(!$('tc-calc')) return;
-
-  function amount(id){
-    var n = parseFloat($(id).value);
-    return isFinite(n) && n > 0 ? Math.round(n * 100) / 100 : 0;
-  }
-  function money(n){
-    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
-  }
-  function fmt(n){ return money(Math.round(n * 100) / 100); }
-
-  function update(){
-    var eistcGift = amount('tc-eistc');
-    var f25Gift = amount('tc-25f');
-    var business = document.querySelector('input[name="tc-filer"]:checked').value === 'business';
-
-    var eistcCredit = 0, eistcNote = '';
-    if(eistcGift > 0 && eistcGift < TC_CONFIG.EISTC_MIN){
-      eistcNote = 'Below the ' + fmt(TC_CONFIG.EISTC_MIN) + ' EISTC minimum.';
-    } else if(eistcGift > 0){
-      var creditable = business ? eistcGift : Math.min(eistcGift, TC_CONFIG.EISTC_MAX_INDIVIDUAL);
-      eistcCredit = Math.round(creditable * TC_CONFIG.EISTC_RATE * 100) / 100;
-      if(!business && eistcGift > TC_CONFIG.EISTC_MAX_INDIVIDUAL){
-        eistcNote = 'Credit figured on the first ' + fmt(TC_CONFIG.EISTC_MAX_INDIVIDUAL) + ' an individual gives in a year.';
-      }
-    }
-
-    var f25Credit = 0, f25Note = '';
-    if(business && f25Gift > 0){
-      f25Note = 'Only individuals can claim the \u00a725F credit.';
-    } else {
-      f25Credit = Math.min(f25Gift, TC_CONFIG.F25_CAP);
-      if(f25Gift > TC_CONFIG.F25_CAP) f25Note = 'Credit capped at ' + fmt(TC_CONFIG.F25_CAP) + '. The rest is a regular gift.';
-    }
-
-    $('tc-out-eistc-gift').textContent = fmt(eistcGift);
-    $('tc-out-eistc').textContent = fmt(eistcCredit);
-    $('tc-note-eistc').textContent = eistcNote;
-    $('tc-out-25f-gift').textContent = fmt(f25Gift);
-    $('tc-out-25f').textContent = fmt(f25Credit);
-    $('tc-note-25f').textContent = f25Note;
-    $('tc-out-credits').textContent = fmt(eistcCredit + f25Credit);
-    $('tc-out-giving').textContent = fmt(eistcGift + f25Gift);
-  }
-
-  ['tc-eistc', 'tc-25f'].forEach(function(id){ $(id).addEventListener('input', update); });
-  document.querySelectorAll('input[name="tc-filer"]').forEach(function(r){ r.addEventListener('change', update); });
-  update();
-})();
-</script>
 
 <script>
 (function(){
