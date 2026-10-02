@@ -50,10 +50,11 @@ EACH RUN
       folder run:
         python scripts/gnews.py
       It prints three sections, all for the past 7 days:
-      - NEWS: Google News searched once nationally, then three times for
-        EVERY state not "opted-in": the SEARCH TERMS; "voucher" and
-        "school choice program" wording (much coverage calls the program a
-        voucher); and quotes from the governor's office or spokesperson.
+      - NEWS: Google News searched once nationally, then for ALL 50 states.
+        States not "opted-in" get three searches: the SEARCH TERMS;
+        "voucher" and "school choice program" wording (much coverage calls
+        the program a voucher); and quotes from the governor's office or
+        spokesperson. Opted-in states get the SEARCH TERMS search.
         Syndicated copies of one story are collapsed, so each number is a
         distinct story ("also:" lists the copies; "= see [n]" means it was
         already listed above).
@@ -74,8 +75,9 @@ EACH RUN
         If a newsroom URL has moved, find the new one and update NEWSROOMS
         in scripts/gnews.py in a separate PR, not this one.
       - LEGISLATION: bills about the program with an action in the window,
-        from LegiScan. If it says SKIPPED (no API key), say so in the
-        report; don't treat it as "no bills".
+        all 50 states, from LegiScan. If it says SKIPPED (no API key) or
+        STOPPED (request cap), say so in the report; don't treat it as "no
+        bills". Open each bill's page and read its latest action.
 
    How to read the NEWS list. Read every distinct story in each state's
    group, not just the ones whose headlines look promising: a governor's
@@ -132,10 +134,9 @@ EACH RUN
    (with the coverage counts above) and end the run.
    If nothing is new and it's a Monday, skip to step 6.
 
-3. Research what's new. For each state flagged in step 2, find the primary
-   source (governor's release, legislature bill page, IRS), then reputable
-   news if there's no primary source. Don't search the 30 opted-in states
-   unless one of the step 2 sources names them.
+3. Research what's new. For each state flagged in step 2, opted in or not,
+   find the primary source (governor's release, legislature bill page, IRS,
+   state agency), then reputable news if there's no primary source.
 
 4. For each real development, add an entry to that state's `updates`.
    Real developments are: an opt-in, a veto, an override, a bill signed or
@@ -143,6 +144,14 @@ EACH RUN
    program by the sitting governor or their office, positive or negative
    (supports it, plans to opt in, is open to it, is waiting for rules,
    criticises it, refuses).
+   For a state that has opted in, also: the state publishing or submitting
+   its list of approved scholarship granting organizations; a state law,
+   bill or agency rule about how the program runs in the state; the
+   governor or their office saying the state will or won't take part in a
+   later year (states elect every year); and a court ruling about the state's
+   participation. An opted-in state's status still changes only if it
+   leaves the IRS list (step 5). Routine items (an SGO's own fundraising
+   news, explainers, op-eds) are not developments.
    - date = the date the event happened, not the article's date
    - text = one plain sentence in the file's existing style, e.g.
      "Gov. X says State will not participate."

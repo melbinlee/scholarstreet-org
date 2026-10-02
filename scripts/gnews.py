@@ -5,18 +5,20 @@
                                        (3:2 = the second copy of item 3)
 
 Three sections:
-  NEWS        Google News: once nationally, then three searches per state not
-              opted in (program terms; "voucher"/"school choice" wording;
-              governor's office or spokesperson quotes). Syndicated copies of
-              the same story are collapsed into one numbered item, so every
-              number is a distinct article to read.
+  NEWS        Google News: once nationally, then per state for ALL 50 states.
+              States not opted in get three searches (program terms;
+              "voucher"/"school choice" wording; governor's office or
+              spokesperson quotes); opted-in states get the program-terms
+              search. Syndicated copies of the same story are collapsed into
+              one numbered item, so every number is a distinct article to read.
   NEWSROOMS   each of those governors' own press releases: RSS where the
               office has a feed, otherwise the newsroom page's headlines.
               Pages that block scripts or need JavaScript are listed as
               OPEN IN BROWSER for the job to check by hand.
   LEGISLATION state bills about the program with an action in the window,
-              from LegiScan. Needs a free API key in LEGISCAN_API_KEY;
-              without one the section says SKIPPED.
+              all 50 states, from LegiScan. Needs a free API key in
+              LEGISCAN_API_KEY; without one the section says SKIPPED. Capped
+              at LEGISCAN_MAX_REQUESTS per run (one search per state).
 
 Google News only hands out redirect links, so `resolve` asks Google for the
 article address behind each one. Standard library only. The numbered list
@@ -52,6 +54,10 @@ VOUCHER = ('("school voucher" OR "voucher program" OR "private school voucher" O
 OFFICE = ('(spokesperson OR spokeswoman OR spokesman OR "press secretary" OR '
           '"governor\'s office") ("tax credit" OR voucher OR "school choice")')
 DAYS = 7
+# LegiScan's free plan allows 10,000 requests a month. One run makes one
+# getSearch per state (50), about 450 a month at two runs a week. The cap
+# stops a bug or a loop from ever using more than this in a run.
+LEGISCAN_MAX_REQUESTS = 60
 # Headlines in a governor's newsroom or a bill title that concern the program.
 TOPIC = re.compile(r'scholarship|school choice|voucher|education freedom|private school|'
                    r'25F|nonpublic', re.I)
@@ -108,17 +114,20 @@ def get(url, data=None, headers=None):
     return urllib.request.urlopen(req, timeout=30).read().decode('utf-8', 'ignore')
 
 
-def states_to_search():
-    """(code, name, governor, status) for every state not opted in, read from the data file."""
+def all_states():
+    """(code, name, governor, status) for all 50 states, not opted in first, read from the data file."""
     src = open(os.path.join(ROOT, 'state-status-data.js'), encoding='utf-8').read()
     names = dict(re.findall(r'\b([A-Z]{2}): \'([^\']+)\'', src))
     out = []
     for code, body in re.findall(r'^    "([A-Z]{2})": \{(.*?)^    \}', src, re.S | re.M):
         status = re.search(r'"status": "([^"]+)"', body).group(1)
         gov = re.search(r'"currentGovernor": "([^"]+)"', body)
-        if status != 'opted-in':
-            out.append((code, names[code], gov.group(1) if gov else '', status))
-    return out
+        out.append((code, names[code], gov.group(1) if gov else '', status))
+    return sorted(out, key=lambda s: (s[3] == 'opted-in', s[1]))
+
+
+def not_opted_in():
+    return [s for s in all_states() if s[3] != 'opted-in']
 
 
 def cutoff():
@@ -156,12 +165,16 @@ def same_story(a, b):
 
 def news(numbered):
     groups = [('NATIONAL', [f'{TERMS} when:{DAYS}d'])]
-    for code, name, gov, status in states_to_search():
+    for code, name, gov, status in all_states():
         last = gov.split()[-1] if gov else ''
         who = f'"{name}" OR "{last}"' if last else f'"{name}"'
-        qs = [f'({who}) {TERMS} when:{DAYS}d', f'({who}) {VOUCHER} when:{DAYS}d']
-        if last:
-            qs.append(f'"{last}" {OFFICE} when:{DAYS}d')
+        qs = [f'({who}) {TERMS} when:{DAYS}d']
+        # The wider searches are about governors who haven't decided; for an
+        # opted-in state they mostly add noise about its own state programs.
+        if status != 'opted-in':
+            qs.append(f'({who}) {VOUCHER} when:{DAYS}d')
+            if last:
+                qs.append(f'"{last}" {OFFICE} when:{DAYS}d')
         groups.append((f'{name} [{status}, {gov or "governor unknown"}]', qs))
 
     print('\n######## NEWS (each number is a distinct story; copies listed under it)')
@@ -243,7 +256,7 @@ def newsroom(code, kind, url):
 
 def newsrooms():
     print(f'\n######## GOVERNOR NEWSROOMS (headlines about the program; past {DAYS} days where dated)')
-    for code, name, gov, status in states_to_search():
+    for code, name, gov, status in not_opted_in():
         kind, url = NEWSROOMS.get(code, ('missing', ''))
         if kind == 'missing':
             print(f'\n== {name}: NO NEWSROOM CONFIGURED: add one to NEWSROOMS in scripts/gnews.py')
@@ -267,7 +280,12 @@ def legislation():
     since = (datetime.date.today() - datetime.timedelta(days=DAYS)).isoformat()
     query = ('"scholarship tax credit" OR "tax credit scholarship" OR "education freedom" '
              'OR "scholarship granting organization"')
-    for code, name, gov, status in states_to_search():
+    used = 0
+    for code, name, gov, status in all_states():
+        if used >= LEGISCAN_MAX_REQUESTS:
+            print(f'\nSTOPPED at {used} requests (LEGISCAN_MAX_REQUESTS); remaining states not searched.')
+            return
+        used += 1
         url = ('https://api.legiscan.com/?' + urllib.parse.urlencode(
             {'key': key, 'op': 'getSearch', 'state': code, 'query': query, 'year': 2}))
         try:
@@ -276,11 +294,14 @@ def legislation():
             print(f'\n== {name}: FAILED ({e})')
             continue
         bills = [b for k, b in res.items() if k != 'summary' and b.get('last_action_date', '') >= since]
-        print(f'\n== {name}: {len(bills)}')
+        if not bills:
+            continue
+        print(f'\n== {name} [{status}]: {len(bills)}')
         for b in bills:
             print(f'     {b["bill_number"]} | {b["last_action_date"]} {b["last_action"]} | '
                   f'{b["title"][:120]} | {b["url"]}')
         time.sleep(0.3)
+    print(f'\n{used} LegiScan requests; states not listed had no matching bill action.')
 
 
 # ---- Entry points ----------------------------------------------------------
