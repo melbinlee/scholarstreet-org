@@ -55,6 +55,9 @@
        office quoted in the article, dated by the article).
      - 2026-10-02 addition: WWLP / State House News Service (MA, Oct. 1;
        the governor answered questions "Thursday").
+     - 2026-10-02 addition: Capitol Fax (IL, Oct. 1; the governor's office
+       statement was added to the post after publication, so the date is
+       the post's, as Scholar Street decided).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -332,7 +335,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "JB Pritzker",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-10-01",
+          "text": "Gov. Pritzker’s office says it is reviewing the new federal guidance and will decide based on what best supports working families, students and public schools.",
+          "url": "https://capitolfax.com/2026/10/01/feds-release-school-voucher-tax-credit-rules-pritzker-said-he-was-waiting-for/"
+        }
+      ]
     },
     "IN": {
       "status": "opted-in",
