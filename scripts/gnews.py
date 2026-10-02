@@ -82,6 +82,26 @@ NEWSROOMS = {
     'WI': ('browser', 'https://evers.wi.gov/Pages/Newsroom/Press-Releases.aspx'),
 }
 
+# How to read each browser-only newsroom, learned 2026-10-02.
+BROWSER_TIPS = {
+    'IL': 'The page holds the whole archive. Items read "Title / Press Release - '
+          'Weekday, Month DD, YYYY"; the newest are at the top.',
+    'MI': 'Each headline is followed by its date on the next line ("October 01, 2026", '
+          'zero-padded).',
+    'NY': 'Ignore the featured cards at the top. Scroll to the "All News" list below them: '
+          'items read "Title / Mon D, YYYY | time". It runs about 45 items a week, and '
+          'many are titled only "Statement from Governor Kathy Hochul" or are rush '
+          'transcripts of press Q&As, so headlines are not enough. In the browser, fetch '
+          '/news?page=0, 1, 2... until the dates pass the window, then search the full '
+          'text of every item for the program (scholarship tax credit, education freedom, '
+          'school choice, voucher, private school), skipping housing "Section 8 vouchers".',
+    'PA': 'The list loads only through the search box below the header (it shows grey '
+          'placeholders otherwise). Search "tax credit scholarship", then "school choice"; '
+          'results are newest first, so check whether any falls in the window. Scroll to '
+          'the results: they only draw when on screen.',
+    'WI': 'Headlines read "Title — Month D, YYYY", newest first.',
+}
+
 
 def get(url, data=None, headers=None):
     req = urllib.request.Request(url, data=data, headers={**UA, **(headers or {})})
@@ -189,7 +209,9 @@ def text(s):
 
 def newsroom(code, kind, url):
     if kind == 'browser':
-        return f'OPEN IN BROWSER (blocks scripts or needs JavaScript): {url}'
+        tip = BROWSER_TIPS.get(code)
+        return (f'OPEN IN BROWSER (blocks scripts or needs JavaScript): {url}'
+                + (f'\n     HOW: {tip}' if tip else ''))
     page = get(url)
     if kind == 'rss':
         recent, hits = 0, []
