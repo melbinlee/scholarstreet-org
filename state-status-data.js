@@ -62,6 +62,9 @@
        "said Thursday").
      - 2026-10-02 addition: Wisconsin Governor's release (WI, Apr. 2 radio
        address), found by the governor newsroom check.
+     - 2026-10-02 addition, first all-states news check: Colorado Governor's
+       release (CO, Oct. 1); The Center Square (VA, Oct. 1; the governor's
+       office "told The Center Square Thursday").
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -197,6 +200,11 @@
       "irsListed": "2026-03-17",
       "irsListedBy": true,
       "updates": [
+        {
+          "date": "2026-10-01",
+          "text": "Gov. Polis welcomes the new federal rules and says Colorado will submit its list of eligible scholarship organizations to Treasury before January 1, 2027.",
+          "url": "https://www.colorado.gov/governor/news/us-treasury-announces-rules-federal-scholarship-tax-credit-governor-polis-celebrates-public"
+        },
         {
           "date": "2026-03-17",
           "text": "On the IRS list of participating states (earliest archived edition).",
@@ -947,6 +955,11 @@
         "url": "va-eistc.html"
       },
       "updates": [
+        {
+          "date": "2026-10-01",
+          "text": "Gov. Spanberger’s office says the administration is reviewing the new federal rules and remains committed first to Virginia’s public school students.",
+          "url": "https://www.thecentersquare.com/virginia/article_42f0912f-0a24-4fd7-8c94-91bdd4afdbcc.html"
+        },
         {
           "date": "2026-03-17",
           "text": "On the IRS list of participating states (earliest archived edition).",
