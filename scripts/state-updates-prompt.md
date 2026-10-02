@@ -35,35 +35,65 @@ EACH RUN
    and comment on that PR listing what's new. Only create a fresh branch from
    main when no state-updates PR is open.
 
-2. Check these four sources:
-   a) The IRS participating-states list, and its "as of" date:
+2. Check these sources:
+   a) The IRS participating-states list, and its "as of" date (every run):
       https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc
-   b) The "Latest news" timeline on Ballotpedia's tracker, and its "as of" date:
+   b) Ballotpedia's tracker, MONDAYS ONLY, as a backstop for vetoes,
+      overrides and bills (its timeline lags by months, so it is never the
+      main source):
       https://ballotpedia.org/State_participation_in_the_federal_K-12_education_tax_credit_program
-      Ballotpedia often returns an empty page to automated fetches. If it
-      comes back empty, blocked, or without a "Latest news" section, fetch
-      it again with a browser user-agent (e.g. curl -A "Mozilla/5.0 ...")
-      or open it in the browser. Never treat an empty page as "nothing
-      new". If you still can't read it, say so in the report and rely
-      on the other sources for this run.
-   c) and d) News from the past 7 days, national and state by state, run
-      every time (Monday and Thursday). In the repo folder run:
+      It returns 403 or an empty page to plain fetches. Fetch it with a
+      browser user-agent (curl -A "Mozilla/5.0 ...") or open it in the
+      browser. Never treat an empty page as "nothing new"; if you still
+      can't read it, say so in the report.
+   c) News, governor newsrooms and legislation, every run. In the repo
+      folder run:
         python scripts/gnews.py
-      It searches Google News with the SEARCH TERMS once nationally and
-      once for EVERY state whose status in the file is not "opted-in"
-      (by state name or governor's last name), and prints a numbered list
-      of articles from the past 7 days grouped by state.
+      It prints three sections, all for the past 7 days:
+      - NEWS: Google News searched once nationally, then three times for
+        EVERY state not "opted-in": the SEARCH TERMS; "voucher" and
+        "school choice program" wording (much coverage calls the program a
+        voucher); and quotes from the governor's office or spokesperson.
+        Syndicated copies of one story are collapsed, so each number is a
+        distinct story ("also:" lists the copies; "= see [n]" means it was
+        already listed above).
+      - GOVERNOR NEWSROOMS: each of those governors' own press releases.
+        MATCH lines are releases about the program: open and read every
+        one. States marked OPEN IN BROWSER (sites that block scripts or need
+        JavaScript) and any FAILED or "NO DATES FOUND" line: open that
+        newsroom in the browser and read the headlines from the past 7 days.
+        If a newsroom URL has moved, find the new one and update NEWSROOMS
+        in scripts/gnews.py in a separate PR, not this one.
+      - LEGISLATION: bills about the program with an action in the window,
+        from LegiScan. If it says SKIPPED (no API key), say so in the
+        report; don't treat it as "no bills".
 
-   How to read the list: skip op-eds, commentary, explainers, advocacy
-   groups' own posts, and items that aren't about that state (e.g.
-   "Washington" meaning D.C., or another state's program). For any item
-   that may report something a governor, governor's office or legislature
-   said or did, get the real article address with
+   How to read the NEWS list. Read every distinct story in each state's
+   group, not just the ones whose headlines look promising: a governor's
+   quote is often deep inside a story with a generic headline ("Feds
+   release guidance..."). The only items you may skip without opening are
+   op-eds and opinion columns, advocacy groups' own posts and press
+   releases, and items plainly about something else (e.g. "Washington"
+   meaning D.C., another state's program, an unrelated "voucher" such as
+   housing). In the NATIONAL group, also open every news story (not
+   opinion), since national pieces often quote several governors' offices.
+   Get real article addresses with
      python scripts/gnews.py resolve <numbers>
-   (e.g. resolve 4 16 22), then open the article and read it. Google News
-   links are redirects and web searches often can't find the article, so
-   always use resolve. If resolve fails for an item, search the outlet's
-   own site for the title.
+   (e.g. resolve 4 16 22; 4:2 is the second copy of item 4, useful when
+   the first copy is paywalled). Google News links are redirects and web
+   searches often can't find the article, so always use resolve. If
+   resolve fails for an item, search the outlet's own site for the title.
+   While reading:
+   - When an article links to a state politics outlet or newsletter about
+     the governor's response (e.g. Capitol Fax for Illinois), open that too.
+     Those often carry the governor's statement and rarely reach Google News.
+   - When an article says the reporter "asked the governor's office for
+     comment and will update", reopen it at the end of the run: the
+     statement may have been added. (A statement added after publication
+     follows the dating rule in step 6.)
+   - Before closing a state, check whether any other story you read today
+     dates the same statement ("said Thursday"): that confirms a date
+     another article left open.
    Negative news counts as much as positive: a governor criticising the
    program, refusing, or stalling is a development to record.
    The dates in the list are when Google News picked an item up, not when
@@ -79,7 +109,10 @@ EACH RUN
    search with the same terms plus the current month and year (e.g.
    "... October 2026"), ignore results older than 7 days, and say in the
    report that you used the fallback.
-   (Ballotpedia's timeline can lag by months, so don't rely on it alone.)
+
+   In the report, say how many distinct stories you opened per state and
+   list any you could not read (paywall, blocked), so it's clear what was
+   and wasn't covered.
 
    Compare all of this to the file:
    - Is any state on the IRS list that isn't "opted-in" in the file, or the
@@ -87,7 +120,7 @@ EACH RUN
    - Does any source describe a development (a state and date) not yet in
      that state's updates?
    If nothing is new, and today isn't a Monday, STOP: report "No changes"
-   and end the run.
+   (with the coverage counts above) and end the run.
    If nothing is new and it's a Monday, skip to step 6.
 
 3. Research what's new. For each state flagged in step 2, find the primary
