@@ -53,6 +53,8 @@
        is the article's, not a confirmed date for the statement).
      - 2026-10-01 addition: Spectrum News (NY, Sept. 28; the governor's
        office quoted in the article, dated by the article).
+     - 2026-10-02 addition: WWLP / State House News Service (MA, Oct. 1;
+       the governor answered questions "Thursday").
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -440,7 +442,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Maura Healey",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-10-01",
+          "text": "Gov. Healey says she wants more clarity on the new federal rules and will make sure nothing harms public education.",
+          "url": "https://www.wwlp.com/news/massachusetts/divisions-remain-after-feds-roll-out-scholarship-tax-credit-regs/"
+        }
+      ]
     },
     "MD": {
       "status": "pending-cold",
@@ -1028,7 +1036,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-01';
+  window.SS_UPDATED = '2026-10-02';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
