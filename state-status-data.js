@@ -60,6 +60,8 @@
        confirms a Pritzker spokesperson said it "Thursday").
      - 2026-10-02 addition: Chalkbeat (NY, Oct. 1; a Hochul spokesperson
        "said Thursday").
+     - 2026-10-02 addition: Wisconsin Governor's release (WI, Apr. 2 radio
+       address), found by the governor newsroom check.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -986,6 +988,11 @@
       "verified": true,
       "currentGovernor": "Tony Evers",
       "updates": [
+        {
+          "date": "2026-04-02",
+          "text": "In a radio address, Gov. Evers celebrates his veto and says public funds should go to public schools.",
+          "url": "https://content.govdelivery.com/accounts/WIGOV/bulletins/41118a6"
+        },
         {
           "date": "2026-03-30",
           "text": "Gov. Evers vetoes AB 602, an opt-in bill.",
