@@ -59,9 +59,16 @@ function reportAdsConversion(source) {
   return true;
 }
 </script>
-<title>Scholar Street SGO &mdash; Nationwide K&ndash;12 Scholarships under the Federal Tax Credit</title>
-<meta name="description" content="Scholar Street is a Scholarship Granting Organization awarding need- and merit-based K–12 scholarships to families in the states we serve, under the federal Education Freedom Tax Credit (IRC §25F).">
-<link rel="canonical" href="https://scholarstreet.org/">
+<!-- HEAD:START -->
+<title>Treasury&#x27;s Proposed Federal Scholarship Tax Credit Rules: What They Say — Scholar Street SGO</title>
+<meta name="description" content="Treasury and the IRS released proposed rules for the federal scholarship tax credit this week, and there is a lot of good news in them for donors, families, and scholarship organizations.">
+<link rel="canonical" href="https://scholarstreet.org/news/treasurys-proposed-federal-scholarship.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Treasury&#x27;s Proposed Federal Scholarship Tax Credit Rules: What They Say — Scholar Street SGO">
+<meta property="og:description" content="Treasury and the IRS released proposed rules for the federal scholarship tax credit this week, and there is a lot of good news in them for donors, families, and scholarship organizations.">
+<meta property="og:url" content="https://scholarstreet.org/news/treasurys-proposed-federal-scholarship.html">
+<meta property="og:image" content="https://substackcdn.com/image/fetch/$s_!nUeP!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdb913644-4238-4322-b038-a1ea2fe9bf1a_1279x720.png">
+<!-- HEAD:END -->
 
 <!-- Warm up the donation portal before the visitor clicks Donate -->
 <link rel="preconnect" href="https://scholarship-insights.com" crossorigin>
@@ -78,7 +85,6 @@ function reportAdsConversion(source) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --navy:#1B2E4B; --navy-dk:#132238; --gold:#C8A84B; --gold-dk:#b8953e;
@@ -243,84 +249,44 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   .wrap{padding:0 18px}
 }
 
-.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:78px 0 88px}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;position:relative;z-index:2}
-.hero-tag{display:inline-block;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
-  font-weight:700;color:var(--gold);border:1px solid rgba(200,168,75,.34);
-  border-radius:999px;padding:6px 15px;margin-bottom:1.5rem}
-.hero h1{font-size:clamp(2.15rem,4.1vw,3.35rem);color:#fff;line-height:1.13}
-.hero h1 em{font-style:italic;color:var(--gold)}
-.hero p.lead{margin-top:1.3rem;font-size:17px;color:rgba(255,255,255,.68);line-height:1.8;max-width:540px}
-.hero-cta{margin-top:2.2rem;display:flex;gap:13px;flex-wrap:wrap}
-/* One-line link under the hero CTAs to the state table on the News page.
-   A text link, not a button, so it doesn't compete with the two CTAs. */
-.hero-teaser{display:inline-flex;align-items:center;gap:7px;margin-top:1.15rem;font-size:14px;
-  font-weight:600;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,168,75,.35);
-  padding-bottom:2px;transition:.18s}
-.hero-teaser span{transition:transform .18s}
-.hero-teaser:hover{color:#fff;border-bottom-color:#fff}
-.hero-teaser:hover span{transform:translateX(3px)}
-.hero-photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.34);
-  border:1px solid rgba(255,255,255,.09)}
-.hero-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
-.hero-badge{margin-top:1.15rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  border-radius:11px;padding:14px 18px;font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.65}
-.hero-badge strong{color:var(--gold);font-weight:700}
+/* ---------- NEWS LIST ---------- */
+.news-list{display:grid;gap:22px;max-width:860px}
+.news-card{display:block;background:#fff;border-radius:var(--radius);padding:1.9rem 2rem;
+  box-shadow:0 2px 16px rgba(27,46,75,.06);text-decoration:none;border:1px solid transparent;transition:.18s}
+.news-card:hover{border-color:rgba(200,168,75,.55);transform:translateY(-2px)}
+.news-card time{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);font-weight:700}
+.news-card h2{font-size:1.45rem;color:var(--navy);margin:.55rem 0 .6rem}
+.news-card p{font-size:15px;color:var(--text-mid);line-height:1.75}
+.news-more{display:inline-block;margin-top:.9rem;font-size:13.5px;font-weight:700;color:var(--gold-dk)}
+.news-subscribe{max-width:860px;margin-top:2.6rem;display:flex;align-items:center;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;padding-top:2rem;border-top:1px solid rgba(27,46,75,.09)}
+.news-subscribe p{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--navy)}
 
-/* WHY NOW STATS */
-.why-sec{background:var(--cream2)}
-.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3rem}
-.stat-card{background:#fff;border-radius:var(--radius);padding:2rem 1.75rem;
-  box-shadow:0 2px 16px rgba(27,46,75,.06)}
-.stat-val{font-family:var(--serif);font-size:2.1rem;font-weight:700;color:var(--navy);line-height:1}
-.stat-lbl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
-  font-weight:700;margin:.75rem 0 .6rem}
-.stat-card p{font-size:14px;color:var(--text-mid);line-height:1.72}
-
-/* MISSION */
-.mission-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3rem}
-.mtile{background:#fff;border-radius:var(--radius);padding:2rem 1.75rem;
-  box-shadow:0 2px 16px rgba(27,46,75,.06);border-top:none}
-.mtile .ico{width:42px;height:42px;border-radius:11px;background:rgba(200,168,75,.16);
-  display:flex;align-items:center;justify-content:center;margin-bottom:1.15rem}
-.mtile .ico svg{width:21px;height:21px;stroke:var(--gold-dk);fill:none;stroke-width:2;
-  stroke-linecap:round;stroke-linejoin:round}
-.mtile h4{font-size:17px;color:var(--navy);margin-bottom:.55rem}
-.mtile p{font-size:14px;color:var(--text-mid);line-height:1.72}
-
-/* FOR FAMILIES */
-.fam-sec{background:var(--cream2)}
-/* Both columns size to their content and sit together on the left, so the QR
-   card stays beside the buttons instead of drifting to the right margin. */
-.fam-grid{display:grid;grid-template-columns:max-content max-content;gap:34px;
-  align-items:center;justify-content:start;margin-top:2.6rem}
-.fam-btns{display:flex;gap:13px;flex-wrap:wrap}
-.fam-card{background:#fff;border-radius:var(--radius);padding:2rem;text-align:center;
-  box-shadow:0 2px 16px rgba(27,46,75,.06);justify-self:start}
-.fam-qr{width:170px;height:170px;margin:0 auto}
-.fam-qr svg{display:block;width:100%;height:100%}
-
-/* CTA BAND */
-.cta-band{background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden}
-.cta-band h2{font-size:clamp(1.8rem,3vw,2.5rem);color:#fff}
-.cta-band h2 em{font-style:italic;color:var(--gold)}
-.cta-band p{max-width:590px;margin:1.1rem auto 0;color:rgba(255,255,255,.6);font-size:16px}
-.cta-band .btns{margin-top:2.1rem;display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
-/* LATEST NEWS (cards written by scripts/sync_substack.py) */
-.latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:2.8rem}
-.latest-card{display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);
-  padding:1.8rem 1.7rem;box-shadow:0 2px 16px rgba(27,46,75,.06);text-decoration:none;
-  border:1px solid transparent;transition:.18s}
-.latest-card:hover{border-color:rgba(200,168,75,.55);transform:translateY(-2px)}
-.latest-card time{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);font-weight:700}
-.latest-card h3{font-size:1.2rem;color:var(--navy);margin:.55rem 0 1rem;flex:1}
-.latest-more{font-size:13.5px;font-weight:700;color:var(--gold-dk)}
-.latest-all{margin-top:2.4rem}
-@media(max-width:940px){
-  .hero-grid,.fam-grid{grid-template-columns:1fr;gap:38px}
-  .fam-card{justify-self:center}
-  .stat3,.mission-tiles,.latest-grid{grid-template-columns:1fr}
-}
+/* ---------- ARTICLE ---------- */
+.page-hero .crumb{color:inherit;text-decoration:none}
+.page-hero .crumb:hover{color:var(--gold)}
+.post-meta{margin-top:1.3rem;font-size:13.5px;color:rgba(255,255,255,.5)}
+.post-body{max-width:720px;font-size:17px;line-height:1.8;color:var(--text)}
+.post-body > * + *{margin-top:1.1em}
+.post-body h2{font-size:1.65rem;color:var(--navy);margin-top:2.1em}
+.post-body h3{font-size:1.25rem;color:var(--navy);margin-top:1.7em}
+.post-body h4{font-size:1.05rem;color:var(--navy);margin-top:1.5em}
+.post-body ul,.post-body ol{padding-left:1.4em}
+.post-body li + li{margin-top:.35em}
+.post-body li p{margin:0}
+.post-body a{color:var(--navy);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+.post-body a:hover{color:var(--gold-dk)}
+.post-body blockquote{border-left:3px solid var(--gold);padding:.2em 0 .2em 1.2em;color:var(--text-mid);font-style:italic}
+.post-body img{border-radius:10px;margin:0 auto}
+.post-body figcaption{font-size:13.5px;color:var(--text-lt);text-align:center;margin-top:.5em}
+.post-body hr{border:none;border-top:1px solid rgba(27,46,75,.12);margin:2em 0}
+.post-body table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-x:auto}
+.post-body th,.post-body td{border:1px solid rgba(27,46,75,.12);padding:.5em .7em;text-align:left}
+.post-foot{max-width:720px;margin-top:3rem;padding-top:1.8rem;border-top:1px solid rgba(27,46,75,.09)}
+.post-foot p{font-size:14.5px;color:var(--text-mid)}
+.post-foot p a{color:var(--navy);font-weight:600}
+.post-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:1.4rem}
+@media(max-width:620px){.news-card{padding:1.5rem 1.35rem}.post-body{font-size:16.5px}}
 
 </style>
 
@@ -349,168 +315,45 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="/" class="active">Home</a></li>
-    <li><a href="impact.html">Impact</a></li>
-    <li><a href="platform.html">Our Difference</a></li>
-    <li><a href="va-eistc.html">VA EISTC</a></li>
-    <li><a href="team.html">Our Team</a></li>
-    <li><a href="news.html">News</a></li>
-    <li><a href="apply.html" class="nav-apply-outline">Apply</a></li>
-    <li><a href="donate.html" class="nav-apply">Donate</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="../impact.html">Impact</a></li>
+    <li><a href="../platform.html">Our Difference</a></li>
+    <li><a href="../va-eistc.html">VA EISTC</a></li>
+    <li><a href="../team.html">Our Team</a></li>
+    <li><a href="../news.html" class="active">News</a></li>
+    <li><a href="../apply.html" class="nav-apply-outline">Apply</a></li>
+    <li><a href="../donate.html" class="nav-apply">Donate</a></li>
   </ul>
 </nav>
 
-<section class="hero">
+<!-- MAIN:START -->
+<section class="page-hero">
   <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
   <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-tag">Nationally-Focused Scholarship Granting Organization &middot; IRC &#167;25F</div>
-        <h1>Expanding K&ndash;12 educational<br>opportunity, <em>together.</em></h1>
-        <p class="lead">Scholar Street awards need- and merit-based scholarships to income-eligible
-        students in the states we serve &mdash; funded by donors who redirect their federal tax liability into a child&rsquo;s education.</p>
-        <div class="hero-cta">
-          <a href="team.html#contact" class="btn-gold">Become a Founding Donor</a>
-          <a href="impact.html#how-it-works" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.32)">How Giving Works</a>
-        </div>
-        <a href="news.html#states" class="hero-teaser">See if your state has opted in to &#167;25F <span aria-hidden="true">&rarr;</span></a>
-      </div>
-      <div>
-        <div class="hero-photo"><img src="img/students-in-a-classroom.jpg" alt="Students in a classroom"></div>
-        <div class="hero-badge">The federal <strong>Education Freedom Tax Credit</strong> takes effect
-        January 1, 2027. Scholar Street is registered to operate in multiple states and is building its footprint ahead of the January 1, 2027 launch.</div>
-      </div>
-    </div>
+    <div class="s-eyebrow"><a href="../news.html" class="crumb">News</a></div>
+    <h1 class="ph-title">Treasury&#x27;s Proposed Federal Scholarship Tax Credit Rules: What They Say</h1>
+    <p class="ph-sub">Treasury and the IRS released proposed rules for the federal scholarship tax credit this week, and there is a lot of good news in them for donors, families, and scholarship organizations.</p>
+    <p class="post-meta">Scholar Street &middot; <time datetime="2026-10-02">October 2, 2026</time></p>
   </div>
 </section>
 
-<section class="why-sec">
-  <div class="wrap">
-    <div class="s-eyebrow">Why Now</div>
-    <h2 class="s-title">A new federal opportunity<br>for <em>scholarship giving.</em></h2>
-    <p class="s-lead">In 2025, Congress created the first federal tax credit for K&ndash;12 scholarship
-    donations &mdash; the Education Freedom Tax Credit (IRC &#167;25F) &mdash; effective January 1, 2027.
-    Scholar Street is registered to operate in multiple states and is building its footprint ahead of the January 1, 2027 launch.</p>
-
-    <div class="stat3">
-      <div class="stat-card reveal">
-        <div class="stat-val">$1,700</div>
-        <div class="stat-lbl">Per Taxpayer</div>
-        <p>A dollar-for-dollar federal credit, nonrefundable, with a five-year carryforward.
-        Joint-filer treatment is pending Treasury guidance.</p>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-val">Any Taxpayer</div>
-        <div class="stat-lbl">No Income Limit</div>
-        <p>Any individual with U.S. federal tax liability can claim the credit.
-        There is no donor income limit. Cash gifts only.</p>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-val">300% AMI</div>
-        <div class="stat-lbl">Access, Not Cost</div>
-        <p>Eligibility reaches households up to 300% of area median income. For many families,
-        cost &mdash; not eligibility &mdash; stands between their child and the right school.</p>
-      </div>
-    </div>
-    <div style="margin-top:2.4rem">
-      <a href="impact.html#why-25f" class="btn-outline">Understand the Credit</a>
-    </div>
-  </div>
-</section>
-
-<section id="glance">
-  <div class="wrap">
-    <div class="s-eyebrow">Our Mission</div>
-    <h2 class="s-title">Scholarships built on<br><em>need and merit.</em></h2>
-    <p class="s-lead">Scholar Street helps families afford the K&ndash;12 school that fits their child.
-    We will award scholarships to income-eligible students on financial need and academic merit,
-    evaluated together for every award, funded by donors who receive a tax credit for giving.</p>
-
-    <div class="mission-tiles">
-      <div class="mtile reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg></div>
-        <h4>Reach Underserved Communities</h4>
-        <p>Donors may support our general fund or direct their gift to a designated fund serving
-        a specific community &mdash; faith-based education, special needs, or military families.</p>
-      </div>
-      <div class="mtile reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 15a4 4 0 100-8 4 4 0 000 8z"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"/></svg></div>
-        <h4>Awards Sized to Matter</h4>
-        <p>A $5,000 target award, scaling with need and funding. We would rather fund fewer students
-        than spread support too thin to change a family&rsquo;s decision.</p>
-      </div>
-      <div class="mtile reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/><path d="M3 21h18"/></svg></div>
-        <h4>Built to Scale</h4>
-        <p>This tax credit only reaches as many children as SGOs can efficiently serve. Our platform is
-        built to scale nationally as the federal program expands state by state.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="fam-sec">
-  <div class="wrap">
-    <div class="s-eyebrow">For Families</div>
-    <h2 class="s-title">Applying for a scholarship?<br><em>Start here.</em></h2>
-    <p class="s-lead">Read how applying works, or scan the code with your phone to create a free
-    family account. Already registered? No need to scan again &mdash; just come back to this page and
-    sign in to check your status.</p>
-
-    <div class="fam-grid">
-      <div class="fam-btns">
-        <a href="apply.html" class="btn-gold">How to Apply</a>
-        <a href="https://accounts.scholarship-insights.com/sign-in?redirect_url=https%3A%2F%2Fscholarship-insights.com%2Fportal.html%3Forg%3Dscholarstreet" target="_blank" rel="noopener" class="btn-outline">Sign In</a>
-      </div>
-      <div class="fam-card reveal">
-        <!-- No caption: the section lead already says to scan it. The label is
-             for screen readers, which get nothing from the generated SVG. -->
-        <div id="fam-qr" class="fam-qr" role="img" aria-label="QR code linking to the Scholar Street family account sign-up"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LATEST:START -->
 <section>
   <div class="wrap">
-    <div class="s-eyebrow">Latest from Scholar Street</div>
-    <h2 class="s-title">What we&rsquo;re <em>watching.</em></h2>
-    <div class="latest-grid">
-      <a class="latest-card reveal" href="news/treasurys-proposed-federal-scholarship.html">
-        <time datetime="2026-10-02">October 2, 2026</time>
-        <h3>Treasury&#x27;s Proposed Federal Scholarship Tax Credit Rules: What They Say</h3>
-        <span class="latest-more">Read article &rarr;</span>
-      </a>
-      <a class="latest-card reveal" href="news/is-your-state-in-follow-the-education.html">
-        <time datetime="2026-09-30">September 30, 2026</time>
-        <h3>Is Your State In? Follow the Education Freedom Tax Credit in One Place</h3>
-        <span class="latest-more">Read article &rarr;</span>
-      </a>
-      <a class="latest-card reveal" href="news/two-bills-that-could-make-state-opt.html">
-        <time datetime="2026-09-19">September 19, 2026</time>
-        <h3>Two Bills That Could Make State Opt-In Irrelevant</h3>
-        <span class="latest-more">Read article &rarr;</span>
-      </a>
-    </div>
-    <div class="latest-all"><a href="news.html" class="btn-outline">All News</a></div>
-  </div>
-</section>
-<!-- LATEST:END -->
-
-<section class="cta-band">
-  <div class="ph-bg-circle a"></div><div class="ph-bg-circle b"></div>
-  <div class="wrap" style="position:relative;z-index:2">
-    <div class="s-eyebrow" style="justify-content:center;color:rgba(255,255,255,.62)">Join Us</div>
-    <h2 style="margin-top:1rem">Expanding educational<br>opportunity, <em>together.</em></h2>
-    <p>Three donors giving the full $1,700 credit fund one $5,000 scholarship. We are inviting founding
-    donors, corporate donors, and partner schools to join us before the January 2027 launch.</p>
-    <div class="btns">
-      <a href="team.html#contact" class="btn-gold">Get in Touch</a>
-      <a href="team.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.36)">Meet the Team</a>
+    <article class="post-body">
+<figure><a href="https://substackcdn.com/image/fetch/$s_!nUeP!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdb913644-4238-4322-b038-a1ea2fe9bf1a_1279x720.png" target="_blank" rel="noopener"><img alt="" src="https://substackcdn.com/image/fetch/$s_!nUeP!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdb913644-4238-4322-b038-a1ea2fe9bf1a_1279x720.png" loading="lazy"></a></figure><p>Treasury and the IRS released proposed rules for the federal scholarship tax credit this week, and there is a lot of good news in them for donors, families, and scholarship organizations. Several answers came back better than many of us expected, starting with a credit of up to $3,400 for married couples. This piece summarizes what the proposal says, what it changes from common assumptions, and what remains to be confirmed. It is based on the full text of the proposal and is a working summary, not tax or legal advice.</p><h3><strong>What was released</strong></h3><p>The proposed regulations (REG-117199-25, &#8220;Federal Scholarship Tax Credit&#8221;) implement IRC &#167;25F, the federal credit for donations to scholarship granting organizations (SGOs). They were released October 1, 2026 and publish in the Federal Register on October 2. They are proposed, not final.</p><ul><li><p><strong>Comments:</strong> due roughly 60 days after publication, about December 1, 2026.</p></li><li><p><strong>Hearing:</strong> Tuesday, December 15, 2026 at 10 a.m. ET, and cancelled if no one requests to speak.</p></li><li><p><strong>Effective timing:</strong> the credit applies to gifts made starting January 1, 2027, and only in states whose governors opt in. Taxpayers, organizations, and states may rely on the proposed rules for gifts made on or after that date if they follow the applicable provisions in their entirety and consistently.</p></li><li><p><strong>Families:</strong> scholarships an SGO pays after December 31, 2026 are not taxable income to the family under new &#167;139K.</p></li></ul><p>Requests to attend the hearing are due by 5 p.m. ET on Thursday, December 10, 2026.</p><h3><strong>For donors</strong></h3><p>The credit is per taxpayer: up to $1,700 per individual per year, dollar for dollar against federal tax owed.</p><ul><li><p><strong>Married couples:</strong> this is the headline. Spouses are treated as two taxpayers, which is better than the $1,700 per return many of us had assumed. If each spouse makes their own gift of up to $1,700, a couple filing jointly can claim up to $3,400. Each spouse&#8217;s gift has to be recorded as theirs.</p></li><li><p><strong>Credit, not deduction:</strong> the credit is nonrefundable, so it cannot exceed the tax you owe. Unused credit carries forward up to five years. The credited portion of a gift cannot also be deducted as a charitable contribution. In Treasury&#8217;s own example, a couple who each give $2,000 receive $3,400 in credits, and the remaining $600 may be deductible if it meets the charitable deduction rules.</p></li><li><p><strong>Individuals only:</strong> gifts made through a partnership or S corporation do not qualify, even where the owner may deduct them. The donor gives directly.</p></li><li><p><strong>Cash only:</strong> currency, check, money order, card, ACH, or after-tax payroll deduction. Crypto and other digital assets do not count.</p></li><li><p><strong>Any participating state:</strong> donors can give to an SGO on any participating state&#8217;s list, wherever the donor lives. The money funds students who live in that SGO&#8217;s state.</p></li><li><p><strong>No Social Security number to the SGO:</strong> each SGO issues a donor number instead. Donors report it on IRS Form 8525 when claiming the credit.</p></li><li><p><strong>Designate at the time of the gift:</strong> a gift must be designated as a &#167;25F contribution when it is made, and the designation cannot be reversed afterward.</p></li></ul><h3><strong>Stacking with state credits</strong></h3><p>The proposal lets donors keep a state scholarship credit without shrinking the federal one, as long as the gift is large enough to cover both. The state credit is subtracted from the gift first, and then the $1,700 cap applies. That ordering is what keeps a state credit from reducing the federal credit when the gift is large enough.</p><p>Per individual, the federal credit is the lesser of the gift minus the state credit, or $1,700.</p><figure><a href="https://substackcdn.com/image/fetch/$s_!B-oi!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F694e938d-8fa1-4c52-a530-5e0804475110_2232x1004.png" target="_blank" rel="noopener"><img alt="Article content" src="https://substackcdn.com/image/fetch/$s_!B-oi!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F694e938d-8fa1-4c52-a530-5e0804475110_2232x1004.png" loading="lazy"></a><figcaption></figcaption></figure><p>In the first row the gift covers both credits, so the federal credit is the full $1,700. In the second row the gift is smaller, so the federal credit is reduced. The state credit amounts here are an illustration at a 30% rate, not any particular state&#8217;s.</p><p>If a donor gives some money as a &#167;25F designated gift and some outside it, the state credit is treated as coming from the non-designated money first, which protects the federal credit. In Treasury&#8217;s own example, a donor gives $4,000, designates $1,700 as a qualified contribution, and claims a $400 state credit. The credit is applied to the $2,300 non-designated portion first, so the full $1,700 federal credit stands.</p><h3><strong>For scholarship granting organizations</strong></h3><p>The proposal turns the statute&#8217;s SGO requirements into specific operating rules. The most consequential are the 90% spending rule, the 85% activity safe harbor, and the new registration and reporting steps.</p><p><strong>What qualifies as an SGO</strong></p><ul><li><p>A 501(c)(3) public charity, not a private foundation, listed by a participating state.</p></li><li><p>&#167;25F gifts go into a separate account holding only qualified contributions and their earnings, with a complete set of books. A gift designated as &#167;25F goes into that account even if the donor never claims the credit.</p></li><li><p>&#8220;Located in the State&#8221; means authorized to do business there and in compliance with that state&#8217;s charity laws. No physical office or in-state staff is required.</p></li><li><p>States cannot add requirements stricter than the federal definition. An SGO may choose to be stricter on its own.</p></li><li><p>A multistate SGO keeps a separate account per state and lets donors choose the state their gift supports.</p></li></ul><p><strong>The 90% rule and the 85% safe harbor</strong></p><p>By default, an SGO must spend 90% of its total gross receipts from all sources on scholarships. If at least 85% of the organization&#8217;s activity is scholarship-related, the 90% applies only to &#167;25F contributions and their earnings, and separately raised money stays available to run the organization. Scholarship-related activity includes administration, fundraising, governance, compliance, and outreach done in support of scholarships. Programs such as running its own tutoring or advocacy count against the 85%. Under the proposal, the safe harbor is optional for a single-state SGO and required for a multistate SGO, and how the 85% is measured is not defined. Treasury is asking for comments on that.</p><ul><li><p><strong>Two-year window:</strong> each year&#8217;s income must be 90% spent by the end of the following tax year.</p></li><li><p><strong>Cash basis:</strong> money counts as spent when paid, not when awarded. Payments apply to the earliest year&#8217;s income first. Refunds count as new income when returned.</p></li><li><p><strong>Digital wallets:</strong> funds moved to a qualified third-party wallet count as spent on the transfer date, if the SGO no longer owns them.</p></li></ul><p><strong>Registration, donor numbers, and reporting</strong></p><ul><li><p>Register on the new IRS SGO portal as soon as possible, preferably before appearing on a state list. The portal provides the donor-number format.</p></li><li><p>Issue a donor acknowledgement by January 31 following the gift year, with the SGO&#8217;s EIN, the donor&#8217;s total designated gifts, and the donor number.</p></li><li><p>Report to the IRS by February 28, per donor number: name, address, and annual total.</p></li><li><p>File an annual certification with the Form 990, copied to each listing state, and obtain an annual audit. With receipts of $500,000 or less, a committee of independent people may perform it. Above that, it must be an independent professional or accredited body.</p></li></ul><p><strong>Paying out scholarships</strong></p><ul><li><p>Allowed expenses follow the Coverdell rules, with more detailed guidance promised separately.</p></li><li><p>Tuition, fees, and room and board are paid directly to the school. Other vendors may be paid directly if verified. Families can be reimbursed against receipts the SGO verifies.</p></li><li><p>Fraud controls are required, including detection of duplicate awards for the same expense.</p></li><li><p>At least 10 students must receive awards, not all at the same school. Contributions cannot be earmarked for a particular student.</p></li></ul><h3><strong>For students and families</strong></h3><p>Eligibility is based on household income of up to 300% of area median income, measured for the calendar year before the application. An SGO may set a lower limit. The IRS plans to publish the limits annually by area and family size.</p><ul><li><p><strong>Household:</strong> the student plus everyone living with them, following HUD Section 8 rules, not the tax filing unit. Only income received in cash counts, and child support and alimony count.</p></li><li><p><strong>Four ways to verify income:</strong> direct documents such as pay stubs, returns, and W-2s; a categorical award letter dated within 12 months showing SNAP, TANF, WIC, Section 8, or SSI; a safe harbor for individual tutoring and special-needs services at schools in qualified low-income census tracts, with an annual third-party audit; and automatic eligibility for foster children. School-wide free lunch eligibility does not count.</p></li><li><p><strong>Residence, not school location:</strong> the state that counts is where the student lives. A student can use a scholarship from an SGO in their home state at a school across the state line. There are exceptions for military dependents and students living on Indian Lands.</p></li><li><p><strong>Eligibility to enroll:</strong> the student must be eligible to enroll in a public K-12 school. They do not have to be enrolled when they apply.</p></li><li><p><strong>Award priority:</strong> students who received an award the prior year come first, then siblings of recipients. The proposal allows more flexibility for tutoring and special-needs awards.</p></li><li><p><strong>What it can pay for:</strong> expenses allowed under the Coverdell rules. Detailed guidance on qualified expenses is expected separately as a priority.</p></li></ul><p><strong>Who cannot receive a scholarship</strong></p><ul><li><p>Officers, directors, trustees, and anyone with similar powers.</p></li><li><p>Anyone who helps select recipients, including unpaid selection committee members, with no exception for blind or anonymous selection.</p></li><li><p>Substantial contributors: donors who gave more than $5,000 and more than 2% of the &#167;25F account&#8217;s contributions in a tax year, with spouses combined. The status lasts that year and the next.</p></li><li><p>Family members of all of the above, including spouses, parents, grandparents, children, grandchildren, siblings, nieces and nephews, and their spouses.</p></li></ul><p>An award is not a violation if the recipient was not disqualified on the award date and the SGO had no reason to expect it.</p><h3><strong>For states</strong></h3><p>The credit is available only in states whose governors opt in, and the opt-in is renewed one year at a time. Treasury&#8217;s proposal notes that 30 states had elected to participate as of August 2026.</p><ul><li><p><strong>2027 deadlines:</strong> an advance election on Form 15714 by January 1, 2027, and the state&#8217;s SGO list by February 15, 2027. A state opting in for the first time must use the advance election.</p></li><li><p><strong>2028 and later:</strong> advance elections run January 2 through September 30 of the prior year through a new IRS state portal. An election and list can also be filed together from October 1 through January 1.</p></li><li><p><strong>Who can elect:</strong> the governor or a designee under state law. A non-governor must show the statute or regulation that gives them that authority.</p></li><li><p><strong>No added requirements:</strong> states cannot add requirements stricter than the federal definition of an SGO, and a state that lists organizations with pending tax-exempt applications must list all such organizations that seek inclusion.</p></li><li><p><strong>Revocation:</strong> once an election is completed it cannot be revoked for that year.</p></li></ul><p>The IRS will publish a list of states that have filed advance elections.</p><h3><strong>What remains to be confirmed</strong></h3><p>These are proposed rules. The points below are open for comment or need professional confirmation before anyone relies on a specific outcome. Donors should check their own situation with a CPA.</p><ul><li><p><strong>Joint returns and state credits:</strong> how a state credit is attributed between spouses on a joint state return, which feeds the federal calculation.</p></li><li><p><strong>Joint payments:</strong> each spouse is a separate donor with their own donor number and acknowledgement. The proposal does not say whether one payment from a joint account can be split between spouses.</p></li><li><p><strong>After-tax results:</strong> the real after-tax value of combining credits for a given donor, including any effect on deductions. This needs a CPA.</p></li><li><p><strong>Stacked gifts and eligibility:</strong> stacked gifts must satisfy the rules of both programs, including any state income limits for students.</p></li><li><p><strong>The 85% test:</strong> how scholarship-related activity is measured (money, staff time, receipts) is undefined, and startup-year relief is a likely comment topic.</p></li><li><p><strong>Qualified expenses and digital wallets:</strong> detailed guidance on qualified expenses is expected separately, and the definition of a qualified wallet will matter for how awards are paid.</p></li><li><p><strong>Categorical eligibility and state coordination:</strong> the list of qualifying benefit programs may expand through comments, and how state credits interact where a state&#8217;s student income test differs is open.</p></li><li><p><strong>Final rules:</strong> the rules may change before they are final. Reliance on the proposal applies only if taxpayers, organizations, and states follow its applicable provisions in their entirety and consistently.</p></li></ul>
+    </article>
+    <div class="post-foot">
+      <p>This article first appeared in the Scholar Street newsletter.
+      <a href="https://scholarstreet.substack.com/subscribe" target="_blank" rel="noopener">Subscribe on Substack</a>
+      to get new articles by email.</p>
+      <div class="post-actions">
+        <a href="../news.html" class="btn-outline">&larr; All News</a>
+        <a href="../donate.html" class="btn-gold">Support Scholar Street</a>
+      </div>
     </div>
   </div>
 </section>
+<!-- MAIN:END -->
 
 <footer>
   <div class="wrap">
@@ -570,28 +413,28 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       </div>
       <div class="fcol">
         <h5>Program</h5>
-        <a href="impact.html#why-25f">Why &#167;25F</a>
-        <a href="impact.html#how-it-works">How It Works</a>
-        <a href="impact.html">Targeted Impact</a>
-        <a href="platform.html">Our Difference</a>
-        <a href="va-eistc.html">VA EISTC</a>
+        <a href="../impact.html#why-25f">Why &#167;25F</a>
+        <a href="../impact.html#how-it-works">How It Works</a>
+        <a href="../impact.html">Targeted Impact</a>
+        <a href="../platform.html">Our Difference</a>
+        <a href="../va-eistc.html">VA EISTC</a>
       </div>
       <div class="fcol">
         <h5>Organization</h5>
-        <a href="platform.html#governance">Governance</a>
-        <a href="team.html">Our Team</a>
-        <a href="news.html">News</a>
-        <a href="transparency.html">Transparency</a>
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="../platform.html#governance">Governance</a>
+        <a href="../team.html">Our Team</a>
+        <a href="../news.html">News</a>
+        <a href="../transparency.html">Transparency</a>
+        <a href="../privacy.html">Privacy Policy</a>
         <a href="/">Home</a>
       </div>
       <div class="fcol">
         <h5>Get Involved</h5>
-        <a href="families.html">For Families</a>
-        <a href="donate.html">Donate</a>
-        <a href="apply.html">Apply for a Scholarship</a>
-        <a href="team.html#contact">Partner With Us</a>
-        <a href="team.html#contact">Contact</a>
+        <a href="../families.html">For Families</a>
+        <a href="../donate.html">Donate</a>
+        <a href="../apply.html">Apply for a Scholarship</a>
+        <a href="../team.html#contact">Partner With Us</a>
+        <a href="../team.html#contact">Contact</a>
       </div>
     </div>
     <div class="fbot">
@@ -600,26 +443,6 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
     </div>
   </div>
 </footer>
-<script src="qrcode.js"></script>
-<script>
-/* ── Family application QR ────────────────────────────────────────
-   The application lives on the scholarship platform, not on this site.
-   /a/scholarstreet is Scholar Street's short apply link there: a branded
-   page that loads no sign-in library itself (so the old load-order race
-   with the in-page invite screen does not apply) and hands off to the
-   hosted sign-up, returning to Scholar Street's portal. It is the same URL
-   printed on the family flyer, so it never has to change. */
-(function(){
-  var target = document.getElementById('fam-qr');
-  if(!target || typeof qrcode === 'undefined') return;
-  try {
-    var qr = qrcode(0, 'M');
-    qr.addData('https://scholarship-insights.com/a/scholarstreet');
-    qr.make();
-    target.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 4, scalable: true });
-  } catch(e) { console.warn('QR render failed:', e.message); }
-})();
-</script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   // ---- Formspree forms: submit via fetch so the visitor stays on the page ----
