@@ -8,6 +8,7 @@
 /scripts/*          /404  404!
 /news/data/*        /404  404!
 /.github/*          /404  404!
+/tests/*            /404  404!
 
 # Browsers request /favicon.ico regardless of the <link rel="icon"> tag.
 /favicon.ico        /favicon.svg  200

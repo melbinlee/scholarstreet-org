@@ -471,19 +471,17 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 <section class="tc-band">
   <div class="wrap">
     <!-- Reference-only calculator. It takes no payment and is not connected
-         to the donation form. Constants live in TC_CONFIG. -->
+         to the donation form. The math is in va-tax-credit.js, shared with
+         the donation form's calculator. -->
     <div class="tc-calc" id="tc-calc">
       <div>
         <h4>Estimate your tax credits</h4>
-        <p class="tc-intro">See what a Virginia EISTC gift and a federal &#167;25F gift could each earn.
-        For reference only. This does not make a donation.</p>
+        <p class="tc-intro">One gift can earn both credits: the same dollars count toward Virginia&rsquo;s
+        EISTC credit and the federal &#167;25F credit. This assumes the gift is preauthorized for
+        EISTC and designated for &#167;25F. For reference only. This does not make a donation.</p>
         <div class="tc-field">
-          <label for="tc-eistc">EISTC gift</label>
-          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-eistc" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
-        </div>
-        <div class="tc-field">
-          <label for="tc-25f">&#167;25F gift</label>
-          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-25f" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
+          <label for="tc-gift">Your gift</label>
+          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-gift" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0"></div>
         </div>
         <fieldset class="tc-field tc-filer">
           <legend class="tc-legend">Filer type</legend>
@@ -493,14 +491,13 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       </div>
 
       <div class="tc-results" aria-live="polite">
-        <div class="tc-row"><span>EISTC gift</span><b id="tc-out-eistc-gift">$0</b></div>
-        <div class="tc-row tc-credit"><span>EISTC credit (65%)</span><b id="tc-out-eistc">$0</b></div>
+        <div class="tc-row"><span>Your gift</span><b id="tc-out-gift">$0</b></div>
+        <div class="tc-row tc-credit"><span>Virginia EISTC credit (65%)</span><b id="tc-out-eistc">$0</b></div>
         <div class="tc-note" id="tc-note-eistc"></div>
-        <div class="tc-row"><span>&#167;25F gift</span><b id="tc-out-25f-gift">$0</b></div>
-        <div class="tc-row tc-credit"><span>&#167;25F credit <span class="tc-tag">Begins January 1, 2027</span></span><b id="tc-out-25f">$0</b></div>
+        <div class="tc-row tc-credit"><span>Federal &#167;25F credit <span class="tc-tag">Begins January 1, 2027</span></span><b id="tc-out-25f">$0</b></div>
         <div class="tc-note" id="tc-note-25f"></div>
         <div class="tc-row tc-total"><span>Total credits</span><b id="tc-out-credits">$0</b></div>
-        <div class="tc-row tc-total"><span>Total giving</span><b id="tc-out-giving">$0</b></div>
+        <div class="tc-row tc-total"><span>Your cost after credits</span><b id="tc-out-net">$0</b></div>
       </div>
 
       <div class="tc-disclaimer">
@@ -915,65 +912,29 @@ document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 });
 </script>
+<script src="va-tax-credit.js"></script>
 <script>
-/* Tax credit calculator. Reference only: no payment, no link to the form. */
+/* Tax credit calculator. Reference only: no payment, no link to the form.
+   The math and notes come from va-tax-credit.js. */
 (function(){
-  var TC_CONFIG = {
-    EISTC_RATE: 0.65,
-    EISTC_MIN: 500,
-    EISTC_MAX_INDIVIDUAL: 125000,
-    F25_CAP: 1700
-  };
   var $ = function(id){ return document.getElementById(id); };
-  if(!$('tc-calc')) return;
-
-  function amount(id){
-    var n = parseFloat($(id).value);
-    return isFinite(n) && n > 0 ? Math.round(n * 100) / 100 : 0;
-  }
-  function money(n){
-    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
-  }
-  function fmt(n){ return money(Math.round(n * 100) / 100); }
+  if(!$('tc-calc') || !window.VaTaxCredit) return;
+  var calc = window.VaTaxCredit;
 
   function update(){
-    var eistcGift = amount('tc-eistc');
-    var f25Gift = amount('tc-25f');
     var couple = document.querySelector('input[name="tc-filer"]:checked').value === 'couple';
-
-    var eistcCredit = 0, eistcNote = '';
-    if(eistcGift > 0 && eistcGift < TC_CONFIG.EISTC_MIN){
-      eistcNote = 'Below the ' + fmt(TC_CONFIG.EISTC_MIN) + ' EISTC minimum.';
-    } else if(eistcGift > 0){
-      // One preauthorization covers a couple, so the same cap applies.
-      var creditable = Math.min(eistcGift, TC_CONFIG.EISTC_MAX_INDIVIDUAL);
-      eistcCredit = Math.round(creditable * TC_CONFIG.EISTC_RATE * 100) / 100;
-      if(eistcGift > TC_CONFIG.EISTC_MAX_INDIVIDUAL){
-        eistcNote = 'Credit figured on the first ' + fmt(TC_CONFIG.EISTC_MAX_INDIVIDUAL) + ' given in a year.';
-      }
-    }
-
-    // Only individuals earn the §25F credit (Treas. Reg. §1.25F-1(a)(12),
-    // proposed). Spouses filing jointly are two taxpayers, each with their own cap.
-    var f25Cap = TC_CONFIG.F25_CAP * (couple ? 2 : 1);
-    var f25Credit = Math.min(f25Gift, f25Cap), f25Note = '';
-    if(f25Gift > f25Cap){
-      f25Note = 'Credit capped at ' + fmt(f25Cap) + (couple ? ' for a couple (' + fmt(TC_CONFIG.F25_CAP) + ' each)' : '') + '. The rest is a regular gift.';
-    } else if(couple && f25Gift > 0){
-      f25Note = 'Each spouse can claim up to ' + fmt(TC_CONFIG.F25_CAP) + ' and designates their own share.';
-    }
-
-    $('tc-out-eistc-gift').textContent = fmt(eistcGift);
-    $('tc-out-eistc').textContent = fmt(eistcCredit);
-    $('tc-note-eistc').textContent = eistcNote;
-    $('tc-out-25f-gift').textContent = fmt(f25Gift);
-    $('tc-out-25f').textContent = fmt(f25Credit);
-    $('tc-note-25f').textContent = f25Note;
-    $('tc-out-credits').textContent = fmt(eistcCredit + f25Credit);
-    $('tc-out-giving').textContent = fmt(eistcGift + f25Gift);
+    var r = calc.calculate($('tc-gift').value, couple);
+    var n = calc.notes(r, couple);
+    $('tc-out-gift').textContent = calc.money(r.gift);
+    $('tc-out-eistc').textContent = calc.money(r.eistcCredit);
+    $('tc-note-eistc').textContent = n.eistc;
+    $('tc-out-25f').textContent = calc.money(r.f25Credit);
+    $('tc-note-25f').textContent = n.f25;
+    $('tc-out-credits').textContent = calc.money(r.totalCredits);
+    $('tc-out-net').textContent = calc.money(r.netCost);
   }
 
-  ['tc-eistc', 'tc-25f'].forEach(function(id){ $(id).addEventListener('input', update); });
+  $('tc-gift').addEventListener('input', update);
   document.querySelectorAll('input[name="tc-filer"]').forEach(function(r){ r.addEventListener('change', update); });
   update();
 })();
