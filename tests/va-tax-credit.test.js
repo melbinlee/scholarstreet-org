@@ -1,4 +1,4 @@
-// Tests for va-tax-credit.js. Run: node --test tests/
+// Tests for va-tax-credit.js. Run from the repo root: node --test
 // The same test file lives in scholarstreet-org and ScholarPath.
 const test = require('node:test');
 const assert = require('node:assert');
