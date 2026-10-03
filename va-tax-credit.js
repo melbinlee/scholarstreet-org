@@ -119,52 +119,62 @@
     return '$' + n.toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
   }
 
-  /* The notes shown under each credit, so both calculators say the same
-     thing. Empty string when there is nothing to say. */
+  function amount(v) {
+    return blank(v) ? 0 : Math.max(0, cents(v));
+  }
+
+  /* The calculators' two boxes: an EISTC amount and a §25F amount. They
+     describe the SAME money, so the gift is the larger of the two, not their
+     sum: the EISTC amount earns the Virginia credit, and the §25F amount is
+     what the donor designates for the federal credit. A blank box is $0. */
+  function boxes(eistcBox, f25Box, couple) {
+    var e = amount(eistcBox), f = amount(f25Box);
+    return calculate(Math.max(e, f), couple, { eistcAmount: e, f25Amount: f });
+  }
+
+  /* The notes shown under the results, so both calculators say the same
+     thing. Each is an empty string when there is nothing to say. */
   function notes(r, couple) {
-    var eistc = [], f25 = [];
+    var gift = '', eistc = [], f25 = [];
     var capText = money(r.f25Cap) + (couple ? ' for a couple (' + money(CONFIG.F25_CAP) + ' each)' : '');
 
-    if (r.eistcClamped) eistc.push('Can’t be more than your gift, so ' + money(r.eistcAmount) + ' is used.');
+    if (r.eistcAmount > 0 && r.f25Designated > 0) {
+      gift = 'The §25F amount is part of the same gift, not added to it.';
+    }
+
     if (r.gift > 0 && r.eistcAmount === 0) {
-      eistc.push('None of the gift is preauthorized for EISTC, so no Virginia credit.');
+      eistc.push('No EISTC amount, so no Virginia credit.');
     } else if (r.belowEistcMin) {
       eistc.push('Below the ' + money(CONFIG.EISTC_MIN) + ' EISTC minimum, so no Virginia credit.');
     } else if (r.overEistcMax) {
       eistc.push('Virginia credit figured on the first ' + money(CONFIG.EISTC_MAX) + ' given in a year.');
     } else if (r.eistcAmount < r.gift) {
-      eistc.push('Figured on the ' + money(r.eistcAmount) + ' preauthorized, not the whole gift.');
+      eistc.push('Figured on the ' + money(r.eistcAmount) + ' EISTC amount.');
     }
 
-    if (r.f25Clamped) f25.push('Can’t be more than your gift, so ' + money(r.f25Designated) + ' is used.');
     if (r.f25UnderBest) {
-      f25.push(r.f25Designated === 0
-        ? 'Nothing is designated. Designate ' + money(r.bestDesignation) + ' to earn ' + money(r.bestDesignation) + '.'
-        : 'Designate ' + money(r.bestDesignation) + ' instead to earn ' + money(r.bestDesignation) + '.');
+      f25.push((r.f25Designated === 0 ? 'No §25F amount yet. ' : '') +
+        'A §25F amount of ' + money(r.bestDesignation) + ' would earn ' + money(r.bestDesignation) + '.');
     } else if (r.f25OverBest) {
-      f25.push('Designating more than ' + money(r.bestDesignation) + ' adds nothing: ' +
+      f25.push('More than ' + money(r.bestDesignation) + ' adds nothing: ' +
         (r.bestDesignation >= r.f25Cap
           ? 'the federal credit is capped at ' + capText + '.'
           : 'the Virginia credit is applied first, so only ' + money(r.bestDesignation) + ' can count.'));
-    } else {
-      if (r.f25LimitedByEistc) {
-        f25.push('The Virginia credit is applied first, so ' + money(r.f25Credit) +
-          ' of your gift counts toward the federal credit.' +
-          (r.eistcAmount === r.gift
-            ? ' A gift of ' + money(fullCreditGift(couple)) + ' or more earns the full ' + money(r.f25Cap) + '.'
-            : ''));
-      } else if (r.f25Capped) {
-        f25.push('Capped at ' + capText + '.');
-      }
-      if (r.f25Credit > 0) {
-        f25.push('Designate ' + money(r.f25Credit) + ' of your gift for §25F' +
-          (couple ? ', split between you,' : '') + ' when you give.');
-      }
+    } else if (r.f25LimitedByEistc) {
+      f25.push('The Virginia credit is applied first, so only ' + money(r.f25Credit) +
+        ' counts toward the federal credit.' +
+        (r.eistcAmount === r.gift
+          ? ' An EISTC amount of ' + money(fullCreditGift(couple)) + ' or more lets the full ' + money(r.f25Cap) + ' count.'
+          : ''));
+    } else if (r.f25Capped) {
+      f25.push('Capped at ' + capText + '.');
     }
-    return { eistc: eistc.join(' '), f25: f25.join(' ') };
+    if (couple && r.f25Credit > 0) f25.push('Each spouse designates their own half.');
+    return { gift: gift, eistc: eistc.join(' '), f25: f25.join(' ') };
   }
 
-  var api = { CONFIG: CONFIG, calculate: calculate, fullCreditGift: fullCreditGift, notes: notes, money: money };
+  var api = { CONFIG: CONFIG, calculate: calculate, boxes: boxes, fullCreditGift: fullCreditGift,
+              notes: notes, money: money };
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
   } else {

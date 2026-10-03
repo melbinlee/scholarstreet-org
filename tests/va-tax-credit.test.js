@@ -7,11 +7,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const FILE = path.join(__dirname, '..', 'va-tax-credit.js');
-const { calculate, fullCreditGift, notes, CONFIG } = require(FILE);
+const { calculate, boxes, fullCreditGift, notes, CONFIG } = require(FILE);
 
 // Both repos must carry the identical calculator. Update this hash in BOTH
 // repos' tests whenever va-tax-credit.js changes (and copy the file across).
-const SHARED_SHA256 = '435eeaf1aa5b887c29599b4c7acc660db254047d65cb4126a76318dca3ce2c71';
+const SHARED_SHA256 = '49b9f99e783f4239b26fa7dfcbded4bf84f3905919e15b657ca9c30264f94dff';
 
 test('shared file is identical to the pinned version', () => {
   const hash = crypto.createHash('sha256')
@@ -108,13 +108,13 @@ test('zero and junk input', () => {
 });
 
 test('notes explain the ordering, the cap and what to designate', () => {
-  assert.strictEqual(notes(calculate(4857.14)).f25, 'Designate $1,700 of your gift for §25F when you give.');
-  assert.match(notes(calculate(2000)).f25, /Virginia credit is applied first, so \$700 .* \$4,857\.13 or more earns the full \$1,700/);
+  assert.strictEqual(notes(calculate(4857.14)).f25, '');
+  assert.match(notes(calculate(2000)).f25, /Virginia credit is applied first, so only \$700 counts.* \$4,857\.13 or more lets the full \$1,700 count/);
   assert.match(notes(calculate(10000)).f25, /^Capped at \$1,700\./);
-  assert.match(notes(calculate(10000, true), true).f25, /Capped at \$3,400 for a couple \(\$1,700 each\)\..*split between you/);
+  assert.match(notes(calculate(10000, true), true).f25, /Capped at \$3,400 for a couple \(\$1,700 each\)\..*Each spouse designates their own half/);
   assert.match(notes(calculate(499)).eistc, /Below the \$500 EISTC minimum/);
   assert.match(notes(calculate(200000)).eistc, /first \$125,000/);
-  assert.deepStrictEqual(notes(calculate(0)), { eistc: '', f25: '' });
+  assert.deepStrictEqual(notes(calculate(0)), { gift: '', eistc: '', f25: '' });
   for (const g of [499, 2000, 10000, 200000]) {
     assert.ok(!/—/.test(JSON.stringify(notes(calculate(g)))), 'no em dashes');
   }
@@ -143,7 +143,7 @@ test('splitting the gift between the programs earns less than stacking', () => {
   assert.strictEqual(r.totalCredits, 3752.14);
   assert.strictEqual(r.netCost, 1105);
   assert.ok(r.totalCredits < calculate(4857.14).totalCredits);
-  assert.match(notes(r).eistc, /Figured on the \$3,157\.14 preauthorized/);
+  assert.match(notes(r).eistc, /Figured on the \$3,157\.14 EISTC amount/);
 });
 
 test('no EISTC: federal only', () => {
@@ -151,14 +151,14 @@ test('no EISTC: federal only', () => {
   assert.strictEqual(r.eistcCredit, 0);
   assert.strictEqual(r.f25Credit, 1700);
   assert.strictEqual(r.netCost, 3300);
-  assert.match(notes(r).eistc, /None of the gift is preauthorized/);
+  assert.match(notes(r).eistc, /No EISTC amount, so no Virginia credit/);
 });
 
 test('designating more than the best amount adds nothing', () => {
   const r = calculate(2000, false, { f25Amount: 1700 });
   assert.strictEqual(r.f25Credit, 700);
   assert.strictEqual(r.f25OverBest, true);
-  assert.match(notes(r).f25, /more than \$700 adds nothing: the Virginia credit is applied first/);
+  assert.match(notes(r).f25, /More than \$700 adds nothing: the Virginia credit is applied first/);
   const capped = calculate(10000, false, { f25Amount: 5000 });
   assert.strictEqual(capped.f25Credit, 1700);
   assert.match(notes(capped).f25, /capped at \$1,700/);
@@ -168,10 +168,10 @@ test('designating less than the best amount says what to designate', () => {
   const r = calculate(10000, false, { f25Amount: 1000 });
   assert.strictEqual(r.f25Credit, 1000);
   assert.strictEqual(r.f25UnderBest, true);
-  assert.match(notes(r).f25, /Designate \$1,700 instead to earn \$1,700/);
+  assert.match(notes(r).f25, /A §25F amount of \$1,700 would earn \$1,700/);
   const none = calculate(10000, false, { f25Amount: 0 });
   assert.strictEqual(none.f25Credit, 0);
-  assert.match(notes(none).f25, /Nothing is designated/);
+  assert.match(notes(none).f25, /No §25F amount yet/);
 });
 
 test('ordering rule with a partial designation', () => {
@@ -189,7 +189,6 @@ test('amounts are held between $0 and the gift', () => {
   assert.strictEqual(r.f25Designated, 1000);
   assert.strictEqual(r.eistcClamped, true);
   assert.strictEqual(r.f25Clamped, true);
-  assert.match(notes(r).eistc, /be more than your gift, so \$1,000 is used/);
   const neg = calculate(1000, false, { eistcAmount: -5, f25Amount: -5 });
   assert.strictEqual(neg.eistcAmount, 0);
   assert.strictEqual(neg.f25Designated, 0);
@@ -211,6 +210,64 @@ test('adjusted amounts never give credits above the gift', () => {
           assert.ok(r.totalCredits <= r.gift + 1e-9, `credits exceed gift at ${g}/${p}/${d}`);
           assert.ok(r.f25Credit <= r.f25Designated + 1e-9);
         }
+      }
+    }
+  }
+});
+
+// ---- The two boxes: an EISTC amount and a §25F amount for the same money ----
+
+test('boxes: the regression case, typed into the two boxes', () => {
+  const r = boxes(4857.14, 1700);
+  assert.strictEqual(r.gift, 4857.14);
+  assert.strictEqual(r.eistcCredit, 3157.14);
+  assert.strictEqual(r.f25Credit, 1700);
+  assert.strictEqual(r.totalCredits, 4857.14);
+  assert.strictEqual(r.netCost, 0);
+  assert.match(notes(r).gift, /part of the same gift, not added to it/);
+});
+
+test('boxes: the gift is the larger box, never the sum', () => {
+  assert.strictEqual(boxes(10000, 1700).gift, 10000);
+  assert.strictEqual(boxes(0, 1700).gift, 1700);
+  assert.strictEqual(boxes(4857.14, 4857.14).gift, 4857.14);
+});
+
+test('boxes: the same amount in both still gives the right credits', () => {
+  const r = boxes(4857.14, 4857.14);
+  assert.strictEqual(r.totalCredits, 4857.14);
+  assert.match(notes(r).f25, /More than \$1,700 adds nothing: the federal credit is capped/);
+});
+
+test('boxes: §25F only, EISTC only, and the ordering rule', () => {
+  const fedOnly = boxes(0, 1700);
+  assert.strictEqual(fedOnly.eistcCredit, 0);
+  assert.strictEqual(fedOnly.f25Credit, 1700);
+  const stateOnly = boxes(4857.14, '');
+  assert.strictEqual(stateOnly.f25Credit, 0);
+  assert.match(notes(stateOnly).f25, /No §25F amount yet\. A §25F amount of \$1,700 would earn \$1,700/);
+  const small = boxes(2000, 1700);
+  assert.strictEqual(small.f25Credit, 700);
+  assert.strictEqual(small.totalCredits, 2000);
+});
+
+test('boxes: couples, blanks and junk', () => {
+  const r = boxes(10000, 3400, true);
+  assert.strictEqual(r.f25Credit, 3400);
+  assert.strictEqual(r.totalCredits, 9900);
+  for (const [e, f] of [['', ''], [null, undefined], ['abc', -5]]) {
+    const z = boxes(e, f);
+    assert.strictEqual(z.gift, 0);
+    assert.strictEqual(z.totalCredits, 0);
+  }
+});
+
+test('boxes: credits never exceed the gift', () => {
+  for (const e of [0, 499, 500, 2000, 4857.14, 10000, 200000]) {
+    for (const f of [0, 500, 1700, 3400, 5000]) {
+      for (const couple of [false, true]) {
+        const r = boxes(e, f, couple);
+        assert.ok(r.totalCredits <= r.gift + 1e-9, `credits exceed gift at ${e}/${f}`);
       }
     }
   }
