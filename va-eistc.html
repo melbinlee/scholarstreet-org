@@ -377,6 +377,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   background:var(--gold);border-radius:99px;padding:1px 8px;margin-left:6px;vertical-align:1px}
 .tc-note{font-size:12.5px;color:rgba(255,255,255,.6);padding:2px 0 6px;line-height:1.5}
 .tc-note:empty{display:none}
+.tc-hint{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:5px;line-height:1.45}
 .tc-disclaimer{grid-column:1/-1;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.7;
   border-top:1px solid rgba(255,255,255,.1);padding-top:16px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
 .tc-disclaimer p{flex:1 1 380px;margin:0}
@@ -477,11 +478,21 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div>
         <h4>Estimate your tax credits</h4>
         <p class="tc-intro">One gift can earn both credits: the same dollars count toward Virginia&rsquo;s
-        EISTC credit and the federal &#167;25F credit. This assumes the gift is preauthorized for
-        EISTC and designated for &#167;25F. For reference only. This does not make a donation.</p>
+        EISTC credit and the federal &#167;25F credit. Change how much is preauthorized or
+        designated to see the difference. For reference only. This does not make a donation.</p>
         <div class="tc-field">
           <label for="tc-gift">Your gift</label>
           <div class="tc-money"><span>$</span><input class="tc-input" id="tc-gift" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0"></div>
+        </div>
+        <div class="tc-field">
+          <label for="tc-eistc-amt">Preauthorized for EISTC</label>
+          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-eistc-amt" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0"></div>
+          <div class="tc-hint">Leave blank to use the whole gift.</div>
+        </div>
+        <div class="tc-field">
+          <label for="tc-25f-amt">Designated for &#167;25F</label>
+          <div class="tc-money"><span>$</span><input class="tc-input" id="tc-25f-amt" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0"></div>
+          <div class="tc-hint" id="tc-25f-hint">Leave blank to use the best amount.</div>
         </div>
         <fieldset class="tc-field tc-filer">
           <legend class="tc-legend">Filer type</legend>
@@ -923,8 +934,13 @@ document.addEventListener('DOMContentLoaded',function(){
 
   function update(){
     var couple = document.querySelector('input[name="tc-filer"]:checked').value === 'couple';
-    var r = calc.calculate($('tc-gift').value, couple);
+    var r = calc.calculate($('tc-gift').value, couple,
+      { eistcAmount: $('tc-eistc-amt').value, f25Amount: $('tc-25f-amt').value });
     var n = calc.notes(r, couple);
+    // A blank box shows, in grey, the amount it stands for.
+    $('tc-eistc-amt').placeholder = String(r.gift);
+    $('tc-25f-amt').placeholder = String(r.bestDesignation);
+    $('tc-25f-hint').textContent = 'Leave blank to use the best amount (' + calc.money(r.bestDesignation) + ').';
     $('tc-out-gift').textContent = calc.money(r.gift);
     $('tc-out-eistc').textContent = calc.money(r.eistcCredit);
     $('tc-note-eistc').textContent = n.eistc;
@@ -934,7 +950,7 @@ document.addEventListener('DOMContentLoaded',function(){
     $('tc-out-net').textContent = calc.money(r.netCost);
   }
 
-  $('tc-gift').addEventListener('input', update);
+  ['tc-gift', 'tc-eistc-amt', 'tc-25f-amt'].forEach(function(id){ $(id).addEventListener('input', update); });
   document.querySelectorAll('input[name="tc-filer"]').forEach(function(r){ r.addEventListener('change', update); });
   update();
 })();
