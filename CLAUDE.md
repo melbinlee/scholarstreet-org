@@ -17,7 +17,8 @@ The scholarstreet.org marketing and public-facing website for Scholar Street, a 
 - **Weekly local run:** Windows scheduled task "Scholar Street Substack sync" runs `scripts/sync_local.ps1` Mondays 10:00 (catches up at next logon if missed). It pulls, syncs, and commits + pushes new articles; it skips if the checkout isn't on a clean `main`. Log: `%LOCALAPPDATA%\scholarstreet-sync\sync.log`. GitHub Actions can't do this: Substack's Cloudflare returns 403 to GitHub's runners (Monday schedule removed 2026-09-28); `.github/workflows/sync-substack.yml` remains as a manual button but hits the same 403.
 - `news.html` is the template for article pages: edit its nav/footer/CSS like any other page, but never hand-edit inside the `<!-- HEAD -->` / `<!-- MAIN -->` markers or any file in `news/` — the next sync overwrites them. Rerun the script after changing `news.html`.
 - Nav/footer changes must be made in all pages *including* `news.html`.
-- `_redirects` 404s `/CLAUDE.md`, `/scripts/*`, `/news/data/*`, `/.github/*` — Netlify publishes the whole repo.
+- `_redirects` 404s `/CLAUDE.md`, `/scripts/*`, `/news/data/*`, `/.github/*`, `/tests/*` — Netlify publishes the whole repo.
+- `va-tax-credit.js` is the tax credit calculator's math, shared byte-for-byte with ScholarPath/va-tax-credit.js (the donation form's calculator). Change both copies together; `node --test` (from the repo root) checks the pinned hash.
 - Canonical URLs are the `.html` ones. Every sitemap page's extensionless path (`/impact`) 301s to it, because Netlify served both with a 200 and Google picked the extensionless copy. The sync script generates those rules from `STATIC_PAGES` plus the articles — add a new page to `STATIC_PAGES`, not to `_redirects`.
 
 ## Entity rules (critical)
