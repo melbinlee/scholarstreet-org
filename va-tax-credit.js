@@ -19,13 +19,15 @@
    with a cap of $1,700 per taxpayer ($3,400 for a married couple, assuming
    each spouse designates half). Designating more than that adds nothing.
 
-   The donor controls two amounts within the one gift, and the calculators
-   let them adjust both: how much is preauthorized for EISTC (P, default the
-   whole gift) and how much is designated for §25F (D, default the best
-   amount). With Virginia credit S = 65% of P:
+   calculate() takes the gift plus, optionally, how much is preauthorized
+   for EISTC (P, default the whole gift) and how much is designated for
+   §25F (D, default the best amount). With Virginia credit S = 65% of P:
        federal = min(cap, D, gift - S)
    because the state credit S first absorbs the undesignated part
-   (gift - D), and only what is left over reduces D. */
+   (gift - D), and only what is left over reduces D.
+
+   The calculators use boxes(): an EISTC box (the undesignated part) and a
+   §25F box (the designated part) that add up to the gift. */
 (function (root) {
   var CONFIG = {
     EISTC_RATE: 0.65,
@@ -123,24 +125,42 @@
     return blank(v) ? 0 : Math.max(0, cents(v));
   }
 
-  /* The calculators' two boxes: an EISTC amount and a §25F amount. They
-     describe the SAME money, so the gift is the larger of the two, not their
-     sum: the EISTC amount earns the Virginia credit, and the §25F amount is
-     what the donor designates for the federal credit. A blank box is $0. */
+  /* The calculators' two boxes are two PARTS of one gift, and they add up:
+       EISTC box  the part NOT designated for §25F
+       §25F box   the part designated for §25F
+       gift       EISTC + §25F
+     When the EISTC box has an amount, the whole gift goes through EISTC, so
+     the Virginia credit is 65% of the whole gift. An empty or $0 EISTC box
+     means the donor isn't giving through EISTC: no Virginia credit. A blank
+     box is $0. */
   function boxes(eistcBox, f25Box, couple) {
-    var e = amount(eistcBox), f = amount(f25Box);
-    return calculate(Math.max(e, f), couple, { eistcAmount: e, f25Amount: f });
+    var e = amount(eistcBox), f = amount(f25Box), g = cents(e + f);
+    return calculate(g, couple, { eistcAmount: e > 0 ? g : 0, f25Amount: f });
+  }
+
+  /* The smallest EISTC box that keeps a §25F box of f fully counted
+     (up to the cap) once the Virginia credit is applied first: about
+     65/35 of it, so $3,157.14 for $1,700. */
+  function eistcForFullFederal(f, couple) {
+    var target = Math.min(amount(f), CONFIG.F25_CAP * (couple ? 2 : 1));
+    if (target <= 0) return 0;
+    var e = Math.ceil(target * CONFIG.EISTC_RATE / (1 - CONFIG.EISTC_RATE) * 100) / 100;
+    while (e > 0 && boxes(cents(e - 0.01), f, couple).f25Credit >= target) e = cents(e - 0.01);
+    while (boxes(e, f, couple).f25Credit < target) e = cents(e + 0.01);
+    return e;
   }
 
   /* The notes shown under the results, so both calculators say the same
-     thing. Each is an empty string when there is nothing to say. */
+     thing. Each is an empty string when there is nothing to say. The EISTC
+     part is the undesignated part of the gift (gift - §25F) when the gift
+     goes through EISTC, and $0 when it doesn't. */
   function notes(r, couple) {
     var gift = '', eistc = [], f25 = [];
     var capText = money(r.f25Cap) + (couple ? ' for a couple (' + money(CONFIG.F25_CAP) + ' each)' : '');
+    var eistcPart = r.eistcAmount > 0 ? cents(r.gift - r.f25Designated) : 0;
+    var f = r.f25Designated;
 
-    if (r.eistcAmount > 0 && r.f25Designated > 0) {
-      gift = 'The §25F amount is part of the same gift, not added to it.';
-    }
+    if (eistcPart > 0 && f > 0) gift = 'Your gift is the EISTC and §25F amounts together.';
 
     if (r.gift > 0 && r.eistcAmount === 0) {
       eistc.push('No EISTC amount, so no Virginia credit.');
@@ -148,33 +168,28 @@
       eistc.push('Below the ' + money(CONFIG.EISTC_MIN) + ' EISTC minimum, so no Virginia credit.');
     } else if (r.overEistcMax) {
       eistc.push('Virginia credit figured on the first ' + money(CONFIG.EISTC_MAX) + ' given in a year.');
-    } else if (r.eistcAmount < r.gift) {
-      eistc.push('Figured on the ' + money(r.eistcAmount) + ' EISTC amount.');
+    } else if (r.eistcCredit > 0 && f > 0) {
+      eistc.push('Figured on your whole gift: the §25F part goes through EISTC too.');
     }
 
-    if (r.f25UnderBest) {
-      f25.push((r.f25Designated === 0 ? 'No §25F amount yet. ' : '') +
-        'A §25F amount of ' + money(r.bestDesignation) + ' would earn ' + money(r.bestDesignation) + '.');
-    } else if (r.f25OverBest) {
-      f25.push('More than ' + money(r.bestDesignation) + ' adds nothing: ' +
-        (r.bestDesignation >= r.f25Cap
-          ? 'the federal credit is capped at ' + capText + '.'
-          : 'the Virginia credit is applied first, so only ' + money(r.bestDesignation) + ' can count.'));
-    } else if (r.f25LimitedByEistc) {
-      f25.push('The Virginia credit is applied first, so only ' + money(r.f25Credit) +
-        ' counts toward the federal credit.' +
-        (r.eistcAmount === r.gift
-          ? ' An EISTC amount of ' + money(fullCreditGift(couple)) + ' or more lets the full ' + money(r.f25Cap) + ' count.'
-          : ''));
-    } else if (r.f25Capped) {
-      f25.push('Capped at ' + capText + '.');
+    if (r.gift > 0 && f === 0) {
+      f25.push('No §25F amount, so no federal credit.');
+    } else if (r.f25Credit < Math.min(f, r.f25Cap)) {
+      // The Virginia credit is bigger than the EISTC part, so the excess
+      // comes off the §25F part (§1.25F-2(c)(2)).
+      f25.push('The Virginia credit (' + money(r.eistcCredit) + ') is more than the ' + money(eistcPart) +
+        ' EISTC part, so ' + money(cents(r.eistcCredit - eistcPart)) + ' of it comes off the §25F part. ' +
+        'An EISTC amount of ' + money(eistcForFullFederal(f, couple)) + ' or more keeps the full ' +
+        money(Math.min(f, r.f25Cap)) + '.');
+    } else if (f > r.f25Cap) {
+      f25.push('Capped at ' + capText + '. More than that in §25F adds no federal credit.');
     }
     if (couple && r.f25Credit > 0) f25.push('Each spouse designates their own half.');
     return { gift: gift, eistc: eistc.join(' '), f25: f25.join(' ') };
   }
 
-  var api = { CONFIG: CONFIG, calculate: calculate, boxes: boxes, fullCreditGift: fullCreditGift,
-              notes: notes, money: money };
+  var api = { CONFIG: CONFIG, calculate: calculate, boxes: boxes, eistcForFullFederal: eistcForFullFederal,
+              fullCreditGift: fullCreditGift, notes: notes, money: money };
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
   } else {
