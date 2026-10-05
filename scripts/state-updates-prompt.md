@@ -1,6 +1,15 @@
 Scholar Street state §25F status updates
 Instructions
 
+HOW THIS RUNS
+The Windows scheduled task "Scholar Street state table" runs
+scripts/state_job.ps1 every Monday and Thursday at 10:30. It starts Claude
+Code headless in the repo folder with this file as the instructions, and
+logs every run to %LOCALAPPDATA%\scholarstreet-sync\state-job\. Nobody
+is watching a run: never stop to ask a question. Anything that needs a
+decision goes in the report and the email. There is no web browser; where
+this file says to open something in a browser, use its no-browser fallback.
+
 WHAT THIS IS
 scholarstreet.org's News page (news.html) opens with a table of every state's
 status in the federal Education Freedom Tax Credit (IRC §25F). All of its data
@@ -73,6 +82,14 @@ EACH RUN
         one. States marked OPEN IN BROWSER (sites that block scripts or need
         JavaScript) and any FAILED or "NO DATES FOUND" line: open that
         newsroom in the browser and read the headlines from the window.
+        No browser (the scheduled run has none): try WebFetch, then curl
+        with a browser user-agent. If the page is still blocked, empty or a
+        bot check, search the site instead, with web searches restricted to
+        the newsroom's domain (e.g. site:governor.ny.gov): one for the
+        program's words (scholarship, "tax credit", voucher, "school
+        choice"), one for "statement" plus the governor's name, both limited
+        to the window. Open every in-window result. In the report, list that
+        newsroom as "checked by site search, not read directly".
         Follow the HOW line printed under it: New York needs a full-text
         search of every item (many are generic "Statement" titles), and
         Pennsylvania's list only loads through its search box. Headlines
@@ -82,8 +99,8 @@ EACH RUN
         even outside the window: a governor's statement about the
         program that the file is missing (e.g. WI's Apr. 2, 2026 radio
         address, found this way) is a development to add.
-        If a newsroom URL has moved, find the new one and update NEWSROOMS
-        in scripts/gnews.py in a separate PR, not this one.
+        If a newsroom URL has moved, find the new one and put it in the
+        report and email (don't edit scripts/gnews.py; a person will).
       - LEGISLATION: bills about the program with an action in the window,
         all 50 states, from LegiScan. If it says SKIPPED (no API key) or
         STOPPED (request cap), say so in the report; don't treat it as "no
@@ -253,7 +270,10 @@ EACH RUN
    SS_GOVERNOR_LINKS. List any that no longer load, to go in the PR. Don't
    delete them. Some government sites block scripts (403, bot checks) but
    work in a browser. Only list a link if it also fails when you open it
-   the way a person would. If this is the only thing that found anything,
+   the way a person would. With no browser, try WebFetch and curl with a
+   browser user-agent; list a link that fails both under "may be broken
+   (blocks scripts, check by hand)", apart from links that are plainly
+   gone (404, domain not found). If this is the only thing that found anything,
    still open the PR (step 8) so the list gets seen.
 
 8. If nothing changed, no links are broken and nothing needs a decision,
@@ -303,6 +323,8 @@ EACH RUN
    starts here. Don't run it if this run stopped early on a problem
    (uncommitted changes, the script or a source failing so badly you
    couldn't check): the next run will then cover these days too.
+   Then, finished or not, run `git checkout main`: the Monday Substack sync
+   uses this folder and skips its run if it finds another branch.
 
 REPORT
 End each run with a short summary: what changed (including any status
