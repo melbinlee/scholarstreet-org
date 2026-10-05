@@ -45,13 +45,33 @@ NS = {
     "dc": "http://purl.org/dc/elements/1.1/",
 }
 
-# Pages listed in the sitemap alongside the articles, in nav order.
-STATIC_PAGES = [
-    "", "impact.html", "platform.html", "va-eistc.html", "team.html",
-    "news.html",
-    "donate.html",
-    "apply.html", "families.html", "transparency.html", "privacy.html",
-]
+# The site's one URL form is the .html one (the homepage is /). Every page
+# declares it as canonical, sitemap.xml lists it, and _redirects 301s the
+# extensionless path to it. The pages are found on disk rather than listed by
+# hand: a hand-kept list let new pages ship with no redirect or sitemap entry.
+CANONICAL_RE = re.compile(r'<link rel="canonical" href="([^"]*)">')
+
+
+def page_url(page):
+    """Canonical URL of a page given as a repo path ("" is the homepage)."""
+    return f"{SITE}/{page}"
+
+
+def static_pages():
+    """Every top-level page, homepage first. All are public and indexed."""
+    pages = sorted(p.name for p in ROOT.glob("*.html") if p.name != "index.html")
+    return [""] + pages
+
+
+def check_canonicals(pages):
+    """Exit unless each page declares exactly one canonical, its .html URL."""
+    errors = []
+    for page in pages:
+        found = CANONICAL_RE.findall((ROOT / (page or "index.html")).read_text(encoding="utf-8"))
+        if found != [page_url(page)]:
+            errors.append(f"  {page or 'index.html'}: canonical {found}, expected {page_url(page)}")
+    if errors:
+        sys.exit("canonical tags out of step with the site's URL form:\n" + "\n".join(errors))
 
 # The state-by-state 25F table at the top of the News page. Its data lives in
 # state-status-data.js and its behaviour in state-table.js/.css; this is only
@@ -505,8 +525,8 @@ def latest_section(articles):
 </section>"""
 
 
-def sitemap(articles):
-    urls = [f"  <url><loc>{SITE}/{p}</loc></url>" for p in STATIC_PAGES]
+def sitemap(pages, articles):
+    urls = [f"  <url><loc>{page_url(p)}</loc></url>" for p in pages]
     urls += [
         f"  <url><loc>{SITE}/news/{a['slug']}.html</loc><lastmod>{a['date']}</lastmod></url>"
         for a in articles
@@ -516,16 +536,16 @@ def sitemap(articles):
             + "\n".join(urls) + "\n</urlset>\n")
 
 
-def redirects(articles):
+def redirects(pages, articles):
     """301 rules from each sitemap page's extensionless path to its .html URL.
 
     Netlify serves /impact as well as /impact.html, both with a 200 and the
     same canonical tag, and Google picked the extensionless copy as canonical.
-    Built from the same list as the sitemap so a new article gets its rule on
-    the run that publishes it. Forced (!) because the extensionless path
-    resolves to a file on disk, which would otherwise shadow the rule.
+    Built from the same list as the sitemap so a new page or article gets its
+    rule on the next run. Forced (!) because the extensionless path resolves
+    to a file on disk, which would otherwise shadow the rule.
     """
-    pages = [p for p in STATIC_PAGES if p]
+    pages = [p for p in pages if p]
     pages += [f"news/{a['slug']}.html" for a in articles]
     pairs = [(f"/{p[:-len('.html')]}", f"/{p}") for p in pages]
     src_width = max(len(src) for src, _ in pairs) + 2
@@ -579,10 +599,12 @@ def main():
     home = ROOT / "index.html"
     write_if_changed(home, region(home.read_text(encoding="utf-8"), "LATEST",
                                   latest_section(articles), "index.html"))
-    write_if_changed(ROOT / "sitemap.xml", sitemap(articles))
+    pages = static_pages()
+    check_canonicals(pages + [f"news/{a['slug']}.html" for a in articles])
+    write_if_changed(ROOT / "sitemap.xml", sitemap(pages, articles))
     rules = ROOT / "_redirects"
     write_if_changed(rules, redirects_region(rules.read_text(encoding="utf-8"),
-                                             redirects(articles)))
+                                             redirects(pages, articles)))
 
 
 if __name__ == "__main__":

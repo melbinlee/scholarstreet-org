@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://scholarstreet.org/</loc></url>
-  <url><loc>https://scholarstreet.org/impact.html</loc></url>
-  <url><loc>https://scholarstreet.org/platform.html</loc></url>
-  <url><loc>https://scholarstreet.org/va-eistc.html</loc></url>
-  <url><loc>https://scholarstreet.org/team.html</loc></url>
-  <url><loc>https://scholarstreet.org/news.html</loc></url>
-  <url><loc>https://scholarstreet.org/donate.html</loc></url>
   <url><loc>https://scholarstreet.org/apply.html</loc></url>
+  <url><loc>https://scholarstreet.org/donate.html</loc></url>
   <url><loc>https://scholarstreet.org/families.html</loc></url>
-  <url><loc>https://scholarstreet.org/transparency.html</loc></url>
+  <url><loc>https://scholarstreet.org/impact.html</loc></url>
+  <url><loc>https://scholarstreet.org/news.html</loc></url>
+  <url><loc>https://scholarstreet.org/platform.html</loc></url>
   <url><loc>https://scholarstreet.org/privacy.html</loc></url>
+  <url><loc>https://scholarstreet.org/team.html</loc></url>
+  <url><loc>https://scholarstreet.org/transparency.html</loc></url>
+  <url><loc>https://scholarstreet.org/va-eistc.html</loc></url>
   <url><loc>https://scholarstreet.org/news/treasurys-proposed-federal-scholarship.html</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://scholarstreet.org/news/is-your-state-in-follow-the-education.html</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://scholarstreet.org/news/two-bills-that-could-make-state-opt.html</loc><lastmod>2026-09-19</lastmod></url>

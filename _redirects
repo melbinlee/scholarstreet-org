@@ -10,6 +10,10 @@
 /.github/*          /404  404!
 /tests/*            /404  404!
 
+# The homepage's canonical URL is /. Netlify already 301s /index there but
+# served /index.html with a 200, a duplicate of the homepage.
+/index.html         /  301!
+
 # Browsers request /favicon.ico regardless of the <link rel="icon"> tag.
 /favicon.ico        /favicon.svg  200
 
@@ -37,18 +41,18 @@
 # URL the canonical tags and sitemap.xml name. Forced (!) because the
 # extensionless path resolves to a file on disk, which would otherwise shadow
 # the rule. scripts/sync_substack.py rebuilds the rules between the markers
-# from the same list as sitemap.xml -- edit STATIC_PAGES there, not here.
+# from every page on disk, the same list as sitemap.xml -- never edit them here.
 # EXTENSIONLESS:START
-/impact                                       /impact.html                                       301!
-/platform                                     /platform.html                                     301!
-/va-eistc                                     /va-eistc.html                                     301!
-/team                                         /team.html                                         301!
-/news                                         /news.html                                         301!
-/donate                                       /donate.html                                       301!
 /apply                                        /apply.html                                        301!
+/donate                                       /donate.html                                       301!
 /families                                     /families.html                                     301!
-/transparency                                 /transparency.html                                 301!
+/impact                                       /impact.html                                       301!
+/news                                         /news.html                                         301!
+/platform                                     /platform.html                                     301!
 /privacy                                      /privacy.html                                      301!
+/team                                         /team.html                                         301!
+/transparency                                 /transparency.html                                 301!
+/va-eistc                                     /va-eistc.html                                     301!
 /news/treasurys-proposed-federal-scholarship  /news/treasurys-proposed-federal-scholarship.html  301!
 /news/is-your-state-in-follow-the-education   /news/is-your-state-in-follow-the-education.html   301!
 /news/two-bills-that-could-make-state-opt     /news/two-bills-that-could-make-state-opt.html     301!
