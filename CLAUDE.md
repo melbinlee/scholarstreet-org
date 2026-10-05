@@ -19,7 +19,7 @@ The scholarstreet.org marketing and public-facing website for Scholar Street, a 
 - Nav/footer changes must be made in all pages *including* `news.html`.
 - `_redirects` 404s `/CLAUDE.md`, `/scripts/*`, `/news/data/*`, `/.github/*`, `/tests/*` — Netlify publishes the whole repo.
 - `va-tax-credit.js` is the tax credit calculator's math, shared byte-for-byte with ScholarPath/va-tax-credit.js (the donation form's calculator). Change both copies together; `node --test` (from the repo root) checks the pinned hash.
-- Canonical URLs are the `.html` ones. Every sitemap page's extensionless path (`/impact`) 301s to it, because Netlify served both with a 200 and Google picked the extensionless copy. The sync script generates those rules from `STATIC_PAGES` plus the articles — add a new page to `STATIC_PAGES`, not to `_redirects`.
+- Canonical URLs are the `.html` ones. Every sitemap page's extensionless path (`/impact`) 301s to it, because Netlify served both with a 200 and Google picked the extensionless copy. The sync script generates those rules and the sitemap from every top-level `*.html` on disk plus the articles, and exits without writing them if any page's canonical tag isn't its own `.html` URL (`/` for the homepage). A new page needs only that canonical tag, then a run of the script (the offline rebuild is enough); `node --test` checks the same rule. `/index.html` 301s to `/`.
 
 ## Entity rules (critical)
 - This site belongs to Scholar Street (the nonprofit). Never blend it with Scholarship Insights LLC content.
