@@ -1,8 +1,14 @@
 """Checks for the scheduled state-table job (scripts/state-updates-prompt.md).
 
-  python scripts/gnews.py              everything below, past 7 days, numbered
+  python scripts/gnews.py              everything below, numbered
+  python scripts/gnews.py --days 14    the same, over a set number of days
   python scripts/gnews.py resolve 3 12 real article URLs for those numbers
                                        (3:2 = the second copy of item 3)
+  python scripts/gnews.py done         record that the job finished a run
+
+The window runs back to the last finished run (the `done` command), so a run
+missed while the computer was asleep leaves no gap: at least MIN_DAYS, at
+most MAX_DAYS. The first line printed says which window was used.
 
 Three sections:
   NEWS        Google News: once nationally, then per state for ALL 50 states.
@@ -44,16 +50,27 @@ UA = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
       'Accept-Language': 'en-US,en;q=0.9'}
 TERMS = ('("Education Freedom Tax Credit" OR "federal scholarship tax credit" OR '
          '"scholarship tax credit" OR "tax credit scholarship" OR '
-         '"school choice tax credit")')
+         '"school choice tax credit" OR "Education Choice for Children Act" OR '
+         '"private school tax credit")')
 # No "25F" in news queries: India's Industrial Disputes Act has a Section 25F
 # whose court rulings flood the results, and quoting "Section 25F" breaks the
 # query. Coverage that calls the program a "voucher" misses TERMS, hence the
-# second state query.
+# second state query. Coverage also names the program by the law that
+# created it: the "Education Choice for Children Act" or the "Big Beautiful
+# Bill".
 VOUCHER = ('("school voucher" OR "voucher program" OR "private school voucher" OR '
-           '"school choice program") (federal OR Trump OR Treasury OR IRS)')
+           '"school choice program") (federal OR Trump OR Treasury OR IRS OR '
+           '"Big Beautiful Bill")')
 OFFICE = ('(spokesperson OR spokeswoman OR spokesman OR "press secretary" OR '
           '"governor\'s office") ("tax credit" OR voucher OR "school choice")')
-DAYS = 7
+MIN_DAYS = 7
+MAX_DAYS = 30
+DAYS = MIN_DAYS  # set by run() from the last finished run
+# Kept in .git so it stays with the checkout the job runs in and is never
+# committed or published.
+LAST_RUN = os.path.join(ROOT, '.git', 'state-job-last-run.txt')
+# Google News RSS returns at most this many items per search.
+FEED_CAP = 100
 # LegiScan's free plan allows 10,000 requests a month. One run makes one
 # getSearch per state (50), about 450 a month at two runs a week. The cap
 # stops a bug or a loop from ever using more than this in a run.
@@ -130,6 +147,25 @@ def not_opted_in():
     return [s for s in all_states() if s[3] != 'opted-in']
 
 
+def window():
+    """(days, why): back to the last finished run, within MIN_DAYS..MAX_DAYS."""
+    try:
+        last = datetime.date.fromisoformat(open(LAST_RUN, encoding='utf-8').read().strip())
+    except (OSError, ValueError):
+        return MIN_DAYS, 'no finished run on record'
+    days = (datetime.date.today() - last).days + 1
+    why = f'last finished run {last.isoformat()}'
+    if days > MAX_DAYS:
+        return MAX_DAYS, why + f', capped at {MAX_DAYS} days: cover the gap before it by hand'
+    return max(MIN_DAYS, days), why
+
+
+def done():
+    with open(LAST_RUN, 'w', encoding='utf-8') as f:
+        f.write(datetime.date.today().isoformat())
+    print(f'Recorded a finished run on {datetime.date.today().isoformat()}. The next window starts here.')
+
+
 def cutoff():
     return datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=DAYS)
 
@@ -140,7 +176,10 @@ def feed(query):
     url = ('https://news.google.com/rss/search?q=' + urllib.parse.quote_plus(query)
            + '&hl=en-US&gl=US&ceid=US:en')
     items = []
-    for it in re.findall(r'<item>.*?</item>', get(url), re.S):
+    raw = re.findall(r'<item>.*?</item>', get(url), re.S)
+    if len(raw) >= FEED_CAP:
+        items.append({'capped': True})
+    for it in raw:
         date = email.utils.parsedate_to_datetime(re.search(r'<pubDate>(.*?)</pubDate>', it).group(1))
         if date < cutoff():
             continue
@@ -179,12 +218,15 @@ def news(numbered):
 
     print('\n######## NEWS (each number is a distinct story; copies listed under it)')
     for label, queries in groups:
-        found, failed = [], []
+        found, failed, capped = [], [], False
         for q in queries:
             try:
-                found += feed(q)
+                got = feed(q)
             except Exception as e:
                 failed.append(str(e))
+            else:
+                capped = capped or any(i.get('capped') for i in got)
+                found += [i for i in got if not i.get('capped')]
             time.sleep(0.5)
         if failed and not found:
             print(f'\n== {label}: FEED FAILED ({failed[0]})')
@@ -199,7 +241,9 @@ def news(numbered):
                 continue
             stories.append({'key': key, 'copies': [it]})
         print(f'\n== {label}: {len(stories)} stories'
-              + (f' (a search failed: {failed[0]})' if failed else ''))
+              + (f' (a search failed: {failed[0]})' if failed else '')
+              + (f' (a search hit Google\'s {FEED_CAP}-item limit, so some stories are '
+                 'missing: cover this group with web searches too)' if capped else ''))
         for s in stories:
             first = s['copies'][0]
             seen = next((n for n, prev in enumerate(numbered, 1) if same_story(prev['key'], s['key'])), None)
@@ -306,7 +350,10 @@ def legislation():
 
 # ---- Entry points ----------------------------------------------------------
 
-def run():
+def run(days=None):
+    global DAYS
+    DAYS, why = (days, 'set with --days') if days else window()
+    print(f'WINDOW: past {DAYS} days ({why})')
     numbered = []
     news(numbered)
     json.dump([{'copies': n['copies']} for n in numbered], open(CACHE, 'w', encoding='utf-8'))
@@ -349,5 +396,9 @@ if __name__ == '__main__':
         sys.stdout.reconfigure(encoding='utf-8')
     if sys.argv[1:2] == ['resolve']:
         resolve(sys.argv[2:])
+    elif sys.argv[1:2] == ['done']:
+        done()
+    elif sys.argv[1:2] == ['--days']:
+        run(int(sys.argv[2]))
     else:
         run()

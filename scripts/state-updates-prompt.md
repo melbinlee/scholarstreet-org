@@ -21,6 +21,10 @@ Every news search in this run uses all of these phrases, joined with OR:
   "scholarship tax credit"
   "tax credit scholarship"
   "school choice tax credit"
+  "Education Choice for Children Act"  (the law that created the program)
+  "private school tax credit"
+Coverage also calls it a voucher, or names the "Big Beautiful Bill" it
+was part of; the script's second state search covers that wording.
 Don't add "25F": India's Industrial Disputes Act has a Section 25F whose
 court rulings flood the results, and "Section 25F" in quotes breaks the
 Google News query.
@@ -31,7 +35,8 @@ EACH RUN
    folder has uncommitted changes, stop and report; don't touch them.
    Then check for an open pull request whose branch starts with
    "state-updates/" (gh pr list --state open). If one exists, check out that
-   branch and work on top of it: add today's changes as a new commit, push,
+   branch, run `git merge --no-edit main` so it has the latest scripts and
+   instructions, and work on top of it: add today's changes as a new commit, push,
    and comment on that PR listing what's new. Only create a fresh branch from
    main when no state-updates PR is open.
 
@@ -49,7 +54,12 @@ EACH RUN
    c) News, governor newsrooms and legislation, every run. In the repo
       folder run:
         python scripts/gnews.py
-      It prints three sections, all for the past 7 days:
+      Its first line, WINDOW, says how far back this run searches: back to
+      the last finished run (step 11), at least 7 days and at most 30, so a
+      run missed while the computer slept leaves no gap. "The window" below
+      means that period. If WINDOW says it was capped at 30 days, cover the
+      older gap with web searches (step d) and say so in the report.
+      It prints three sections, all for the window:
       - NEWS: Google News searched once nationally, then for ALL 50 states.
         States not "opted-in" get three searches: the SEARCH TERMS;
         "voucher" and "school choice program" wording (much coverage calls
@@ -62,14 +72,14 @@ EACH RUN
         MATCH lines are releases about the program: open and read every
         one. States marked OPEN IN BROWSER (sites that block scripts or need
         JavaScript) and any FAILED or "NO DATES FOUND" line: open that
-        newsroom in the browser and read the headlines from the past 7 days.
+        newsroom in the browser and read the headlines from the window.
         Follow the HOW line printed under it: New York needs a full-text
         search of every item (many are generic "Statement" titles), and
         Pennsylvania's list only loads through its search box. Headlines
         that don't name the program can still hold a statement about it;
         open any generic statement or press-conference transcript.
         Also compare what the newsroom shows against the state's updates
-        even outside the 7-day window: a governor's statement about the
+        even outside the window: a governor's statement about the
         program that the file is missing (e.g. WI's Apr. 2, 2026 radio
         address, found this way) is a development to add.
         If a newsroom URL has moved, find the new one and update NEWSROOMS
@@ -78,6 +88,26 @@ EACH RUN
         all 50 states, from LegiScan. If it says SKIPPED (no API key) or
         STOPPED (request cap), say so in the report; don't treat it as "no
         bills". Open each bill's page and read its latest action.
+   d) Web search, every run, after the script. Google News misses small
+      local papers, TV station sites and state politics newsletters, and
+      stories that name the program some other way; searching the open web
+      and following leads is what finds them. Use web search (not Google
+      News) for:
+      - each state not "opted-in": the governor's last name, the state,
+        and the program in plain words, e.g.
+          Hochul New York federal tax credit scholarship
+        If that turns up nothing in the window, try one other wording, e.g.
+          Hochul "school choice" federal tax credit opt in
+      - three national searches, each with the current month and year:
+          states opt in federal tax credit scholarship
+          governors Education Freedom Tax Credit
+          Education Choice for Children Act states
+      - any group the script marked FEED FAILED or as hitting Google's
+        item limit (search it the same way, opted-in states included)
+      Open every result dated within the window that isn't already in the
+      NEWS list and read it by the rules below. Follow leads: when a story
+      mentions a hearing, a letter, a statement or another outlet's report,
+      find that and open it too, even if it's on a site no search returned.
 
    How to read the NEWS list. Read every distinct story in each state's
    group, not just the ones whose headlines look promising: a governor's
@@ -111,17 +141,16 @@ EACH RUN
    it was published. Outlets repost old stories, so a months-old article
    can show up as this week's. Always take the date from the article page
    itself (its byline date or published date). If that date is older than
-   7 days, still record the development if it isn't in the file yet,
+   the window, still record the development if it isn't in the file yet,
    but use the article's own date.
    If an article is paywalled or blocked, retry with a browser user-agent;
    if you still can't read it, don't guess what it says. Put it in
    "Needs your call" with its headline and link.
-   If the script fails or a group prints FEED FAILED, fall back to ONE web
-   search with the same terms plus the current month and year (e.g.
-   "... October 2026"), ignore results older than 7 days, and say in the
-   report that you used the fallback.
+   If the script fails outright, do the step d) searches for every state,
+   opted-in ones too, and say in the report that the script failed.
 
-   In the report, say how many distinct stories you opened per state and
+   In the report, say how many distinct stories you opened per state
+   (and how many of those came from step d's web searches), and
    list any you could not read (paywall, blocked), so it's clear what was
    and wasn't covered.
 
@@ -131,7 +160,7 @@ EACH RUN
    - Does any source describe a development (a state and date) not yet in
      that state's updates?
    If nothing is new, and today isn't a Monday, STOP: report "No changes"
-   (with the coverage counts above) and end the run.
+   (with the coverage counts above), do step 11, and end the run.
    If nothing is new and it's a Monday, skip to step 6.
 
 3. Research what's new. For each state flagged in step 2, opted in or not,
@@ -228,7 +257,7 @@ EACH RUN
    still open the PR (step 8) so the list gets seen.
 
 8. If nothing changed, no links are broken and nothing needs a decision,
-   stop. No branch, no PR, no email. Report "No changes."
+   stop. No branch, no PR, no email. Report "No changes", then do step 11.
    If no data changed and no links are broken, but there are "Needs your
    call" items, don't create a branch or PR. Skip to step 10 and send the
    "decisions only" email.
@@ -267,8 +296,16 @@ EACH RUN
      to decide (e.g. "Add this update dated X?", "Move to warm?").
    Send nothing on "No changes" runs.
 
+11. Last, once the run has finished (a "No changes" run counts), in the
+   repo folder run:
+     python scripts/gnews.py done
+   It records today as the last finished run, so the next run's window
+   starts here. Don't run it if this run stopped early on a problem
+   (uncommitted changes, the script or a source failing so badly you
+   couldn't check): the next run will then cover these days too.
+
 REPORT
 End each run with a short summary: what changed (including any status
 changes and why), the PR link and preview link (if any), what needs a
-decision, whether an email was sent, and whether any source failed or a
-fallback was used.
+decision, whether an email was sent, the WINDOW line, whether any source
+failed, and whether step 11 ran.
