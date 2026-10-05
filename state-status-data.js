@@ -65,6 +65,12 @@
      - 2026-10-02 addition, first all-states news check: Colorado Governor's
        release (CO, Oct. 1); The Center Square (VA, Oct. 1; the governor's
        office "told The Center Square Thursday").
+     - 2026-10-05 additions: Chalkbeat (OR, Oct. 2; Kotek's office told it
+       "on Friday"); Your Alaska Link (AK, Oct. 2, first approved SGOs);
+       Fox Baltimore (MD, July 19 AFT convention speech, the governor's
+       office confirming it referred to the credit); Florida Senate (FL,
+       HB 5001-E approved June 29); North Carolina Governor's release (NC,
+       June 3).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -102,6 +108,11 @@
       "irsListed": "2026-03-17",
       "irsListedBy": true,
       "updates": [
+        {
+          "date": "2026-10-02",
+          "text": "Gov. Dunleavy approves Alaska’s first 20 scholarship granting organizations; the state expects to submit its final list to the IRS by Dec. 1.",
+          "url": "https://www.youralaskalink.com/news/education/alaska-approves-first-20-scholarship-groups-under-federal-tax-credit-program/article_474e161c-7c86-40d4-a534-de0c737c90a6.html"
+        },
         {
           "date": "2026-03-17",
           "text": "On the IRS list of participating states (earliest archived edition).",
@@ -243,6 +254,11 @@
       "irsListed": "2026-03-17",
       "irsListedBy": true,
       "updates": [
+        {
+          "date": "2026-06-29",
+          "text": "Gov. DeSantis signs the state budget (HB 5001-E), which funds a $2 million system for the Department of Education to administer the federal credit.",
+          "url": "https://flsenate.gov/Session/Bill/2026E/5001E"
+        },
         {
           "date": "2026-03-17",
           "text": "On the IRS list of participating states (earliest archived edition).",
@@ -475,7 +491,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Wes Moore",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-07-19",
+          "text": "Gov. Moore calls the program “a tax scheme that takes public funding and steers it towards private schools.”",
+          "url": "https://foxbaltimore.com/news/local/maryland-governor-wes-moore-federal-education-federal-scholarship-tax-credit"
+        }
+      ]
     },
     "ME": {
       "status": "pending-cold",
@@ -580,6 +602,11 @@
           "date": "2026-06-22",
           "text": "Added to the IRS list of participating states.",
           "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-06-03",
+          "text": "Gov. Stein says he is working on a way for North Carolinians to direct their donations to scholarship organizations that benefit public school students.",
+          "url": "https://governor.nc.gov/news/press-releases/2026/06/03/governor-stein-reacts-override-house-bill-87-veto"
         },
         {
           "date": "2026-06-03",
@@ -787,6 +814,11 @@
       "verified": true,
       "currentGovernor": "Tina Kotek",
       "updates": [
+        {
+          "date": "2026-10-02",
+          "text": "Gov. Kotek’s office says she is reviewing the new federal rules but has no plans to change her position.",
+          "url": "https://www.chalkbeat.org/2026/10/02/federal-education-tax-credits-rules-pose-test-for-democratic-governors/"
+        },
         {
           "date": "2026-06-12",
           "text": "Gov. Kotek says Oregon will not participate after reviewing the draft rules."
@@ -1072,7 +1104,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-02';
+  window.SS_UPDATED = '2026-10-05';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
