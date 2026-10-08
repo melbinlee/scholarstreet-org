@@ -71,6 +71,10 @@
        office confirming it referred to the credit); Florida Senate (FL,
        HB 5001-E approved June 29); North Carolina Governor's release (NC,
        June 3).
+     - 2026-10-08 additions: Hartford Business Journal (CT, Oct. 6; Lamont
+       "told reporters" on "Tuesday"); City & State Pennsylvania (PA, Oct. 7
+       governor's debate, "Wednesday night"; Shapiro: "I've also expressed
+       my openness to this", so PA moves to pending-warm).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -233,6 +237,11 @@
       "verified": true,
       "currentGovernor": "Ned Lamont",
       "updates": [
+        {
+          "date": "2026-10-06",
+          "text": "Gov. Lamont says he will ask federal officials for more clarification, wants to be sure the program does not discriminate against public education, and expects to know “within a month or so.”",
+          "url": "https://hartfordbusiness.com/article/lamont-weighs-federal-scholarship-tax-credit-as-ct-education-leaders-push-back/"
+        },
         {
           "date": "2026-05-20",
           "text": "Gov. Lamont calls opting in premature until more federal guidance is out.",
@@ -836,7 +845,7 @@
       ]
     },
     "PA": {
-      "status": "pending-cold",
+      "status": "pending-warm",
       "verified": true,
       "currentGovernor": "Josh Shapiro",
       "credit": {
@@ -845,6 +854,11 @@
         "url": "https://www.pa.gov/agencies/revenue/business-tax-credits-and-economic-development-programs/business-tax-credits-and-incentives/educational-tax-credits"
       },
       "updates": [
+        {
+          "date": "2026-10-07",
+          "text": "In the governor’s debate, Gov. Shapiro says he is open to the program and will announce a decision in the next few weeks.",
+          "url": "https://www.cityandstatepa.com/politics/2026/10/7-takeaways-debate-between-gov-josh-shapiro-and-treasurer-stacy-garrity/416488/"
+        },
         {
           "date": "2026-08-18",
           "text": "Gov. Shapiro’s office says he is awaiting federal guidance before deciding.",
@@ -1104,7 +1118,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-05';
+  window.SS_UPDATED = '2026-10-08';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
