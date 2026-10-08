@@ -75,6 +75,13 @@
        "told reporters" on "Tuesday"); City & State Pennsylvania (PA, Oct. 7
        governor's debate, "Wednesday night"; Shapiro: "I've also expressed
        my openness to this", so PA moves to pending-warm).
+     - 2026-10-08 additions, Mel's call: WWLP / Nexstar (NY, Oct. 7; a
+       Hochul spokesperson "said on Wednesday"; close to the Oct. 1
+       statement); Spectrum News (MI, Sept. 10; dated by the article, the
+       day Whitmer spoke is unconfirmed); Albuquerque Journal (NM, Apr. 2;
+       the spokesman's "comments this week", dated by the article). Not
+       added: NJ (Chalkbeat newsletter, excluded by Mel); MA (Executive
+       Office of Education, not the governor's office); candidates.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -520,6 +527,11 @@
       "currentGovernor": "Gretchen Whitmer",
       "updates": [
         {
+          "date": "2026-09-10",
+          "text": "Gov. Whitmer says she has not made a final decision and will decide once the Trump administration says exactly what the program looks like.",
+          "url": "https://spectrumlocalnews.com/mi/michigan/news/2026/09/10/michigan-education-tax-credit-"
+        },
+        {
           "date": "2026-03-30",
           "text": "House Speaker Matt Hall urges Gov. Whitmer to opt in; her office says it is waiting for Treasury guidance.",
           "url": "https://www.wnem.com/2026/03/30/speaker-hall-urges-whitmer-join-federal-education-tax-credit-program/"
@@ -711,6 +723,11 @@
       "currentGovernor": "Michelle Lujan Grisham",
       "updates": [
         {
+          "date": "2026-04-02",
+          "text": "Gov. Lujan Grisham’s spokesman says she is actively considering whether to opt in and is awaiting more information from Treasury about the funding’s flexibility.",
+          "url": "https://www.abqjournal.com/news/governor-still-weighing-new-mexicos-participation-in-federal-education-tax-credit-program/3014488"
+        },
+        {
           "date": "2026-03-04",
           "text": "Gov. Lujan Grisham’s office says she is seeking more federal guidance before a final decision.",
           "url": "https://www.edweek.org/policy-politics/they-said-no-to-the-federal-school-choice-program-now-3-dems-are-reconsidering/2026/03"
@@ -747,6 +764,11 @@
       "verified": true,
       "currentGovernor": "Kathy Hochul",
       "updates": [
+        {
+          "date": "2026-10-07",
+          "text": "Gov. Hochul’s office says it is carefully reviewing the proposed regulations and that, structured so all students can benefit, the credit can expand opportunity without diverting funding from public schools.",
+          "url": "https://www.wwlp.com/news/new-york-mulls-federal-scholarship-tax-credit-program/"
+        },
         {
           "date": "2026-10-01",
           "text": "Gov. Hochul’s office says she wants to make sure the program benefits all students and doesn’t affect state and local budgets.",
