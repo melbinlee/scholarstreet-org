@@ -82,6 +82,12 @@
        the spokesman's "comments this week", dated by the article). Not
        added: NJ (Chalkbeat newsletter, excluded by Mel); MA (Executive
        Office of Education, not the governor's office); candidates.
+     - 2026-10-09 additions: New York Governor's statement (NY, Oct. 9; she
+       says New York will participate); GBH News (MA, Oct. 8 governor's debate,
+       "Thursday"). New York is set to opted-in with optInDate 2026-10-09 by
+       Scholar Street's override (Mel, Oct. 9): the governor's formal
+       announcement counts as the opt-in, though the state is not on the IRS
+       list yet. Set irsListed when it appears there.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -497,6 +503,11 @@
       "currentGovernor": "Maura Healey",
       "updates": [
         {
+          "date": "2026-10-08",
+          "text": "In the governor’s debate, Gov. Healey says “I’ve got to look at it, and I’m not just going to take Trump’s word for it.”",
+          "url": "https://www.wgbh.org/news/politics/2026-10-08/guvs-record-trumps-impact-on-stage-in-healey-minogue-debate"
+        },
+        {
           "date": "2026-10-01",
           "text": "Gov. Healey says she wants more clarity on the new federal rules and will make sure nothing harms public education.",
           "url": "https://www.wwlp.com/news/massachusetts/divisions-remain-after-feds-roll-out-scholarship-tax-credit-regs/"
@@ -760,10 +771,17 @@
       ]
     },
     "NY": {
-      "status": "pending-warm",
+      "status": "opted-in",
       "verified": true,
       "currentGovernor": "Kathy Hochul",
+      "optInDate": "2026-10-09",
+      "optInGovernor": "Kathy Hochul",
       "updates": [
+        {
+          "date": "2026-10-09",
+          "text": "Gov. Hochul announces New York will participate in the program, saying “I’m not going to leave money on the table when it could help our kids.”",
+          "url": "https://www.governor.ny.gov/news/statement-governor-kathy-hochul-180"
+        },
         {
           "date": "2026-10-07",
           "text": "Gov. Hochul’s office says it is carefully reviewing the proposed regulations and that, structured so all students can benefit, the credit can expand opportunity without diverting funding from public schools.",
@@ -1140,7 +1158,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-08';
+  window.SS_UPDATED = '2026-10-09';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
