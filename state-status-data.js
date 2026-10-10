@@ -83,9 +83,11 @@
        added: NJ (Chalkbeat newsletter, excluded by Mel); MA (Executive
        Office of Education, not the governor's office); candidates.
      - 2026-10-09 additions: New York Governor's statement (NY, Oct. 9; she
-       says New York will participate, but the state is not on the IRS list
-       yet, so it stays pending-warm with no optInDate); GBH News (MA, Oct. 8
-       governor's debate, "Thursday").
+       says New York will participate); GBH News (MA, Oct. 8 governor's debate,
+       "Thursday"). New York is set to opted-in with optInDate 2026-10-09 by
+       Scholar Street's override (Mel, Oct. 9): the governor's formal
+       announcement counts as the opt-in, though the state is not on the IRS
+       list yet. Set irsListed when it appears there.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -769,9 +771,11 @@
       ]
     },
     "NY": {
-      "status": "pending-warm",
+      "status": "opted-in",
       "verified": true,
       "currentGovernor": "Kathy Hochul",
+      "optInDate": "2026-10-09",
+      "optInGovernor": "Kathy Hochul",
       "updates": [
         {
           "date": "2026-10-09",
