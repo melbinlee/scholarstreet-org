@@ -15,7 +15,8 @@
 /index.html         /  301!
 
 # Browsers request /favicon.ico regardless of the <link rel="icon"> tag.
-/favicon.ico        /favicon.svg  200
+/favicon.ico        /favicon.png  200
+/favicon.svg        /favicon.png  301
 
 # Consolidated into impact.html (2026-09-15): Why 25F and How It Works are now
 # sections of the Impact page. Both old URLs were indexed and linked.
