@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZP28ZWB133"></script>
 <script>
@@ -110,10 +111,8 @@ nav#mainNav{position:sticky;top:0;z-index:50;background:rgba(249,247,242,.96);
   display:flex;align-items:center;justify-content:space-between;gap:22px;
   padding:11px 40px}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
-.nav-crest{width:46px;height:46px;background:var(--navy);border-radius:11px;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  border:1px solid rgba(200,168,75,.28)}
-.nav-crest svg{width:42px;height:42px}
+.nav-crest{height:46px;display:flex;align-items:center;flex-shrink:0}
+.nav-crest img{height:100%;width:auto;display:block}
 .nav-brand{display:flex;flex-direction:column;gap:1px}
 .nav-name{font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.01em;
   color:var(--navy);line-height:1;display:flex;align-items:baseline}
@@ -216,8 +215,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   .nav-links a{font-size:12px}
   .nav-apply{padding:7px 14px!important}
   .nav-apply-outline{padding:7px 14px!important}
-  .nav-crest{width:42px;height:42px}
-  .nav-crest svg{width:38px;height:38px}
+  .nav-crest{height:42px}
 }
 @media(max-width:1180px){
   .nav-toggle{display:block}
@@ -237,8 +235,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
   nav#mainNav{padding:10px 18px;gap:10px}
   .nav-links{padding:10px 18px 18px}
   .nav-type{display:none}
-  .nav-crest{width:40px;height:40px}
-  .nav-crest svg{width:36px;height:36px}
+  .nav-crest{height:40px}
   .nav-name,.nav-name span{font-size:17px}
   .wrap{padding:0 18px}
 }
@@ -375,16 +372,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 </div>
 <nav id="mainNav">
   <a class="nav-logo" href="/">
-    <div class="nav-crest"><svg viewBox="7 6 30 30" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 30 L9 18 Q22 14 22 14 Q22 14 35 18 L35 30 Q22 26 22 26 Q22 26 9 30 Z" fill="#F9F7F2"/>
-        <line x1="22" y1="14" x2="22" y2="30" stroke="#C8A84B" stroke-width="1.2"/>
-        <line x1="11" y1="31" x2="33" y2="31" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="13" y1="33" x2="31" y2="33" stroke="#C8A84B" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-        <polygon points="22,9 32,14.5 22,20 12,14.5" fill="#C8A84B"/>
-        <polygon points="22,9 32,14.5 22,14.5 12,14.5" fill="#b8953e" opacity="0.4"/>
-        <line x1="32" y1="14.5" x2="32" y2="21" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="32" cy="22" r="2" fill="#C8A84B"/>
-      </svg></div>
+    <div class="nav-crest"><img src="/img/logo/mark-138.png" alt="" width="54" height="46"></div>
     <div class="nav-brand">
       <span class="nav-name"><span style="color:#1B2E4B">Scholar</span><span style="color:#C8A84B;margin-left:7px">Street</span></span>
       <span class="nav-type">Scholarship Granting Organization</span>
@@ -456,8 +444,9 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 <section class="tc-band">
   <div class="wrap">
     <!-- Reference-only calculator. It takes no payment and is not connected
-         to the donation form. The math is in va-tax-credit.js, shared with
-         the donation form's calculator. -->
+         to the donation form. The math is in tax-credit.js, shared with the
+         donation form's calculator, and Virginia's numbers come from its State
+         Credit Program record (edited in Salesforce), not from this page. -->
     <div class="tc-calc" id="tc-calc">
       <div>
         <h4>Estimate your tax credits</h4>
@@ -484,7 +473,7 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div class="tc-results" aria-live="polite">
         <div class="tc-row"><span>Your gift</span><b id="tc-out-gift">$0</b></div>
         <div class="tc-note" id="tc-note-gift"></div>
-        <div class="tc-row tc-credit"><span>Virginia EISTC credit (65%)</span><b id="tc-out-eistc">$0</b></div>
+        <div class="tc-row tc-credit"><span>Virginia EISTC credit (<span id="tc-rate">65%</span>)</span><b id="tc-out-eistc">$0</b></div>
         <div class="tc-note" id="tc-note-eistc"></div>
         <div class="tc-row tc-credit"><span>Federal &#167;25F credit <span class="tc-tag">Begins January 1, 2027</span></span><b id="tc-out-25f">$0</b></div>
         <div class="tc-note" id="tc-note-25f"></div>
@@ -495,9 +484,11 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
       <div class="tc-disclaimer">
         <p>This is an estimate for reference only, not tax advice. EISTC gifts
         require preauthorization from the Virginia Department of Education
-        before you give. Federal rules for &#167;25F are still being finalized by
-        the IRS. Talk to your tax advisor, and contact us to start an EISTC
-        gift.</p>
+        before you give. <span id="tc-stacking-note"></span>Federal rules for &#167;25F
+        are still being finalized by the IRS. Talk to your tax advisor, and contact
+        us to start an EISTC gift.</p>
+        <p id="tc-unavailable" hidden>The calculator could not load Virginia&rsquo;s credit figures
+        right now. Please try again later, or email us and we&rsquo;ll work out the numbers with you.</p>
         <a href="mailto:info@scholarstreet.org?subject=Virginia%20EISTC%20Inquiry" class="btn-gold">Ask about EISTC</a>
       </div>
     </div>
@@ -873,23 +864,31 @@ document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 });
 </script>
-<script src="va-tax-credit.js"></script>
+<script src="tax-credit.js"></script>
 <script>
 /* Tax credit calculator. Reference only: no payment, no link to the form.
-   The math and notes come from va-tax-credit.js. */
+   The math and notes come from tax-credit.js; Virginia's rate and limits come
+   from its program record, served by the donation platform. */
 (function(){
   var $ = function(id){ return document.getElementById(id); };
-  if(!$('tc-calc') || !window.VaTaxCredit) return;
-  var calc = window.VaTaxCredit;
+  if(!$('tc-calc') || !window.TaxCredit) return;
+  var PROGRAMS = 'https://scholarship-insights.com/api/state-credit-programs?state=VA';
+  var calc = null;
+
+  function unavailable(){
+    $('tc-unavailable').hidden = false;
+    ['tc-eistc', 'tc-25f'].forEach(function(id){ $(id).disabled = true; });
+  }
 
   function update(){
+    if(!calc) return;
     var couple = document.querySelector('input[name="tc-filer"]:checked').value === 'couple';
     var r = calc.boxes($('tc-eistc').value, $('tc-25f').value, couple);
     var n = calc.notes(r, couple);
     $('tc-out-gift').textContent = calc.money(r.gift);
     $('tc-note-gift').textContent = n.gift;
-    $('tc-out-eistc').textContent = calc.money(r.eistcCredit);
-    $('tc-note-eistc').textContent = n.eistc;
+    $('tc-out-eistc').textContent = calc.money(r.stateCredit);
+    $('tc-note-eistc').textContent = n.state;
     $('tc-out-25f').textContent = calc.money(r.f25Credit);
     $('tc-note-25f').textContent = n.f25;
     $('tc-out-credits').textContent = calc.money(r.totalCredits);
@@ -898,7 +897,21 @@ document.addEventListener('DOMContentLoaded',function(){
 
   ['tc-eistc', 'tc-25f'].forEach(function(id){ $(id).addEventListener('input', update); });
   document.querySelectorAll('input[name="tc-filer"]').forEach(function(r){ r.addEventListener('change', update); });
-  update();
+
+  fetch(PROGRAMS)
+    .then(function(res){ return res.ok ? res.json() : null; })
+    .then(function(j){
+      var row = j && j.programs && j.programs[0];
+      if(!row || !(Number(row.individual_credit_rate) > 0)) return unavailable();
+      calc = window.TaxCredit.forProgram(window.TaxCredit.fromRow(row));
+      $('tc-rate').textContent = (Math.round(Number(row.individual_credit_rate) * 10000) / 100) + '%';
+      if(row.stacking_with_25f !== 'allowed'){
+        $('tc-stacking-note').textContent = 'Whether Virginia allows its credit on a gift that is also '
+          + 'designated for \u00a725F is not yet confirmed, so treat the combined figure as provisional. ';
+      }
+      update();
+    })
+    .catch(unavailable);
 })();
 </script>
 </body>

@@ -71,6 +71,17 @@
        office confirming it referred to the credit); Florida Senate (FL,
        HB 5001-E approved June 29); North Carolina Governor's release (NC,
        June 3).
+     - 2026-10-08 additions: Hartford Business Journal (CT, Oct. 6; Lamont
+       "told reporters" on "Tuesday"); City & State Pennsylvania (PA, Oct. 7
+       governor's debate, "Wednesday night"; Shapiro: "I've also expressed
+       my openness to this", so PA moves to pending-warm).
+     - 2026-10-08 additions, Mel's call: WWLP / Nexstar (NY, Oct. 7; a
+       Hochul spokesperson "said on Wednesday"; close to the Oct. 1
+       statement); Spectrum News (MI, Sept. 10; dated by the article, the
+       day Whitmer spoke is unconfirmed); Albuquerque Journal (NM, Apr. 2;
+       the spokesman's "comments this week", dated by the article). Not
+       added: NJ (Chalkbeat newsletter, excluded by Mel); MA (Executive
+       Office of Education, not the governor's office); candidates.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -233,6 +244,11 @@
       "verified": true,
       "currentGovernor": "Ned Lamont",
       "updates": [
+        {
+          "date": "2026-10-06",
+          "text": "Gov. Lamont says he will ask federal officials for more clarification, wants to be sure the program does not discriminate against public education, and expects to know “within a month or so.”",
+          "url": "https://hartfordbusiness.com/article/lamont-weighs-federal-scholarship-tax-credit-as-ct-education-leaders-push-back/"
+        },
         {
           "date": "2026-05-20",
           "text": "Gov. Lamont calls opting in premature until more federal guidance is out.",
@@ -511,6 +527,11 @@
       "currentGovernor": "Gretchen Whitmer",
       "updates": [
         {
+          "date": "2026-09-10",
+          "text": "Gov. Whitmer says she has not made a final decision and will decide once the Trump administration says exactly what the program looks like.",
+          "url": "https://spectrumlocalnews.com/mi/michigan/news/2026/09/10/michigan-education-tax-credit-"
+        },
+        {
           "date": "2026-03-30",
           "text": "House Speaker Matt Hall urges Gov. Whitmer to opt in; her office says it is waiting for Treasury guidance.",
           "url": "https://www.wnem.com/2026/03/30/speaker-hall-urges-whitmer-join-federal-education-tax-credit-program/"
@@ -702,6 +723,11 @@
       "currentGovernor": "Michelle Lujan Grisham",
       "updates": [
         {
+          "date": "2026-04-02",
+          "text": "Gov. Lujan Grisham’s spokesman says she is actively considering whether to opt in and is awaiting more information from Treasury about the funding’s flexibility.",
+          "url": "https://www.abqjournal.com/news/governor-still-weighing-new-mexicos-participation-in-federal-education-tax-credit-program/3014488"
+        },
+        {
           "date": "2026-03-04",
           "text": "Gov. Lujan Grisham’s office says she is seeking more federal guidance before a final decision.",
           "url": "https://www.edweek.org/policy-politics/they-said-no-to-the-federal-school-choice-program-now-3-dems-are-reconsidering/2026/03"
@@ -738,6 +764,11 @@
       "verified": true,
       "currentGovernor": "Kathy Hochul",
       "updates": [
+        {
+          "date": "2026-10-07",
+          "text": "Gov. Hochul’s office says it is carefully reviewing the proposed regulations and that, structured so all students can benefit, the credit can expand opportunity without diverting funding from public schools.",
+          "url": "https://www.wwlp.com/news/new-york-mulls-federal-scholarship-tax-credit-program/"
+        },
         {
           "date": "2026-10-01",
           "text": "Gov. Hochul’s office says she wants to make sure the program benefits all students and doesn’t affect state and local budgets.",
@@ -836,7 +867,7 @@
       ]
     },
     "PA": {
-      "status": "pending-cold",
+      "status": "pending-warm",
       "verified": true,
       "currentGovernor": "Josh Shapiro",
       "credit": {
@@ -845,6 +876,11 @@
         "url": "https://www.pa.gov/agencies/revenue/business-tax-credits-and-economic-development-programs/business-tax-credits-and-incentives/educational-tax-credits"
       },
       "updates": [
+        {
+          "date": "2026-10-07",
+          "text": "In the governor’s debate, Gov. Shapiro says he is open to the program and will announce a decision in the next few weeks.",
+          "url": "https://www.cityandstatepa.com/politics/2026/10/7-takeaways-debate-between-gov-josh-shapiro-and-treasurer-stacy-garrity/416488/"
+        },
         {
           "date": "2026-08-18",
           "text": "Gov. Shapiro’s office says he is awaiting federal guidance before deciding.",
@@ -1104,7 +1140,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-05';
+  window.SS_UPDATED = '2026-10-08';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
