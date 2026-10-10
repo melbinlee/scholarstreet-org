@@ -88,6 +88,16 @@
        Scholar Street's override (Mel, Oct. 9): the governor's formal
        announcement counts as the opt-in, though the state is not on the IRS
        list yet. Set irsListed when it appears there.
+     - 2026-10-09 "needs your call" items, added at Mel's request (none
+       changes a status; candidates, lawmakers and agencies are recorded but
+       never move a status): Richmond Times-Dispatch (VA, Oct. 9, paywalled,
+       from its visible lede); WGBH (MA, Minogue in the Oct. 8 debate);
+       Boston Herald (MA, Executive Office of Education "as of Monday" Oct.
+       5); Jewish Insider (NJ, Sherrill spokesperson "Thursday" Oct. 1);
+       Chalkbeat Colorado (CO, Oct. 6; Polis interview date unconfirmed,
+       dated by the article; Weiser); lohud (NY, Stewart-Cousins and Heastie,
+       Oct. 8 statement); City & State PA (PA, Garrity, Oct. 7 debate);
+       Rep. Biggs's release (AZ, Aug. 25).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -199,6 +209,11 @@
       },
       "updates": [
         {
+          "date": "2026-08-25",
+          "text": "Rep. Andy Biggs, running for governor, calls on Gov. Hobbs to opt Arizona in.",
+          "url": "https://biggs.house.gov/media/press-releases/congressman-biggs-calls-governor-hobbs-give-arizonans-access-education-freedom"
+        },
+        {
           "date": "2026-05-05",
           "text": "Gov. Hobbs vetoes a third opt-in bill.",
           "url": "https://apps.azleg.gov/BillStatus/BillOverview/85722"
@@ -228,6 +243,16 @@
       "irsListed": "2026-03-17",
       "irsListedBy": true,
       "updates": [
+        {
+          "date": "2026-10-06",
+          "text": "Gov. Polis says he hopes other governors opt in: “as an American, I hope that you do.”",
+          "url": "https://www.chalkbeat.org/colorado/2026/10/06/colorado-public-school-groups-jump-on-tax-credit-scholarship-program/"
+        },
+        {
+          "date": "2026-10-06",
+          "text": "Democratic candidate for governor Phil Weiser says he is a “firm no” on the program.",
+          "url": "https://www.chalkbeat.org/colorado/2026/10/06/colorado-public-school-groups-jump-on-tax-credit-scholarship-program/"
+        },
         {
           "date": "2026-10-01",
           "text": "Gov. Polis welcomes the new federal rules and says Colorado will submit its list of eligible scholarship organizations to Treasury before January 1, 2027.",
@@ -508,6 +533,16 @@
           "url": "https://www.wgbh.org/news/politics/2026-10-08/guvs-record-trumps-impact-on-stage-in-healey-minogue-debate"
         },
         {
+          "date": "2026-10-08",
+          "text": "In the same debate, Republican candidate Mike Minogue presses Gov. Healey to opt in: “Why would you not take the free money?”",
+          "url": "https://www.wgbh.org/news/politics/2026-10-08/guvs-record-trumps-impact-on-stage-in-healey-minogue-debate"
+        },
+        {
+          "date": "2026-10-05",
+          "text": "The state Executive Office of Education says it is reviewing the new federal rules, with no word on whether Massachusetts will opt in.",
+          "url": "https://www.bostonherald.com/2026/10/05/advocates-urge-healey-to-opt-out-of-trumps-education-tax-credit-warn-of-substantial-negative-impact-on-public-schools/"
+        },
+        {
           "date": "2026-10-01",
           "text": "Gov. Healey says she wants more clarity on the new federal rules and will make sure nothing harms public education.",
           "url": "https://www.wwlp.com/news/massachusetts/divisions-remain-after-feds-roll-out-scholarship-tax-credit-regs/"
@@ -722,6 +757,11 @@
       "currentGovernor": "Mikie Sherrill",
       "updates": [
         {
+          "date": "2026-10-01",
+          "text": "Gov. Sherrill’s office says it is carefully reviewing the federal guidance and that the priority is to “put kids first and strengthen New Jersey’s public schools.”",
+          "url": "https://jewishinsider.com/2026/10/democratic-governors-deadline-federal-education-tax-credit/"
+        },
+        {
           "date": "2026-05-12",
           "text": "Gov. Sherrill’s office says she will evaluate the program once federal rules are final.",
           "url": "https://jewishinsider.com/2026/05/mikie-sherrill-education-tax-initiative-not-committed-kathy-hochul/"
@@ -781,6 +821,11 @@
           "date": "2026-10-09",
           "text": "Gov. Hochul announces New York will participate in the program, saying “I’m not going to leave money on the table when it could help our kids.”",
           "url": "https://www.governor.ny.gov/news/statement-governor-kathy-hochul-180"
+        },
+        {
+          "date": "2026-10-08",
+          "text": "Senate Majority Leader Stewart-Cousins and Assembly Speaker Heastie say New York should not opt in.",
+          "url": "https://www.lohud.com/story/news/politics/2026/10/08/why-top-ny-lawmakers-are-opposing-federal-school-tax-credit-program/92136910007/"
         },
         {
           "date": "2026-10-07",
@@ -897,6 +942,11 @@
         {
           "date": "2026-10-07",
           "text": "In the governor’s debate, Gov. Shapiro says he is open to the program and will announce a decision in the next few weeks.",
+          "url": "https://www.cityandstatepa.com/politics/2026/10/7-takeaways-debate-between-gov-josh-shapiro-and-treasurer-stacy-garrity/416488/"
+        },
+        {
+          "date": "2026-10-07",
+          "text": "In the same debate, Republican candidate Stacy Garrity says she would opt in on “Day 1.”",
           "url": "https://www.cityandstatepa.com/politics/2026/10/7-takeaways-debate-between-gov-josh-shapiro-and-treasurer-stacy-garrity/416488/"
         },
         {
@@ -1041,6 +1091,11 @@
         "url": "va-eistc.html"
       },
       "updates": [
+        {
+          "date": "2026-10-09",
+          "text": "The Richmond Times-Dispatch reports Virginia’s participation is “in question,” with a chance the state will rescind its decision to participate.",
+          "url": "https://richmond.com/news/state-regional/education/article_9d9ce59a-fe80-4e61-bc38-eae826fa9a61.html"
+        },
         {
           "date": "2026-10-01",
           "text": "Gov. Spanberger’s office says the administration is reviewing the new federal rules and remains committed first to Virginia’s public school students.",
