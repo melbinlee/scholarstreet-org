@@ -411,6 +411,15 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
+# The link-preview image for pages without one of their own: the full logo.
+SHARE_IMAGE = [
+    f'<meta property="og:image" content="{SITE}/img/logo/og-1200x630.png">',
+    '<meta property="og:image:width" content="1200">',
+    '<meta property="og:image:height" content="630">',
+    '<meta property="og:image:alt" content="Scholar Street, Scholarship Granting Organization">',
+]
+
+
 def head_block(title, description, url, image="", kind="website"):
     lines = [
         f"<title>{esc(title)}</title>",
@@ -423,6 +432,9 @@ def head_block(title, description, url, image="", kind="website"):
     ]
     if image:
         lines.append(f'<meta property="og:image" content="{esc(image)}">')
+    else:
+        lines.extend(SHARE_IMAGE)
+    lines.append('<meta name="twitter:card" content="summary_large_image">')
     return "\n".join(lines)
 
 
