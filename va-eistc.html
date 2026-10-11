@@ -845,7 +845,7 @@ document.addEventListener('DOMContentLoaded',function(){
     if(href.indexOf('scholarship-insights.com/a/scholarstreet') !== -1 ||
        (href.indexOf('accounts.scholarship-insights.com') !== -1 &&
         href.indexOf('/sign-up') !== -1)){ name = 'apply_start'; }
-    else if(/(^|\/)donate(\.html)?$/.test(href)){ name = 'donate_start'; }
+    else if(/(^|\/)donate(\.html)?([?#]|$)/.test(href)){ name = 'donate_start'; }
     else if(href.indexOf('mailto:') === 0){
       name = href.indexOf('EISTC') !== -1 ? 'eistc_inquiry' : 'email_click';
     }
