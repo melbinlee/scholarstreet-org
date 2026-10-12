@@ -98,6 +98,11 @@
        dated by the article; Weiser); lohud (NY, Stewart-Cousins and Heastie,
        Oct. 8 statement); City & State PA (PA, Garrity, Oct. 7 debate);
        Rep. Biggs's release (AZ, Aug. 25).
+     - 2026-10-12 additions: Richmond Times-Dispatch (VA, Oct. 9; Spanberger
+       "said Friday in Henrico", quoted in the article's photo caption, the
+       body being paywalled); Rhode Island Governor's signing letter for
+       H 7163 (RI, June 18), found by web search; KTAR (AZ, Aug. 25; the
+       governor's office quoted in the article, dated by the article).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -208,6 +213,11 @@
         "url": "https://azdor.gov/tax-credits/credits-contributions-certified-school-tuition-organizations"
       },
       "updates": [
+        {
+          "date": "2026-08-25",
+          "text": "Gov. Hobbs’s office says she has taken no position for or against the program and is waiting for federal rules; her press secretary says the vetoes were not a rejection of the concept.",
+          "url": "https://ktar.com/arizona-education/secretary-linda-mcmahon-katie-hobbs-federal-tax-credit"
+        },
         {
           "date": "2026-08-25",
           "text": "Rep. Andy Biggs, running for governor, calls on Gov. Hobbs to opt Arizona in.",
@@ -968,6 +978,11 @@
       "updates": [
         {
           "date": "2026-06-18",
+          "text": "In his signing letter, Gov. McKee says he remains “deeply concerned about the program itself,” opposes using it for private school tuition, and would evaluate participating only if funds were limited to uses such as tutoring, transportation and educational technology.",
+          "url": "https://files.constantcontact.com/95de6620601/6e5eeac4-bf04-42a1-b8ea-bda95009ee95.pdf"
+        },
+        {
+          "date": "2026-06-18",
           "text": "Gov. McKee signs H 7163, requiring both the legislature and the governor to approve opting in.",
           "url": "https://news.ballotpedia.org/2026/06/23/gov-mckee-d-signs-bill-to-require-governor-legislature-agreement-before-opting-into-education-freedom-tax-credit/"
         }
@@ -1093,6 +1108,11 @@
       "updates": [
         {
           "date": "2026-10-09",
+          "text": "Gov. Spanberger says “We’re continuing to evaluate the program and where Virginia is and what our options are moving forward.”",
+          "url": "https://richmond.com/news/state-regional/education/article_9d9ce59a-fe80-4e61-bc38-eae826fa9a61.html"
+        },
+        {
+          "date": "2026-10-09",
           "text": "The Richmond Times-Dispatch reports Virginia’s participation is “in question,” with a chance the state will rescind its decision to participate.",
           "url": "https://richmond.com/news/state-regional/education/article_9d9ce59a-fe80-4e61-bc38-eae826fa9a61.html"
         },
@@ -1213,7 +1233,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-09';
+  window.SS_UPDATED = '2026-10-12';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
