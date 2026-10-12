@@ -103,6 +103,10 @@
        body being paywalled); Rhode Island Governor's signing letter for
        H 7163 (RI, June 18), found by web search; KTAR (AZ, Aug. 25; the
        governor's office quoted in the article, dated by the article).
+       Added the same day at Mel's request: Portland Press Herald (ME, June
+       25; a Mills spokesperson "said this week", dated by the article); The
+       Daily Record (MD, Sept. 15; Moore's remark undated in the article,
+       dated by the article).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -565,6 +569,11 @@
       "currentGovernor": "Wes Moore",
       "updates": [
         {
+          "date": "2026-09-15",
+          "text": "Gov. Moore says he wants to know more about the federal tax credit before deciding whether to opt in.",
+          "url": "https://thedailyrecord.com/2026/09/15/private-schools-education-freedom-tax-credit-trump-moore/"
+        },
+        {
           "date": "2026-07-19",
           "text": "Gov. Moore calls the program “a tax scheme that takes public funding and steers it towards private schools.”",
           "url": "https://foxbaltimore.com/news/local/maryland-governor-wes-moore-federal-education-federal-scholarship-tax-credit"
@@ -575,7 +584,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Janet Mills",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-06-25",
+          "text": "A spokesperson for Gov. Mills says she is still waiting to make a decision, with the program’s final rules pending.",
+          "url": "https://www.pressherald.com/2026/06/25/will-maine-opt-in-to-the-federal-school-voucher-program"
+        }
+      ]
     },
     "MI": {
       "status": "pending-cold",
