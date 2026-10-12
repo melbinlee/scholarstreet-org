@@ -108,6 +108,11 @@
        Daily Record (MD, Sept. 15; Moore's remark undated in the article,
        dated by the article). MPR News (MN, Mar. 24; Walz "said Tuesday")
        added as the link for the existing Minnesota update.
+       Scholar Street's override (Mel, Oct. 12): Arizona is pending-cold,
+       not not-participating. Gov. Hobbs's office says she has taken no
+       position and that her three vetoes were not a rejection of the
+       concept (KTAR, Aug. 25). Keep it pending-cold unless the governor
+       declines, vetoes again, or signals she will or may opt in.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -209,7 +214,7 @@
       ]
     },
     "AZ": {
-      "status": "not-participating",
+      "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Katie Hobbs",
       "credit": {
