@@ -106,7 +106,8 @@
        Added the same day at Mel's request: Portland Press Herald (ME, June
        25; a Mills spokesperson "said this week", dated by the article); The
        Daily Record (MD, Sept. 15; Moore's remark undated in the article,
-       dated by the article).
+       dated by the article). MPR News (MN, Mar. 24; Walz "said Tuesday")
+       added as the link for the existing Minnesota update.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -616,7 +617,8 @@
       "updates": [
         {
           "date": "2026-03-24",
-          "text": "Gov. Walz says Minnesota will not participate."
+          "text": "Gov. Walz says Minnesota will not participate.",
+          "url": "https://www.mprnews.org/story/2026/03/24/walz-wont-opt-minnesota-into-federal-education-tax-change"
         }
       ]
     },
