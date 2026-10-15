@@ -118,6 +118,9 @@
        governors' offices answering the article, dated by the article);
        Sheridan Media (WY, Oct. 12) and Big Country News (ID, Oct. 12) for
        each state's SGO applications opening, dated by the articles.
+     - Boston Herald (MA, Oct. 13): spokesperson Jacqui Manning's written
+       statement, dated by the article (Mel, 2026-10-15); it says the rules
+       came out "last week," so it may have been given earlier.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -568,6 +571,11 @@
       "verified": true,
       "currentGovernor": "Maura Healey",
       "updates": [
+        {
+          "date": "2026-10-13",
+          "text": "Gov. Healey’s office says in a written statement that it is reviewing the new federal rules, still has questions about the impact on public schools, state oversight and cost, and is “making sure we have all the information we need before the January deadline.”",
+          "url": "https://www.bostonherald.com/2026/10/13/the-1-7b-education-scholarship-fight-pits-healey-against-minogue/"
+        },
         {
           "date": "2026-10-08",
           "text": "In the governor’s debate, Gov. Healey says “I’ve got to look at it, and I’m not just going to take Trump’s word for it.”",
