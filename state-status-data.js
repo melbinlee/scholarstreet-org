@@ -113,6 +113,11 @@
        position and that her three vetoes were not a rejection of the
        concept (KTAR, Aug. 25). Keep it pending-cold unless the governor
        declines, vetoes again, or signals she will or may opt in.
+     - 2026-10-15 additions: Spokesman-Review (WA, Oct. 12; Ferguson's
+       spokesperson "said Monday"); Education Week (CA, HI, NJ, Oct. 14; the
+       governors' offices answering the article, dated by the article);
+       Sheridan Media (WY, Oct. 12) and Big Country News (ID, Oct. 12) for
+       each state's SGO applications opening, dated by the articles.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -253,7 +258,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Gavin Newsom",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-10-14",
+          "text": "Gov. Newsom’s office tells Education Week it is reviewing the new federal rules.",
+          "url": "https://www.edweek.org/policy-politics/democratic-holdouts-still-arent-committing-to-trumps-school-choice-program/2026/10"
+        }
+      ]
     },
     "CO": {
       "status": "opted-in",
@@ -370,6 +381,11 @@
       "currentGovernor": "Josh Green",
       "updates": [
         {
+          "date": "2026-10-14",
+          "text": "Gov. Green’s office says the proposed federal rules limit states’ ability to set their own requirements and priorities or ensure nondiscrimination, and cites the state constitution’s limits on public support for private schools.",
+          "url": "https://www.edweek.org/policy-politics/democratic-holdouts-still-arent-committing-to-trumps-school-choice-program/2026/10"
+        },
+        {
           "date": "2026-03-04",
           "text": "Gov. Green’s office says it is reviewing the program again.",
           "url": "https://www.edweek.org/policy-politics/they-said-no-to-the-federal-school-choice-program-now-3-dems-are-reconsidering/2026/03"
@@ -410,6 +426,11 @@
       "irsListed": "2026-03-17",
       "irsListedBy": true,
       "updates": [
+        {
+          "date": "2026-10-12",
+          "text": "The Idaho Department of Education opens applications from scholarship granting organizations and will post its list of approved organizations as it approves them.",
+          "url": "https://www.bigcountrynewsconnection.com/support-for-families-of-k-12-students-in-idaho-now-available-through-federal-education-freedom-tax-credit/"
+        },
         {
           "date": "2026-03-19",
           "text": "HB 731 enacted, requiring Idaho to opt in every year."
@@ -788,6 +809,11 @@
       "verified": true,
       "currentGovernor": "Mikie Sherrill",
       "updates": [
+        {
+          "date": "2026-10-14",
+          "text": "Gov. Sherrill’s office says the administration is examining who the program would serve, which opportunities are available and how it could benefit public school students.",
+          "url": "https://www.edweek.org/policy-politics/democratic-holdouts-still-arent-committing-to-trumps-school-choice-program/2026/10"
+        },
         {
           "date": "2026-10-01",
           "text": "Gov. Sherrill’s office says it is carefully reviewing the federal guidance and that the priority is to “put kids first and strengthen New Jersey’s public schools.”",
@@ -1173,6 +1199,11 @@
       "currentGovernor": "Bob Ferguson",
       "updates": [
         {
+          "date": "2026-10-12",
+          "text": "Gov. Ferguson’s office says he is still on the fence and reviewing the new federal rules thoroughly.",
+          "url": "https://www.spokesman.com/stories/2026/oct/12/state-schools-chief-opposes-federal-program-gov-fe/"
+        },
+        {
           "date": "2026-09-16",
           "text": "Gov. Ferguson’s office says he will not decide until final federal rules are out.",
           "url": "https://washingtonstatestandard.com/2026/09/16/will-a-new-federal-education-tax-credit-be-available-in-washington/"
@@ -1225,6 +1256,11 @@
       "irsListedBy": true,
       "updates": [
         {
+          "date": "2026-10-12",
+          "text": "The Wyoming Department of Education opens applications from scholarship granting organizations, due Dec. 1 for 2027; the governor’s office gives final approval.",
+          "url": "https://sheridanmedia.com/news/253010/wde-opens-applications-for-scholarship-granting-organizations-under-the-federal-tax-credit-scholarship-program/"
+        },
+        {
           "date": "2026-03-17",
           "text": "On the IRS list of participating states (earliest archived edition).",
           "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
@@ -1255,7 +1291,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-12';
+  window.SS_UPDATED = '2026-10-15';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
