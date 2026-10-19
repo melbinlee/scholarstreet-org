@@ -121,6 +121,12 @@
      - Boston Herald (MA, Oct. 13): spokesperson Jacqui Manning's written
        statement, dated by the article (Mel, 2026-10-15); it says the rules
        came out "last week," so it may have been given earlier.
+     - 2026-10-19 additions: Chalkbeat Detroit (MI, Oct. 13; the governor's
+       administration answering the article, dated by the article); 25 News
+       (IL, Jan. 28; a spokesperson told the station, dated by the article)
+       and NPR Illinois / Capitol News Illinois (IL, May 8 emailed
+       statement), both found by web search; Source NM (NM, Mar. 31; the
+       governor's communications director told it "on Tuesday").
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -459,6 +465,16 @@
           "date": "2026-10-01",
           "text": "Gov. Pritzker’s office says it is reviewing the new federal guidance and will decide based on what best supports working families, students and public schools.",
           "url": "https://capitolfax.com/2026/10/01/feds-release-school-voucher-tax-credit-rules-pritzker-said-he-was-waiting-for/"
+        },
+        {
+          "date": "2026-05-08",
+          "text": "Gov. Pritzker’s office says it will evaluate the program through a lens focused on affordability for working families.",
+          "url": "https://www.nprillinois.org/education-desk/2026-05-15/school-choice-option-at-standstill-as-legislators-weigh-benefits-political-fallout"
+        },
+        {
+          "date": "2026-01-28",
+          "text": "Gov. Pritzker’s office says it is reviewing the federal tax credit and has made no decision.",
+          "url": "https://www.25newsnow.com/2026/01/29/pritzker-undecided-federal-school-vouchers/"
         }
       ]
     },
@@ -632,6 +648,11 @@
       "verified": true,
       "currentGovernor": "Gretchen Whitmer",
       "updates": [
+        {
+          "date": "2026-10-13",
+          "text": "Gov. Whitmer’s administration says it is reviewing the new federal rules.",
+          "url": "https://www.chalkbeat.org/detroit/2026/10/13/michigan-weighs-federal-scholarship-tax-credit-program-schools/"
+        },
         {
           "date": "2026-09-10",
           "text": "Gov. Whitmer says she has not made a final decision and will decide once the Trump administration says exactly what the program looks like.",
@@ -843,6 +864,11 @@
           "date": "2026-04-02",
           "text": "Gov. Lujan Grisham’s spokesman says she is actively considering whether to opt in and is awaiting more information from Treasury about the funding’s flexibility.",
           "url": "https://www.abqjournal.com/news/governor-still-weighing-new-mexicos-participation-in-federal-education-tax-credit-program/3014488"
+        },
+        {
+          "date": "2026-03-31",
+          "text": "Gov. Lujan Grisham’s office says she and the Public Education Department are awaiting more guidance from Treasury and hope to reach a decision soon.",
+          "url": "https://sourcenm.com/2026/03/31/nm-republican-lawmaker-urges-gov-lujan-grisham-to-opt-in-to-federal-education-tax-credit-program/"
         },
         {
           "date": "2026-03-04",
@@ -1299,7 +1325,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-15';
+  window.SS_UPDATED = '2026-10-19';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
