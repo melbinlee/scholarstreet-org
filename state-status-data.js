@@ -127,6 +127,14 @@
        and NPR Illinois / Capitol News Illinois (IL, May 8 emailed
        statement), both found by web search; Source NM (NM, Mar. 31; the
        governor's communications director told it "on Tuesday").
+       Added the same day at Mel's request (the run's "needs your call"
+       items): JNS (WA, Oct. 13, dated by the article); Source ONE (WA
+       senators' letter "on Wednesday" = Oct. 14); OPB (WA, Reykdal's Oct. 9
+       letter); Seattle Red (WA, Couture, dated by the article); Metro
+       Philadelphia (PA, Williams, dated by the article); Chalkbeat
+       Philadelphia (PA, Oct. 15, the reporter's own words); Courier-Post (NJ,
+       Oct. 15 email); Sen. Husted's Oct. 16 release (OH, opt-in on Feb. 4;
+       no governor's release found).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -839,6 +847,11 @@
       "currentGovernor": "Mikie Sherrill",
       "updates": [
         {
+          "date": "2026-10-15",
+          "text": "Gov. Sherrill’s office repeats that the administration is reviewing the federal guidance and examining who the program would serve.",
+          "url": "https://www.courierpostonline.com/story/news/education/2026/10/15/nj-debates-federal-scholarship-tax-credit-as-deadline-looms/92234866007/"
+        },
+        {
           "date": "2026-10-14",
           "text": "Gov. Sherrill’s office says the administration is examining who the program would serve, which opportunities are available and how it could benefit public school students.",
           "url": "https://www.edweek.org/policy-politics/democratic-holdouts-still-arent-committing-to-trumps-school-choice-program/2026/10"
@@ -956,6 +969,7 @@
       "verified": true,
       "currentGovernor": "Mike DeWine",
       "optInGovernor": "Mike DeWine",
+      "optInDate": "2026-02-04",
       "irsListed": "2026-03-17",
       "irsListedBy": true,
       "credit": {
@@ -968,6 +982,11 @@
           "date": "2026-03-17",
           "text": "On the IRS list of participating states (earliest archived edition).",
           "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
+        {
+          "date": "2026-02-04",
+          "text": "Gov. DeWine opts Ohio in, according to Sen. Jon Husted’s office.",
+          "url": "https://www.husted.senate.gov/media/press-releases/husted-bessent-host-education-and-adoption-tax-credit-roundtable-in-columbus/"
         }
       ]
     },
@@ -1031,6 +1050,16 @@
         "url": "https://www.pa.gov/agencies/revenue/business-tax-credits-and-economic-development-programs/business-tax-credits-and-incentives/educational-tax-credits"
       },
       "updates": [
+        {
+          "date": "2026-10-18",
+          "text": "State Sen. Anthony H. Williams (D) urges Gov. Shapiro to opt in “without delay.”",
+          "url": "https://www.metrophiladelphia.com/stories/shapiro-pennsylvania-federal-school-scholarship-program,159724"
+        },
+        {
+          "date": "2026-10-15",
+          "text": "Chalkbeat reports Gov. Shapiro may wait until after the November election to decide; his office points to his Oct. 7 debate answer.",
+          "url": "https://www.chalkbeat.org/philadelphia/2026/10/15/shapiro-facing-pressure-to-opt-in-to-trump-education-tax-credit-program/"
+        },
         {
           "date": "2026-10-07",
           "text": "In the governor’s debate, Gov. Shapiro says he is open to the program and will announce a decision in the next few weeks.",
@@ -1233,9 +1262,29 @@
       "currentGovernor": "Bob Ferguson",
       "updates": [
         {
+          "date": "2026-10-16",
+          "text": "State Rep. Travis Couture (R) answers Superintendent Reykdal’s letter and urges Washington to join the program.",
+          "url": "https://seattlered.com/education/couture-reykdal-education-freedom-tax-credit-letter"
+        },
+        {
+          "date": "2026-10-14",
+          "text": "Six Republican state senators, including Sen. Judy Warnick, write to Gov. Ferguson urging him to opt in.",
+          "url": "https://www.yoursourceone.com/columbia_basin/senators-including-grant-county-s-warnick-press-ferguson-to-join-federal-education-tax-credit-program/article_784a9093-2e09-48e1-b67a-72851e89ef4f.html"
+        },
+        {
+          "date": "2026-10-13",
+          "text": "Gov. Ferguson’s office says his position has not changed, the review of the new rules is underway and he will announce a decision when he makes one.",
+          "url": "https://www.jns.org/news/u-s-news/washington-governor-accused-of-delay-tactic-as-he-weighs-opting-state-into-federal-education-tax-credit-program"
+        },
+        {
           "date": "2026-10-12",
           "text": "Gov. Ferguson’s office says he is still on the fence and reviewing the new federal rules thoroughly.",
           "url": "https://www.spokesman.com/stories/2026/oct/12/state-schools-chief-opposes-federal-program-gov-fe/"
+        },
+        {
+          "date": "2026-10-09",
+          "text": "State schools Superintendent Chris Reykdal writes to Gov. Ferguson urging him not to opt in this year.",
+          "url": "https://www.opb.org/article/2026/10/15/washington-schools-chief-urges-governor-to-reject-federal-tax-credit/"
         },
         {
           "date": "2026-09-16",
