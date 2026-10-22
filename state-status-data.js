@@ -135,6 +135,11 @@
        Philadelphia (PA, Oct. 15, the reporter's own words); Courier-Post (NJ,
        Oct. 15 email); Sen. Husted's Oct. 16 release (OH, opt-in on Feb. 4;
        no governor's release found).
+     - 2026-10-22 additions: The Spokesman-Review (WA, Oct. 19; Ferguson's
+       spokesperson "said in a Monday email"); NPR (CO, Oct. 20; Polis "tells
+       NPR", dated by the article); Honolulu Civil Beat (HI, Aug. 12; the
+       governor's communications director's emailed statement, dated by the
+       article), found by web search.
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -292,6 +297,11 @@
       "irsListedBy": true,
       "updates": [
         {
+          "date": "2026-10-20",
+          "text": "Gov. Polis tells NPR that opting in was “an obvious decision”: “Of course I want Colorado kids to be the beneficiaries of that.”",
+          "url": "https://www.npr.org/2026/10/20/nx-s1-5979065/public-school-private-school-federal-voucher-scholarship-democrats"
+        },
+        {
           "date": "2026-10-06",
           "text": "Gov. Polis says he hopes other governors opt in: “as an American, I hope that you do.”",
           "url": "https://www.chalkbeat.org/colorado/2026/10/06/colorado-public-school-groups-jump-on-tax-credit-scholarship-program/"
@@ -401,6 +411,11 @@
           "date": "2026-10-14",
           "text": "Gov. Green’s office says the proposed federal rules limit states’ ability to set their own requirements and priorities or ensure nondiscrimination, and cites the state constitution’s limits on public support for private schools.",
           "url": "https://www.edweek.org/policy-politics/democratic-holdouts-still-arent-committing-to-trumps-school-choice-program/2026/10"
+        },
+        {
+          "date": "2026-08-12",
+          "text": "Gov. Green’s communications director says he is waiting for the federal regulations due in September before consulting other state agencies.",
+          "url": "https://www.civilbeat.org/2026/08/trump-backed-program-offers-money-for-scholarships-will-hawai%CA%BBi-take-it/"
         },
         {
           "date": "2026-03-04",
@@ -1262,6 +1277,11 @@
       "currentGovernor": "Bob Ferguson",
       "updates": [
         {
+          "date": "2026-10-19",
+          "text": "As U.S. Education Secretary Linda McMahon urges Washington to opt in, Gov. Ferguson’s spokesperson says he still hasn’t decided.",
+          "url": "https://www.spokesman.com/stories/2026/oct/19/us-education-secretary-urges-ferguson-to-join-scho/"
+        },
+        {
           "date": "2026-10-16",
           "text": "State Rep. Travis Couture (R) answers Superintendent Reykdal’s letter and urges Washington to join the program.",
           "url": "https://seattlered.com/education/couture-reykdal-education-freedom-tax-credit-letter"
@@ -1374,7 +1394,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-19';
+  window.SS_UPDATED = '2026-10-22';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
