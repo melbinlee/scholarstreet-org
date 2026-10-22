@@ -8,9 +8,12 @@
 #   <stamp>.txt     the job's final report
 #   state-job.log   one line per run: start, finish, exit code
 #
-# Tools are an allowlist: the job can edit only state-status-data.js, push
-# only state-updates/* branches, and can't merge. Anything else it tries is
-# refused, and the refusal shows in the .jsonl.
+# Tools are an allowlist: the job can edit only state-status-data.js and push
+# only state-updates/* branches. It can't run gh pr merge or edit scripts\;
+# since 2026-10-22 (Mel: no review) it publishes only by running
+# scripts\publish_state_pr.py, which merges only when its fixed checks pass
+# and otherwise leaves the PR as a draft. Anything else it tries is refused,
+# and the refusal shows in the .jsonl.
 
 $ErrorActionPreference = 'Continue'
 $repo = Split-Path -Parent $PSScriptRoot
@@ -44,10 +47,11 @@ $allowed = @(
     'Bash(gh pr list:*)', 'Bash(gh pr view:*)', 'Bash(gh pr create:*)',
     'Bash(gh pr comment:*)', 'Bash(gh pr checks:*)',
     'Bash(python scripts/gnews.py:*)', 'Bash(curl:*)', 'Bash(date:*)',
+    'Bash(python scripts/publish_state_pr.py)', 'Bash(node --check:*)',
     'mcp__claude_ai_Gmail__send_message'
 )
 $denied = @(
-    'PowerShell', 'Bash(gh pr merge:*)', 'Bash(git push origin main*)',
+    'PowerShell', 'Bash(gh pr merge:*)', 'Edit(./scripts/**)', 'Write(./scripts/**)', 'Bash(git push origin main*)',
     'Bash(git push -u origin main*)', 'Bash(git push --force*)', 'Bash(git push -f*)'
 )
 

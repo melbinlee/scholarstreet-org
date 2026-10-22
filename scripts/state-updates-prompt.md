@@ -232,7 +232,13 @@ EACH RUN
    - Only the sitting governor, their office, the legislature or the IRS can
      change a status. Statements by candidates, governors-elect, individual
      lawmakers, advocacy groups and op-ed writers never change a status.
-     Record them in the PR's "Needs your call" if notable, not in `updates`.
+     Scholar Street does want notable statements about a state's
+     participation recorded (Mel, 2026-10-09): add them to `updates`, naming
+     who spoke, e.g. "State Sen. X urges Gov. Y to opt in." This covers
+     candidates, governors-elect, individual lawmakers, state agencies,
+     members of Congress and federal officials. Op-eds and advocacy groups
+     still stay out. A statement with an unconfirmed date still goes to
+     "Needs your call" instead (step 6).
    - When a statement is ambiguous between warm and cold, leave the status
      as it is and ask in "Needs your call", quoting the words used.
    - List every status change in the PR's change table with the exact words
@@ -302,14 +308,35 @@ EACH RUN
    - Netlify posts a preview link on the PR. Wait for it and include it in
      your report and email. The table is at <preview link>/news.html.
 
-9. NEVER merge the PR, never push to main, and never deploy. A human reviews
-   every change before it goes live.
+9. Publish. Nobody reviews the PR before it goes live (Mel, 2026-10-22);
+   a fixed check does instead. Never run `gh pr merge` yourself, never push
+   to main, and never edit the check script.
+   - Save fetched pages only under %TEMP%, never in the repo, and make sure
+     `git status` is clean: the check holds a run with uncommitted or
+     untracked files.
+   - On the PR's branch, after the push and once the preview is ready, run:
+       python scripts/publish_state_pr.py
+     It checks the change (only state-status-data.js changed, syntax and
+     repo tests pass, no lost updates, sane dates and links, at most 3
+     status changes, no opted-in without an IRS date, no override lifted,
+     no governor change) and, if everything passes, merges the PR and waits
+     for scholarstreet.org to show it. It prints `PUBLISHED pr=#N ...` or
+     `HELD: <reasons>`, plus a STATUS CHANGE line for each status change.
+   - PUBLISHED: the update is live. HELD: the PR stays a draft for Mel; put
+     the reasons in the report and email. Don't try to fix and re-run a
+     HELD result beyond one retry for a plainly temporary failure (network).
+   - "Needs your call" items never stop publishing; they were left out of
+     the data, so they go in the email for Mel to decide.
 
 10. Email mel@scholarstreet.org from my Gmail:
-   - If you opened or updated a pull request this run: subject
-     "State table updates ready for review (YYYY-MM-DD)". Body: the same
-     summary as your report, the PR link and the preview link to
-     news.html, and the "Needs your call" items.
+   - If step 9 printed PUBLISHED: subject "State table updated
+     (YYYY-MM-DD)". Body: the same summary as your report, any STATUS
+     CHANGE lines first, the PR link, https://scholarstreet.org/news.html,
+     and the "Needs your call" items.
+   - If step 9 printed HELD (or a PR is open but step 9 didn't run):
+     subject "State table update held for review (YYYY-MM-DD)". Body: the
+     HELD reasons first, then the same summary, the PR link and the
+     preview link to news.html, and the "Needs your call" items.
    - If there was no PR but there are "Needs your call" items (step 8):
      subject "State table: decisions needed (YYYY-MM-DD)". Body: each item
      with the state, what was found, the article link, and the question
@@ -329,5 +356,6 @@ EACH RUN
 REPORT
 End each run with a short summary: what changed (including any status
 changes and why), the PR link and preview link (if any), what needs a
-decision, whether an email was sent, the WINDOW line, whether any source
-failed, and whether step 11 ran.
+decision, the step 9 result (PUBLISHED or HELD, with reasons), whether an
+email was sent, the WINDOW line, whether any source failed, and whether
+step 11 ran.
