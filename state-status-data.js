@@ -140,6 +140,9 @@
        NPR", dated by the article); Honolulu Civil Beat (HI, Aug. 12; the
        governor's communications director's emailed statement, dated by the
        article), found by web search.
+     - 2026-10-23 additions (Mel asked): KHQ (WA, Oct. 19; Rep. Baumgartner
+       with Secretary McMahon in Spokane Valley); Seattle Red (WA, McMahon on
+       The Jason Rantz Show, dated by the Oct. 21 article).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -1277,6 +1280,16 @@
       "currentGovernor": "Bob Ferguson",
       "updates": [
         {
+          "date": "2026-10-21",
+          "text": "U.S. Education Secretary Linda McMahon says she has not personally received any inquiries about the program from Gov. Ferguson or Superintendent Reykdal.",
+          "url": "https://seattlered.com/education/ferguson-federal-scholarship-tax-credit-linda-mcmahon"
+        },
+        {
+          "date": "2026-10-19",
+          "text": "U.S. Rep. Michael Baumgartner joins Secretary McMahon in Spokane Valley to urge Gov. Ferguson to opt in.",
+          "url": "https://www.khq.com/news/u-s-secretary-of-education-rep-baumgartner-urge-ferguson-to-opt-in-to-education-tax/article_a003bfdd-30e9-4e3f-88a6-eebf3887624a.html"
+        },
+        {
           "date": "2026-10-19",
           "text": "As U.S. Education Secretary Linda McMahon urges Washington to opt in, Gov. Ferguson’s spokesperson says he still hasn’t decided.",
           "url": "https://www.spokesman.com/stories/2026/oct/19/us-education-secretary-urges-ferguson-to-join-scho/"
@@ -1394,7 +1407,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-22';
+  window.SS_UPDATED = '2026-10-23';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
