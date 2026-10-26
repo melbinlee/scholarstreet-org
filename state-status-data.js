@@ -143,6 +143,9 @@
      - 2026-10-23 additions (Mel asked): KHQ (WA, Oct. 19; Rep. Baumgartner
        with Secretary McMahon in Spokane Valley); Seattle Red (WA, McMahon on
        The Jason Rantz Show, dated by the Oct. 21 article).
+     - 2026-10-26 additions, found by web search: New Jersey Legislature
+       (NJ, A4777 introduced Mar. 19); WRNJ Radio (NJ, Assembly Republicans
+       "Monday" = Oct. 5).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -875,6 +878,11 @@
           "url": "https://www.edweek.org/policy-politics/democratic-holdouts-still-arent-committing-to-trumps-school-choice-program/2026/10"
         },
         {
+          "date": "2026-10-05",
+          "text": "Republican Assembly members Michael Inganamort, Gerry Scharfenberger and Dawn Fantasia urge Gov. Sherrill to opt in.",
+          "url": "https://wrnjradio.com/nj-republican-lawmakers-urge-gov-sherrill-to-opt-into-federal-education-tax-credit-program/"
+        },
+        {
           "date": "2026-10-01",
           "text": "Gov. Sherrill’s office says it is carefully reviewing the federal guidance and that the priority is to “put kids first and strengthen New Jersey’s public schools.”",
           "url": "https://jewishinsider.com/2026/10/democratic-governors-deadline-federal-education-tax-credit/"
@@ -883,6 +891,11 @@
           "date": "2026-05-12",
           "text": "Gov. Sherrill’s office says she will evaluate the program once federal rules are final.",
           "url": "https://jewishinsider.com/2026/05/mikie-sherrill-education-tax-initiative-not-committed-kathy-hochul/"
+        },
+        {
+          "date": "2026-03-19",
+          "text": "Assembly Republicans introduce A4777, a bill requiring New Jersey to opt in.",
+          "url": "https://pub.njleg.gov/Bills/2026/A5000/4777_I1.HTM"
         }
       ]
     },
@@ -1407,7 +1420,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-23';
+  window.SS_UPDATED = '2026-10-26';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
