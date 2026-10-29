@@ -146,6 +146,15 @@
      - 2026-10-26 additions, found by web search: New Jersey Legislature
        (NJ, A4777 introduced Mar. 19); WRNJ Radio (NJ, Assembly Republicans
        "Monday" = Oct. 5).
+     - 2026-10-29 additions: the five governors' Oct. 22 letter to Treasury
+       (CA, CT, MA, MI, NJ; the letter itself); The California Post / New
+       York Post (CA, Oct. 28; the governor's office answering the article,
+       dated by the article); found by web search: Chalkbeat Philadelphia
+       (PA, Mar. 12, a spokesperson's statement "Thursday"); WDEL (DE, letter
+       "on Aug. 17"); Portland Press Herald (ME, Pingree's written statement,
+       dated by the article); Michigan Public (MI, James "Wednesday" = Sept. 2;
+       Benson's written statement, dated by the article); VTDigger (VT,
+       Scott's statement, dated by the article).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -288,6 +297,16 @@
       "currentGovernor": "Gavin Newsom",
       "updates": [
         {
+          "date": "2026-10-28",
+          "text": "Gov. Newsom’s office tells The California Post it is “reviewing the materials release and don’t have anything to share at this time.”",
+          "url": "https://nypost.com/2026/10/28/us-news/faith-leaders-press-gavin-newsom-to-join-federal-school-choice-plan/"
+        },
+        {
+          "date": "2026-10-22",
+          "text": "Gov. Newsom and four other Democratic governors write to Treasury Secretary Bessent asking for more guidance before they decide whether to opt in for 2027.",
+          "url": "https://epe.brightspotcdn.com/b6/8f/28d4b31b40859dbedd995b9a3f04/ftsc-letter.pdf"
+        },
+        {
           "date": "2026-10-14",
           "text": "Gov. Newsom’s office tells Education Week it is reviewing the new federal rules.",
           "url": "https://www.edweek.org/policy-politics/democratic-holdouts-still-arent-committing-to-trumps-school-choice-program/2026/10"
@@ -340,6 +359,11 @@
       "currentGovernor": "Ned Lamont",
       "updates": [
         {
+          "date": "2026-10-22",
+          "text": "Gov. Lamont and four other Democratic governors write to Treasury Secretary Bessent asking for more guidance before they decide whether to opt in for 2027.",
+          "url": "https://epe.brightspotcdn.com/b6/8f/28d4b31b40859dbedd995b9a3f04/ftsc-letter.pdf"
+        },
+        {
           "date": "2026-10-06",
           "text": "Gov. Lamont says he will ask federal officials for more clarification, wants to be sure the program does not discriminate against public education, and expects to know “within a month or so.”",
           "url": "https://hartfordbusiness.com/article/lamont-weighs-federal-scholarship-tax-credit-as-ct-education-leaders-push-back/"
@@ -355,7 +379,13 @@
       "status": "pending-cold",
       "verified": true,
       "currentGovernor": "Matt Meyer",
-      "updates": []
+      "updates": [
+        {
+          "date": "2026-08-17",
+          "text": "State Rep. Mike Smith writes to Gov. Meyer asking that Delaware join the program for the 2027 tax year.",
+          "url": "https://www.wdel.com/news/state-rep-mike-smith-pushes-for-delaware-to-join-federal-scholarship-program/article_f4559268-52cb-539e-881e-800b41c29122.html"
+        }
+      ]
     },
     "FL": {
       "status": "opted-in",
@@ -617,6 +647,11 @@
       "currentGovernor": "Maura Healey",
       "updates": [
         {
+          "date": "2026-10-22",
+          "text": "Gov. Healey and four other Democratic governors write to Treasury Secretary Bessent asking for more guidance before they decide whether to opt in for 2027.",
+          "url": "https://epe.brightspotcdn.com/b6/8f/28d4b31b40859dbedd995b9a3f04/ftsc-letter.pdf"
+        },
+        {
           "date": "2026-10-13",
           "text": "Gov. Healey’s office says in a written statement that it is reviewing the new federal rules, still has questions about the impact on public schools, state oversight and cost, and is “making sure we have all the information we need before the January deadline.”",
           "url": "https://www.bostonherald.com/2026/10/13/the-1-7b-education-scholarship-fight-pits-healey-against-minogue/"
@@ -669,6 +704,11 @@
           "date": "2026-06-25",
           "text": "A spokesperson for Gov. Mills says she is still waiting to make a decision, with the program’s final rules pending.",
           "url": "https://www.pressherald.com/2026/06/25/will-maine-opt-in-to-the-federal-school-voucher-program"
+        },
+        {
+          "date": "2026-06-25",
+          "text": "Democratic nominee for governor Hannah Pingree says she would opt in only if states can shape the program: “If not, we won’t opt in.”",
+          "url": "https://www.pressherald.com/2026/06/25/will-maine-opt-in-to-the-federal-school-voucher-program"
         }
       ]
     },
@@ -678,6 +718,11 @@
       "currentGovernor": "Gretchen Whitmer",
       "updates": [
         {
+          "date": "2026-10-22",
+          "text": "Gov. Whitmer and four other Democratic governors write to Treasury Secretary Bessent asking for more guidance before they decide whether to opt in for 2027.",
+          "url": "https://epe.brightspotcdn.com/b6/8f/28d4b31b40859dbedd995b9a3f04/ftsc-letter.pdf"
+        },
+        {
           "date": "2026-10-13",
           "text": "Gov. Whitmer’s administration says it is reviewing the new federal rules.",
           "url": "https://www.chalkbeat.org/detroit/2026/10/13/michigan-weighs-federal-scholarship-tax-credit-program-schools/"
@@ -686,6 +731,16 @@
           "date": "2026-09-10",
           "text": "Gov. Whitmer says she has not made a final decision and will decide once the Trump administration says exactly what the program looks like.",
           "url": "https://spectrumlocalnews.com/mi/michigan/news/2026/09/10/michigan-education-tax-credit-"
+        },
+        {
+          "date": "2026-09-02",
+          "text": "Republican candidate for governor John James says opting in “is priority one for me.”",
+          "url": "https://www.michiganpublic.org/education/2026-09-02/candidates-for-michigan-governor-disagree-on-a-federal-education-tax-credit"
+        },
+        {
+          "date": "2026-09-02",
+          "text": "Democratic candidate for governor Jocelyn Benson says “I can’t commit taxpayer dollars to a program under Trump’s control.”",
+          "url": "https://www.michiganpublic.org/education/2026-09-02/candidates-for-michigan-governor-disagree-on-a-federal-education-tax-credit"
         },
         {
           "date": "2026-03-30",
@@ -867,6 +922,11 @@
       "verified": true,
       "currentGovernor": "Mikie Sherrill",
       "updates": [
+        {
+          "date": "2026-10-22",
+          "text": "Gov. Sherrill and four other Democratic governors write to Treasury Secretary Bessent asking for more guidance before they decide whether to opt in for 2027.",
+          "url": "https://epe.brightspotcdn.com/b6/8f/28d4b31b40859dbedd995b9a3f04/ftsc-letter.pdf"
+        },
         {
           "date": "2026-10-15",
           "text": "Gov. Sherrill’s office repeats that the administration is reviewing the federal guidance and examining who the program would serve.",
@@ -1105,6 +1165,11 @@
           "date": "2026-08-18",
           "text": "Gov. Shapiro’s office says he is awaiting federal guidance before deciding.",
           "url": "https://broadandliberty.com/2026/08/18/pennsylvania-still-on-the-fence-about-federal-school-choice-tax-credits/"
+        },
+        {
+          "date": "2026-03-12",
+          "text": "Gov. Shapiro’s office says it is “awaiting federal guidance to address key questions” about the program.",
+          "url": "https://www.chalkbeat.org/philadelphia/2026/03/12/pennsylvania-governor-shapiro-delays-decision-on-school-choice-tax-credits/"
         }
       ]
     },
@@ -1281,6 +1346,11 @@
       "currentGovernor": "Phil Scott",
       "updates": [
         {
+          "date": "2026-07-10",
+          "text": "Gov. Scott says in a statement that his team is awaiting further guidance from Treasury before making a final decision to opt in: “So at this time, we fully intend to, in an effort to make sure Vermont students can benefit from it.”",
+          "url": "https://vtdigger.org/2026/07/10/vermonts-public-schools-could-benefit-from-a-new-federal-school-choice-tax-credit-program-but-skeptics-abound/"
+        },
+        {
           "date": "2026-06-18",
           "text": "Gov. Scott signs H.933, limiting how scholarships under the federal credit can be used.",
           "url": "https://news.ballotpedia.org/2026/07/06/vermont-enacts-bill-to-limit-how-scholarships-under-education-freedom-tax-credit-can-be-used/"
@@ -1420,7 +1490,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-26';
+  window.SS_UPDATED = '2026-10-29';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
