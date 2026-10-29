@@ -6,8 +6,11 @@ The Windows scheduled task "Scholar Street state table" runs
 scripts/state_job.ps1 every Monday and Thursday at 10:30. It starts Claude
 Code headless in the repo folder with this file as the instructions, and
 logs every run to %LOCALAPPDATA%\scholarstreet-sync\state-job\. Nobody
-is watching a run: never stop to ask a question. Anything that needs a
-decision goes in the report and the email. There is no web browser; where
+is watching a run: never stop to ask a question. Nobody approves anything
+either (Mel, 2026-10-29): make every call yourself using the rules below,
+and list the judgment calls you made under "Calls I made" in the report,
+PR and email, so they can be reversed later. Never leave an item waiting
+for a decision. There is no web browser; where
 this file says to open something in a browser, use its no-browser fallback.
 
 WHAT THIS IS
@@ -161,8 +164,8 @@ EACH RUN
    the window, still record the development if it isn't in the file yet,
    but use the article's own date.
    If an article is paywalled or blocked, retry with a browser user-agent;
-   if you still can't read it, don't guess what it says. Put it in
-   "Needs your call" with its headline and link.
+   if you still can't read it, don't guess what it says. Add nothing from
+   it; list it under "Couldn't read" with its headline and link.
    If the script fails outright, do the step d) searches for every state,
    opted-in ones too, and say in the report that the script failed.
 
@@ -237,10 +240,15 @@ EACH RUN
      who spoke, e.g. "State Sen. X urges Gov. Y to opt in." This covers
      candidates, governors-elect, individual lawmakers, state agencies,
      members of Congress and federal officials. Op-eds and advocacy groups
-     still stay out. A statement with an unconfirmed date still goes to
-     "Needs your call" instead (step 6).
+     still stay out. A statement with an unconfirmed date is dated by
+     step 6's rule.
    - When a statement is ambiguous between warm and cold, leave the status
-     as it is and ask in "Needs your call", quoting the words used.
+     as it is, still add the statement to updates, and list it under
+     "Calls I made", quoting the words used.
+   - When sources conflict about a fact already in the file (e.g. a bill
+     signing date), keep the file's value unless a primary source (the
+     governor's release, the legislature's bill page) shows otherwise; if
+     it does, correct the file and list it under "Calls I made".
    - List every status change in the PR's change table with the exact words
      that justify it, so Scholar Street can confirm or reverse it.
 
@@ -257,14 +265,20 @@ EACH RUN
      ("said Tuesday", "told reporters on Sept. 12"). Don't guess when the
      article suggests it was said at another time, e.g. "has said",
      "previously said", "added after publication", or a quote that
-     refers to events already past. Then propose the update in "Needs
-     your call" with the article's date and say the event date is
-     unconfirmed.
+     refers to events already past. Then still add the update, dated with
+     the article's publication date, and word it as a report so that date
+     is true: "Outlet reports Gov. X has said ...". List it under "Calls I
+     made". Only if the article has no date at all, leave it out and list
+     it under "Couldn't date".
+   - A state that opens SGO applications or publishes its SGO list without
+     saying when: date it by the release's own date, or the date the page
+     was first reported; if neither exists, list it under "Couldn't date".
    - If a governor changes (resignation, death, a new term), update
      currentGovernor and cite the source in the PR. An election doesn't
      change it: switch to the new governor only once they've been sworn
      in (most new governors take office in January 2027; the date varies
-     by state). Until then, note governors-elect in "Needs your call".
+     by state). Until then, record a governor-elect's statements in
+     updates like a candidate's.
      Also add a new governor to window.SS_GOVERNOR_LINKS at the bottom of
      the file, using the official governor's office website listed on
      their state's USA.gov page (https://www.usa.gov/states/<state-name>,
@@ -282,11 +296,9 @@ EACH RUN
    gone (404, domain not found). If this is the only thing that found anything,
    still open the PR (step 8) so the list gets seen.
 
-8. If nothing changed, no links are broken and nothing needs a decision,
-   stop. No branch, no PR, no email. Report "No changes", then do step 11.
-   If no data changed and no links are broken, but there are "Needs your
-   call" items, don't create a branch or PR. Skip to step 10 and send the
-   "decisions only" email.
+8. If nothing changed and no links are broken, stop. No branch, no PR,
+   no email. Report "No changes" (with any "Couldn't read" / "Couldn't
+   date" items), then do step 11.
    Otherwise (on a new branch, or the open PR's branch from step 1):
    - new branch name: state-updates/YYYY-MM-DD, created from main
    - edit only state-status-data.js
@@ -299,9 +311,9 @@ EACH RUN
      main with:
      • a table of every change: state, field, old value, new value, source
        URL, and for status changes the quoted words behind it
-     • a "Needs your call" section: ambiguous warm/cold calls, conflicting
-       sources, unconfirmed dates, notable statements by candidates or
-       lawmakers, governors-elect
+     • a "Calls I made" section: ambiguous warm/cold statements, conflicting
+       sources, dates taken from the article, and anything left out (with
+       why), so each can be reversed
      • the broken-link list (Mondays)
      For an existing PR, add a comment with the same three sections for
      today's changes.
@@ -325,22 +337,19 @@ EACH RUN
    - PUBLISHED: the update is live. HELD: the PR stays a draft for Mel; put
      the reasons in the report and email. Don't try to fix and re-run a
      HELD result beyond one retry for a plainly temporary failure (network).
-   - "Needs your call" items never stop publishing; they were left out of
-     the data, so they go in the email for Mel to decide.
+   - Nothing waits for Mel. "Calls I made" are already in the data (or
+     deliberately left out) and are listed for the record only.
 
 10. Email mel@scholarstreet.org from my Gmail:
    - If step 9 printed PUBLISHED: subject "State table updated
      (YYYY-MM-DD)". Body: the same summary as your report, any STATUS
      CHANGE lines first, the PR link, https://scholarstreet.org/news.html,
-     and the "Needs your call" items.
+     and the "Calls I made" items.
    - If step 9 printed HELD (or a PR is open but step 9 didn't run):
      subject "State table update held for review (YYYY-MM-DD)". Body: the
      HELD reasons first, then the same summary, the PR link and the
-     preview link to news.html, and the "Needs your call" items.
-   - If there was no PR but there are "Needs your call" items (step 8):
-     subject "State table: decisions needed (YYYY-MM-DD)". Body: each item
-     with the state, what was found, the article link, and the question
-     to decide (e.g. "Add this update dated X?", "Move to warm?").
+     preview link to news.html, and the "Calls I made" items.
+   Never ask Mel a question in the email.
    Send nothing on "No changes" runs.
 
 11. Last, once the run has finished (a "No changes" run counts), in the
@@ -355,7 +364,7 @@ EACH RUN
 
 REPORT
 End each run with a short summary: what changed (including any status
-changes and why), the PR link and preview link (if any), what needs a
-decision, the step 9 result (PUBLISHED or HELD, with reasons), whether an
+changes and why), the PR link and preview link (if any), the "Calls I
+made", "Couldn't read" and "Couldn't date" lists, the step 9 result (PUBLISHED or HELD, with reasons), whether an
 email was sent, the WINDOW line, whether any source failed, and whether
 step 11 ran.
