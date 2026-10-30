@@ -7,7 +7,8 @@ The scholarstreet.org marketing and public-facing website for Scholar Street, a 
 - index.html — homepage
 - donate.html — donor-facing giving page
 - team.html — "Our Team": leadership bios, then the contact form and direct contacts at #contact. Since 2026-09-29 it replaces leadership.html and contact.html, which 301 to it (contact.html to #contact). Its form fires the Google Ads `contact_form` conversion.
-- impact.html — impact/outcomes, and since 2026-09-15 also the "Why §25F" and "How It Works" sections that used to be why-25f.html and how-giving-works.html; those URLs now 301 to its #why-25f / #how-it-works anchors
+- impact.html — impact/outcomes, the Scholars For the Future endowment band, and the four-step "How It Works" section (#how-it-works; how-giving-works.html 301s there). Its "Why §25F" section was removed 2026-10-30: why-25f.html and every "Why §25F" link now go to the home page's section at /#why-25f.
+- partner.html — "Partner With Us" (added 2026-10-30); nav tab after Our Difference on every page.
 - platform.html — how the platform works
 - news.html + news/*.html — **generated**; articles copied from the Substack newsletter. news.html opens with the state-by-state §25F table (frame in `STATE_TABLE` in the sync script; data in `state-status-data.js`; behaviour in `state-table.js`/`.css`), then "Recently published" above the article list. A state can be linked directly as news.html#states-<code>.
 
