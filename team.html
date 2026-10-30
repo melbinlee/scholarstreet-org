@@ -667,8 +667,12 @@ document.addEventListener('DOMContentLoaded',function(){
           if(typeof reportAdsConversion === 'function'){ reportAdsConversion('contact_form'); }
           // School leads get their own event so they can be counted apart
           // from family and donor inquiries. No form fields are sent.
+          // source_page is the page that linked here (?from=partner gives
+          // /partner.html), or this page when there is no from= value.
           if(partnerSchool && typeof gtag === 'function'){
-            gtag('event', 'partner_school_inquiry', { form_location: 'contact', source_page: window.location.pathname });
+            var from = new URLSearchParams(location.search).get('from');
+            var sourcePage = /^[a-z0-9-]+$/.test(from || '') ? '/' + from + '.html' : window.location.pathname;
+            gtag('event', 'partner_school_inquiry', { form_location: 'contact', source_page: sourcePage });
           }
         } else {
           return r.json().then(function(d){
