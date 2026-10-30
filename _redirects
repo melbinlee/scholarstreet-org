@@ -20,11 +20,13 @@
 
 # Consolidated into impact.html (2026-09-15): Why 25F and How It Works are now
 # sections of the Impact page. Both old URLs were indexed and linked.
-/why-25f.html          /impact.html#why-25f       301
+# 2026-10-30: the Why 25F section left the Impact page; that URL now goes to
+# the home page's 25F section instead.
+/why-25f.html          /#why-25f                  301
 /how-giving-works.html /impact.html#how-it-works  301
 # Netlify served every page at its extensionless path too, so Google also
 # knows these two without .html. Without these rules they 404.
-/why-25f               /impact.html#why-25f       301
+/why-25f               /#why-25f                  301
 /how-giving-works      /impact.html#how-it-works  301
 
 # Merged into team.html ("Our Team", 2026-09-29): Leadership's bios and the
@@ -49,6 +51,7 @@
 /families                                     /families.html                                     301!
 /impact                                       /impact.html                                       301!
 /news                                         /news.html                                         301!
+/partner                                      /partner.html                                      301!
 /platform                                     /platform.html                                     301!
 /privacy                                      /privacy.html                                      301!
 /team                                         /team.html                                         301!
