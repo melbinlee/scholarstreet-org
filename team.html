@@ -619,6 +619,17 @@ footer{background:var(--navy-dk);color:#fff;padding:62px 0 30px}
 </footer>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
+  // ---- Contact form: pre-tick an interest from the URL ----
+  // e.g. /contact?interest=partner-school
+  var interestFromUrl = {
+    'partner-school': 'Becoming a partner school'
+  }[new URLSearchParams(location.search).get('interest')];
+  if(interestFromUrl){
+    document.querySelectorAll('input[name="Interested in"]').forEach(function(box){
+      if(box.value === interestFromUrl){ box.checked = true; }
+    });
+  }
+
   // ---- Formspree forms: submit via fetch so the visitor stays on the page ----
   document.querySelectorAll('form[data-formspree]').forEach(function(form){
     var id = form.getAttribute('data-formspree');
@@ -633,6 +644,8 @@ document.addEventListener('DOMContentLoaded',function(){
       var label = btn ? btn.textContent : '';
       if(btn){ btn.disabled = true; btn.textContent = 'Sending...'; }
       if(status){ status.className = 'form-status'; status.textContent = ''; }
+      // Read before form.reset() clears the checkbox.
+      var partnerSchool = !!form.querySelector('input[name="Interested in"][value="Becoming a partner school"]:checked');
       fetch('https://formspree.io/f/' + id, {
         method: 'POST',
         body: new FormData(form),
@@ -652,6 +665,11 @@ document.addEventListener('DOMContentLoaded',function(){
           // Google Ads conversion. Formspree has accepted the submission at
           // this point, so this counts a real lead rather than a click.
           if(typeof reportAdsConversion === 'function'){ reportAdsConversion('contact_form'); }
+          // School leads get their own event so they can be counted apart
+          // from family and donor inquiries. No form fields are sent.
+          if(partnerSchool && typeof gtag === 'function'){
+            gtag('event', 'partner_school_inquiry', { form_location: 'contact', source_page: window.location.pathname });
+          }
         } else {
           return r.json().then(function(d){
             throw new Error((d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Submission failed');
