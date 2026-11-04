@@ -155,6 +155,10 @@
        dated by the article); Michigan Public (MI, James "Wednesday" = Sept. 2;
        Benson's written statement, dated by the article); VTDigger (VT,
        Scott's statement, dated by the article).
+     - 2026-11-04 additions: KCRG (IA, Oct. 30 SGO application); South
+       Carolina Governor's release (SC, Oct. 13, Executive Order 2026-23) and
+       Montana Governor's release (MT, Sept. 1), both found through Education
+       Week (Oct. 30); Legis1 (PA, Oct. 23 House field hearing).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -473,6 +477,11 @@
         "url": "https://www.edchoice.org/school-choice/programs/iowa-school-tuition-organization-tax-credit/"
       },
       "updates": [
+        {
+          "date": "2026-10-30",
+          "text": "Gov. Reynolds opens Iowa’s application for scholarship granting organizations on the Department of Revenue’s website; applications are due Dec. 11.",
+          "url": "https://www.kcrg.com/2026/10/30/gov-reynolds-announces-next-step-iowas-participation-new-federal-education-freedom-tax-credit-program/"
+        },
         {
           "date": "2026-03-17",
           "text": "On the IRS list of participating states (earliest archived edition).",
@@ -812,6 +821,11 @@
       },
       "updates": [
         {
+          "date": "2026-09-01",
+          "text": "Gov. Gianforte encourages Montana’s scholarship granting organizations to take part; the Department of Revenue will certify the state’s list and submit it to Treasury by Dec. 31.",
+          "url": "https://news.mt.gov/Governors-Office/Gov-Gianforte-Encourages-Scholarship-Granting-Organizations-to-Utilize-Federal-Tax-Credit"
+        },
+        {
           "date": "2026-03-17",
           "text": "On the IRS list of participating states (earliest archived edition).",
           "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
@@ -1142,6 +1156,11 @@
       },
       "updates": [
         {
+          "date": "2026-10-23",
+          "text": "At a U.S. House Education and Workforce Committee field hearing in Bethlehem, Chair Tim Walberg (R-Mich.) urges Pennsylvania to opt in.",
+          "url": "https://legis1.com/news/school-choice-pennsylvania-house-hearing-urges-pa"
+        },
+        {
           "date": "2026-10-18",
           "text": "State Sen. Anthony H. Williams (D) urges Gov. Shapiro to opt in “without delay.”",
           "url": "https://www.metrophiladelphia.com/stories/shapiro-pennsylvania-federal-school-scholarship-program,159724"
@@ -1208,6 +1227,11 @@
         "url": "https://dor.sc.gov/tax-credits/ecenc-program-credits"
       },
       "updates": [
+        {
+          "date": "2026-10-13",
+          "text": "Gov. McMaster issues Executive Order 2026-23 directing the Department of Revenue to take applications from scholarship granting organizations for 2027.",
+          "url": "https://governor.sc.gov/news/2026-10/gov-mcmaster-directs-scdor-assist-receiving-federal-education-tax-credit-program"
+        },
         {
           "date": "2026-03-17",
           "text": "On the IRS list of participating states (earliest archived edition).",
@@ -1490,7 +1514,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-10-29';
+  window.SS_UPDATED = '2026-11-04';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
