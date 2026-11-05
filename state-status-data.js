@@ -159,6 +159,10 @@
        Carolina Governor's release (SC, Oct. 13, Executive Order 2026-23) and
        Montana Governor's release (MT, Sept. 1), both found through Education
        Week (Oct. 30); Legis1 (PA, Oct. 23 House field hearing).
+     - 2026-11-05 addition: New Mexico Governor's release (NM, Nov. 4; the
+       governor announces New Mexico will opt in). New Mexico moves from
+       not-participating to pending-warm, with optInDate 2026-11-04 for the
+       formal announcement; it is not on the IRS list yet (as of Oct. 22).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -974,10 +978,17 @@
       ]
     },
     "NM": {
-      "status": "not-participating",
+      "status": "pending-warm",
       "verified": true,
       "currentGovernor": "Michelle Lujan Grisham",
+      "optInDate": "2026-11-04",
+      "optInGovernor": "Michelle Lujan Grisham",
       "updates": [
+        {
+          "date": "2026-11-04",
+          "text": "Gov. Lujan Grisham announces New Mexico will opt in to the program for 2027: “At a time of diminishing federal investment in education, New Mexico must take advantage of every dollar we can.”",
+          "url": "https://www.governor.state.nm.us/newsroom/new-mexico-opts-into-federal-scholarship-tax-credit-2194/"
+        },
         {
           "date": "2026-04-02",
           "text": "Gov. Lujan Grisham’s spokesman says she is actively considering whether to opt in and is awaiting more information from Treasury about the funding’s flexibility.",
@@ -1514,7 +1525,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-11-04';
+  window.SS_UPDATED = '2026-11-05';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
