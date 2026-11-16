@@ -163,6 +163,14 @@
        governor announces New Mexico will opt in). New Mexico moves from
        not-participating to pending-warm, with optInDate 2026-11-04 for the
        formal announcement; it is not on the IRS list yet (as of Oct. 22).
+     - 2026-11-16 additions: IRS list as of Nov. 13, 2026 (31 states) adds
+       New Mexico, which moves to opted-in; JNS (VA, Nov. 13; a Spanberger
+       spokesperson told The Washington Post, reported "on Friday"; Virginia
+       is still on the IRS list, so it stays opted-in); RedState (VA,
+       Secretary Bessent's Nov. 15 post on X); JNS (CA, Nov. 13, dated by
+       the article); New York State Senate (NY, S10734 introduced Nov. 9);
+       Chalkbeat New York (NY, Nov. 9, dated by the article); Chalkbeat
+       Newark (NJ, Nov. 10, lawmakers dated by the article).
      - Wikipedia, "List of current United States governors."
      Each update's url is the source Ballotpedia cites for that event (the
      Virginia release's own URL is dead, so a news report of it stands in).
@@ -304,6 +312,11 @@
       "verified": true,
       "currentGovernor": "Gavin Newsom",
       "updates": [
+        {
+          "date": "2026-11-13",
+          "text": "Gov. Newsom’s office tells JNS “we are reviewing the program.”",
+          "url": "https://www.jns.org/news/u-s-news/newsomes-office-tells-jns-california-governor-is-reviewing-federal-tax-credit-program"
+        },
         {
           "date": "2026-10-28",
           "text": "Gov. Newsom’s office tells The California Post it is “reviewing the materials release and don’t have anything to share at this time.”",
@@ -941,6 +954,11 @@
       "currentGovernor": "Mikie Sherrill",
       "updates": [
         {
+          "date": "2026-11-10",
+          "text": "State Sens. Vin Gopal (D) and Declan O’Scanlon (R) say New Jersey should opt in; State Sen. Shirley Turner (D) says Gov. Sherrill should not.",
+          "url": "https://www.chalkbeat.org/newark/2026/11/10/mikie-sherrill-weighs-trump-school-choice-tax-credit/"
+        },
+        {
           "date": "2026-10-22",
           "text": "Gov. Sherrill and four other Democratic governors write to Treasury Secretary Bessent asking for more guidance before they decide whether to opt in for 2027.",
           "url": "https://epe.brightspotcdn.com/b6/8f/28d4b31b40859dbedd995b9a3f04/ftsc-letter.pdf"
@@ -978,12 +996,18 @@
       ]
     },
     "NM": {
-      "status": "pending-warm",
+      "status": "opted-in",
       "verified": true,
       "currentGovernor": "Michelle Lujan Grisham",
       "optInDate": "2026-11-04",
       "optInGovernor": "Michelle Lujan Grisham",
+      "irsListed": "2026-11-13",
       "updates": [
+        {
+          "date": "2026-11-13",
+          "text": "Added to the IRS list of participating states.",
+          "url": "https://www.irs.gov/government-entities/federal-state-local-governments/federal-scholarship-tax-credit-fstc"
+        },
         {
           "date": "2026-11-04",
           "text": "Gov. Lujan Grisham announces New Mexico will opt in to the program for 2027: “At a time of diminishing federal investment in education, New Mexico must take advantage of every dollar we can.”",
@@ -1038,6 +1062,16 @@
       "optInDate": "2026-10-09",
       "optInGovernor": "Kathy Hochul",
       "updates": [
+        {
+          "date": "2026-11-09",
+          "text": "State Sen. John Liu introduces S10734, which would make the Board of Regents the only body that can opt New York in, starting with the 2028 tax year.",
+          "url": "https://www.nysenate.gov/legislation/bills/2025/S10734"
+        },
+        {
+          "date": "2026-11-09",
+          "text": "Gov. Hochul’s office says “Governor Hochul has been clear: she’s not going to leave money on the table when it could help our kids.”",
+          "url": "https://www.chalkbeat.org/newyork/2026/11/09/john-liu-hochul-trump-school-choice-tax-credit-bill/"
+        },
         {
           "date": "2026-10-09",
           "text": "Gov. Hochul announces New York will participate in the program, saying “I’m not going to leave money on the table when it could help our kids.”",
@@ -1349,6 +1383,16 @@
       },
       "updates": [
         {
+          "date": "2026-11-15",
+          "text": "Treasury Secretary Scott Bessent says Virginia has already elected to participate in 2027 and that Gov. Spanberger is required under federal law to complete the process: “Governor Spanberger: certify the scholarship organizations.”",
+          "url": "https://redstate.com/ben-smith/2026/11/16/scott-bessent-blasts-spanberger-for-blocking-school-scholarships-as-virginia-kids-lose-out-n2209451"
+        },
+        {
+          "date": "2026-11-13",
+          "text": "Gov. Spanberger’s office says Virginia will not take part in the program this year and will not finish the enrollment Gov. Youngkin started, saying the administration does not believe the program would benefit public school students.",
+          "url": "https://www.jns.org/news/u-s-news/virginias-spanberger-rejects-federal-scholarship-tax-credit-program"
+        },
+        {
           "date": "2026-10-09",
           "text": "Gov. Spanberger says “We’re continuing to evaluate the program and where Virginia is and what our options are moving forward.”",
           "url": "https://richmond.com/news/state-regional/education/article_9d9ce59a-fe80-4e61-bc38-eae826fa9a61.html"
@@ -1525,7 +1569,7 @@
      was last reviewed and changed -- every update PR sets it to its run
      date, so it goes live when that PR is merged. Don't bump it on a run
      that changed nothing. */
-  window.SS_UPDATED = '2026-11-05';
+  window.SS_UPDATED = '2026-11-16';
 
   /* Official governor's office website for each current governor, keyed by
      name as it appears above. From USA.gov's state pages (usa.gov/states/<state>),
