@@ -243,6 +243,12 @@ EACH RUN
      as it is and ask in "Needs your call", quoting the words used.
    - List every status change in the PR's change table with the exact words
      that justify it, so Scholar Street can confirm or reverse it.
+   - Standing decision (Mel, 2026-11-16): Virginia stays "opted-in" while it
+     is on the IRS list. Gov. Spanberger not providing the list of
+     scholarship granting organizations is not an opt-out, so don't propose
+     moving Virginia to not-participating and don't ask about it in "Needs
+     your call". Keep adding Virginia news to `updates` as usual. If Virginia
+     leaves the IRS list, apply the rules above.
 
 6. Rules you must not break:
    - optInDate only for a dated formal action (executive order, IRS Form
