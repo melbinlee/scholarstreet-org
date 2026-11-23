@@ -37,6 +37,17 @@
 /leadership       /team.html          301
 /contact          /team.html#contact  301
 
+# Partner school giving links: scholarstreet.org/give/<slug>. These URLs are
+# printed on QR codes (scripts/partner-qr.js), so they must never change --
+# only the destination does. 302, not 301: a 301 is cached by browsers and
+# would keep sending people to the old destination after it is updated.
+# To repoint a school, edit its destination here and push.
+#
+# Rocky Mountain Christian Academy: points to the Steward School demo for now
+# (2026-11-23); replace with RMCA's own giving page when it exists.
+/give/rocky-mountain-christian-academy   https://deploy-preview-59--scholarship-insights.netlify.app/give/steward-school  302!
+/give/rocky-mountain-christian-academy/  https://deploy-preview-59--scholarship-insights.netlify.app/give/steward-school  302!
+
 # Netlify serves every page at its extensionless path with a 200, and that
 # copy carries the same canonical tag as the .html page. Search Console showed
 # Google picking /impact as canonical over the declared /impact.html and
