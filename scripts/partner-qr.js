@@ -4,7 +4,7 @@
  *
  *   node scripts/partner-qr.js --slug rocky-mountain-christian-academy \
  *     --name "Rocky Mountain Christian Academy" --logo path/to/logo.png \
- *     --out path/to/folder [--demo]
+ *     --out path/to/folder [--demo] [--color #073A56] [--radius 0.4]
  *
  * Encodes https://scholarstreet.org/give/<slug> (override with --url). That
  * URL is a redirect in _redirects, so the destination can change later
@@ -45,7 +45,7 @@ function args(argv) {
 
 const opt = args(process.argv.slice(2));
 if (!opt.slug || !opt.name || !opt.logo || !opt.out) {
-  console.error('Usage: node scripts/partner-qr.js --slug <slug> --name "<School name>" --logo <png|jpg|svg> --out <folder> [--demo] [--url <url>] [--heading "..."] [--subheading "..."]');
+  console.error('Usage: node scripts/partner-qr.js --slug <slug> --name "<School name>" --logo <png|jpg|svg> --out <folder> [--demo] [--color #rrggbb] [--radius 0-0.5] [--url <url>] [--heading "..."] [--subheading "..."]');
   process.exit(1);
 }
 if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(opt.slug)) { console.error('slug must be lowercase-with-hyphens'); process.exit(1); }
@@ -54,6 +54,9 @@ const URL_ = opt.url || `https://scholarstreet.org/give/${opt.slug}`;
 const HEADING = opt.heading || `Support ${opt.name} Students`;
 const SUB = opt.subheading || 'Scan to Give Through Scholar Street';
 const DEMO = !!opt.demo;
+// Pattern + text colour. Sample it from the school's logo; it must stay dark
+// (contrast with white of at least ~7:1) or phones will struggle.
+const COLOR = /^#[0-9a-fA-F]{6}$/.test(opt.color || '') ? opt.color : '#000000';
 const OUT = path.resolve(opt.out);
 fs.mkdirSync(OUT, { recursive: true });
 
@@ -72,25 +75,51 @@ const QUIET = 4;
 const size = n + QUIET * 2;
 
 // Clear an odd-sized centre square (~23% of the width) for the logo. Level H
-// recovers far more than this; the decode test in the README checks it.
+// recovers far more than this. Decode-test every new output before printing.
 let hole = Math.round(n * 0.23);
 if (hole % 2 !== n % 2) hole++;
 const h0 = (n - hole) / 2;
 const inHole = (r, c) => r >= h0 && r < h0 + hole && c >= h0 && c < h0 + hole;
 
+// Rounded modules: a module's corner is rounded only where both neighbours
+// touching it are light, so runs of modules stay joined and the pattern
+// stays as dense as a square one. RADIUS is in modules (0 = square, 0.5 =
+// fully round ends); reduce it if a decode test ever fails.
+const RADIUS = Math.min(0.5, Math.max(0, parseFloat(opt.radius ?? '0.4')));
+const inFinder = (r, c) => (r < 7 && c < 7) || (r < 7 && c >= n - 7) || (r >= n - 7 && c < 7);
+const dark = (r, c) => r >= 0 && c >= 0 && r < n && c < n && qr.isDark(r, c) && !inHole(r, c) && !inFinder(r, c);
+const f = (v) => +v.toFixed(3);
+function roundRect(x, y, w, h, tl, tr, br, bl) {
+  return `M${f(x + tl)} ${f(y)}H${f(x + w - tr)}A${tr} ${tr} 0 0 1 ${f(x + w)} ${f(y + tr)}` +
+    `V${f(y + h - br)}A${br} ${br} 0 0 1 ${f(x + w - br)} ${f(y + h)}` +
+    `H${f(x + bl)}A${bl} ${bl} 0 0 1 ${f(x)} ${f(y + h - bl)}` +
+    `V${f(y + tl)}A${tl} ${tl} 0 0 1 ${f(x + tl)} ${f(y)}Z`;
+}
 let d = '';
 for (let r = 0; r < n; r++) {
   for (let c = 0; c < n; c++) {
-    if (qr.isDark(r, c) && !inHole(r, c)) d += `M${c + QUIET} ${r + QUIET}h1v1h-1z`;
+    if (!dark(r, c)) continue;
+    const up = dark(r - 1, c), dn = dark(r + 1, c), lf = dark(r, c - 1), rt = dark(r, c + 1);
+    const R = RADIUS;
+    d += roundRect(c + QUIET, r + QUIET, 1, 1,
+      !up && !lf ? R : 0, !up && !rt ? R : 0, !dn && !rt ? R : 0, !dn && !lf ? R : 0);
   }
+}
+// Corner markers: same 7/5/3 structure, softly rounded.
+let fd = '';
+for (const [r, c] of [[0, 0], [0, n - 7], [n - 7, 0]]) {
+  const x = c + QUIET, y = r + QUIET;
+  fd += roundRect(x, y, 7, 7, 2, 2, 2, 2) + roundRect(x + 1, y + 1, 5, 5, 1.2, 1.2, 1.2, 1.2) +
+    roundRect(x + 2, y + 2, 3, 3, 0.9, 0.9, 0.9, 0.9);
 }
 const pad = 0.6; // white margin inside the hole, in modules
 const lx = QUIET + h0 + pad, lw = hole - pad * 2;
 const qrSvg =
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges">` +
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}">` +
   `<title>${esc(URL_)}</title>` +
   `<rect width="${size}" height="${size}" fill="#fff"/>` +
-  `<path d="${d}" fill="#000"/>` +
+  `<path d="${d}" fill="${COLOR}"/>` +
+  `<path d="${fd}" fill="${COLOR}" fill-rule="evenodd"/>` +
   `<image href="${logoData}" x="${lx}" y="${lx}" width="${lw}" height="${lw}" preserveAspectRatio="xMidYMid meet"/>` +
   `</svg>`;
 fs.writeFileSync(path.join(OUT, `${opt.slug}-qr.svg`), qrSvg);
@@ -103,7 +132,7 @@ const poster = `<!doctype html><html><head><meta charset="utf-8">
 <style>
   html,body{margin:0;background:#fff}
   .page{width:1200px;height:1500px;box-sizing:border-box;padding:110px 120px 90px;position:relative;
-    font-family:'Source Sans 3','Segoe UI',system-ui,sans-serif;color:#1B2E4B;text-align:center;
+    font-family:'Source Sans 3','Segoe UI',system-ui,sans-serif;color:${COLOR};text-align:center;
     display:flex;flex-direction:column;align-items:center}
   .demo{position:absolute;top:40px;right:44px;border:2px solid #b42318;color:#b42318;border-radius:999px;
     font-size:20px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:6px 18px}
@@ -112,7 +141,7 @@ const poster = `<!doctype html><html><head><meta charset="utf-8">
   .qr{width:820px;height:820px}
   .qr svg{width:100%;height:100%;display:block}
   .sub{font-size:46px;font-weight:600;margin:40px 0 0}
-  .url{font-size:24px;color:#5b6678;margin-top:auto;letter-spacing:.01em}
+  .url{font-size:24px;color:${COLOR};opacity:.72;margin-top:auto;letter-spacing:.01em}
 </style></head><body><div class="page">
 ${DEMO ? '<div class="demo">Demo only</div>' : ''}
 <h1>${esc(HEADING)}</h1>
